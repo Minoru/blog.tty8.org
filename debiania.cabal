@@ -1,0 +1,17 @@
+Name: debiania
+Version: 0.0.1
+Stability: alpha
+
+Synopsis: just another Debian blog
+
+Author: Alexander Batischev
+Maintainer:  eual.jp@gmail.com
+License: BSD3
+
+Build-type: Simple
+Cabal-version: >= 1.2
+
+Executable debiania
+    Main-is: debiania.hs
+    Build-Depends: base == 4.*
+                 , hakyll == 3.2.*

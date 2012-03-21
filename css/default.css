@@ -1,0 +1,120 @@
+/**********************************
+ * General settings
+ **********/
+
+body {
+    width: 512px;
+    margin: 0px auto 0px auto;
+    font: Georgia, Serif;
+    text-align: justify;
+}
+
+a:link {
+    color: #0008a0;
+}
+
+a:visited {
+    color: #6d70a0;
+}
+
+a:hover,
+a:active {
+    color: #0008a0;
+}
+
+
+/**********************************
+ * Blog header
+ */
+
+#blog-header {
+    text-align: center;
+    text-transform: uppercase;
+    font: small Georgia;
+}
+a:link#blog-header-link,
+a:visited#blog-header-link,
+a:hover#blog-header-link,
+a:active#blog-header-link 
+{
+    color: #0008a0;
+    text-decoration: none;
+}
+
+/**********************************
+ * Navigation bar
+ */
+
+nav#navigation {
+    text-align: center;
+    border-top: 1px solid #1cb026;
+    border-bottom: 1px solid #1cb026;
+    padding: 4px 0px 4px 0px;
+}
+
+nav#navigation a {
+    color: #00a00b;
+    text-decoration: none;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+
+/**********************************
+ * Post
+ */
+
+#post-header {
+    margin: 0 auto;
+    text-align: center;
+    width: 90%;
+    padding-bottom: 0.3em;
+}
+
+article#post h2 {
+    font-size: 95%;
+}
+
+article#posts {
+}
+
+#post-date {
+    padding: 0px 10px;
+    background-color: white;
+    text-align: center;
+    position: relative;
+    top: -1em;
+}
+
+.date {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+/**********************************
+ * Footer
+ */
+
+footer#blog-footer {
+    border-top: 1px solid #1cb026;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+/**********************************
+ * Miscellaneous
+ */
+
+.image {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#service-header {
+  text-align: center;
+  width: 90%;
+  font-size: 90%;
+  padding-bottom: 0;
+}

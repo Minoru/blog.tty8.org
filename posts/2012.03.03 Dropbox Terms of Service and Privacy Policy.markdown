@@ -1,0 +1,83 @@
+---
+title: Dropbox Terms of Service и Privacy Policy
+date: March 3, 2012
+---
+
+Уже упоминавшийся в предыдущем посте разговор также сподвиг меня на прочтение
+<a href='https://www.dropbox.com/terms#terms'>условий сервиса</a>, которым я
+больше не пользуюсь — Dropbox.
+
+В своё время я удалил свой аккаунт на дропбоксе из-за того, что в их условиях
+появилось противоречие: в одной части они гарантировали, что шифруют все мои
+файлы и что никто из сотрудников не может получить к ним доступ, а в другой
+сообщали, что мои файлы могут быть переданы властям в случае судебного
+разбирательства. И хотя я никогда не хранил на Dropbox'е что-либо, защищённое
+копирайтом третьих сторон, это несоответствие очень сильно поколебило моё
+доверие к сервису. В итоге я попросту удалил оттуда свой аккаунт, о чём даже не
+пришлось жалеть — замена в лице <code>rsync</code> чудесно справляется со всеми
+возникающими задачами.
+
+Итак, давайте посмотрим, поменялось ли что-то с тех далёких времён.
+
+_To be clear, aside from the rare exceptions we identify in our Privacy
+Policy, no matter how the Services change, we won’t share your content with
+others, **including law enforcement**, for any purpose unless you direct us
+to. How we collect and use your information generally is also explained in our
+Privacy Policy._
+
+Ну, вроде обещают защищать даже от стражей порядка, за исключением ситуаций,
+оговоренных в <a href='https://www.dropbox.com/terms#privacy'>Privacy
+Policy</a>.
+
+_**You acknowledge that if you wish to protect your transmission of data or
+files to Dropbox, it is your responsibility to use a secure encrypted
+connection to communicate with the Services.**_
+
+А вот это уже интересно. Ещё интереснее станет, когда прочтём <a
+href='https://www.dropbox.com/terms#security'>Security Overview</a>, в котором
+сказано, что при передаче используется 256-ибитный AES. Да, там же оговорено,
+что сторонние приложения могут не использовать шифрование, а некоторые
+устройства могут попросту его не поддерживать, но требование все равно остаётся
+довольно мутным (по крайней мере, для меня), т.к. непонятно, как же
+пользователь должен это своё обязательство реализовывать.
+
+
+Некоторый интерес представляет также <a
+href='https://www.dropbox.com/terms#privacy'>Dropbox Privacy Policy</a>
+(рассматривается версия от 2-го июля 2011-го года).
+
+_<u>Geo-Location Information:</u> Some Devices allow applications to access
+real-time location-based information (for example, GPS). Our mobile apps do not
+collect such information as of the date this policy went into effect, but may
+do so in the future with your consent to improve our Services. **Some photos
+you place in Dropbox may contain recorded location information. We may use this
+information to optimize your experience. Also, some of the information we
+collect from a Device, for example IP address, can sometimes be used to
+approximate a Device’s location.**_
+
+По-моему, этот параграф противоречит самому себе. С одной стороны
+гарантируется, что с помощью GPS твоё местоположение отслеживать не будут, а с
+другой оставляется лазейка через геотеги и IP.
+
+_<u>Compliance with Laws and Law Enforcement Requests; Protection of
+Dropbox's Rights.</u> We may disclose to parties outside Dropbox files stored
+in your Dropbox and information about you that we collect when we have a good
+faith belief that disclosure is reasonably necessary to **(a) comply with a
+law, regulation or compulsory legal request;** (b) protect the safety of any
+person from death or serious bodily injury; (c) prevent fraud or abuse of
+Dropbox or its users; or (d) to protect Dropbox’s property rights. If we
+provide your Dropbox files to a law enforcement agency as set forth above, we
+will remove Dropbox’s encryption from the files before providing them to law
+enforcement. However, Dropbox will not be able to decrypt any files that you
+encrypted prior to storing them on Dropbox._
+
+Те самые ситуации, в которых Dropbox оставляет за собой право передавать
+третьим лицам информацию пользователей. Мне кажется, что пункт (a) противоречит
+тому, что написано в ToS.
+
+
+Итог: за пару лет (или сколько там прошло с того момента, как я удалил свой
+аккаунт) ничего не поменялось — условия использования Dropbox всё так же
+противоречивы, как и раньше. Я не призываю вас удалять свои аккаунты, но
+советую задуматься над тем, какие права вы даёте людям, хранящим ваши файлы
+где-то за бугром.
