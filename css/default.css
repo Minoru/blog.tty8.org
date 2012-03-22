@@ -80,7 +80,14 @@ article#post h2 {
     background-color: white;
     text-align: center;
     position: relative;
-    top: -1em;
+    top: -0.9em;
+}
+
+#date-hr {
+    width: 80%;
+    height: 1px;
+    border-top: 1px solid #1cb026;
+    padding: 0;
 }
 
 .date {
@@ -110,8 +117,8 @@ footer#blog-footer {
 }
 
 #service-header {
-  text-align: center;
-  width: 90%;
-  font-size: 90%;
-  padding-bottom: 0;
+    text-align: center;
+    width: 90%;
+    font-size: 90%;
+    padding-bottom: 0;
 }
