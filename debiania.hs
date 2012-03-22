@@ -84,7 +84,7 @@ addPostList = setFieldA "posts" $
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
     { feedTitle = "Debiania"
-    , feedDescription = "Just another Debian blog"
+    , feedDescription = "yet another Debian blog"
     , feedAuthorName = "Alexander Batischev"
     , feedRoot = "http://debiania.org.ua"
     }
