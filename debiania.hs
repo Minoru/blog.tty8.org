@@ -60,12 +60,26 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
+    match "subscribe.markdown" $ do
+        route $ setExtension "html"
+        compile $ pageCompiler
+            >>> arr (setField "title" "Subscribe")
+            >>> applyTemplateCompiler "templates/about.html"
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
     -- Render feeds
     match "all.rss" $ route idRoute
     create "all.rss" $
         requireAll_ "posts/*"
             >>> mapCompiler (arr $ copyBodyToField "description")
             >>> renderRss feedConfiguration
+
+    match "all.atom" $ route idRoute
+    create "all.atom" $
+        requireAll_ "posts/*"
+            >>> mapCompiler (arr $ copyBodyToField "description")
+            >>> renderAtom feedConfiguration
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -82,8 +96,8 @@ addPostList = setFieldA "posts" $
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania"
-    , feedDescription = "yet another Debian blog"
+    { feedTitle = "Debiania, yet another Debian blog"
+    , feedDescription = "All posts"
     , feedAuthorName = "Alexander Batischev"
     , feedRoot = "http://debiania.org.ua"
     }
