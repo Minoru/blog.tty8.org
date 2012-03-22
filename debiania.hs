@@ -2,7 +2,7 @@
 
 import Prelude hiding (id)
 import Control.Category (id)
-import Control.Arrow ((>>>), second, arr)
+import Control.Arrow ((>>>), (|||), (&&&), first, second, arr)
 import Data.Monoid (mempty, mconcat)
 
 import Hakyll
@@ -72,13 +72,13 @@ main = hakyll $ do
     match "all.rss" $ route idRoute
     create "all.rss" $
         requireAll_ "posts/*"
-            >>> mapCompiler (arr $ copyBodyToField "description")
+            >>> genFeedEntries
             >>> renderRss feedConfiguration
 
     match "all.atom" $ route idRoute
-    create "all.atom" $
+    create "all.atom" $ 
         requireAll_ "posts/*"
-            >>> mapCompiler (arr $ copyBodyToField "description")
+            >>> genFeedEntries
             >>> renderAtom feedConfiguration
 
     -- Read templates
@@ -93,6 +93,20 @@ addPostList = setFieldA "posts" $
         >>> require "templates/postitem.html" (\p t -> map (applyTemplate t) p)
         >>> arr mconcat
         >>> arr pageBody
+
+hasDescription :: Page a -> Bool
+hasDescription = (/= "") . getField "description"
+
+pageHasDescription :: Compiler (Page a) (Either (Page a) (Page a))
+pageHasDescription = arr (\p -> if hasDescription p then Right p else Left p)
+
+genFeedEntries :: Compiler [Page String] [Page String]
+genFeedEntries = mapCompiler $ pageHasDescription >>>
+  ((arr (pageBody &&& id)
+    >>> first (unixFilter "sed" ["-n", "/<article[^>]*>/,/<\\/article>/p"])
+    >>> arr (\(b, m) -> setField "description" b m))
+  |||
+    id)
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
