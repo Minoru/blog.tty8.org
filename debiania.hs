@@ -28,6 +28,7 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension ".html"
         compile $ pageCompiler
+            >>> arr (renderDateField "date" "%B %e, %Y" "Date unknown")
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler

@@ -1,6 +1,5 @@
 ---
 title: Syntax highlighting in Hakyll
-date: March 21, 2012
 description: How to get syntax highlighting working in Hakyll
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Why no comments are allowed?
-date: March 21, 2012
 ---
 
 _**Summary**: discussions are often too negative, and when they're not, we
