@@ -52,13 +52,6 @@ main = hakyll $ do
         >>> applyTemplateCompiler "templates/default.html"
         >>> relativizeUrlsCompiler
 
-    -- Render RSS feed
-    match "rss.xml" $ route idRoute
-    create "rss.xml" $
-        requireAll_ "posts/*"
-            >>> mapCompiler (arr $ copyBodyToField "description")
-            >>> renderRss feedConfiguration
-
     match "about.markdown" $ do
         route $ setExtension "html"
         compile $ pageCompiler
@@ -66,6 +59,13 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/about.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
+
+    -- Render feeds
+    match "all.rss" $ route idRoute
+    create "all.rss" $
+        requireAll_ "posts/*"
+            >>> mapCompiler (arr $ copyBodyToField "description")
+            >>> renderRss feedConfiguration
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
