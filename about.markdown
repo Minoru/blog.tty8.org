@@ -36,4 +36,4 @@ See you!
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (5.4M, 238M unpacked)"
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
-[comments]: /posts/2012.03.21 Why no comments.html "Why no comments are allowed?"
+[comments]: /posts/2012-03-21-why-no-comments.html "Why no comments?"
