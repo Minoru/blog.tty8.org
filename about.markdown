@@ -20,8 +20,9 @@ hosting, mastered basics of [Hakyll](http://github.com/jaspervdj/hakyll) and
 created new Debiania, the site you're reading right now.
 
 Goals are the same — keep posting tech-related entries, not only about Debian,
-but also about programming and CS overall. All the entries from the old blog
-are moved to the new one, just to keep it all in one place.
+but also about programming and CS overall. I don't think Blogger will ever
+delete my old blog, but just in case, [here][archive]'s a browseable copy,
+created as described [here][httrack_recipe].
 
 New Debiania has much simpler interface which is mostly inspired by [Edward Z.
 Yang](http://blog.ezyang.com)'s and [James Hague](http://prog21.dadgum.com)'s
@@ -33,4 +34,6 @@ See you!
 
 [pgp]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
+[archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (5.4M, 238M unpacked)"
+[httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
 [comments]: /posts/2012.03.21 Why no comments.html "Why no comments are allowed?"

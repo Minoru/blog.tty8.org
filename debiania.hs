@@ -19,6 +19,11 @@ main = hakyll $ do
         route idRoute
         compile copyFileCompiler
 
+    -- Miscellaneous files
+    match "misc/*" $ do
+        route idRoute
+        compile copyFileCompiler
+
     -- Render posts
     match "posts/*" $ do
         route $ setExtension ".html"
