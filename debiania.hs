@@ -2,7 +2,7 @@
 
 import Prelude hiding (id)
 import Control.Category (id)
-import Control.Arrow ((>>>), (***), arr)
+import Control.Arrow ((>>>), second, arr)
 import Data.Monoid (mempty, mconcat)
 
 import Hakyll
@@ -45,8 +45,7 @@ main = hakyll $ do
     match "index.html" $ route idRoute
     create "index.html" $ constA mempty
         >>> arr (setField "title" "Home")
-        >>> requireAllA "posts/*" (id
-                                   *** arr (take 8 . recentFirst)
+        >>> requireAllA "posts/*" (second (arr $ take 8 . recentFirst)
                                    >>> addPostList)
         >>> applyTemplateCompiler "templates/posts.html"
         >>> applyTemplateCompiler "templates/index.html"
