@@ -4,6 +4,8 @@ import Prelude hiding (id)
 import Control.Category (id)
 import Control.Arrow ((>>>), (|||), (&&&), first, second, arr)
 import Data.Monoid (mempty, mconcat)
+import Data.List (sort, elem)
+import qualified Data.Text as T
 
 import Hakyll
 
@@ -82,6 +84,14 @@ main = hakyll $ do
             >>> genFeedEntries
             >>> renderAtom feedConfiguration
 
+    match "rus.atom" $ route idRoute
+    create "rus.atom" $ 
+        requireAll_ "posts/*"
+            >>> arr (filter isRussian)
+            >>> genFeedEntries
+            >>> renderAtom feedConfiguration
+
+
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
@@ -100,6 +110,18 @@ hasDescription = (/= "") . getField "description"
 
 pageHasDescription :: Compiler (Page a) (Either (Page a) (Page a))
 pageHasDescription = arr (\p -> if hasDescription p then Right p else Left p)
+
+isRussian :: Page String -> Bool
+isRussian p = field || heuristics
+  where
+    field = any (\l -> l == "ru" || l == "rus") [ getField "language" p
+                                                , getField "lang" p ]
+    heuristics = counted >= (T.length text `div` 20)
+    counted = sum $ map snd $ filter ((`elem` russian) . fst) $ countChars text
+    countChars = map (\t -> (T.head t, T.length t)) . T.group
+    text = T.toCaseFold $ T.pack $ sort $ pageBody p
+
+    russian = "йцукенгшщзхъфывапролджэячсмитьбю"
 
 genFeedEntries :: Compiler [Page String] [Page String]
 genFeedEntries = mapCompiler $ pageHasDescription >>>
