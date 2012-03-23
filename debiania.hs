@@ -9,6 +9,8 @@ import qualified Data.Text as T
 
 import Hakyll
 
+rootUrl = ""
+
 main :: IO ()
 main = hakyll $ do
     -- Compress CSS
@@ -73,24 +75,18 @@ main = hakyll $ do
 
     -- Render feeds
     match "all.rss" $ route idRoute
-    create "all.rss" $
-        requireAll_ "posts/*"
-            >>> genFeedEntries
-            >>> renderRss feedConfiguration
+    create "all.rss" $ allPosts >>> renderRss allFeedConfiguration
 
     match "all.atom" $ route idRoute
-    create "all.atom" $ 
-        requireAll_ "posts/*"
-            >>> genFeedEntries
-            >>> renderAtom feedConfiguration
+    create "all.atom" $ allPosts >>> renderAtom allFeedConfiguration
 
-    match "rus.atom" $ route idRoute
-    create "rus.atom" $ 
-        requireAll_ "posts/*"
-            >>> arr (filter isRussian)
-            >>> genFeedEntries
-            >>> renderAtom feedConfiguration
+    match "russian.rss" $ route idRoute
+    create "russian.rss" $ russianPosts
+        >>> renderRss russianFeedConfiguration
 
+    match "russian.atom" $ route idRoute
+    create "russian.atom" $ russianPosts
+        >>> renderAtom russianFeedConfiguration
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -131,10 +127,26 @@ genFeedEntries = mapCompiler $ pageHasDescription >>>
   |||
     id)
 
-feedConfiguration :: FeedConfiguration
-feedConfiguration = FeedConfiguration
+allPosts :: Compiler () [Page String]
+allPosts = requireAll_ "posts/*" >>> genFeedEntries
+
+russianPosts :: Compiler () [Page String]
+russianPosts = requireAll_ "posts/*"
+    >>> arr (filter isRussian)
+    >>> genFeedEntries
+
+allFeedConfiguration :: FeedConfiguration
+allFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
     , feedDescription = "All posts"
     , feedAuthorName = "Alexander Batischev"
-    , feedRoot = "http://debiania.org.ua"
+    , feedRoot = rootUrl
+    }
+
+russianFeedConfiguration :: FeedConfiguration
+russianFeedConfiguration = FeedConfiguration
+    { feedTitle = "Debiania, ещё один блог о Debian"
+    , feedDescription = "Посты на русском"
+    , feedAuthorName = "Александр Батищев"
+    , feedRoot = rootUrl
     }
