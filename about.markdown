@@ -11,7 +11,7 @@ me][email], I'd appreciate it if you make a digital signature.
 <center style="font-size: small;">~ * ~</center>
 
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
-after I installed Debian (hence the name). I kept my blog entries as purely
+after I installed Debian (hence the blog's name). I kept my posts as purely
 technical as possible, with rare exclusions for Linus' birthday and the like ☺
 At the end of 2011 I suddenly realized that I don't like Blogspot anymore. They
 once had comments system broken for a month, and the other time my code
@@ -27,10 +27,10 @@ created as described [here][httrack_recipe].
 New Debiania has much simpler interface which is mostly inspired by [Edward Z.
 Yang](http://blog.ezyang.com)'s and [James Hague](http://prog21.dadgum.com)'s
 blogs. I also made two decisions about blogging itself: to [abandon
-commenting][comments] and to post articles in English alongside with Russian
+commenting][comments] and to post entries in English alongside with Russian
 ones. Hope it still can be useful to you.
 
-See you!
+See ya!
 
 [pgp]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
