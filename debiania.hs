@@ -74,23 +74,35 @@ main = hakyll $ do
             >>> relativizeUrlsCompiler
 
     -- Render feeds
+    -- All posts
     match "all.rss" $ route idRoute
     create "all.rss" $ allPosts >>> renderRss allFeedConfiguration
 
     match "all.atom" $ route idRoute
     create "all.atom" $ allPosts >>> renderAtom allFeedConfiguration
 
+    -- Russian only
     match "russian.rss" $ route idRoute
     create "russian.rss" $ russianPosts >>> renderRss russianFeedConfiguration
 
     match "russian.atom" $ route idRoute
     create "russian.atom" $ russianPosts >>> renderAtom russianFeedConfiguration
 
+    -- English only
     match "english.rss" $ route idRoute
     create "english.rss" $ englishPosts >>> renderRss englishFeedConfiguration
 
     match "english.atom" $ route idRoute
     create "english.atom" $ englishPosts >>> renderAtom englishFeedConfiguration
+
+    -- Debian-related, russian
+    match "debian-rus.rss" $ route idRoute
+    create "debian-rus.rss" $ debianRussianPosts
+        >>> renderRss debianRussianFeedConfiguration
+
+    match "debian-rus.atom" $ route idRoute
+    create "debian-rus.atom" $ debianRussianPosts
+        >>> renderAtom debianRussianFeedConfiguration
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -123,6 +135,9 @@ isRussian p = field || heuristics
 
     russian = "йцукенгшщзхъфывапролджэячсмитьбю"
 
+isDebianRelated = ("debian" `elem`) . map T.unpack . T.splitOn " ," . T.pack
+    . getField "category"
+
 genFeedEntries :: Compiler [Page String] [Page String]
 genFeedEntries = mapCompiler $ pageHasDescription >>>
   ((arr (pageBody &&& id)
@@ -134,14 +149,17 @@ genFeedEntries = mapCompiler $ pageHasDescription >>>
 allPosts :: Compiler () [Page String]
 allPosts = requireAll_ "posts/*" >>> genFeedEntries
 
-russianPosts :: Compiler () [Page String]
 russianPosts = requireAll_ "posts/*"
     >>> arr (filter isRussian)
     >>> genFeedEntries
 
-englishPosts :: Compiler () [Page String]
 englishPosts = requireAll_ "posts/*"
     >>> arr (filter (not . isRussian))
+    >>> genFeedEntries
+
+debianRussianPosts = requireAll_ "posts/*"
+    >>> arr (filter isDebianRelated)
+    >>> arr (filter isRussian)
     >>> genFeedEntries
 
 allFeedConfiguration :: FeedConfiguration
@@ -165,6 +183,14 @@ englishFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
     , feedDescription = "Posts in English only"
     , feedAuthorName = "Alexander Batischev"
+    , feedRoot = rootUrl
+    }
+
+debianRussianFeedConfiguration :: FeedConfiguration
+debianRussianFeedConfiguration = FeedConfiguration
+    { feedTitle = "Debiania, ещё один блог о Debian"
+    , feedDescription = "О Debian по-русски"
+    , feedAuthorName = "Александр Батищев"
     , feedRoot = rootUrl
     }
 

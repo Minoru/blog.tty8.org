@@ -8,3 +8,5 @@ available. You may further filter out uninteresting posts using services like
 **Посты на русском**: [*RSS*](/russian.rss) [*Atom*](/russian.atom)
 
 **Posts in English only**: [*RSS*](/english.rss) [*Atom*](/english.atom)
+
+**О Debian по-русски**: [*RSS*](/debian-rus.rss) [*Atom*](/debian-rus.atom)
