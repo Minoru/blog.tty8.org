@@ -1,5 +1,5 @@
 ---
-title: Why no comments are allowed?
+title: Why no comments?
 ---
 
 _**Summary**: discussions are often too negative, and when they're not, we
