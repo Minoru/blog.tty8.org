@@ -6,3 +6,5 @@ available. You may further filter out uninteresting posts using services like
 **All posts**: [*RSS*](/all.rss) [*Atom*](/all.atom)
 
 **Посты на русском**: [*RSS*](/russian.rss) [*Atom*](/russian.atom)
+
+**Posts in English only**: [*RSS*](/english.rss) [*Atom*](/english.atom)

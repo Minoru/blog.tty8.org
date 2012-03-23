@@ -81,12 +81,16 @@ main = hakyll $ do
     create "all.atom" $ allPosts >>> renderAtom allFeedConfiguration
 
     match "russian.rss" $ route idRoute
-    create "russian.rss" $ russianPosts
-        >>> renderRss russianFeedConfiguration
+    create "russian.rss" $ russianPosts >>> renderRss russianFeedConfiguration
 
     match "russian.atom" $ route idRoute
-    create "russian.atom" $ russianPosts
-        >>> renderAtom russianFeedConfiguration
+    create "russian.atom" $ russianPosts >>> renderAtom russianFeedConfiguration
+
+    match "english.rss" $ route idRoute
+    create "english.rss" $ englishPosts >>> renderRss englishFeedConfiguration
+
+    match "english.atom" $ route idRoute
+    create "english.atom" $ englishPosts >>> renderAtom englishFeedConfiguration
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -135,6 +139,11 @@ russianPosts = requireAll_ "posts/*"
     >>> arr (filter isRussian)
     >>> genFeedEntries
 
+englishPosts :: Compiler () [Page String]
+englishPosts = requireAll_ "posts/*"
+    >>> arr (filter (not . isRussian))
+    >>> genFeedEntries
+
 allFeedConfiguration :: FeedConfiguration
 allFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
@@ -150,3 +159,12 @@ russianFeedConfiguration = FeedConfiguration
     , feedAuthorName = "Александр Батищев"
     , feedRoot = rootUrl
     }
+
+englishFeedConfiguration :: FeedConfiguration
+englishFeedConfiguration = FeedConfiguration
+    { feedTitle = "Debiania, yet another Debian blog"
+    , feedDescription = "Posts in English only"
+    , feedAuthorName = "Alexander Batischev"
+    , feedRoot = rootUrl
+    }
+
