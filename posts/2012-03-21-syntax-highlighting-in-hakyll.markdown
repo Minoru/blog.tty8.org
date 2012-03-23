@@ -40,7 +40,7 @@ fibo <span class="fu">=</span> <span class="dv">0</span>
 still just black at white.
 
 So Hakyll seem to wrap the code in different styling classes, but how does
-browser know that "kw" class should be displayed in bold green?  Obviously, you
+browser know that `kw` class should be displayed in bold green?  Obviously, you
 need some [CSS][css] describing how to highlight things.  Unfortunatelly, the
 only way to get one is to copy [`web/css/syntax.css` from Hakyll's
 repo][style.css]. I really wish there were some better way (generating it
