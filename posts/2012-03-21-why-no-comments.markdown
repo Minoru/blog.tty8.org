@@ -6,10 +6,10 @@ _**Summary**: discussions are often too negative, and when they're not, we
 still have better places for them._
 
 **Discussions on the Internet often are negative**. Widespread Internet access
-gave some people confidence that they can do whatever they want, even having
-fun at the expense of others. It's bitter when they're around, it's pointless
-to talk to them, so I just cut communications off (though not completely — you
-can still read my entries, right?)
+gave some people confidence that they can do whatever they want, even have fun
+at the expense of others. It's bitter when that kind of people are around, it's
+pointless to talk to them, so I just cut communications off (though not
+completely — you can still read my entries, right?)
 
 **People misuse it**. Though often useful (typo corrections, suggestions, new
 ideas etc.), feedback may degrade into helping forum (with screenful of command
