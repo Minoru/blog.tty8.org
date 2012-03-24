@@ -6,18 +6,18 @@ music (Pink Floyd, Nightwish, Manowar and Dream Theater are my favourite bands)
 and reading sci-fi books.
 
 I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
-me][email], I'd appreciate it if you make a digital signature.
+me][email], I'd appreciate it if you make a digital signature (or better yet,
+encrypt the message).
 
 <center style="font-size: small;">~ * ~</center>
 
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely
 technical as possible, with rare exclusions for Linus' birthday and the like ☺
-At the end of 2011 I suddenly realized that I don't like Blogspot anymore. They
-once had comments system broken for a month, and the other time my code
-listings went all messed up.  So I just bought a domain name, rented some
-hosting, mastered basics of [Hakyll](http://github.com/jaspervdj/hakyll) and
-created new Debiania, the site you're reading right now.
+At the end of 2011 I suddenly realized that I don't like Blogspot anymore. So I
+just bought a domain name, rented some hosting, mastered basics of
+[Hakyll](http://github.com/jaspervdj/hakyll) and created new Debiania, the site
+you're reading right now.
 
 Goals are the same — keep posting tech-related entries, not only about Debian,
 but also about programming and CS overall. I don't think Blogger will ever
