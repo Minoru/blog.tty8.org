@@ -32,7 +32,7 @@ fibo <span class="fu">=</span> <span class="dv">0</span>
     <span class="fu">zipWith</span>
         (<span class="fu">+</span>)
         fibo
-        (<span class="fu">tail</span>fibo)
+        (<span class="fu">tail</span> fibo)
 </code></pre>
 ```
 
