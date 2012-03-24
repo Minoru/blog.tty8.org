@@ -122,3 +122,7 @@ footer#blog-footer {
     font-size: 90%;
     padding-bottom: 0;
 }
+
+code {
+    font-size: 0.8em;
+}
