@@ -33,6 +33,7 @@ main = hakyll $ do
         route $ setExtension ".html"
         compile $ pageCompiler
             >>> arr (renderDateField "date" "%B %e, %Y" "Date unknown")
+            >>> arr (renderDateField "datetime" "%Y-%m-%d" "")
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
