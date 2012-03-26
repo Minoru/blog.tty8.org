@@ -84,42 +84,46 @@ main = hakyll $ do
 
     -- Render feeds
     -- All posts
-    match "all.rss" $ route idRoute
-    create "all.rss" $ allPosts >>> renderRss allFeedConfiguration
+    match "feeds/all.rss" $ route idRoute
+    create "feeds/all.rss" $ allPosts >>> renderRss allFeedConfiguration
 
-    match "all.atom" $ route idRoute
-    create "all.atom" $ allPosts >>> renderAtom allFeedConfiguration
+    match "feeds/all.atom" $ route idRoute
+    create "feeds/all.atom" $ allPosts >>> renderAtom allFeedConfiguration
 
     -- Russian only
-    match "russian.rss" $ route idRoute
-    create "russian.rss" $ russianPosts >>> renderRss russianFeedConfiguration
+    match "feeds/russian.rss" $ route idRoute
+    create "feeds/russian.rss" $ russianPosts
+        >>> renderRss russianFeedConfiguration
 
-    match "russian.atom" $ route idRoute
-    create "russian.atom" $ russianPosts >>> renderAtom russianFeedConfiguration
+    match "feeds/russian.atom" $ route idRoute
+    create "feeds/russian.atom" $ russianPosts
+        >>> renderAtom russianFeedConfiguration
 
     -- English only
-    match "english.rss" $ route idRoute
-    create "english.rss" $ englishPosts >>> renderRss englishFeedConfiguration
+    match "feeds/english.rss" $ route idRoute
+    create "feeds/english.rss" $ englishPosts
+        >>> renderRss englishFeedConfiguration
 
-    match "english.atom" $ route idRoute
-    create "english.atom" $ englishPosts >>> renderAtom englishFeedConfiguration
+    match "feeds/english.atom" $ route idRoute
+    create "feeds/english.atom" $ englishPosts
+        >>> renderAtom englishFeedConfiguration
 
     -- Debian-related, russian
-    match "debian-rus.rss" $ route idRoute
-    create "debian-rus.rss" $ debianRussianPosts
+    match "feeds/debian-rus.rss" $ route idRoute
+    create "feeds/debian-rus.rss" $ debianRussianPosts
         >>> renderRss debianRussianFeedConfiguration
 
-    match "debian-rus.atom" $ route idRoute
-    create "debian-rus.atom" $ debianRussianPosts
+    match "feeds/debian-rus.atom" $ route idRoute
+    create "feeds/debian-rus.atom" $ debianRussianPosts
         >>> renderAtom debianRussianFeedConfiguration
 
     -- Linux-related, russian - feed for runix.org
-    match "linux-rus.rss" $ route idRoute
-    create "linux-rus.rss" $ linuxRussianPosts
+    match "feeds/linux-rus.rss" $ route idRoute
+    create "feeds/linux-rus.rss" $ linuxRussianPosts
         >>> renderRss linuxRussianFeedConfiguration
 
-    match "linux-rus.atom" $ route idRoute
-    create "linux-rus.atom" $ linuxRussianPosts
+    match "feeds/linux-rus.atom" $ route idRoute
+    create "feeds/linux-rus.atom" $ linuxRussianPosts
         >>> renderAtom linuxRussianFeedConfiguration
 
     -- Read templates

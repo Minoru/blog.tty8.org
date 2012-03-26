@@ -5,12 +5,12 @@ available. You may further filter out uninteresting posts using services like
 
 <div class="center">~ * ~</div>
 
-**All posts**: [*RSS*](/all.rss) [*Atom*](/all.atom)
+**All posts**: [*RSS*](/feeds/all.rss) [*Atom*](/feeds/all.atom)
 
-**Посты на русском**: [*RSS*](/russian.rss) [*Atom*](/russian.atom)
+**Посты на русском**: [*RSS*](/feeds/russian.rss) [*Atom*](/feeds/russian.atom)
 
-**Posts in English only**: [*RSS*](/english.rss) [*Atom*](/english.atom)
+**Posts in English only**: [*RSS*](/feeds/english.rss) [*Atom*](/feeds/english.atom)
 
-**О Debian**: [*RSS*](/debian-rus.rss) [*Atom*](/debian-rus.atom)
+**О Debian**: [*RSS*](/feeds/debian-rus.rss) [*Atom*](/feeds/debian-rus.atom)
 
-**О Linux:** [*RSS*](/linux-rus.rss) [*Atom*](/linux-rus.atom)
+**О Linux:** [*RSS*](/feeds/linux-rus.rss) [*Atom*](/feeds/linux-rus.atom)
