@@ -11,4 +11,6 @@ available. You may further filter out uninteresting posts using services like
 
 **Posts in English only**: [*RSS*](/english.rss) [*Atom*](/english.atom)
 
-**О Debian по-русски**: [*RSS*](/debian-rus.rss) [*Atom*](/debian-rus.atom)
+**О Debian**: [*RSS*](/debian-rus.rss) [*Atom*](/debian-rus.atom)
+
+**О Linux:** [*RSS*](/linux-rus.rss) [*Atom*](/linux-rus.atom)

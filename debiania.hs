@@ -113,6 +113,15 @@ main = hakyll $ do
     create "debian-rus.atom" $ debianRussianPosts
         >>> renderAtom debianRussianFeedConfiguration
 
+    -- Linux-related, russian - feed for runix.org
+    match "linux-rus.rss" $ route idRoute
+    create "linux-rus.rss" $ linuxRussianPosts
+        >>> renderRss linuxRussianFeedConfiguration
+
+    match "linux-rus.atom" $ route idRoute
+    create "linux-rus.atom" $ linuxRussianPosts
+        >>> renderAtom linuxRussianFeedConfiguration
+
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
@@ -147,6 +156,9 @@ isRussian p = field || heuristics
 isDebianRelated = ("debian" `elem`) . map T.unpack . T.splitOn " ," . T.pack
     . getField "category"
 
+isLinuxRelated = ("linux" `elem`) . map T.unpack . T.splitOn " ," . T.pack
+    . getField "category"
+
 genFeedEntries :: Compiler [Page String] [Page String]
 genFeedEntries = mapCompiler $ pageHasDescription >>>
   ((arr (pageBody &&& id)
@@ -168,6 +180,11 @@ englishPosts = requireAll_ "posts/*"
 
 debianRussianPosts = requireAll_ "posts/*"
     >>> arr (filter isDebianRelated)
+    >>> arr (filter isRussian)
+    >>> genFeedEntries
+
+linuxRussianPosts = requireAll_ "posts/*"
+    >>> arr (filter (\p -> isLinuxRelated p || isDebianRelated p))
     >>> arr (filter isRussian)
     >>> genFeedEntries
 
@@ -198,7 +215,15 @@ englishFeedConfiguration = FeedConfiguration
 debianRussianFeedConfiguration :: FeedConfiguration
 debianRussianFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, ещё один блог о Debian"
-    , feedDescription = "О Debian по-русски"
+    , feedDescription = "О Debian"
+    , feedAuthorName = "Александр Батищев"
+    , feedRoot = rootUrl
+    }
+
+linuxRussianFeedConfiguration :: FeedConfiguration
+linuxRussianFeedConfiguration = FeedConfiguration
+    { feedTitle = "Debiania, ещё один блог о Debian"
+    , feedDescription = "О Linux"
     , feedAuthorName = "Александр Батищев"
     , feedRoot = rootUrl
     }
