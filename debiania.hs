@@ -91,15 +91,6 @@ main = hakyll $ do
     create "feeds/english.atom" $ englishPosts
         >>> renderAtom englishFeedConfiguration
 
-    -- Debian-related, russian
-    match "feeds/debian-rus.rss" $ route idRoute
-    create "feeds/debian-rus.rss" $ debianRussianPosts
-        >>> renderRss debianRussianFeedConfiguration
-
-    match "feeds/debian-rus.atom" $ route idRoute
-    create "feeds/debian-rus.atom" $ debianRussianPosts
-        >>> renderAtom debianRussianFeedConfiguration
-
     -- Linux-related, russian - feed for runix.org
     match "feeds/linux-rus.rss" $ route idRoute
     create "feeds/linux-rus.rss" $ linuxRussianPosts

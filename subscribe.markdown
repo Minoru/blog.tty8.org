@@ -9,10 +9,8 @@ available. You may further filter out uninteresting posts using services like
 
 **All posts**: [*RSS*](/feeds/all.rss) [*Atom*](/feeds/all.atom)
 
-**Посты на русском**: [*RSS*](/feeds/russian.rss) [*Atom*](/feeds/russian.atom)
-
 **Posts in English only**: [*RSS*](/feeds/english.rss) [*Atom*](/feeds/english.atom)
 
-**О Debian**: [*RSS*](/feeds/debian-rus.rss) [*Atom*](/feeds/debian-rus.atom)
+**Посты на русском**: [*RSS*](/feeds/russian.rss) [*Atom*](/feeds/russian.atom)
 
-**О Linux:** [*RSS*](/feeds/linux-rus.rss) [*Atom*](/feeds/linux-rus.atom)
+**О Linux** (специально для [runix](http://runix.org/)): [*RSS*](/feeds/linux-rus.rss) [*Atom*](/feeds/linux-rus.atom)
