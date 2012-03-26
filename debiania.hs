@@ -73,6 +73,14 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
 
+    match "404.markdown" $ do
+        route $ setExtension "html"
+        compile $ pageCompiler
+            >>> arr (setField "title" "404")
+            >>> applyTemplateCompiler "templates/about.html"
+            >>> applyTemplateCompiler "templates/default.html"
+            >>> relativizeUrlsCompiler
+
     -- Render feeds
     -- All posts
     match "all.rss" $ route idRoute
