@@ -9,7 +9,7 @@ I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
 me][email], I'd appreciate it if you make a digital signature (or better yet,
 encrypt the message).
 
-<center style="font-size: small;">~ * ~</center>
+<div class="center">~ * ~</div>
 
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely

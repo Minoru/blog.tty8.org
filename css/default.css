@@ -88,6 +88,7 @@ nav#navigation a {
     height: 1px;
     border-top: 1px solid #1cb026;
     padding: 0;
+    margin: 0 auto;
 }
 
 .date {
@@ -114,6 +115,10 @@ footer#blog-footer {
 .image {
     text-align: center;
     margin: 0 auto;
+}
+
+.center {
+    text-align: center;
 }
 
 #service-header {
