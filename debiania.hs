@@ -58,26 +58,9 @@ main = hakyll $ do
         >>> applyTemplateCompiler "templates/default.html"
         >>> relativizeUrlsCompiler
 
-    match "about.markdown" $ do
+    match (list ["about.markdown", "subscribe.markdown", "404.markdown"]) $ do
         route $ setExtension "html"
         compile $ pageCompiler
-            >>> arr (setField "title" "About")
-            >>> applyTemplateCompiler "templates/about.html"
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
-
-    match "subscribe.markdown" $ do
-        route $ setExtension "html"
-        compile $ pageCompiler
-            >>> arr (setField "title" "Subscribe")
-            >>> applyTemplateCompiler "templates/about.html"
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
-
-    match "404.markdown" $ do
-        route $ setExtension "html"
-        compile $ pageCompiler
-            >>> arr (setField "title" "404")
             >>> applyTemplateCompiler "templates/about.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler

@@ -121,10 +121,9 @@ footer#blog-footer {
     text-align: center;
 }
 
-#service-header {
+#service-page h1 {
     text-align: center;
     width: 90%;
-    font-size: 90%;
     padding-bottom: 0;
 }
 
