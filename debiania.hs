@@ -9,7 +9,7 @@ import qualified Data.Text as T
 
 import Hakyll
 
-rootUrl = ""
+rootUrl = "http://debiania.in.ua/"
 
 main :: IO ()
 main = hakyll $ do
