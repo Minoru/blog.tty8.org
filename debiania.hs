@@ -156,11 +156,7 @@ englishPosts = requireAll_ "posts/*"
     >>> arr (filter (not . isRussian))
     >>> genFeedEntries
 
-debianRussianPosts = requireAll_ "posts/*"
-    >>> arr (filter isDebianRelated)
-    >>> arr (filter isRussian)
-    >>> genFeedEntries
-
+-- | Returns feed entries corresponding to posts written in Russian about Linux
 linuxRussianPosts = requireAll_ "posts/*"
     >>> arr (filter (\p -> isLinuxRelated p || isDebianRelated p))
     >>> arr (filter isRussian)
@@ -187,14 +183,6 @@ englishFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
     , feedDescription = "Posts in English only"
     , feedAuthorName = "Alexander Batischev"
-    , feedRoot = rootUrl
-    }
-
-debianRussianFeedConfiguration :: FeedConfiguration
-debianRussianFeedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania, ещё один блог о Debian"
-    , feedDescription = "О Debian"
-    , feedAuthorName = "Александр Батищев"
     , feedRoot = rootUrl
     }
 
