@@ -103,6 +103,8 @@ main = hakyll $ do
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
+{---- COMPILERS ----}
+
 -- | Auxiliary compiler: generate a post list from a list of given posts, and
 -- add it to the current page under @$posts@
 --
@@ -113,12 +115,20 @@ addPostList = setFieldA "posts" $
         >>> arr mconcat
         >>> arr pageBody
 
-hasDescription :: Page a -> Bool
-hasDescription = (/= "") . getField "description"
-
+-- | Splits control flow in two depending on page having description or not
 pageHasDescription :: Compiler (Page a) (Either (Page a) (Page a))
 pageHasDescription = arr (\p -> if hasDescription p then Right p else Left p)
 
+
+{---- PREDICATES ----}
+
+-- | Helper function to determine if a page has a @description@ field
+hasDescription :: Page a -> Bool
+hasDescription = (/= "") . getField "description"
+
+-- | Helper function to determine if given page is written in Russian.
+-- Tries @lang@ and @language@ fields first, then uses some homebrew heuristics
+-- (is at least 20% of characters cyryllic?)
 isRussian :: Page String -> Bool
 isRussian p = field || heuristics
   where
@@ -131,12 +141,20 @@ isRussian p = field || heuristics
 
     russian = "йцукенгшщзхъфывапролджэячсмитьбю"
 
+-- | Helper function to check if @category@ field contains "debian"
 isDebianRelated = ("debian" `elem`) . map T.unpack . T.splitOn " ," . T.pack
     . getField "category"
 
+-- | Helper function to check if @category@ field contains "linux"
 isLinuxRelated = ("linux" `elem`) . map T.unpack . T.splitOn " ," . T.pack
     . getField "category"
 
+
+{---- FEED-RELATED COMPILERS ----}
+
+-- | Like @addPostList@ but for feeds
+-- Uses some `sed' magic to get full text of article if @description@ field is
+-- not present
 genFeedEntries :: Compiler [Page String] [Page String]
 genFeedEntries = mapCompiler $ pageHasDescription >>>
   ((arr (pageBody &&& id)
@@ -145,13 +163,17 @@ genFeedEntries = mapCompiler $ pageHasDescription >>>
   |||
     id)
 
+-- | Returns feed entries coresponding to all posts
 allPosts :: Compiler () [Page String]
 allPosts = requireAll_ "posts/*" >>> genFeedEntries
 
+-- | Returns feed entries coresponding to posts written in Russian
 russianPosts = requireAll_ "posts/*"
     >>> arr (filter isRussian)
     >>> genFeedEntries
 
+-- | Returns feed entries coresponding to posts written in English (actually,
+-- anything but Russian)
 englishPosts = requireAll_ "posts/*"
     >>> arr (filter (not . isRussian))
     >>> genFeedEntries
@@ -161,6 +183,9 @@ linuxRussianPosts = requireAll_ "posts/*"
     >>> arr (filter (\p -> isLinuxRelated p || isDebianRelated p))
     >>> arr (filter isRussian)
     >>> genFeedEntries
+
+
+{---- FEED CONFIGURATIONS ----}
 
 allFeedConfiguration :: FeedConfiguration
 allFeedConfiguration = FeedConfiguration
