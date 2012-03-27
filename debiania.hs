@@ -158,7 +158,8 @@ isLinuxRelated = ("linux" `elem`) . map T.unpack . T.splitOn " ," . T.pack
 genFeedEntries :: Compiler [Page String] [Page String]
 genFeedEntries = mapCompiler $ pageHasDescription >>>
   ((arr (pageBody &&& id)
-    >>> first (unixFilter "sed" ["-n", "/<article[^>]*>/,/<\\/article>/p"])
+    >>> first (unixFilter "sed"
+                ["-n", "/<div id=\"post\"[^>]*>/,/<\\/article>/p"])
     >>> arr (\(b, m) -> setField "description" b m))
   |||
     id)
