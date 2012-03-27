@@ -34,6 +34,10 @@ main = hakyll $ do
         compile $ pageCompiler
             >>> arr (renderDateField "date" "%B %e, %Y" "Date unknown")
             >>> arr (renderDateField "datetime" "%Y-%m-%d" "")
+            >>> pageHasDescription
+            >>> arr (copyBodyToField "description")
+                |||
+                id
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
@@ -68,10 +72,12 @@ main = hakyll $ do
     -- Render feeds
     -- All posts
     match "feeds/all.rss" $ route idRoute
-    create "feeds/all.rss" $ allPosts >>> renderRss allFeedConfiguration
+    create "feeds/all.rss" $ requireAll_ "posts/*"
+        >>> renderRss allFeedConfiguration
 
     match "feeds/all.atom" $ route idRoute
-    create "feeds/all.atom" $ allPosts >>> renderAtom allFeedConfiguration
+    create "feeds/all.atom" $ requireAll_ "posts/*"
+        >>> renderAtom allFeedConfiguration
 
     -- Russian only
     match "feeds/russian.rss" $ route idRoute
@@ -152,38 +158,17 @@ isLinuxRelated = ("linux" `elem`) . map T.unpack . T.splitOn " ," . T.pack
 
 {---- FEED-RELATED COMPILERS ----}
 
--- | Like @addPostList@ but for feeds
--- Uses some `sed' magic to get full text of article if @description@ field is
--- not present
-genFeedEntries :: Compiler [Page String] [Page String]
-genFeedEntries = mapCompiler $ pageHasDescription >>>
-  ((arr (pageBody &&& id)
-    >>> first (unixFilter "sed"
-                ["-n", "/<div id=\"post\"[^>]*>/,/<\\/article>/p"])
-    >>> arr (\(b, m) -> setField "description" b m))
-  |||
-    id)
-
--- | Returns feed entries coresponding to all posts
-allPosts :: Compiler () [Page String]
-allPosts = requireAll_ "posts/*" >>> genFeedEntries
-
 -- | Returns feed entries coresponding to posts written in Russian
-russianPosts = requireAll_ "posts/*"
-    >>> arr (filter isRussian)
-    >>> genFeedEntries
+russianPosts = requireAll_ "posts/*" >>> arr (filter isRussian)
 
 -- | Returns feed entries coresponding to posts written in English (actually,
 -- anything but Russian)
-englishPosts = requireAll_ "posts/*"
-    >>> arr (filter (not . isRussian))
-    >>> genFeedEntries
+englishPosts = requireAll_ "posts/*" >>> arr (filter (not . isRussian))
 
 -- | Returns feed entries corresponding to posts written in Russian about Linux
 linuxRussianPosts = requireAll_ "posts/*"
     >>> arr (filter (\p -> isLinuxRelated p || isDebianRelated p))
     >>> arr (filter isRussian)
-    >>> genFeedEntries
 
 
 {---- FEED CONFIGURATIONS ----}
