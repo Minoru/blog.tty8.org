@@ -1,3 +1,7 @@
+---
+title: Subscribe
+---
+
 # Subscribe
 
 My posts span a number of topics and are written in two languages, so to make
