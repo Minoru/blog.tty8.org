@@ -49,7 +49,7 @@ it locally using `pygmentize`?), but I couldn't find one.
 Oh, yes: [`-fhighlighting` receipe][fhighlighting] still applies, i.e. to get
 highlighting you may need to reinstall pandoc and hakyll with
 
-    cabal install --reinstall -fhighlighting pandoc hakyll
+    $ cabal install --reinstall -fhighlighting pandoc hakyll
 
 Hope this helps.
 
