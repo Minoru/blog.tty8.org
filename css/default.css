@@ -30,6 +30,8 @@ a:active {
     text-align: center;
     text-transform: uppercase;
     font: small Georgia;
+    width: 80%;
+    margin: 0 auto;
 }
 a:link#blog-header-link,
 a:visited#blog-header-link,
