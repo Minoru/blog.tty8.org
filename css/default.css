@@ -5,7 +5,7 @@
 body {
     width: 512px;
     margin: 0px auto 0px auto;
-    font-family: Georgia, Serif;
+    font-family: Sans-Serif;
 }
 
 a:link {
@@ -27,6 +27,7 @@ a:active {
  */
 
 #blog-header {
+    font-family: Georgia, Serif;
     text-align: center;
     text-transform: uppercase;
     font: small Georgia;
