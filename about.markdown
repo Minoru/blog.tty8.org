@@ -26,7 +26,7 @@ just bought a domain name, rented some hosting, mastered basics of
 you're reading right now.
 
 Goals are the same — keep posting tech-related entries, not only about Debian,
-but also about programming and CS overall. I don't think Blogger will ever
+but about programming and CS overall, too. I don't think Google will ever
 delete my old blog, but just in case, [here][archive]'s a browseable copy,
 created as described [here][httrack_recipe].
 
@@ -34,7 +34,7 @@ New Debiania has much simpler interface which is mostly inspired by [Edward Z.
 Yang](http://blog.ezyang.com)'s and [James Hague](http://prog21.dadgum.com)'s
 blogs. I also made two decisions about blogging itself: to [abandon
 commenting][comments] and to post entries in English alongside with Russian
-ones. Hope it still can be useful to you.
+ones. Hopefully the result will still be useful to you.
 
 See ya!
 
