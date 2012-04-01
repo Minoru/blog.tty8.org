@@ -19,7 +19,7 @@ encrypt the message).
 
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely
-technical as possible, with rare exclusions for Linus' birthday and the like ☺
+technical as possible, with rare exceptions for Linus' birthday and the like ☺
 At the end of 2011 I suddenly realized that I don't like Blogspot anymore. So I
 just bought a domain name, rented some hosting, mastered basics of
 [Hakyll](http://github.com/jaspervdj/hakyll) and created new Debiania, the site
