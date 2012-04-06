@@ -40,6 +40,6 @@ See ya!
 
 [pgp]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
-[archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (5.4M, 238M unpacked)"
+[archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (3.8M, 254M unpacked)"
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
 [comments]: /posts/2012-03-21-why-no-comments.html "Why no comments?"
