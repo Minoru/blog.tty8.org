@@ -4,4 +4,6 @@ title: Error 404
 
 # 404
 
+<p style="text-align: center;">
 This is not the page you're looking for.
+</p>
