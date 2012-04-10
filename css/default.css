@@ -31,7 +31,6 @@ a:active {
     text-align: center;
     text-transform: uppercase;
     font: small Georgia;
-    width: 80%;
     margin: 0 auto;
 }
 a:link#blog-header-link,
@@ -86,7 +85,6 @@ nav#navigation a {
 }
 
 #date-hr {
-    width: 80%;
     height: 1px;
     border-top: 1px solid #1cb026;
     padding: 0;
