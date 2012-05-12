@@ -1,0 +1,25 @@
+---
+title: Favicon
+---
+
+Have you ever noticed that (evil) face hidden right in the middle of the Debian
+logo?
+
+<div class="image">
+  <img src="/images/evil-face-within-debian-logo.png" width="450" height="559"
+    alt="Evil face within Debian logo" />
+</div>
+
+Just turn your head about 45° counterclockwise and see for yourself — it's in
+there! Definitely, I should not stare at wallpapers at my computers *that* much.
+
+Few points to justify the title:
+
+* favicon's absence polluted logs and statistics with error 404;
+* with favicon it's easier for readers to distinguish my blog in their
+  bookmarks or tabs;
+* that idea about the face within the logo bothered me for quite some time, and
+  now it's time to finally share it with the world, for better or for worse
+  (there's always a risk to look silly, y'know).
+
+See ya, folks!
