@@ -5,7 +5,7 @@ description: How to get syntax highlighting working in Hakyll
 
 I am a complete newbie to [Hakyll](http://jaspervdj.be/hakyll/), so this post
 may be terribly incorrect, but I googled the problem and didn't find any
-solution, so…
+solution (see *post scriptum* note, though), so…
 
 So the problem is: Hakyll is using
 [pandoc](http://johnmacfarlane.net/pandoc/index.html) to re-format things from,
@@ -36,7 +36,7 @@ fibo <span class="fu">=</span> <span class="dv">0</span>
 </code></pre>
 ```
 
-(formatting is mine), but doesn't really *highlight* anything — i.e. code is
+(formatting is mine). But it doesn't really *highlight* anything — i.e. code is
 still just black at white.
 
 So Hakyll seem to wrap the code in different styling classes, but how does
@@ -53,6 +53,11 @@ highlighting you may need to reinstall pandoc and hakyll with
 
 Hope this helps.
 
+*P.S. A kind soul named Anomareh [put all pygments styles at
+Github][pygments-styles-dump] (along with the script used to do so). Kudos to
+Vladimir Ivanov for pointing that out.* 
+
 [css]: https://en.wikipedia.org/wiki/Cascading_Style_Sheets "Cascading Style Sheets"
 [style.css]: https://github.com/jaspervdj/hakyll/blob/master/web/css/syntax.css "Hakyll repo"
 [fhighlighting]: http://jaspervdj.be/hakyll/tutorials/faq.html#does-hakyll-support-syntax-highlighting "Does Hakyll support syntax highlighting?"
+[pygments-styles-dump]: https://github.com/Anomareh/pygments-styles-dump "A dump of all the CSS styles included with Pygments"
