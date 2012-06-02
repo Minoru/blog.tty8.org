@@ -33,6 +33,15 @@ a:active {
     font: small Georgia;
     margin: 0 auto;
 }
+
+#blog-header h1 {
+    font-size: 2em;   
+}
+
+#blog-header h2 {
+    font-size: 1.5em;
+}
+
 a:link#blog-header-link,
 a:visited#blog-header-link,
 a:hover#blog-header-link,
@@ -70,6 +79,10 @@ nav#navigation a {
     text-align: center;
     width: 90%;
     padding-bottom: 0.3em;
+}
+
+#post-header h1 {
+    font-size: 2em;
 }
 
 #post h2 {
