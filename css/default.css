@@ -5,7 +5,7 @@
 body {
     width: 512px;
     margin: 0px auto 0px auto;
-    font-family: Sans-Serif;
+    font-family: Georgia;
 }
 
 a:link {
@@ -27,10 +27,9 @@ a:active {
  */
 
 #blog-header {
-    font-family: Georgia, Serif;
     text-align: center;
     text-transform: uppercase;
-    font: small Georgia;
+    font-size: small;
     margin: 0 auto;
 }
 
@@ -89,6 +88,10 @@ nav#navigation a {
     font-size: 95%;
 }
 
+#post p {
+    line-height: 1.467em;
+}
+
 #post-date {
     padding: 0px 10px;
     background-color: white;
@@ -139,6 +142,10 @@ footer#blog-footer {
     padding-bottom: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+#service-page p {
+    line-height: 1.467em;
 }
 
 code {
