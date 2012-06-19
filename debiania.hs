@@ -62,12 +62,20 @@ main = hakyll $ do
         >>> applyTemplateCompiler "templates/default.html"
         >>> relativizeUrlsCompiler
 
-    match (list ["about.markdown", "subscribe.markdown", "404.markdown"]) $ do
+    match (list ["about.markdown", "subscribe.markdown"]) $ do
         route $ setExtension "html"
         compile $ pageCompiler
             >>> applyTemplateCompiler "templates/about.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
+
+    -- Page 404 needs some special treatment - no relativization, because it's
+    -- gonna be located in the root
+    match "404.markdown" $ do
+        route $ setExtension "html"
+        compile $ pageCompiler
+            >>> applyTemplateCompiler "templates/about.html"
+            >>> applyTemplateCompiler "templates/default.html"
 
     -- Render feeds
     -- All posts
