@@ -92,6 +92,13 @@ nav#navigation a {
     line-height: 1.467em;
 }
 
+#post hr {
+    height: 1px;
+    border: 0 none;
+    color: #1cb026;
+    background-color: #1cb026;
+}
+
 #post-date {
     padding: 0px 10px;
     background-color: white;
