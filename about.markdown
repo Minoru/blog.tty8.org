@@ -6,8 +6,8 @@ title: About
 
 Hello,
 
-my name is Alexander Batischev. I'm a student at Kiev Polytechnic Institute
-(Ukraine) where I'm studying computer science. I'm fond of listening to rock
+my name is Alexander Batischev. I'm a student at Kiev Polytechnic Institute,
+Ukraine, where I'm studying computer science. I'm fond of listening to rock
 music (Pink Floyd, Nightwish, Manowar and Dream Theater are my favourite bands)
 and reading sci-fi books.
 
@@ -25,16 +25,18 @@ just bought a domain name, rented some hosting, mastered basics of
 [Hakyll](http://github.com/jaspervdj/hakyll) and created new Debiania, the site
 you're reading right now.
 
-Goals are the same — keep posting tech-related entries, not only about Debian,
+Goals are the same — keep posting tech-related entries, not just about Debian,
 but about programming and CS overall, too. I don't think Google will ever
 delete my old blog, but just in case, [here][archive]'s a browseable copy,
 created as described [here][httrack_recipe].
 
-New Debiania has much simpler interface which is mostly inspired by [Edward Z.
-Yang](http://blog.ezyang.com)'s and [James Hague](http://prog21.dadgum.com)'s
-blogs. I also made two decisions about blogging itself: to [abandon
+New Debiania has much simpler interface, mostly inspired by blogs of [Edward Z.
+Yang](http://blog.ezyang.com) and [James Hague](http://prog21.dadgum.com).  I
+also made two decisions about blogging itself: to [abandon
 commenting][comments] and to post entries in English alongside with Russian
 ones. Hopefully the result will still be useful to you.
+
+In case you're interested in giving me a job, [here's my résumé][resume].
 
 See ya!
 
@@ -43,3 +45,4 @@ See ya!
 [archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (3.8M, 254M unpacked)"
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
 [comments]: /posts/2012-03-21-why-no-comments.html "Why no comments?"
+[resume]: /misc/batischev_cv.pdf
