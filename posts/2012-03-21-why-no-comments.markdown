@@ -24,3 +24,8 @@ and it doesn't matter anymore if you commented my article here or elsewhere —
 your feedback still can be found.
 
 And that's all to it.
+
+*P.S. If you want to discuss some post with **me**, check out [About][about] page for my e-mail.*
+
+[about]: /about.html
+
