@@ -169,3 +169,10 @@ pre {
 pre code {
     margin: 0;
 }
+
+blockquote {
+    border-left: 4px solid #6cde62;
+    padding-left: 1em;
+    margin-right: 0;
+    margin-left: 0;
+}
