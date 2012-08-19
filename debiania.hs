@@ -77,6 +77,11 @@ main = hakyll $ do
             >>> applyTemplateCompiler "templates/about.html"
             >>> applyTemplateCompiler "templates/default.html"
 
+    -- robots.txt should be just copied to the root
+    match "robots.txt" $ do
+        route idRoute
+        compile copyFileCompiler
+
     -- Render feeds
     -- All posts
     match "feeds/all.rss" $ route idRoute
