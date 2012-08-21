@@ -10,10 +10,10 @@ excerpt from `:help persistent-undo` for those who didn't hear of it before:
 > that buffer.  By setting the 'undofile' option, Vim will automatically save
 > your undo history when you write a file and restore undo history when you edit
 > the file again.
-
+>
 > Undo files are normally saved in the same directory as the file.  This can be
 > changed with the 'undodir' option.
-
+>
 > NOTE: undo files are never deleted by Vim.  You need to delete them yourself.
 
 The last note is the reason I wrote this post. Using vim as my `$EDITOR` of
@@ -22,7 +22,7 @@ choice, I tend to pollute undodir a lot: Git commits, experiments in `/tmp` and
 that I would never use again, simply because I deleted the original files.
 
 I googled for existing solutions and it seems that people just run something
-like `rm -rf ~/.vim/undofiles/` from time to time, but that's not the best
+like `rm -rf ~/.vim/undofiles/` once in a while, but that's not the best
 solution ever: losing history that I may need later makes me a little nervous.
 
 Some other people use quite more wise yet bad solution: they run `find
