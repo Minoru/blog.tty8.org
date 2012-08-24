@@ -1,5 +1,5 @@
 ---
-title: Migrating to LUKS on LVM
+title: Migrating to LVM on LUKS
 category: linux
 ---
 
