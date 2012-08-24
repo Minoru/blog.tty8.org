@@ -3,9 +3,6 @@ title: Migrating to LUKS on LVM
 category: linux
 ---
 
-What are we gonna do
-====================
-
 In this post, I'll describe how one can migrate his/her system from whatever
 partitioning scheme there already is to the following one:
 
@@ -63,14 +60,14 @@ What we need
 
 1. Place to store backups.
 2. Live CD with `cfdisk` (or any other disk partitioning software you're
-   familiar with), `mkfs` (some filesystems need different tools to create them,
-   be sure to have everything *you* need), `chroot`, `cryptsetup` and `lvm`.
-   [RIP Linux](http://rip.7bf.de/current/) is my choice here.
-3. Half an hour *ad minima* (not counting time to create and then unroll
-   backups), might be up to hundred times more if you run into troubles.
-   Definitely not an endeavour to start before going to sleep!
-4. A day or more if you choose to wipe your disk before re-partitioning it (more
-   on that later).
+   familiar with), `mkfs` (some filesystems need different tools to create
+   them, be sure to have everything *you* need), `chroot`, `cryptsetup` and
+   `lvm`.  [RIP Linux](http://rip.7bf.de/current/) is my choice here.
+3. Half an hour at least (not counting time to create and then unroll backups),
+   might be up to hundred times more if you run into troubles.  Definitely not
+   an endeavour to start before going to sleep!
+4. A day or more if you choose to wipe your disk before re-partitioning it
+   (more on that later).
 
 Let's go!
 =========
@@ -300,7 +297,7 @@ from encrypted device:
 
 ```
 # mount -o bind /dev /mnt/lvm-root/dev
-# chroot /mnt/lvm-root
+# LANG=C chroot /mnt/lvm-root
 # mount -t proc proc /proc
 # mount -t sysfs sys /sys
 # mount -t devpts devpts /dev/pts
@@ -318,7 +315,7 @@ dm-crypt
 dm-mod
 ```
 
-(I'm not really sure about the latter two — some guides I've read omitted them,
+(I'm not really sure about the last one — some guides I've read omitted them,
 and I didn't experiment myself.)
 
 Now let's edit `/etc/fstab` so system knows where to find root and other
@@ -376,6 +373,26 @@ So that's all. Let's exit chroot and reboot to our migrated system:
 If everything went well, you would be asked for a passphrase and then boot into
 your Debian just as usual. If not, don't give up — and read on.
 
+Mounting LUKS and LVM by hand
+=============================
+
+When you ran `lvm  lvcreate`, volumes were mapped automatically. But if you
+reboot into live CD, `/dev/mapper` would be empty. So here's a quick note on how
+to get it all going again.
+
+First, we open LUKS:
+
+```
+# cryptsetup luksOpen /dev/sda2 sda2_luks
+```
+
+…and then we instruct lvm to look for a "lvm" volume group (read [LVM
+HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) for details on LVM inner structure):
+
+```
+# lvm lvchange -ay lvm
+```
+
 *He's dead, Jim!* (troubleshooting section)
 ===========================================
 
@@ -397,8 +414,8 @@ upgrading it all by hand).
 
 **I can't chroot, it says something about ELF being wrong**.
 
-You're trying to chroot into 32-bit system from the 64-bit one, or visa versa.
-That won't work (not without a lot of hassle). Just boot with appropriate
+You're trying to chroot into 32-bit system from the 64-bit one, or vice versa.
+That won't work (not without a lot of trouble). Just boot with appropriate
 kernel and try again.
 
 **`update-initramfs` complains that it "can't find canonical device for X"**.
@@ -425,6 +442,19 @@ If you use `uswsusp` package, just update its config, `/etc/uswsusp.conf`:
 ```
 resume device = /dev/mapper/lvm-swap
 ```
+
+Useful links
+============
+
+I recommend you reading [LVM HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/). It's a
+little bit outdated, but still useful to newbies.
+
+You would probably find [Debian wiki entry on LVM on AES-XTS encrypted
+volume](http://wiki.debian.org/AesXtsEncryptedLvm) useful. It's mostly commands
+right now, though — someone willing to add more explanations?
+
+[Gentoo wiki](https://wiki.archlinux.org/index.php/Dm-crypt_with_LUKS) has a
+good entry on disk encryption as well.
 
  
 
