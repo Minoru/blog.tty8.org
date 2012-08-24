@@ -1,6 +1,6 @@
 ---
 title: Migrating to LVM on LUKS
-category: linux
+category: debian, linux
 ---
 
 In this post, I'll describe how one can migrate his/her system from whatever
