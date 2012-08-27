@@ -46,6 +46,8 @@ ado, here's the code:
 #
 # # Purge undodir every week at 8:05AM
 # 5 8 * * 1 /home/minoru/.bin/purge_vim_undodir /home/minoru/.vim/undofiles
+# 
+# Do not forget about the newline at the end of crontab file!
 
 undodir="$1"
 
@@ -85,3 +87,5 @@ storing.
 
 Hope you'll find that useful.
 
+**Update (27.08.2012)**: add a comment about the newline at the end of crontab
+file.
