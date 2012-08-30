@@ -4,7 +4,7 @@ import Prelude hiding (id)
 import Control.Category (id)
 import Control.Arrow ((>>>), (|||), (&&&), first, second, arr)
 import Data.Monoid (mempty, mconcat)
-import Data.List (sort, elem)
+import Data.List (sort, elem, reverse)
 import qualified Data.Text as T
 
 import Hakyll
@@ -86,37 +86,53 @@ main = hakyll $ do
     -- All posts
     match "feeds/all.rss" $ route idRoute
     create "feeds/all.rss" $ requireAll_ "posts/*"
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderRss allFeedConfiguration
 
     match "feeds/all.atom" $ route idRoute
     create "feeds/all.atom" $ requireAll_ "posts/*"
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderAtom allFeedConfiguration
 
     -- Russian only
     match "feeds/russian.rss" $ route idRoute
     create "feeds/russian.rss" $ russianPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderRss russianFeedConfiguration
 
     match "feeds/russian.atom" $ route idRoute
     create "feeds/russian.atom" $ russianPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderAtom russianFeedConfiguration
 
     -- English only
     match "feeds/english.rss" $ route idRoute
     create "feeds/english.rss" $ englishPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderRss englishFeedConfiguration
 
     match "feeds/english.atom" $ route idRoute
     create "feeds/english.atom" $ englishPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderAtom englishFeedConfiguration
 
     -- Linux-related, russian - feed for runix.org
     match "feeds/linux-rus.rss" $ route idRoute
     create "feeds/linux-rus.rss" $ linuxRussianPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderRss linuxRussianFeedConfiguration
 
     match "feeds/linux-rus.atom" $ route idRoute
     create "feeds/linux-rus.atom" $ linuxRussianPosts
+        >>> arr (take 5)
+        >>> arr reverse
         >>> renderAtom linuxRussianFeedConfiguration
 
     -- Read templates
