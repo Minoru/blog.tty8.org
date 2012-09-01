@@ -86,53 +86,53 @@ main = hakyll $ do
     -- All posts
     match "feeds/all.rss" $ route idRoute
     create "feeds/all.rss" $ requireAll_ "posts/*"
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderRss allFeedConfiguration
 
     match "feeds/all.atom" $ route idRoute
     create "feeds/all.atom" $ requireAll_ "posts/*"
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderAtom allFeedConfiguration
 
     -- Russian only
     match "feeds/russian.rss" $ route idRoute
     create "feeds/russian.rss" $ russianPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderRss russianFeedConfiguration
 
     match "feeds/russian.atom" $ route idRoute
     create "feeds/russian.atom" $ russianPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderAtom russianFeedConfiguration
 
     -- English only
     match "feeds/english.rss" $ route idRoute
     create "feeds/english.rss" $ englishPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderRss englishFeedConfiguration
 
     match "feeds/english.atom" $ route idRoute
     create "feeds/english.atom" $ englishPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderAtom englishFeedConfiguration
 
     -- Linux-related, russian - feed for runix.org
     match "feeds/linux-rus.rss" $ route idRoute
     create "feeds/linux-rus.rss" $ linuxRussianPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderRss linuxRussianFeedConfiguration
 
     match "feeds/linux-rus.atom" $ route idRoute
     create "feeds/linux-rus.atom" $ linuxRussianPosts
-        >>> arr (take 5)
         >>> arr reverse
+        >>> arr (take 5)
         >>> renderAtom linuxRussianFeedConfiguration
 
     -- Read templates
