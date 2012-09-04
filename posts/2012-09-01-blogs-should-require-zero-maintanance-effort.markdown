@@ -23,11 +23,11 @@ title: Блоги не должны требовать постоянной по
 
 В случае Hakyll это «лучше» выглядит как несколько входных форматов.
 [Markdown][markdown], [reStructuredText][rst], [Literate Haskell][lhs],
-[LaTeX][latex], [OrgMode][org-mode], HTML, [Textile][textile] и, конечно же,
-старый добрый plain text — всё это может быть скормлено Hakyll'у с целью
-получения статического сайта. Я пока что пользуюсь только Markdown, но Literate
-Haskell и LaTeX определённо будут применены, возьмись я писать какой-нибудь
-туториал или (псевдо)научный пост.
+[LaTeX][latex], <strike>org-mode</strike>[^no-orgmode], HTML,
+[Textile][textile] и, конечно же, старый добрый plain text — всё это может быть
+скормлено Hakyll'у с целью получения статического сайта. Я пока что пользуюсь
+только Markdown, но Literate Haskell и LaTeX определённо будут применены,
+возьмись я писать какой-нибудь туториал или (псевдо)научный пост.
 
 Сам Hakyll я выбрал безо всякого анализа — был о нём наслышан и потому не
 выяснял даже, есть ли ещё какие-то решения. Это я к тому, что выбор мой может
@@ -47,6 +47,11 @@ user CSS.
 Резюме: на данный момент я обрёл счастье и покой. Написав пост один раз, я могу
 быть уверен, что ничего «само собой» не поломается. Ради этого стоило стараться.
 
+[^no-orgmode]: Hakyll распознаёт файлы [org-mode][org-mode], но из-за [отсутствия
+    поддержки](https://github.com/jaspervdj/hakyll/issues/50) со стороны
+    [Pandoc][pandoc] преобразовать их в HTML нельзя. Такой вот курьёз. Спасибо
+    Владимиру Иванову за это замечание.
+
 [hakyll]: http://jaspervdj.be/hakyll/
 [snipmate]: http://www.vim.org/scripts/script.php?script_id=2540
 [markdown]: http://daringfireball.net/projects/markdown/
@@ -55,4 +60,5 @@ user CSS.
 [latex]: http://www.latex-project.org/
 [org-mode]: http://orgmode.org/
 [textile]: http://textile.sitemonks.com/
+[pandoc]: http://johnmacfarlane.net/pandoc/
 [why-no-comments]: /posts/2012-03-21-why-no-comments.html
