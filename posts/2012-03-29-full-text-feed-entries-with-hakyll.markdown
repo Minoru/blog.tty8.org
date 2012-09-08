@@ -15,9 +15,17 @@ Let's start with the basic code to generate the feed:
 ```Haskell
 match "feed.rss" $ route idRoute
 create "feed.rss" $ requireAll_ "posts/*"
+  >>> arr reverse -- reverse chronological order
+  >>> arr (take 5) -- only 5 latest posts
   >>> renderRss feedConfiguration
 
-feedConfiguration = ...
+feedConfiguration = FeedConfiguration
+  { feedTitle = "My RSS Feed"
+  , feedDescription = "All posts"
+  , feedAuthorName = "John Doe"
+  , feedRoot = "example.org"
+  }
+
 ```
 
 There's a problem, though: Hakyll gets text for feed entry from the
@@ -138,6 +146,12 @@ input page wrapped in either `Left` or `Right` depending on whether
 page's body or just left things intact.
 
 That's all for today, folks. See you!
+
+**Update 08.09.2012:** add `arr reverse >>> arr (take 5)` thing — even though
+it's specified in the documentation that list of entries should be in reverse
+chronological order, I managed to miss the fact the first time. Also gave
+`feedConfiguration` some dummy value so code looks complete and ready for
+copy'n'paste.
 
 [groups]: https://groups.google.com/forum/?fromgroups#!topic/hakyll/KmGmD2CtVSw "Including full text into feed"
 [arrows]: https://en.wikibooks.org/wiki/Haskell/Understanding_arrows "Understanding arrows"
