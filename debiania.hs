@@ -159,7 +159,7 @@ pageHasDescription = arr (\p -> if hasDescription p then Right p else Left p)
 
 -- | Helper function to determine if a page has a @description@ field
 hasDescription :: Page a -> Bool
-hasDescription = (/= "") . getField "description"
+hasDescription = not . null . getField "description"
 
 -- | Helper function to determine if given page is written in Russian.
 -- Tries @lang@ and @language@ fields first, then uses some homebrew heuristics

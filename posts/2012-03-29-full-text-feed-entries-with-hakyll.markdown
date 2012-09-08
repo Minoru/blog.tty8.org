@@ -106,7 +106,7 @@ it's empty. Let's get down to the code:
 
 ```Haskell
 hasDescription :: Page a -> Bool
-hasDescription = (/= "") . getField "description"
+hasDescription = not . null . getField "description"
 
 pageHasDescription :: Compiler (Page a)
                                (Either (Page a) (Page a))
