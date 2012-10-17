@@ -34,6 +34,8 @@ message types. While the first requirement is true for `switch` as well, the
 second one is the main disadvantage of the trick: if order gets out of sync,
 you'll get quite tricky bug to find.
 
+Effectively, that's a [vtable](https://en.wikipedia.org/wiki/Virtual_method_table).
+
 To see how this trick looks like in the wild, see [that array
 definition](https://github.com/grouzen/shooter/blob/ea20156449a8e7681868241d7511ef3af8bb483b/src/cdata.c#L268)
 and [this usage
