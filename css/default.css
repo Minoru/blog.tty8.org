@@ -57,8 +57,8 @@ a:active#blog-header-link
 
 nav#navigation {
     text-align: center;
-    border-top: 1px solid #1cb026;
-    border-bottom: 1px solid #1cb026;
+    border-top: 1px solid #b0b0b0;
+    border-bottom: 1px solid #b0b0b0;
     padding: 4px 0px 4px 0px;
 }
 
@@ -96,8 +96,8 @@ nav#navigation a {
 #post hr {
     height: 1px;
     border: 0 none;
-    color: #1cb026;
-    background-color: #1cb026;
+    color: #b0b0b0;
+    background-color: #b0b0b0;
 }
 
 #post-date {
@@ -110,7 +110,7 @@ nav#navigation a {
  */
 
 footer#blog-footer {
-    border-top: 1px solid #1cb026;
+    border-top: 1px solid #b0b0b0;
     padding-top: 4px;
     padding-bottom: 4px;
     font-size: 0.8em;
