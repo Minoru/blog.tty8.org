@@ -162,9 +162,13 @@ code {
 }
 
 pre {
-    background-color: #f5f5f5;
+    background: rgba(165, 165, 165, 0.2);
     padding: 0 0.3em;
     border-left: 2px solid #a5a5a5;
+}
+
+pre > code {
+    background: none;
 }
 
 pre code {
