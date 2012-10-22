@@ -6,6 +6,7 @@ body {
     width: 512px;
     margin: 0px auto 0px auto;
     font-family: Georgia;
+    background: url(/images/background.svg) no-repeat center center fixed;
 }
 
 a:link {
