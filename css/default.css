@@ -29,17 +29,24 @@ a:active {
 
 #blog-header {
     text-align: center;
-    text-transform: uppercase;
     font-size: small;
     margin: 0 auto;
 }
 
 #blog-header h1 {
-    font-size: 2em;   
+    font-size: 4em;   
+    margin: 0;
+    text-transform: uppercase;
+    width: 98%;
 }
 
 #blog-header h2 {
-    font-size: 1.5em;
+    margin-top: 0;
+    width: 98%;
+}
+
+#blog-header-link {
+    text-align: right;
 }
 
 a:link#blog-header-link,
@@ -64,6 +71,7 @@ nav#navigation {
 
 nav#navigation a {
     text-decoration: none;
+    text-transform: uppercase;
     padding: 3px 10px 3px 10px;
     margin: 0px 10px 0px 10px;
 }
