@@ -6,7 +6,7 @@ title: About
 
 Hello,
 
-my name is Alexander Batischev. I'm a student at Kiev Polytechnic Institute,
+my name is Alexander Batischev. I'm a student at Kyiv Polytechnic Institute,
 Ukraine, where I'm studying computer science. I'm fond of listening to rock
 music (Pink Floyd, Nightwish, Manowar and Dream Theater are my favourite bands)
 and reading sci-fi books.
