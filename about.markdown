@@ -20,8 +20,9 @@ encrypt the message).
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely
 technical as possible, with rare exceptions for Linus' birthday and the like ☺
-At the end of 2011 I suddenly realized that I don't like Blogspot anymore. So I
-just bought a domain name, rented some hosting, mastered basics of
+At the end of 2011 I suddenly realized that I don't like Blogspot anymore
+([here's why — in Russian][why-migrate]). So I just bought a domain name,
+rented some hosting, mastered basics of
 [Hakyll](http://github.com/jaspervdj/hakyll) and created new Debiania, the site
 you're reading right now.
 
@@ -46,3 +47,4 @@ See ya!
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
 [comments]: /posts/2012-03-21-why-no-comments.html "Why no comments?"
 [resume]: /misc/batischev_cv.pdf
+[why-migrate]: /posts/2012-09-01-blogs-should-require-zero-maintanance-effort.html "Блоги не должны требовать постоянной поддержки"
