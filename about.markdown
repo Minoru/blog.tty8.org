@@ -13,7 +13,9 @@ and reading sci-fi books.
 
 I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
 me][email], I'd appreciate it if you make a digital signature (or better yet,
-encrypt the message).
+encrypt the message). I also have [an old key, 0x0a1d7d827b52fb07][pgp-old],
+that should have been revoked long ago, but I was careless and lost it. So
+please just ignore it.
 
 <div class="center">~ * ~</div>
 
@@ -42,6 +44,7 @@ In case you're interested in giving me a job, [here's my résumé][resume].
 See ya!
 
 [pgp]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
+[pgp-old]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x0A1D7D827B52FB07 "PGP key 0x0a1d7d827b52fb07 at pgp.mit.edu"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (3.8M, 254M unpacked)"
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
