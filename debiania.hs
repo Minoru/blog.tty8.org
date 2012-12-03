@@ -161,20 +161,33 @@ pageHasDescription = arr (\p -> if hasDescription p then Right p else Left p)
 hasDescription :: Page a -> Bool
 hasDescription = not . null . getField "description"
 
+data Language = English | Russian | UndefinedLanguage
+  deriving Eq
+
+-- | Helper function required for isRussian and isEnglish to work.
+getLanguage :: Page a -> Language
+getLanguage p = case res of
+  UndefinedLanguage -> 
+    let filepath = getField "path" p
+    in error $ filepath ++ ": 'language' field is populated incorrectly!"
+  otherwise -> res
+  where
+    res = case getField "language" p of
+      "russian" -> Russian
+      "english" -> English
+      otherwise -> UndefinedLanguage
+
 -- | Helper function to determine if given page is written in Russian.
 -- Tries @lang@ and @language@ fields first, then uses some homebrew heuristics
 -- (is at least 20% of characters cyryllic?)
 isRussian :: Page String -> Bool
-isRussian p = field || heuristics
-  where
-    field = any (\l -> l == "ru" || l == "rus") [ getField "language" p
-                                                , getField "lang" p ]
-    heuristics = counted >= (T.length text `div` 20)
-    counted = sum $ map snd $ filter ((`elem` russian) . fst) $ countChars text
-    countChars = map (\t -> (T.head t, T.length t)) . T.group
-    text = T.toCaseFold $ T.pack $ sort $ pageBody p
+isRussian p | getLanguage p == Russian = True
+isRussian _ = False
 
-    russian = "йцукенгшщзхъфывапролджэячсмитьбю"
+-- | Helper function to determine if given page is written in English.
+isEnglish :: Page String -> Bool
+isEnglish p | getLanguage p == English = True
+isEnglish _ = False
 
 -- | Helper function to check if @category@ field contains "debian"
 isDebianRelated = ("debian" `elem`) . map T.unpack . T.splitOn " ," . T.pack
@@ -192,7 +205,7 @@ russianPosts = requireAll_ "posts/*" >>> arr (filter isRussian)
 
 -- | Returns feed entries coresponding to posts written in English (actually,
 -- anything but Russian)
-englishPosts = requireAll_ "posts/*" >>> arr (filter (not . isRussian))
+englishPosts = requireAll_ "posts/*" >>> arr (filter isEnglish)
 
 -- | Returns feed entries corresponding to posts written in Russian about Linux
 linuxRussianPosts = requireAll_ "posts/*"

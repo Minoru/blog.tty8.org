@@ -1,5 +1,6 @@
 ---
 title: Purging Vim undodir
+language: english
 ---
 
 In two weeks, it would be the second anniversary of vim 7.3 release. Among other

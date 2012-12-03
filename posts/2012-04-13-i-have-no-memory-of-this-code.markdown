@@ -1,5 +1,6 @@
 ---
 title: [image/png] I have no memory of this code
+language: english
 ---
 
 <div class="image">

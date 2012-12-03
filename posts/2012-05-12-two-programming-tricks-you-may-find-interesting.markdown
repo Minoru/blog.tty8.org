@@ -1,5 +1,6 @@
 ---
 title: Two programming tricks you may find interesting
+language: english
 ---
 
 Every one of us have a different path to expertise in programming, which

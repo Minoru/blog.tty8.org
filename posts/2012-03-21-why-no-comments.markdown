@@ -1,5 +1,6 @@
 ---
 title: Why no comments?
+language: english
 ---
 
 _**Summary**: discussions are often too negative, and when they're not, we

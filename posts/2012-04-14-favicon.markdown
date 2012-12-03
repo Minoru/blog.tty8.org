@@ -1,5 +1,6 @@
 ---
 title: Favicon
+language: english
 ---
 
 Have you ever noticed that (evil) face hidden right in the middle of the Debian

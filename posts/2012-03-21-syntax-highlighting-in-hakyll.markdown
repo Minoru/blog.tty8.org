@@ -1,6 +1,7 @@
 ---
 title: Syntax highlighting in Hakyll
 description: How to get syntax highlighting working in Hakyll
+language: english
 ---
 
 I am a complete newbie to [Hakyll](http://jaspervdj.be/hakyll/), so this post

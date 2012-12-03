@@ -1,5 +1,6 @@
 ---
 title: Package Installation Hygiene (for Babies & Older Ones)
+language: english
 ---
 
 Two times a year, when all exams are successfully passed, every student does
