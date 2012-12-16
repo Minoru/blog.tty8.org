@@ -36,16 +36,10 @@ a:active {
     font-size: 4em;   
     margin: 0;
     text-transform: uppercase;
-    width: 98%;
 }
 
 #blog-header h2 {
     margin-top: 0;
-    width: 98%;
-}
-
-#blog-header-link {
-    text-align: right;
 }
 
 a:link#blog-header-link,
@@ -55,6 +49,15 @@ a:active#blog-header-link
 {
     color: #0008a0;
     text-decoration: none;
+}
+
+#blog-header-logo {
+    float: left;
+}
+
+#blog-header-title {
+    float: right;
+    text-align: right;
 }
 
 /**********************************
