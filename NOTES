@@ -1,1 +1,4 @@
-optipng -o7 *.png may be used for lossless PNG optimization
+* `optipng -o7 *.png` may be used for lossless PNG optimization
+
+* `scour -i file.svg -o result.svg` may be used for lossless SVG optimization
+
