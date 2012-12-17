@@ -51,6 +51,11 @@ a:active#blog-header-link
     text-decoration: none;
 }
 
+#blog-header-link hgroup {
+    overflow: auto;
+    width: 100%;
+}
+
 #blog-header-logo {
     float: left;
 }
