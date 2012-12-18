@@ -51,11 +51,6 @@ a:active#blog-header-link
     text-decoration: none;
 }
 
-#blog-header-link hgroup {
-    overflow: auto;
-    width: 100%;
-}
-
 #blog-header-logo {
     float: left;
 }
@@ -149,6 +144,21 @@ footer#blog-footer {
 .center {
     text-align: center;
 }
+
+/* This class can be used to avoid adding <div style="clear: both;"></div> at
+ * the end of container with floating elements.
+ *
+ * Source: http://perishablepress.com/new-clearfix-hack/ */
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
 #service-page h1 {
     text-align: center;
