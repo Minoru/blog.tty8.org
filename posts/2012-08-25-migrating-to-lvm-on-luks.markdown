@@ -316,8 +316,10 @@ dm-crypt
 dm-mod
 ```
 
-(I'm not really sure about the last one — some guides I've read omitted them,
-and I didn't experiment myself.)
+If you're running 64-bit system, first line is not needed — it would only
+produce "module not found" errors each time you boot. (I'm not really sure
+about the last one — some guides I've read omitted them, and I didn't
+experiment myself.)
 
 Now let's edit `/etc/fstab` so system knows where to find root and other
 partitions:
@@ -403,15 +405,15 @@ If you're sure you did install `lvm2` and `cryptsetup` packages, google the
 error you get and figure things out yourself — I don't know anything about your
 problem and can't help.
 
-If you did forget to install the packages, just chroot into the system and do it
-now.  If you can't get network up, use another machine to get packages from
+If you did forget to install the packages, just chroot into the system and do
+it now.  If you can't get network up, use another machine to get packages from
 [packages.debian.org](http://packages.debian.org) or directly from your
 favourite mirror, and install them using `sudo dpkg -i FILENAME.deb`. There
 might be troubles with dependencies, those you would need to solve yourself.
 Just download more packages and then re-install those that didn't configure
-properly due to dependency problems. It's tiresome, but manageable (unless you
-had your system in terribly desynchronised state — then you might end up
-upgrading it all by hand).
+properly due to dependency problems (`sudo apt-get -f install` might be useful
+here). It's tiresome, but manageable (unless you had your system in terribly
+desynchronised state — then you might end up upgrading it all by hand).
 
 **I can't chroot, it says something about ELF being wrong**.
 
