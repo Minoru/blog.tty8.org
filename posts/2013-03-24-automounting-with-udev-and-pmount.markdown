@@ -28,6 +28,8 @@ cases for me, though:
   computer `pmount` failed, saying that no medium is present. The
   issue didn't appear if I tried mounting not right away but a few
   seconds later, so I figured I need to insert some delay here;
+* some files I work with have names with cyrillics in them, so disks should be
+  mounted with UTF-8 encoding;
 * just a detail: my Nook Simple Touch seems to arrange items in the
   library depending on the access time, so I had to specify
   `--noatime` option to preserve ordering between mounts.
@@ -42,11 +44,11 @@ After all the tweaking, I got this:
 # disable it. We use sed to replace non-alphanumeric symbols with
 # underscore to facilitate readability and "typeability".
 # RUN mounts the disk with specified label.
-ACTION=="add",    KERNEL=="sd[b-z]*", PROGRAM="/bin/sh -c '/bin/sleep 2; /sbin/blkid -c /dev/null -s LABEL -o value /dev/%k | /bin/sed -r s#[^a-zA-Z0-9-]#_#g'", RUN+="/bin/sh -c '/bin/sleep 3 ; /usr/bin/pmount --umask 000 --noatime %k %c'"
+ACTION=="add",    KERNEL=="sd[b-z]*", PROGRAM="/bin/sh -c '/bin/sleep 2; /sbin/blkid -c /dev/null -s LABEL -o value /dev/%k | /bin/sed -r s#[^a-zA-Z0-9-]#_#g'", RUN+="/bin/sh -c '/bin/sleep 3 ; /usr/bin/pmount --umask 000 --noatime --charset utf8 %k %c'"
 ACTION=="remove", KERNEL=="sd[b-z]*", RUN+="/usr/bin/pumount %k"
 
 # the same as above, but for memory cards
-ACTION=="add",    KERNEL=="mmcblk*", PROGRAM="/bin/sh -c '/bin/sleep 3; /sbin/blkid -c /dev/null -s LABEL -o value /dev/%k | /bin/sed -r s#[^a-zA-Z0-9-]#_#g'", RUN+="/bin/sh -c '/bin/sleep 4 ; /usr/bin/pmount --umask 000 --noatime %k %c'"
+ACTION=="add",    KERNEL=="mmcblk*", PROGRAM="/bin/sh -c '/bin/sleep 3; /sbin/blkid -c /dev/null -s LABEL -o value /dev/%k | /bin/sed -r s#[^a-zA-Z0-9-]#_#g'", RUN+="/bin/sh -c '/bin/sleep 4 ; /usr/bin/pmount --umask 000 --noatime --charset utf8 %k %c'"
 ACTION=="remove", KERNEL=="mmcblk*", RUN+="/usr/bin/pumount %k"
 ```
 
@@ -56,6 +58,8 @@ much room for pretty formatting in udev rules. Anyway, it's much
 better than what I had before, so (for now) I'm satisfied.
 
 See you!
+
+**Update (01.04.2013):** added `--charset utf8` and a note about the option.
 
 [udev-arch-wiki]: https://wiki.archlinux.org/index.php/Udev "udev -
 Archwiki"
