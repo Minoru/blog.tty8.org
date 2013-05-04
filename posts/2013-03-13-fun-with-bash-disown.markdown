@@ -133,8 +133,8 @@ Programming in the UNIX Environment" long time ago. It is used to spawn
 processes that should run independently of their parents — exactly what `disown`
 does.
 
-And that is the solution to the whole mystery of BASH that has no &! but somehow
-disowns commands when `&!` is used.
+And that is the solution to the whole mystery of the test where BASH that has
+no &! somehow disowns commands when `&!` is used.
 
 # Summary
 
@@ -155,10 +155,11 @@ shell. By chance, that led me to performing an old systems programming trick
 known as a ["double
 fork"](http://thinkiii.blogspot.com/2009/12/double-fork-to-avoid-zombie-process.html)
 (first described in W. Richard Stevens' "Advanced Programming in the UNIX
-Environment"). That means that I effectively disowned EasyTag by hand.
+Environment"). That means that I effectively disowned by hand.
 
  
 
 So with a little effort, I yet again ensure that I'm sane, machines are fine and
 world hasn't gone crazy. Till next time, then!
 
+**Update (04.05.2013):** rewrite a few sentences.
