@@ -220,6 +220,7 @@ allFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
     , feedDescription = "All posts"
     , feedAuthorName = "Alexander Batischev"
+    , feedAuthorEmail = "eual.jp@gmail.com"
     , feedRoot = rootUrl
     }
 
@@ -228,6 +229,7 @@ russianFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, ещё один блог о Debian"
     , feedDescription = "Посты на русском"
     , feedAuthorName = "Александр Батищев"
+    , feedAuthorEmail = "eual.jp@gmail.com"
     , feedRoot = rootUrl
     }
 
@@ -235,6 +237,7 @@ englishFeedConfiguration :: FeedConfiguration
 englishFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, yet another Debian blog"
     , feedDescription = "Posts in English only"
+    , feedAuthorEmail = "eual.jp@gmail.com"
     , feedAuthorName = "Alexander Batischev"
     , feedRoot = rootUrl
     }
@@ -244,6 +247,7 @@ linuxRussianFeedConfiguration = FeedConfiguration
     { feedTitle = "Debiania, ещё один блог о Debian"
     , feedDescription = "О Linux"
     , feedAuthorName = "Александр Батищев"
+    , feedAuthorEmail = "eual.jp@gmail.com"
     , feedRoot = rootUrl
     }
 
