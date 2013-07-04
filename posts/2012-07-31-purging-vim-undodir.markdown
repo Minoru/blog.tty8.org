@@ -82,7 +82,7 @@ cd - >/dev/null
 Just copy the code to a file named `purge_vim_undodir`, put it somewhere and
 set executable flag (using `chmod +x purge_vim_undodir`). Then edit your
 crontab using `crontab -e`. You can come up with your own timing, or just use
-the one I propose in comments to the script. That's it - from now on, your
+the one I propose in comments to the script. That's it — from now on, your
 undodir would be cleared automatically, only containing files that it is worth
 storing.
 
