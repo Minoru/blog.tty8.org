@@ -1,5 +1,5 @@
 ---
-title: On home directory's file hierarchy
+title: On structure of the home directory
 language: english
 ---
 
