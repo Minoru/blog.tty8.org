@@ -36,8 +36,8 @@ created as described [here][httrack_recipe].
 New Debiania has much simpler interface, mostly inspired by blogs of [Edward Z.
 Yang](http://blog.ezyang.com) and [James Hague](http://prog21.dadgum.com).  I
 also made two decisions about blogging itself: to [abandon
-commenting][comments] and to post entries in English alongside with Russian
-ones. Hopefully the result will still be useful to you.
+commenting][comments] and to post entries in English alongside Russian ones.
+Hopefully the result will still be useful to you.
 
 In case you're interested in giving me a job, [here's my résumé][resume].
 
