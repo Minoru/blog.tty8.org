@@ -6,16 +6,16 @@ title: About
 
 Hello,
 
-my name is Alexander Batischev. I'm a student at Kyiv Polytechnic Institute,
-Ukraine, where I'm studying computer science. I'm fond of listening to rock
-music (Pink Floyd, Nightwish, Manowar and Dream Theater are my favourite bands)
-and reading sci-fi books.
+My name is Alexander Batischev. I'm a student at Kyiv Polytechnic Institute,
+Ukraine. I've got Bch. CS already and am pursuing master's degree now. I'm fond
+of listening to rock music (Pink Floyd, Nightwish, Manowar and Dream Theater
+are my favourite bands) and reading sci-fi books.
 
 I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
 me][email], I'd appreciate it if you make a digital signature (or better yet,
 encrypt the message). I also have [an old key, 0x0a1d7d827b52fb07][pgp-old],
-that should have been revoked long ago, but I was careless and lost it. So
-please just ignore it.
+that date back to the days when I tried PGP software for the first time. I lost
+its revocation certificate, so please just ignore it.
 
 <div class="center">~ * ~</div>
 
@@ -23,21 +23,20 @@ I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely
 technical as possible, with rare exceptions for Linus' birthday and the like ☺
 At the end of 2011 I suddenly realized that I don't like Blogspot anymore
-([here's why — in Russian][why-migrate]). So I just bought a domain name,
-rented some hosting, mastered basics of
-[Hakyll](http://github.com/jaspervdj/hakyll) and created new Debiania, the site
-you're reading right now.
+([here's why — in Russian][why-migrate]). So I bought a domain name, rented
+some hosting, mastered basics of [Hakyll](http://github.com/jaspervdj/hakyll)
+and created new Debiania, the site you're reading right now.
 
 Goals are the same — keep posting tech-related entries, not just about Debian,
-but about programming and CS overall, too. I don't think Google will ever
-delete my old blog, but just in case, [here][archive]'s a browseable copy,
-created as described [here][httrack_recipe].
+but programming and CS overall as well. I don't think Google will ever delete
+my old blog, but just in case, [here's][archive] a browseable copy, created as
+described [here][httrack_recipe].
 
 New Debiania has much simpler interface, mostly inspired by blogs of [Edward Z.
 Yang](http://blog.ezyang.com) and [James Hague](http://prog21.dadgum.com).  I
-also made two decisions about blogging itself: to [abandon
-commenting][comments] and to post entries in English alongside Russian ones.
-Hopefully the result will still be useful to you.
+also made two decisions about blogging itself: to [abandon comments][comments]
+and to post entries in English alongside Russian ones. Hopefully the result
+will still be useful to you.
 
 In case you're interested in giving me a job, [here's my résumé][resume].
 
