@@ -1,5 +1,5 @@
 Name: debiania
-Version: 2.0.0
+Version: 3.0.0
 Stability: alpha
 
 Synopsis: just another Debian blog
@@ -14,5 +14,5 @@ Cabal-version: >= 1.2
 Executable debiania
     Main-is: debiania.hs
     Build-Depends: base == 4.*
-                 , hakyll == 3.*
+                 , hakyll == 4.*
                  , text == 0.11.*
