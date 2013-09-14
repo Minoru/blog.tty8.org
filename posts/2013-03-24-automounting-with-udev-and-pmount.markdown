@@ -1,7 +1,7 @@
 ---
 title: Automounting with udev and pmount
+tags: linux
 language: english
-category: linux
 ---
 
 For the past few years I was relying on a lengthy `udev` rules file to mount

@@ -1,6 +1,6 @@
 ---
 title: Migrating to LVM on LUKS
-category: debian, linux
+tags: debian, linux
 language: english
 ---
 

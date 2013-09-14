@@ -1,7 +1,7 @@
 ---
 title: On BASH that has no &!, and old tricks suddenly rediscovered
+tags: linux
 language: english
-category: linux
 ---
 
 **TL;DR:** *don't want to spoil the fun, so please check [Summary](#summary) at
