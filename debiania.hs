@@ -28,6 +28,19 @@ main = hakyll $ do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
+    -- Render Archives page
+    create ["posts.html"] $ do
+        route     idRoute
+        compile $ do
+          posts <- recentFirst =<< loadAll "posts/*"
+          let ctx =    constField "title" "Archives"
+                    <> listField "posts" postCtx (return posts)
+                    <> defaultContext
+
+          makeItem ""
+            >>= loadAndApplyTemplate "templates/archives.html" ctx
+            >>= loadAndApplyTemplate "templates/default.html" ctx
+            >>= relativizeUrls
 
 {---- SETTINGS ----}
 

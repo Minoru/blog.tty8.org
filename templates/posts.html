@@ -1,5 +1,10 @@
-$posts$
-
-<p style="text-align: center; font-size: 88%; font-style: italic;">
-<a href="/posts.html">There's more!</a>
+$for(posts)$
+<p>
+    <a href="$url$">$title$</a>
+    <span class="date">
+        <time datetime="$datetime$">
+            $date$
+        </time>
+    </span>
 </p>
+$endfor$
