@@ -55,6 +55,22 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
 
+    -- Render About and Subscribe pages
+    create ["about.markdown", "subscribe.markdown"] $ do
+        route   $ setExtension "html"
+        compile $ pandocCompiler
+          >>= loadAndApplyTemplate "templates/about.html" defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= relativizeUrls
+
+    -- Error 404 page is special in a way that it doesn't need URL
+    -- relativization because it would be located in the webserver root
+    create ["404.markdown"] $ do
+        route   $ setExtension "html"
+        compile $ pandocCompiler
+          >>= loadAndApplyTemplate "templates/about.html" defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+
 {---- SETTINGS ----}
 
 rootUrl = "http://debiania.in.ua"
