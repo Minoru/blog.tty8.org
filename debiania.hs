@@ -19,6 +19,19 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    create ["index.html"] $ do
+        route     idRoute
+        compile $ do
+          posts <- fmap (take 8) . recentFirst =<< loadAll "posts/*"
+          let ctx =    constField "title" "Home"
+                    <> listField "posts" postCtx (return posts)
+                    <> defaultContext
+
+          makeItem ""
+            >>= loadAndApplyTemplate "templates/index.html" ctx
+            >>= loadAndApplyTemplate "templates/default.html" ctx
+            >>= relativizeUrls
+
     -- Render posts
     match "posts/*" $ do
         route   $ setExtension "html"
