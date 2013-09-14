@@ -13,17 +13,12 @@ main :: IO ()
 main = hakyll $ do
     -- Compress CSS
     match "css/*" $ do
-        route idRoute
+        route   idRoute
         compile compressCssCompiler
 
-    -- Images
-    match "images/*" $ do
-        route idRoute
-        compile copyFileCompiler
-
-    -- Miscellaneous files
-    match "misc/*" $ do
-        route idRoute
+    -- Images and miscellaneous files
+    match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do
+        route   idRoute
         compile copyFileCompiler
 
     -- Render posts
@@ -74,11 +69,6 @@ main = hakyll $ do
         compile $ pageCompiler
             >>> applyTemplateCompiler "templates/about.html"
             >>> applyTemplateCompiler "templates/default.html"
-
-    -- robots.txt should be just copied to the root
-    match "robots.txt" $ do
-        route idRoute
-        compile copyFileCompiler
 
     -- Render feeds
     -- All posts
