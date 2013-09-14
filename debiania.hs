@@ -6,6 +6,9 @@ import Hakyll
 
 main :: IO ()
 main = hakyll $ do
+    -- Read templates
+    match "templates/*" $ compile templateCompiler
+
     -- Compress CSS
     match "css/*" $ do
         route   idRoute
@@ -25,10 +28,6 @@ main = hakyll $ do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
-    -- Read templates
-    match "templates/*" $ compile templateCompiler
-
-
 
 {---- SETTINGS ----}
 
@@ -36,6 +35,6 @@ rootUrl = "http://debiania.in.ua"
 
 postCtx :: Context String
 postCtx = dateField "date" "%B %e, %Y"
-  <> dateField "datetime" "%Y-%m-%d"
-  <> defaultContext
+          <> dateField "datetime" "%Y-%m-%d"
+          <> defaultContext
 
