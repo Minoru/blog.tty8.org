@@ -9,8 +9,6 @@ import qualified Data.Text as T
 
 import Hakyll
 
-rootUrl = "http://debiania.in.ua"
-
 main :: IO ()
 main = hakyll $ do
     -- Compress CSS
@@ -250,4 +248,9 @@ linuxRussianFeedConfiguration = FeedConfiguration
     , feedAuthorEmail = "eual.jp@gmail.com"
     , feedRoot = rootUrl
     }
+
+
+{---- SETTINGS ----}
+
+rootUrl = "http://debiania.in.ua"
 
