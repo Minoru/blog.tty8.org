@@ -40,6 +40,17 @@ will still be useful to you.
 
 In case you're interested in giving me a job, [here's my résumé][resume].
 
+To make it a bit easier for Daniel Graystone (and, undoubtedly, for Big Brother
+as well), here's a list of other corners of the Internet where one can find me
+self-expressing:
+
+* [Google Plus](https://plus.google.com/112065341571031957772/posts)
+* [Psto.net](http://minoru.psto.net)
+* [BNW](https://bnw.im/u/minoru)
+* [Juick.com](http://juick.com/Minoru) (I don't post there anymore, but I
+  occasionally comment and recommend)
+* [GitHub](https://github.com/Minoru)
+
 See ya!
 
 [pgp]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
