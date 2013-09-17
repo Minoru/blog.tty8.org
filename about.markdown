@@ -48,8 +48,16 @@ self-expressing:
 * [Psto.net](http://minoru.psto.net)
 * [BNW](https://bnw.im/u/minoru)
 * [Juick.com](http://juick.com/Minoru) (I don't post there anymore, but I
-  occasionally comment and recommend)
+  occasionally comment on and recommend other's posts)
 * [GitHub](https://github.com/Minoru)
+
+I also hang out on the Freenode occasionally under the nickname
+of—surprise!—Minoru. I employ OTR with an opportunistic policy, so I will
+perfectly understand it if you say "hello" and then go mute for half a minute,
+waiting for connection to establish.
+
+If you see someone with my name or nickname or avatar on some other resource,
+that's most probably just an impostor. Ignore him.
 
 See ya!
 
