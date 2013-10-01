@@ -40,7 +40,7 @@ that supports them as a disk format.
 
 <blockquote class="warning">
 Before reading any further, please note that booting the same operating system
-twice (once as a host, second time inside a vitrual machine) will most likely
+twice (once as a host, second time inside a virtual machine) will most likely
 damage your files and corrupt the system.
 
 Loading things in read-only mode is okay, though, so you are safe to boot
@@ -65,7 +65,7 @@ obvious. As we will see next, GUIs tend to cloud things a lot in this case.
 
 In case of VMWare, [you need to jump through a bit of menus][vmware-tutorial]
 and "wizards"[^wizards] in order to get there, but that's doable — it worked
-just fine last night. VirtualBox [apparently encourages using CLI to acomplish
+just fine last night. VirtualBox [apparently encourages using CLI to accomplish
 the task][virtualbox-tutorial], although I'm pretty sure they should have got
 some GUI for that as well. So you don't need to use some special VM — go with
 whichever you like best (and if it happens not to be mentioned in this post,
