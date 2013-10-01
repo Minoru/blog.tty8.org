@@ -196,3 +196,7 @@ blockquote {
     margin-left: 0;
 }
 
+blockquote.warning {
+    border-left: 2px solid red;
+}
+
