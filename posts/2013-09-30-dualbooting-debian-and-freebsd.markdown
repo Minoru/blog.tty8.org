@@ -4,7 +4,7 @@ language: english
 ---
 
 There's no magic in dualbooting Debian and FreeBSD. It's versions that make all
-the difference. Dualbooting Squeeze and FreeBSD 9.1 turned out to be a hell of a
+the difference. Dualbooting Squeeze and FreeBSD 9.1 turned out to be a hell of a
 challenge, and only upgrading to Wheezy made it possible to finally get what I
 want. But let's describe things in order.
 
@@ -100,7 +100,7 @@ to boot your FreeBSD.
 
 That's not just a story I came up with to illustrate some possible
 consequences: GRUB2 that is shipped with Debian Squeeze
-(1.98+20100804-14+squeeze1) can't boot FreeBSD 9.1. It just fails with errors
+(1.98+20100804-14+squeeze1) can't boot FreeBSD 9.1. It just fails with errors
 like this (actual number might be different in your case):
 
 ```
@@ -118,15 +118,17 @@ through FreeBSD loader, which might be undesirable — me, for example, I wante
 to select an entry in GRUB2 and go right to the loading process, without need to
 confirm my choice again in another menu.
 
-And now the last fact for this post: [to boot FreeBSD 9.1 on amd64, you need
-GRUB2 version 1.99-27+deb7u2][699002]. I assume 1.99-27+deb7u1, the version shipped with
-Debian 7.1 (the latest point release so far), would be sufficient for any other
-architecture, but for amd64, they broke booting FreeBSD ≥ 9.1 and fixed it only
-in the u2. As of this writing, 1.99-27+deb7u2 is not in Wheezy 7.1, but it is
-[already accepted][grub2-proposed-updates-accepted] into [`wheezy-proposed-updates`][proposed-updates]. If you have Debian 7.2 or
-above, you've probably got the proper version of GRUB2. For those running 7.0
-and 7.1, put this line into your `/etc/apt/sources.list` (or into a file
-somewhere under `/etc/apt/sources.list.d/`):
+And now the last fact for this post: [to boot FreeBSD 9.1 on amd64, you need
+GRUB2 version 1.99-27+deb7u2][699002]. I assume 1.99-27+deb7u1, the version
+shipped with Debian 7.1 (the latest point release so far), would be sufficient
+for any other architecture, but for amd64, they broke booting FreeBSD ≥ 9.1 and
+fixed it only in the u2. As of this writing, 1.99-27+deb7u2 is not in
+Wheezy 7.1, but it is [already accepted][grub2-proposed-updates-accepted] into
+[`wheezy-proposed-updates`][proposed-updates]. If you have
+Debian 7.2[^debian-7.2-scheduled] or above, you've probably got the proper
+version of GRUB2. For those running 7.0 and 7.1, put this line into your
+`/etc/apt/sources.list` (or into a file somewhere under
+`/etc/apt/sources.list.d/`):
 
 ```
 deb http://ftp.debian.org/debian wheezy-proposed-updates main
@@ -139,11 +141,22 @@ of [http.debian.net][hdn]) and specify `contrib` and `non-free` in addition to
 After updating your GRUB2, you would be able to use any of the aforementioned
 techniquest to boot your FreeBSD.
 
-That's it, you've got a dualboot with Debian Wheezy and FreeBSD 9.1. I wish you
+That's it, you've got a dualboot with Debian Wheezy and FreeBSD 9.1. I wish you
 to have as much fun with it as I did figuring it all out. Happy hacking!
+
+**Update 01.09.2013:**
+
+* link to the announcement of Debian 7.2 schedule.
 
 [^why-use-uuid]: And if you think *that* won't ever happen, consider the
 possibility of your HDD dying of age or something.
+
+[^debian-7.2-scheduled]: Currently [scheduled][debian-7.2-schedule-announce]
+for Saturday October 12th, 2013.
+
+[debian-7.2-schedule-announce]:
+http://lists.debian.org/debian-project/2013/09/msg00089.html "Upcoming stable
+point release (7.2)"
 
 [699002]: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=699002 "#699002:
 grub: grub 2.00 in experimental may be missing kfreebsd >= 9.1 amd64 fix"
