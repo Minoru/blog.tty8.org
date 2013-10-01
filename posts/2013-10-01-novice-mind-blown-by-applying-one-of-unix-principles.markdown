@@ -14,7 +14,7 @@ So I watched a friend of mine last night who installed Ubuntu and then tried to
 run Windows under VMWare so he could use his printer and play some games. He
 knew the principle, he just never had an opportunity to apply it. Before.
 
-"Why, you could just run the OS you have installed on your HDD already!" — I
+"Why, you could just run the OS you already have installed on your HDD!", I
 said. After a minute of staring in amazement[^thus-the-title], and then some
 more to set things up, we had everything nice and running.
 
@@ -87,8 +87,9 @@ $ # $USER should be expanded to your username by your shell
 $ sudo usermod --append --groups disk $USER 
 ```
 
-You have to log out and in again for groups membership to take effect, and after
-that you'll finally be able to boot your VM with HDD partition as an, well, HDD.
+You'll have to log out and in again for groups membership to take effect, and
+after that you'll finally be able to boot your VM with HDD partition as an,
+well, HDD.
 
 That's it, you learned the trick. Keep studying and don't forget to apply your
 knowledge — that's the best path to mastery!
