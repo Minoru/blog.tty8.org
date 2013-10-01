@@ -62,13 +62,14 @@ menuentry "FreeBSD 9.1 (/boot/loader)" {
 }
 ```
 
-Here we load `part_bsd` module to make GRUB2 see BSD slices (counted from one)
-inside MS DOS partitions, and `ufs2` module to enable it to read the file system
-on the slice. By setting `root` to the partition you know to be the root of your
-FreeBSD installation, and then issuing `search` command to look for it again
-using its UUID, you make sure that you won't get problems later on if you decide
-to re-partition your disk[^why-use-uuid]. We then proceed by specifying which
-partition contains `/boot` and then finally calling the loader.
+Here we load `part_bsd` module to make GRUB2 see BSD partitions inside slices
+(counted from one), and `ufs2` module to enable it to read the file system on
+the partition[^other-filesystems]. By setting `root` to the partition you know
+to be the root of your FreeBSD installation, and then issuing `search` command
+to look for it again using its UUID, you make sure that you won't get problems
+later on if you decide to re-partition your disk[^why-use-uuid]. We then
+proceed by specifying which partition contains `/boot` and then finally calling
+the loader.
 
 The third, and the last, approach is the most complex: it's GRUB2 loading
 FreeBSD kernel directly. Here's how it looks in the config file:
@@ -146,7 +147,9 @@ to have as much fun with it as I did figuring it all out. Happy hacking!
 
 **Update 01.09.2013:**
 
-* link to the announcement of Debian 7.2 schedule.
+* link to the announcement of Debian 7.2 schedule;
+* use FreBSD's "slice" term properly;
+* add a note regarding ZFS and UFS1 modules for GRUB2.
 
 [^why-use-uuid]: And if you think *that* won't ever happen, consider the
 possibility of your HDD dying of age or something.
@@ -157,6 +160,9 @@ for Saturday October 12th, 2013.
 [debian-7.2-schedule-announce]:
 http://lists.debian.org/debian-project/2013/09/msg00089.html "Upcoming stable
 point release (7.2)"
+
+[^other-filesystems]: You should load `zfs` module if you're using ZFS instead
+of UFS2, of course, or `ufs1` if you're still on UFS1.
 
 [699002]: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=699002 "#699002:
 grub: grub 2.00 in experimental may be missing kfreebsd >= 9.1 amd64 fix"
