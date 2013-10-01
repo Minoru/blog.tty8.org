@@ -190,9 +190,9 @@ pre code {
 }
 
 blockquote {
-    border-left: 4px solid #a5a5a5;
+    border-left: 2px solid green;
     padding-left: 1em;
+    margin-left: -1em;
     margin-right: 0;
-    margin-left: 0;
 }
 
