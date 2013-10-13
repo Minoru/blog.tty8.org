@@ -151,15 +151,24 @@ to have as much fun with it as I did figuring it all out. Happy hacking!
 * use FreBSD's "slice" term properly;
 * add a note regarding ZFS and UFS1 modules for GRUB2.
 
+**Update 13.10.2013:**
+
+* link to the announcement of Debian 7.2 release.
+
 [^why-use-uuid]: And if you think *that* won't ever happen, consider the
 possibility of your HDD dying of age or something.
 
-[^debian-7.2-scheduled]: Currently [scheduled][debian-7.2-schedule-announce]
-for Saturday October 12th, 2013.
+[^debian-7.2-scheduled]: Currently [scheduled
+for][debian-7.2-schedule-announce] (**update**: and [successfully released
+on][debian-7.2-release-announce]) Saturday October 12th, 2013.
 
 [debian-7.2-schedule-announce]:
 http://lists.debian.org/debian-project/2013/09/msg00089.html "Upcoming stable
 point release (7.2)"
+
+[debian-7.2-release-announce]:
+http://lists.debian.org/debian-announce/2013/msg00004.html
+"Updated Debian 7: 7.2 released"
 
 [^other-filesystems]: You should load `zfs` module if you're using ZFS instead
 of UFS2, of course, or `ufs1` if you're still on UFS1.
