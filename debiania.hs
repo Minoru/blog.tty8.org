@@ -122,8 +122,8 @@ filterLanguage language items = filterM (hasLanguage language) items
 hasLanguage :: String -> Item a -> Compiler Bool
 hasLanguage language item = do
   let identifier = itemIdentifier item
-  metadata <- getMetadata identifier
-  case (M.lookup "language" metadata) of
+  lang <- getMetadataField identifier "language"
+  case lang of
     Just l  -> return $ l == language
     Nothing -> return False
 
