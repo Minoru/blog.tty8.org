@@ -200,3 +200,7 @@ blockquote.warning {
     border-left: 2px solid red;
 }
 
+ul {
+    list-style-type: circle;
+}
+
