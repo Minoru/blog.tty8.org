@@ -3,6 +3,7 @@
 import Control.Monad (liftM, filterM)
 import Data.List (intersect)
 import Data.Monoid ((<>))
+import Network.HTTP.Base (urlEncode)
 import qualified Data.Map as M
 import qualified Data.Text as T
 
@@ -44,7 +45,9 @@ main = hakyll $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
           >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate "templates/post.html" (postCtx <> tagsCtx tags)
+          >>= loadAndApplyTemplate
+                "templates/post.html"
+                (urlEncodedTitleCtx <> postCtx <> tagsCtx tags)
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
@@ -154,6 +157,18 @@ createFeed name content conf extension compiler =
 {---- SETTINGS ----}
 
 rootUrl = "http://debiania.in.ua"
+
+urlEncodedTitleCtx :: Context String
+urlEncodedTitleCtx =
+  field
+    "urlEncodedTitle"
+    (\item -> do
+      identifier <- getUnderlying
+      title <- getMetadataField identifier "title"
+      case title of
+        Nothing -> return ""
+        Just t  -> return $ urlEncode t
+    )
 
 postCtx :: Context String
 postCtx =
