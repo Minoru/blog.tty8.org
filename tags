@@ -1,0 +1,28 @@
+#!/usr/bin/env perl
+
+# Author: Alexander Batischev <eual.jp@gmail.com>
+# License: Public Domain
+#
+# This tiny piece of Perl git-greps existing posts for tags and prints them out
+# in a nice comma-separated list. I use it to pre-populate metadata of the new
+# post when the editor is being fired up (by `start_writing.sh`).
+
+use strict;
+use warnings;
+
+my %tags = ();
+
+foreach my $line ( `git grep 'tags: ' -- '*.markdown'` ) {
+  chomp $line;
+  # git-grep prints out the filename and the match divided by a colon
+  $line =~ s/^.*\.markdown:tags: //;
+  # tags in posts are comma-separated lists. We split the line by comma here
+  # and then trim whitespace in case the list was ', '-separated
+  foreach my $tag ( split(',', $line) ) {
+    $tag =~ s/^\s+//;
+    $tag =~ s/\s+$//;
+    $tags{$tag}++;
+  }
+}
+
+print join (', ', keys %tags), "\n";

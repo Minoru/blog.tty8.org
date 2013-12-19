@@ -8,7 +8,23 @@ tmux has-session -t debiania || (
     # session doesn't exist, let's create one
 
     # first window is for editing
-    tmux new-session -d -s debiania 'vim'
+
+    vimoptions="set spell spelllang=ru_yo,en filetype=markdown"
+    # Start vim:
+    #   - go to the second line, i.e. the title
+    #   - go to the Insert mode right away
+    #   - set the options defined above
+    #   - read initial file from the stdin
+    vim="vim +2 -c 'startinsert!' -c \"$vimoptions\" -"
+    # initial text. This is post metadata as used by Hakyll.
+    text=`(   echo    '----'
+        echo    'title: '
+        echo    'language: english russian'
+        echo    'description: '
+        echo -n 'tags: ' && ./tags
+        echo    '----'
+    )`
+    tmux new-session -d -s debiania "echo \"$text\" | $vim"
     tmux rename-window -t debiania:0 vim
 
     # none of the windows need activity monitoring, so I disable it
@@ -22,4 +38,3 @@ tmux has-session -t debiania || (
 )
 
 tmux attach -t debiania
-
