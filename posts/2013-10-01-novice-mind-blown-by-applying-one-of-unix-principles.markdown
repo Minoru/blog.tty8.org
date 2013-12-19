@@ -1,5 +1,6 @@
 ---
 title: Novice's mind blown by an application of one of Unix principles
+tags: linux
 language: english
 ---
 

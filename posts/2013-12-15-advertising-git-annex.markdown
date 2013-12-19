@@ -1,5 +1,6 @@
 ---
 title: Порекламирую-ка git-annex
+tags: linux
 language: russian
 ---
 

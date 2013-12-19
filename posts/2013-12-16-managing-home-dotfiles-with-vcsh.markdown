@@ -1,5 +1,6 @@
 ----
 title: Управление дотфайлами в $HOME с помощью vcsh
+tags: linux
 language: russian
 ----
 

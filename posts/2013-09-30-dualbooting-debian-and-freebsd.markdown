@@ -1,5 +1,6 @@
 ---
 title: Dualbooting Debian and FreeBSD
+tags: debian, linux
 language: english
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: On structure of the home directory
+tags: linux
 language: english
 ---
 
