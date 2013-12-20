@@ -14,7 +14,7 @@ Tue, Nov  5 2013 22:47:46 +0200
 ```
 
 Wow, it's more than a month already! More than a month since I first saw [Occupy
-Flash](occupyflash) website and decided that I'm up to the challenge. More than
+Flash][occupyflash] website and decided that I'm up to the challenge. More than
 a month since the last time I saw a Flash banner or had to click on a FlashBlock
 icon to let it play some video for me. And I should say that the experience was
 much, much pleasant than I initially anticipated. Actually, it was so easy that
