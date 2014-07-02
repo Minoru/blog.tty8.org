@@ -14,8 +14,8 @@ are my favourite bands) and reading sci-fi books.
 I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
 me][email], I'd appreciate it if you make a digital signature (or better yet,
 encrypt the message). I also have [an old key, 0x0a1d7d827b52fb07][pgp-old],
-that date back to the days when I tried PGP software for the first time. I lost
-its revocation certificate, so please just ignore it.
+that dates back to the days when I tried PGP software for the first time.
+I lost its revocation certificate, so please just ignore it.
 
 <div class="center">~ * ~</div>
 
