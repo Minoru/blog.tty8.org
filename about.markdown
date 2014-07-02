@@ -45,7 +45,6 @@ as well), here's a list of other corners of the Internet where one can find me
 self-expressing:
 
 * [Google Plus](https://plus.google.com/112065341571031957772/posts)
-* [Psto.net](http://minoru.psto.net)
 * [BNW](https://bnw.im/u/minoru)
 * [Juick.com](http://juick.com/Minoru) (I don't post there anymore, but I
   occasionally comment on and recommend other's posts)
