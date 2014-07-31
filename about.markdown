@@ -44,11 +44,18 @@ To make it a bit easier for Daniel Graystone (and, undoubtedly, for Big Brother
 as well), here's a list of other corners of the Internet where one can find me
 self-expressing:
 
-* [Google Plus](https://plus.google.com/112065341571031957772/posts)
 * [BNW](https://bnw.im/u/minoru)
-* [Juick.com](http://juick.com/Minoru) (I don't post there anymore, but I
-  occasionally comment on and recommend other's posts)
+* [Google Plus](https://plus.google.com/112065341571031957772/posts)
 * [GitHub](https://github.com/Minoru)
+
+There are also sites where I was present at some point in time, but now don't
+use anymore:
+
+* [Juick.com](http://juick.com/Minoru) — I kept a microblog there for some
+  time, but then site politics changed, and I switched into comments-only mode.
+  Later on, when XMPP network switched to required S2S encryption, juick.com
+  became unaccessible (they didn't turn the encryption on), so I stopped
+  commenting there altogether.
 
 I also hang out on the Freenode occasionally under the nickname
 of—surprise!—Minoru. I employ OTR with an opportunistic policy, so I will
