@@ -9,8 +9,7 @@ tmux has-session -t debiania || (
 
     # first window is for editing
 
-    vimoptions="set tw=80 spell spelllang=ru_yo,en filetype=markdown"
-    # TODO: generate initial name with date
+    vimoptions="set spell spelllang=ru_yo,en filetype=markdown nofoldenable tw=80"
     # Start vim:
     #   - go to the second line, i.e. the title
     #   - go to the Insert mode right away
