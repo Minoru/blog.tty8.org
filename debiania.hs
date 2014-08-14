@@ -84,6 +84,7 @@ main = hakyll $ do
     -- Render feeds
     -- TODO: look for 'description' field and use it instead (if present)
     let allContent = loadAllSnapshots "posts/*" "content"
+          >>= mapM absolutizeUrls
     let russianContent = allContent
           >>= filterLanguage "russian"
     let englishContent = allContent
@@ -105,6 +106,13 @@ main = hakyll $ do
 
     sequence_
       [ createFeed a b c d e | (a,b,c) <- feeds, (d,e) <- feedCompilers ]
+
+absolutizeUrls :: Item String -> Compiler (Item String)
+absolutizeUrls item = do
+  route <- getRoute $ itemIdentifier item
+  return $ case route of
+    Nothing -> item
+    Just r  -> fmap (relativizeUrlsWith rootUrl) item
 
 -- | Return only items that have at least one of the specified tags
 filterTags :: [String] -> [Item a] -> Compiler [Item a]
