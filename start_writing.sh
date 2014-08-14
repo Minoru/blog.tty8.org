@@ -21,7 +21,7 @@ tmux has-session -t debiania || (
         echo    'title: '
         echo    'language: english russian'
         echo    'description: '
-        echo -n 'tags: ' && ./tags
+        echo -n 'tags: ' && ./gather_tags
         echo    '----'
     )`
     tmux new-session -d -s debiania "echo \"$text\" | $vim"
