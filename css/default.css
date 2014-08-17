@@ -103,6 +103,8 @@ nav#navigation a:active {
 }
 
 #post {
+    display: flex;
+    flex-direction: column;
     line-height: 1.467em;
 }
 
@@ -134,13 +136,8 @@ footer#blog-footer {
  * Miscellaneous
  */
 
-.image {
-    text-align: center;
-    margin: 0 auto;
-}
-
 .center {
-    text-align: center;
+    align-self: center;
 }
 
 /* This class can be used to avoid adding <div style="clear: both;"></div> at
