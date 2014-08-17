@@ -6,8 +6,9 @@ language: english
 Have you ever noticed that (evil) face hidden right in the middle of the Debian
 logo?
 
-<div class="image">
-  <img src="/images/evil-face-within-debian-logo.png" width="450" height="559"
+<div class="center">
+<img src="/images/evil-face-within-debian-logo.png"
+    width="450" height="559"
     alt="Evil face within Debian logo" />
 </div>
 
