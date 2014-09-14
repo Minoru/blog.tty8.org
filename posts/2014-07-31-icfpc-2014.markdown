@@ -146,6 +146,10 @@ tags: programming, icfpc
 NCPLUG][ncplug-a705736385d90527eca32ca0593096a903d32a8c]). Нужно было лишь
 немного помозговать, а не бросаться сразу писать код.
 
+**Update 14.09.2014**: [Заняли в общем зачёте 99-е место][results] (в
+молниеносном туре не участвовали вовсе). В будущем страничку результатов
+переместят, так что я сделал [копию на память][results-mirror].
+
 [icfpc-wikipedia]: https://en.wikipedia.org/wiki/ICFPC
     "ICFP Programming Contest — Wikipedia"
 [icfp-wikipedia]: https://en.wikipedia.org/wiki/ICFP
@@ -162,6 +166,10 @@ NCPLUG][ncplug-a705736385d90527eca32ca0593096a903d32a8c]). Нужно было �
     "Алгоритм Ли — Википедия"
 [d-star-wikipedia]: https://en.wikipedia.org/wiki/D*
     "D* — Wikipedia"
+[results]: http://icfpcontest.org/results.html
+    "ICFPC 2014 — Results"
+[results-mirror]: /misc/icfpc-2014-results.html
+    "IFCPC 2014 — Results"
 
 [0175d36dd680dadfad3f02d1c3638ec36217ff42]: https://github.com/codingteam/icfpc-2014/commit/0175d36dd680dadfad3f02d1c3638ec36217ff42
     "codingteam/icfpc-2014 — Commit 0175d36dd680dadfad3f02d1c3638ec36217ff42"
