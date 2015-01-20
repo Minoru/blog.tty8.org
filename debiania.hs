@@ -4,7 +4,6 @@ import Control.Monad (liftM, filterM)
 import Data.List (intersect)
 import Data.Monoid ((<>))
 import Network.HTTP.Base (urlEncode)
-import qualified Data.Map as M
 import qualified Data.Text as T
 
 import Hakyll
