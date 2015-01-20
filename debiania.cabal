@@ -14,7 +14,6 @@ Cabal-version: >= 1.2
 Executable debiania
     Main-is: debiania.hs
     Build-Depends: base == 4.*
-                 , containers == 0.*
-                 , hakyll == 4.*
-                 , text == 0.*
                  , HTTP == 4000.*
+                 , hakyll == 4.*
+                 , text
