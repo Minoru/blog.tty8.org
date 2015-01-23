@@ -8,8 +8,13 @@ import qualified Data.Text as T
 
 import Hakyll
 
+config :: Configuration
+config = defaultConfiguration {
+  deployCommand = "rsync -rP _site/ www-blog@theke.debiania.in.ua:"
+}
+
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith config $ do
     -- Build tags (will be used later on)
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
 
