@@ -55,7 +55,8 @@ use anymore:
   time, but then site politics changed, and I switched into comments-only mode.
   Later on, when XMPP network switched to required S2S encryption, juick.com
   became unaccessible (they didn't turn the encryption on), so I stopped
-  commenting there altogether.
+  visiting it altogether. In case it ever closes down, there is [a browseable
+  archive of all my posts][juick-archive].
 
 I also hang out on the Freenode occasionally under the nickname
 of—surprise!—Minoru. I employ OTR with an opportunistic policy, so I will
@@ -71,6 +72,7 @@ See ya!
 [pgp-old]: http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0x0A1D7D827B52FB07 "PGP key 0x0a1d7d827b52fb07 at pgp.mit.edu"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [archive]: /misc/debiania-archive.7z "Browseable copy of old Debiania (3.8M, 254M unpacked)"
+[juick-archive]: /misc/juick-minoru-20141021.tar.xz "Browseable copy of my Juick microblog (6.9M, 17M unpacked)"
 [httrack_recipe]: http://mydebianblog.blogspot.com/2009/12/blogger-httrack-website-copier.html "Архив блогов типа Blogger: делаем локальную копию с помощью HTTrack Website Copier"
 [comments]: /posts/2012-03-21-why-no-comments.html "Why no comments?"
 [resume]: /misc/batischev_cv.pdf
