@@ -80,13 +80,13 @@ $ sudo aptitude install lvm2 cryptsetup
 ```
 
 Make sure they really install without any errors (look out for initramfs updates
-and grub errors). If there are any, better fix them before continuing, or you
+and Grub errors). If there are any, better fix them before continuing, or you
 would need to face them again when your system won't boot.
 
 Then backup your data. If you have something large stored in your home
 directory, move it elsewhere (I used `rsync` and another machine connected by
 the network cable). Don't mind dotfiles yet, we'll back them up later. Ideally,
-`ls ~` should list nothing before we begin.
+`ls ~` should list nothing before we start.
 
 Now really fun stuff begins. Reboot your machine to live CD. Mount all your
 partitions, then `cd` into each mountpoint and backup files with that command:
@@ -96,69 +96,45 @@ partitions, then `cd` into each mountpoint and backup files with that command:
 ```
 
 (assuming you have your backup device mounted into `/backups`). That would
-`c`reate tar `f`ile with a given name, packing everything that you have in the
-current directory, `p`reserving permissions and being `v`erbose about what's
-going on.
+`c`reate `tar` `f`ile with a given name, packing everything that you have in
+the current directory, `p`reserving permissions and being `v`erbose about
+what's going on.
 
 You might also add `j` for bzip2, `J` for xz, `z` for gzip, or `a` to
 auto-detect compression program from the filename. Useful if you got slow device
 for backups (e.g., USB2.0 stick) but fast HDD and some CPU time to spare.
 
-Now that backups are ready, we can really start screwing things. It's
+Now that backups are ready, we can really start breaking things. It's
 recommended to populate your whole disk with some random data. That way, if
 someone gains physical access to disk (by stealing your machine, for example),
-he/she won't be able to say where separate files or even LVM volumes are — it
-all would look like a big randomized mess. If you don't worry about that much,
-or you're sure that you would fill whole disk up at least once *before* your
+they won't be able to say where separate files or even LVM volumes are — it all
+will look like one huge randomized mess. If you don't worry about that much, or
+you're sure that you willfill whole disk up at least once *before* your
 machine would be stolen (I really hope it will never happen!), just skip that
 step and save yourself a day or so.
 
 For those who want to perform wiping, there are a lot of ways to populate disk
 with random bits. The most secure, of course, is using some real good random
-generator, say, `/dev/random`. That particular solution is not good enough,
-because it's painfully slow. So in practice, you better use `/dev/urandom` —
-it's faster (my laptop with Intel Core i3 can generate 10M of rubbish per
-second):
+generator, say, `/dev/random`. That particular solution is not very practical,
+though, because it's painfully slow. So in practice, you better write zeroes
+onto encrypted volume — my laptop with Intel Core i3, for example, can generate
+4 *gigabytes* of zeroes per second, which is way more faster than `/dev/random`
+(and even `/dev/urandom`) and is just as secure (thanks to Łukasz Stelmach for
+pointing this out; I used to suggest filling the disk with `/dev/urandom`'s
+output, optionally encrypted).
 
-```
-# dd if=/dev/urandom of=/dev/sda bs=1M
-```
-
-To gain some more randomization, you can encrypt the rubbish by setting up
-temporary LUKS on the whole disk:
-
-```
-# cryptsetup -d /dev/random -c aes-xts-plain -s 512 \
-    create crypt /dev/sda
-# dd if=/dev/urandom of=/dev/mapper/crypt bs=1M
-# cryptsetup remove crypt
-```
-
-You can gain even more speed by streaming more `/dev/urandom` output from
-different machines on the network (use `netcat`, Luke!).
-
-What I did on my netbook (which has Intel Atom N270 and thus can't produce more
-than a few megabytes worth of random data per second) is way faster:
+Okay, so to wipe your disk, you should run the following:
 
 ```
 # cryptsetup -d /dev/random -c aes-xts-plain -s 512 \
     create crypt /dev/sda
-# dd if=/dev/urandom of=/dev/mapper/crypt bs=1M count=10240
-# dd if=/dev/sda of=/dev/mapper/crypt bs=1M seek=10240
+# dd if=/dev/zero of=/dev/mapper/crypt bs=1M
 # cryptsetup remove crypt
 ```
 
-That's right: I populated first ten gigabytes with some random data encrypted,
-and then used the result to populate next 10G, that was then used to populate
-another 10G, and so on. Disk reads and writes on my netbook are something like
-30M per second, so it was a clear win comparing to the pure `/dev/urandom`
-approach. I also didn't lose any randomization — encrypting data over and over
-again, I got different results each time. I also used random key inadvertently
-inputted by user (`-d /dev/random`).
-
-No matter what you did (or didn't) do on the previous step, it's time to
-re-partition your disk. Here I'll describe how to do that using `cfdisk`, but
-you may use whatever you're comfortable with. Type the following command:
+Now on to the re-partitioning of your disk. Here I'll describe how to do that
+using `cfdisk`, but you may use whatever you're comfortable with. Type the
+following command:
 
 ```
 # cfdisk -z /dev/sda
@@ -462,3 +438,6 @@ good entry on disk encryption as well.
  
 
 That's all, guys and gals. Stay safe!
+
+**Update 21.01.2015:** suggest writing zeroes onto encrypted volume as a way to
+securely wipe the disk (thanks to Łukasz Stelmach for pointing this out).
