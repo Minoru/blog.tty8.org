@@ -144,8 +144,7 @@ following command:
 that's not the case, change — and possibly re-run — commands accordingly.)
 Something like that would show up:
 
-<font size="-2"><pre>
-                           cfdisk (util-linux 2.20.1)
+<pre><font size="-2">                           cfdisk (util-linux 2.20.1)
 
                               Disk Drive: /dev/sda
                        Size: 500107862016 bytes, 500.1 GB
@@ -171,8 +170,7 @@ Something like that would show up:
      [   Help   ]  [   New    ]  [  Print   ]  [   Quit   ]  [  Units   ]
      [  Write   ]
 
-                      Create new partition from free space
-</pre></font>
+                      Create new partition from free space</font></pre>
 
 Don't panic yet — your partitions are still intact, it's just `-z` flag that
 makes `cfdisk` pretend there's none. You could omit it, but then you would need
