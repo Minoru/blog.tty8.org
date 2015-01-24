@@ -10,7 +10,7 @@ import Hakyll
 
 config :: Configuration
 config = defaultConfiguration {
-  deployCommand = "rsync -rP _site/ www-blog@theke.debiania.in.ua:"
+  deployCommand = "rsync -rP --chmod=ugo=rwX _site/ www-blog@theke.debiania.in.ua:"
 }
 
 main :: IO ()
