@@ -40,20 +40,20 @@ will still be useful to you.
 
 In case you're interested in giving me a job, [here's my résumé][resume].
 
-To make it a bit easier for Daniel Graystone (and, undoubtedly, for Big Brother
-as well), here's a list of other corners of the Internet where one can find me
-self-expressing:
+To make the job a bit easier for Daniel Graystone (and, undoubtedly, for Big
+Brother as well), here's a list of other corners of the Internet where one can
+find me self-expressing:
 
 * [BNW](https://bnw.im/u/minoru)
 * [Google Plus](https://plus.google.com/112065341571031957772/posts)
 * [GitHub](https://github.com/Minoru)
 
-There are also sites where I was present at some point in time, but now don't
-use anymore:
+There are also sites where I was present at some point in time, but which
+I do not use anymore:
 
 * [Juick.com](http://juick.com/Minoru) — I kept a microblog there for some
   time, but then site politics changed, and I switched into comments-only mode.
-  Later on, when XMPP network switched to required S2S encryption, juick.com
+  Later on, when XMPP network made S2S encryption mandatory, juick.com
   became unaccessible (they didn't turn the encryption on), so I stopped
   visiting it altogether. In case it ever closes down, there is [a browseable
   archive of all my posts][juick-archive].
