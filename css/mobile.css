@@ -1,0 +1,13 @@
+body {
+    font-size: 1em;
+    margin: 0 0.3em;
+}
+
+#blog-header-logo {
+    display: none;
+}
+
+#blog-header-title {
+    float: none;
+    text-align: center;
+}

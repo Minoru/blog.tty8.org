@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg id="svg3247" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="77.651" width="164.76" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<svg id="svg3247" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="77.651" width="164.76" preserveAspectRatio="xMinYMin meet" viewBox="0 0 164.76 77.651" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
  <title id="title3011">Debiania Blog Logo</title>
  <defs id="defs3249">
   <clipPath id="clipPath3187" clipPathUnits="userSpaceOnUse">
@@ -31,7 +31,7 @@
       <dc:title>Alexander Batischev</dc:title>
      </cc:Agent>
     </dc:publisher>
-    <dc:identifier>http://debiania.in.ua/images/debiania-logo-mainpage.svg</dc:identifier>
+    <dc:identifier>http://blog.debiania.in.ua/images/debiania-logo-mainpage.svg</dc:identifier>
     <dc:subject>
      <rdf:Bag>
       <rdf:li>debiania</rdf:li>

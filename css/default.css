@@ -3,8 +3,7 @@
  **********/
 
 body {
-    width: 600px;
-    margin: 0px auto 0px auto;
+    margin: 0 auto;
     font-family: Georgia;
 }
 
@@ -28,7 +27,6 @@ a:active {
 
 #blog-header {
     text-align: center;
-    font-size: small;
     margin: 0 auto;
 }
 
@@ -53,6 +51,7 @@ a:active#blog-header-link
 
 #blog-header-logo {
     float: left;
+    height: 5em;
 }
 
 #blog-header-title {
@@ -68,14 +67,14 @@ nav#navigation {
     text-align: center;
     border-top: 1px solid #b0b0b0;
     border-bottom: 1px solid #b0b0b0;
-    padding: 4px 0px 4px 0px;
+    padding: 4px 0;
 }
 
 nav#navigation a {
     text-decoration: none;
     text-transform: uppercase;
-    padding: 3px 10px 3px 10px;
-    margin: 0px 10px 0px 10px;
+    padding: 3px 10px;
+    margin: 0 10px;
 }
 
 nav#navigation a:link,

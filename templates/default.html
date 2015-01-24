@@ -2,11 +2,19 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
         <title>Debiania — $title$</title>
         <link rel="icon" type="image/png" href="/images/debiania.png">
-        <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="/css/default.css">
-        <link rel="stylesheet" type="text/css" href="/css/syntax.css">
+        <link rel="stylesheet" type="text/css" media="all"
+            href="/css/normalize.css">
+        <link rel="stylesheet" type="text/css" media="all"
+            href="/css/default.css">
+        <link rel="stylesheet" type="text/css"
+            media="only screen and (max-width: 768px)" href="/css/mobile.css">
+        <link rel="stylesheet" type="text/css"
+            media="only screen and (min-width: 769px)" href="/css/desktop.css">
+        <link rel="stylesheet" type="text/css" media="all"
+            href="/css/syntax.css">
         <link rel="alternate" type="application/rss+xml"
             title="Debiania, yet another Debian blog" href="/feeds/all.rss">
         <link rel="alternate" type="application/atom+xml"
@@ -18,9 +26,8 @@
             <hgroup class="clearfix">
                 <div id="blog-header-logo">
                     <object data="/images/debiania-logo-mainpage.svg"
-                        type="image/svg+xml" width="177px" height="78px">
-                        <img src="/images/debiania-logo-mainpage.png"
-                            width="177px" height="78px" />
+                            height="100%" type="image/svg+xml">
+                        <img src="/images/debiania-logo-mainpage.png" height="100%" />
                     </object>
                 </div>
                 <div id="blog-header-title">
