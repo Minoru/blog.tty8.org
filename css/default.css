@@ -64,17 +64,16 @@ a:active#blog-header-link
  */
 
 nav#navigation {
-    text-align: center;
     border-top: 1px solid #b0b0b0;
     border-bottom: 1px solid #b0b0b0;
-    padding: 4px 0;
+    padding: 7px 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 nav#navigation a {
     text-decoration: none;
     text-transform: uppercase;
-    padding: 3px 10px;
-    margin: 0 10px;
 }
 
 nav#navigation a:link,
