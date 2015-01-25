@@ -4,7 +4,7 @@ language: english
 ---
 
 <div class="image">
-    <img src="/images/I_have_no_memory_of_this_code.png" width="450" height="554" />
+<img src="/images/I_have_no_memory_of_this_code.png" width="450" height="554" />
 </div>
 
 Yes, I already shared this on Google+, but tineye said he can't find that image
