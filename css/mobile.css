@@ -11,3 +11,8 @@ body {
     float: none;
     text-align: center;
 }
+
+pre {
+    padding: 0  0.5em;
+    margin:  0 -0.5em;
+}
