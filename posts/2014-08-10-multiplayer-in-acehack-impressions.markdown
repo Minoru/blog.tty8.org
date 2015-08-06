@@ -5,6 +5,14 @@ description: Я немного поиграл в этого представит
 tags: roguelike
 ----
 
+**Внимание!** Разработка Acehack [прекращена][nethackwiki-acehack]:
+
+> Work on AceHack as a standalone variant stopped in 2012, after it was merged
+> with [NitroHack][nethackwiki-nitrohack] to form
+> [NetHack 4][nethackwiki-nethack4].
+
+ 
+
 *(Если вы не знакомы с терминами «rogue-like» и «MUD», прочитайте сначала
 [соответствующие][wikipedia-roguelike] [статьи][wikipedia-mud] в Википедии или
 [на][lurkmore-roguelike] [лурке][lurkmore-mud], если его стиль вам больше по
@@ -107,6 +115,7 @@ Happy nethacking!
 
 **Обновлено 06.08.2015:**
 
+* добавлено примечание о прекращении разработки игры;
 * ссылки, ведущие на acehack.de, заменены на nethack.xd.cm.
 
 [wikipedia-roguelike]: https://ru.wikipedia.org/wiki/Roguelike
@@ -121,8 +130,12 @@ Happy nethacking!
     "acehack.de server"
 [acehack]: https://patch-tag.com/r/ais523/acehack/wiki/Front+Page
     "Официальная страничка Acehack"
-[nethackwiki-acehack]: http://nethackwiki.com/wiki/Acehack
+[nethackwiki-acehack]: https://nethackwiki.com/wiki/Acehack
     "Acehack — NetHackWiki"
+[nethackwiki-nitrohack]: https://nethackwiki.com/wiki/NitroHack
+    "NitroHack — NetHackWiki"
+[nethackwiki-nethack4]: https://nethackwiki.com/wiki/NetHack_4
+    "NetHack 4 — NetHackWiki"
 [apic-acehack-ttyrecs]: https://nethack.xd.cm/history/ade/userdata/Apic/acehack/ttyrec/
     "APic Acehack ttyrecs"
 [stenno-acehack-ttyrecs]: https://nethack.xd.cm/history/ade/userdata/stenno/acehack/ttyrec/
