@@ -105,6 +105,10 @@ stenno, которому в этот день не везло и он два р�
 
 Happy nethacking!
 
+**Обновлено 06.08.2015:**
+
+* ссылки, ведущие на acehack.de, заменены на nethack.xd.cm.
+
 [wikipedia-roguelike]: https://ru.wikipedia.org/wiki/Roguelike
     "Roguelike — Википедия"
 [wikipedia-mud]: https://ru.wikipedia.org/wiki/Многопользовательский_мир
@@ -119,9 +123,9 @@ Happy nethacking!
     "Официальная страничка Acehack"
 [nethackwiki-acehack]: http://nethackwiki.com/wiki/Acehack
     "Acehack — NetHackWiki"
-[apic-acehack-ttyrecs]: https://acehack.de/userdata/Apic/ttyrec/
+[apic-acehack-ttyrecs]: https://nethack.xd.cm/history/ade/userdata/Apic/acehack/ttyrec/
     "APic Acehack ttyrecs"
-[stenno-acehack-ttyrecs]: https://acehack.de/userdata/stenno/ttyrec/
+[stenno-acehack-ttyrecs]: https://nethack.xd.cm/history/ade/userdata/stenno/acehack/ttyrec/
     "stenno Acehack ttyrecs"
 [acehack-ttyrec]: /misc/acehack-2014-08-09-15:04:48UTC.ttyrec.bz2
     "Похождения Minoru в Acehack (ttyrec.bz2, 224K)"
