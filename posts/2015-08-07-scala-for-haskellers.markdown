@@ -49,7 +49,7 @@ Haskell:   Bool      -- True and False
 Scala:     Boolean   // true and false
 ```
 
-`()` is spelled `Unit`.
+`()` (the type) is spelled `Unit` (but the value is still `()`).
 
 Save for `String`, all of the above are *value types*. They have a nice
 property: they can't be `null`. *Reference types*, on the other hand, can. This
@@ -93,8 +93,9 @@ omit the keyword if you need an *open* ADT, of course.
   name collisions here);
 * we can pattern-match on `case` classes (more on that in a minute).
 
-`Leaf` could've been defined as `class`, but since it has no constructor
-parameters, all the instances will be the same. Thus an object definition.
+`Leaf` could've been defined as another `class`, but since it has no constructor
+parameters, all the instances will be the same. Thus an object definition which
+makes `Leaf` a singleton.
 
 # Pattern matching
 
@@ -109,7 +110,7 @@ smth match {
 # Anonymous functions
 
 ```Scala
-(x:Int, y:Int) => x + y
+(x, y) => x + y
 ```
 
 # Function definitions
@@ -131,13 +132,18 @@ greet("Hello")("dear reader")
 
 # Partial application
 
+You can put single `_` after the function or method to get partially applied
+function:
 ```Scala
 val welcome = greet("Welcome") _
-val cheer = greet("You can do it") _
+val anotherNameForGreet = greet _
 ```
 
-(In case you're curious — no, it's always single `_`, no matter how many
-arguments we omit.)
+But you can also use `_` as a placeholder for some of the arguments:
+```Scala
+def f(a: Double, b: Double, c: Double): Double = a + b / c
+val g = f(1, _, 3)
+```
 
 # Polymorphism and type constraints
 
@@ -341,6 +347,15 @@ done.
 I'd like to thank kind people on scala@conference.jabber.ru for answering my
 confused questions and explaining how things should be done. The same goes for
 attendees of #scala and #scalaz on Freenode — you people rock!
+
+**Update 08.08.2015**:
+
+* clarify that `()` (the type) is spelled `Unit`, but the value is still `()`
+  (thanks tpolecat)
+* elaborate on partial application (thanks dwins)
+* remove an erroneous claim that lambda arguments should be type-annotated
+  (thanks portnov & folex)
+* explain that `Leaf` type forms a singleton object (thanks folex)
 
  
 
