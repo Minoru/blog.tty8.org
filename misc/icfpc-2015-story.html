@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from icfpcontest.org/story.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:21:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <link rel="icon" type="image/png" href="icfpc-2015-logo-32x32.png">
+
+<title>Background / ICFP Programming Contest 2015</title>
+
+<style>
+
+html {
+  background-color: #666;
+}
+
+body {
+  max-width: 70em;
+  padding: 5em;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media print {
+  body {
+    box-shadow: 0 0 0 0 black;
+    padding: 0em;
+  }
+}
+
+h1 {
+  border-bottom: 1px solid black;
+  text-align: right;
+}
+em {
+  font-weight: bold;
+}
+
+.comment {
+  font-style: italic;
+  color: #999;
+}
+
+.example_unit {
+  box-shadow: inset 1px 1px 1px 1px black;
+  margin: 1em;
+  padding: 1em;
+}
+
+.figure {
+  border: 1px solid black;
+  margin: 1em;
+  box-shadow: 2px 2px 2px 2px #333;
+  padding: 1em;
+}
+
+.caption {
+  padding-top: 1em;
+}
+
+.floating { float: right; }
+
+
+#commands td { padding: 0.5em 1em 0em 1em; }
+#params   td { padding: 0.5em 1em 0em 1em; }
+
+</style>
+</head>
+<body>
+
+<img src="icfpc-2015-icfp_small.png" alt="Turing-like machine">
+<h1 id="team-postmortem">
+	Team Postmortem 
+</h1>
+<p>
+	A Google Hangout session starts. Four participants appear. 
+	The names underneath their images read &quot;Ron&quot;, &quot;Tony&quot;, 
+	&quot;Leslie&quot;, and &quot;Barb&quot;. 
+</p>
+<p>
+	Ron strokes his beard, &quot;Looks like our handler isn't here yet.&quot; 
+</p>
+<p>
+	&quot;It's no wonder, given the challenges we faced in that last outing,&quot; 
+	says Tony, as he takes off his hat, wipes his forehead, puts it back on. 
+</p>
+<p>
+	Leslie removes his reading glasses and looks up. &quot;I didn't think it was that 
+	bad. If only we had used fewer types and less time to tackle that daemon...&quot; 
+</p>
+<p>
+	Barb shakes her head. &quot;Let's not start that argument again, Leslie!&quot; 
+</p>
+<p>
+	A new, fifth, participant begins to join the Hangout. The profile photo is 
+	unusual, insofar as it has a ghostly outline and is indistinct. It is labeled 
+	&quot;Robin&quot;. 
+</p>
+<p>
+	Robin's image appears, vague in its substance. He jumps in. &quot;Thank you for 
+	joining me for this debriefing, everyone. I apologize for my lateness; my wifi 
+	connection is spotty in the hereafter.&quot; 
+</p>
+<p>
+	Ron clears his throat as Tony chuckles at the joke. 
+</p>
+<p>
+	Robin continues. 
+</p>
+<p>
+	&quot;First, thank you, one and all, for your tremendous bravery and 
+	cool-headedness last night. Our missions have become more challenging and 
+	more frequent with each passing year. Practical advances, such as CPU speeds, 
+	desktop parallelism, inexpensive large memory sizes, and commodity cloud 
+	computing mean that more and more researchers and hobbyists are encroaching 
+	on dangerous territory. In the past, we only needed to worry about a handful 
+	of top complexity theorists and programming language researchers, but today 
+	any sharp kid with an Athlon can accidentally summon a hellbeast.&quot; 
+</p>
+<p>
+	&quot;Now it is no longer a question of simply hiding the proof for P=NP 
+	and planting misdirections like Ron's excellent work.&quot; 
+</p>
+<p>
+	&quot;MD4 notwithstanding,&quot; says Ron. 
+</p>
+<p>
+	Robin nods, responding, &quot;You can't win them all, Ron.&quot; He 
+	continues, &quot;Our new threat is the growing use of solvers and logical
+	frameworks. It is only a matter of time before a concrete syntax design 
+	accidentally triggers an event.&quot; 
+</p>
+<p>
+	Tony injects, &quot;We had hoped that Don's excellent work, especially 
+	with Ronald and Oren, would steer most clear of those dangerous waters.&quot; 
+</p>
+<p>
+	Robin raises his hand and shrugs slightly, &quot;But now with his 
+	publication of a draft of the middle third of Volume 4B...&quot; 
+</p>
+<p>
+	&quot;...enormously more programmers are going to begin to deeply 
+	understand satisfiability!&quot;, finishes Barb. 
+</p>
+<p>
+	Leslie grunts. &quot;We can't keep up! Our team grows only by one 
+	member every year, and we are starting to lose the old-timers... 
+	no offense, Robin.&quot; 
+</p>
+<p>
+	Robin acknowledges the comment with class, as he always did, and 
+	responds, &quot;Indeed, this is the main reason I called you here 
+	today. The Agency intends to change our recruitment policy.&quot; 
+	Many pairs of eyes grow wide in the Hangout. Robin continues, 
+	&quot;We intend to use this year's ICFP programming contest to 
+	find new operatives. We need more sharp, brave souls with 
+	expertise in several areas, particularly cryptography, program 
+	reasoning, algorithms, and programming languages, to keep the 
+	world safe from the Old Ones and their minions.&quot; 
+</p>
+<p>
+	Barb looks doubtful. &quot;Do you really think this plan will work?&quot; 
+</p>
+<p>
+	Robin shakes his head, &quot;Aleister believes that it is our only hope...&quot; 
+</p>
+<h1 id="introduction">
+	Introduction 
+</h1>
+
+<p> Computational Archeology, or CA for short, is the study of
+historical hidden digital artifacts. Miskatonic University in Arkham,
+Massachusetts, USA has several top CA researchers in the "Digital
+Division" of their Department of Archeology. No one knows their real
+names, as they all publish under pseudonyms for fear of being identified
+by Lurkers beyond the Threshold. Bourbaki, Banzai, Cocke, Hopcroft,
+Backus. The list goes on and on. </p>
+	<p>
+	To the general public, as well as to many funding agencies, the
+	Digital Division appears laughable&mdash;the ancient world clearly did not
+	have advanced computers, and our understanding of the abacus does
+	not require multiple professorships. However, not all findings are
+	suitable for the general public, and many deep digs have revealed
+	terrible truths: many ancient cultures had advanced computational
+	capabilities, but <em>something</em> happened each time computer
+	science was invented. The truth has been carefully obscured, and
+	ancient ameliorative technologies have been carefully cataloged and
+	stored for the day where they will again be crucial to the survival
+	of humanity. Little does 
+	the general public know that Stross's yarns are not fiction, but are in fact... fact. </p>
+
+<p>
+
+</p>
+<p>
+	Researchers in the Digital Division have been tasked by an Other Government Agency, or 
+	OGA for short, to recruit new operatives to help keep the 
+	world safe from the dark threats that live beyond the stars. They have discovered a new representation for 
+	ancient protection schemes, called <em>davar</em>, that provides new hope for prolonging humanity's survival. Each davar 
+	invocation dampens the impact of a gate or summoning spell, whether generated intentionally by those who worship the Old Ones or unintentionally by those contemplating the finer points of complexity theory. Without the davar, such a spell may at best consume only a high school; at worst, tens of thousands of souls.
+</p>
+<p>
+	Moreover, their new scheme can be farmed out to many spellcasters 
+	working in parallel: a kind of computational magical Turk. If they 
+	only had a set of algorithms with which to automate the currently 
+	laborious process of crafting counter-spells of sufficient strength, 
+	they could calm the turbulent computational ether and its fractal 
+	eddies and non-Euclidean pools of flesh-eating darkness. 
+</p>
+<h1 id="a-new-threat">
+	A New Threat 
+</h1>
+<p>
+	&quot;Google's moves in AI and quantum are getting out of hand!&quot; 
+	Director Aleister looks more agitated than he usually did before his 
+	second cup of coffee in the morning. 
+</p>
+<p>
+	&quot;Indeed, they may stumble upon a Strong AI Golem, and then we'd 
+	be in real trouble.&quot; Buckaroo looked worried. &quot;Perhaps we 
+	should call in the Blue Blaze Irregular strike team out of Galois.&quot; 
+</p>
+<p>
+	The Director pursed his lips and sighed. &quot;We can't distract them. 
+	They're too busy with practical FHE to protect our assets from APTs, 
+	both foreign and extraterrestrial.&quot; 
+</p>
+<p>
+	&quot;That means we need to recruit again. We need a highly visible 
+	channel to get the best and the brightest. Our Turing Squad is thin 
+	on the ground.&quot; Banzai reflected. 
+</p>
+<p>
+	&quot;What about the ICFP programming contest?&quot;, the Director 
+	proffered. 
+</p>
+<p>
+	Buckaroo's eyes lit up. &quot;Exactly! Talent with spare time, 
+	enthusiasm for hard problems, breadth and depth of knowledge, and 
+	most are 10x-ers!&quot; His eyes narrowed. &quot;Kathleen and I go 
+	way back. I can charm her into having Galois run next year's contest.&quot; 
+</p>
+<p>
+	&quot;Excellent!&quot; The Director pointed at Buckaroo's chest and 
+	ordered, &quot;Ensure that the contest just looks like a game&mdash;we don't 
+	want to give too much away. If contestants realized that the fate of the 
+	world hung in the balance...&quot; 
+</p>
+<p>
+	Buckaroo slowly looked down at the Director's finger and raised his 
+	eyebrow. The Director blushed, mumbled something about needing to make 
+	a phone call, and slipped out of the office. 
+</p>
+<h1 id="a-field-test">
+	A Field Test 
+</h1>
+<p>
+	John Conway stood in front of a roomful of confused looking young 
+	men and women. He was facing away from the class, drawing hexagonal 
+	triads and tetrads in different configurations on the blackboard. 
+</p>
+<p>
+	&quot;Erm. Excuse me, professor?&quot; One of the students spoke up. 
+</p>
+<p>
+	Professor Conway distractedly looked up at the ceiling, then turned 
+	to face the students with a look of surprise on his face. &quot;Oh, 
+	is it time for lecture then? Good, ok, let's go!&quot; 
+</p>
+<p>
+	&quot;Welcome to Defence against the Digital Dark Arts, ladies and 
+	gentlemen. My name is John, and I'll be teaching you today about 
+	the most powerful means by which we can discover and cast protective 
+	spells to keep the planar peace.&quot; He turned again, wiped off 
+	the board with his already-chalk-covered shirtsleeve, and began to 
+	write. 
+</p>
+<p>
+	&quot;Russian computer scientists in the 1960s discovered a way to 
+	<em>
+		visually
+	</em>
+	encode spells. Traditionally we had always used ancient 
+	<em>
+		written
+	</em>
+	languages like Latin, Greek, Aramaic, and Lojban. But higher-dimensional 
+	constraints are difficult to encode textually, despite the excellent 
+	work of Frege and Dijkstra. Little did we know the encoding was hiding 
+	right under our noses... and our honey.&quot; 
+</p>
+<p>
+	&quot;Bees?&quot;, proffered one of the students. 
+</p>
+<p>
+	&quot;Bees. Indeed, the Russians discovered that certain species of bees 
+	were genetically programmed by powers unknown to encode power phrases in 
+	their honeycombs. Transliterating those honeycombs, and their cells' 
+	configurations, into digital form was straightforward enough, but they, 
+	and we, simply didn't have the computational power to reason about the 
+	resulting system.&quot; 
+</p>
+<p>
+	&quot;It didn't help that the 
+	<em>
+		actual
+	</em>
+	problem involved hyperbolic sphere packing.&quot; Grigori entered the 
+	room with a flourish. &quot;Until Bowen and Radin's excellent practical 
+	work in 2002, we had no way to tackle the problem.&quot; Perelman 
+	grimaced. &quot;And now that the agro-industrial complex has begun to foolishly worship the Old Ones, apiaries are paying the price.&quot; 
+</p>
+<p>
+	&quot;Moreover,&quot; Professor Conway continued, &quot;the Russians 
+	needed to farm out the discovery of programs and power phrases to the 
+	masses. No 8-bit gamers in the early 80s were capable of playing a 
+	video game that involved multiple dimensions. That wouldn't come until 
+	titles like Portal and Miegakure became popular.&quot; 
+</p>
+<p>
+	&quot;Thus the introduction of Tetris to the world,&quot; said Professor 
+	Perelman in accented English as he turned to the large LCD. It lit up at 
+	his command to reveal a clandestine recording of a Tetris championship 
+	match. A sign in the shot revealed that it was recorded at the Classic 
+	Tetris World Championship at the Portland Retro Gaming Expo in early 2015. 
+</p>
+<p>
+	Perelman continued, &quot;Tetris trained generations of gamers to think 
+	about computational problems in geometric ways. Now is the time to 
+	introduce a new Tetris-like game that directly connects to the 
+	multidimensional hexagonal foundations of power phrases, or what we call 
+	<em>
+		'davar'
+	</em>
+	.&quot; 
+</p>
+<p>
+	&quot;Initial board configurations are encodings of threats that 
+	must be countered. They are discovered by three teams: computational 
+	archeologists at Miskatonic, NSA cryptographers decrypting secret 
+	communications among worshippers of YogSothoth and the Old Ones on social media...&quot; 
+</p>
+<p>
+	Conway snorted, &quot;Trolls!&quot; 
+</p>
+<p>
+	Perelman glared at him, &quot;...and, as I was saying before I was 
+	interrupted, classical archeologists who have discovered buried mosaics 
+	encoding ancient powerful curses.&quot; 
+</p>
+<p>
+	Conway jumped in, &quot;Encoding the power phrases into game play 
+	generates counter-spells. The more power phrases we can intone, and 
+	the more powerful they are, the greater our safety.&quot; He clicked 
+	a mouse attached to the machine projecting the video to reveal an 
+	over-the-shoulder closeup of an unshaven young man playing a game that was 
+	reminiscent of Tetris, but with hexagonal units marching down the 
+	display. 
+	&quot;<em>Human</em>
+	players are certainly good at solving the interlocking visual 
+	language of this game we call 
+	<em>
+		'Hex'
+	</em>
+	.&quot; 
+</p>
+<p>
+	Grigori gave a wry grin. &quot;Note the double meaning, students.&quot; 
+</p>
+<p>
+	&quot;But they are notoriously bad at 
+	solving the geometric configuration challenges 
+	<em>
+		and
+	</em>
+	spelling out the power words <em>simultaneously</em>.&quot;, Conway emphasized. 
+	&quot;Consequently, we must design new algorithms... algorithms that 
+	potentially use a combination of classic techniques...&quot; 
+</p>
+<p>
+	&quot;...such as dynamic programming, backtracking, Markov models...&quot; 
+	injected Professor Perelman. 
+</p>
+<p>
+	&quot;...and relatively new research in a plethora of adjacent disciplines, 
+	such as genetic programming, learning systems, stochastic simulation, and 
+	more.&quot; 
+</p>
+<p>
+	Professor Perelman began distributing a small stack of papers to the end 
+	of each row of students. &quot;Here is the <a href="icfpc-2015-spec.html">specification 
+	of the Hex game and your challenge</a>, should you choose to accept it.&quot; 
+	He darkly scanned the room. 
+</p>
+<p>
+	&quot;The fate of the world is in your hands.&quot; 
+</p>
+<h1 id="fin">
+	Fin 
+</h1>
+
+</body>
+
+<!-- Mirrored from icfpcontest.org/story.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:21:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+</html>

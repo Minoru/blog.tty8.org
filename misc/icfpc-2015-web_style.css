@@ -1,0 +1,96 @@
+html {
+  background-color: #666;
+/*  font-family: 'UnifrakturMaguntia', cursive; */
+}
+
+body {
+  max-width: 70em;
+  padding: 5em;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  text-align: right;
+  border-bottom: 1px solid black;
+  margin-bottom: 0.3em;
+}
+
+.setting.header {
+  cursor: pointer;
+  margin-left: 2em;
+  padding-top:    0.3em;
+  padding-bottom: 0.3em;
+}
+
+.setting.header:hover { color: #900; }
+
+.team { cursor: pointer; }
+.team:hover { color: #900; }
+
+.team.selected {
+  color: red;
+}
+
+.setting.header.selected {
+  color: red;
+  cursor: pointer;
+  margin-left: 2em;
+}
+
+.ranking th {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+
+.ranking tr:nth-child(even) td {
+  background-color: rgba(200,200,200,0.3);
+}
+
+.ranking td {
+  padding: 0.5em;
+}
+
+.ranking .rank  { text-align: center; vertical-align: top; }
+.ranking .score { text-align: center; vertical-align: top; }
+.ranking .team  { text-align: left; }
+.ranking .power { text-align: center; }
+
+table { border-collapse: collapse; }
+
+#tables {
+  margin: 0 auto;
+}
+
+#tables th {
+  padding-bottom: 1em;
+}
+
+#updated {
+  text-align: right;
+  font-size: smaller;
+  margin-bottom: 2em;
+}
+
+#left {
+  vertical-align: top;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+#mid {
+  vertical-align: top;
+  background-color: black;
+  color: white;
+}
+
+#right {
+  vertical-align: top;
+  background-color: black;
+  color: white;
+}

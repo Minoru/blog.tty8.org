@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from icfpcontest.org/spec.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:21:55 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <link rel="icon" type="image/png" href="icfpc-2015-logo-32x32.png">
+<title>Problem Specification / ICFP Programming Contest 2015</title>
+
+<style>
+html {
+  background-color: #666;
+}
+
+body {
+  max-width: 70em;
+  padding: 5em;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media print {
+  body {
+    box-shadow: 0 0 0 0 black;
+    padding: 0em;
+  }
+}
+
+h1 {
+  border-bottom: 1px solid black;
+  text-align: right;
+}
+em {
+  font-weight: bold;
+}
+
+.comment {
+  font-style: italic;
+  color: #999;
+}
+
+.example_unit {
+  box-shadow: inset 1px 1px 1px 1px black;
+  margin: 1em;
+  padding: 1em;
+}
+
+.figure {
+  border: 1px solid black;
+  margin: 1em;
+  box-shadow: 2px 2px 2px 2px #333;
+  padding: 1em;
+}
+
+.caption {
+  padding-top: 1em;
+}
+
+.floating { float: right; }
+
+
+#commands td { padding: 0.5em 1em 0em 1em; }
+#params   td { padding: 0.5em 1em 0em 1em; }
+
+</style>
+</head>
+<body>
+
+<img src="icfpc-2015-icfp_small.png" alt="Turing-like machine">
+<h1>Problem Specification</h1>
+
+<h2>Overview</h2> <p>The purpose of the competition is to write a
+program that can play a game. The objective of the game is to score the
+most points by <em>locking</em> units into place while invoking
+<em>phrases of power</em>.  As input, the program will take a
+description of the initial game state.  As output, the program needs to
+produce an encoding of a sequence of <em>commands</em>. The result of
+the program will be evaluated by executing the commands and computing a
+score. </p>
+
+<div class="floating figure">
+<img src="icfpc-2015-board_example.png" alt="board example">
+<div class="caption">Example board of width 5, height 10.<br>
+The colored cells are full.</div>
+</div>
+<p>The game state has three parts:</p>
+<ul>
+<li>the <em>board</em>, which is where all the action happens,
+<li>the <em>unit</em> that is currently under the program's control, and
+<li>the <em>source</em>, which is the sequence of units that will be under
+the program's control in the future.
+</ul>
+
+<p>The program will control units, one at a time, by issuing them
+<em>commands</em>.  Each command is a single symbol selected from a
+fixed predefined set.  Each unit is controlled until it becomes
+<em>locked</em>. When a unit is locked, the program is awarded points,
+the board may get updated, and then it will proceed to control the next
+unit from the source. The game ends if one of the following conditions
+occurs:</p> 
+
+<ul> 
+<li>all units from the source have been locked, or
+<li>there is no space on the board to place the next unit, or 
+<li>the program issues a command that causes an error. 
+</ul> 
+
+<h2>The Board (a.k.a., the Honeycomb)</h2>
+<p>The game board consists of hexagonal cells arranged in rows,
+with the first row numbered 0.  The <em>height</em> of the board specifies
+the number of rows on the board.</p>
+
+<p>Each row contains an equal number of cells, specified by the
+<em>width</em> of the board.  The cells in a row are oriented so that
+they have vertices up and down, and edges to the left and right.
+The first cell in a row is numbered 0, thus each cell may be
+identified by a pair of coordinates <em>(column, row)</em>.
+</p>
+
+<p>When we use geographic directions we take "north" to mean "up", or
+towards smaller row numbers, and "west" to mean "left", or towards smaller
+column numbers in a row.</p>
+
+<p>Odd-numbered rows are displaced to the right, so that the north-west
+edge of each cell is adjacent to the south-east edge of the
+correspondingly numbered cell in the previous row.</p>
+
+<p>Each cell on the board is either <em>full</em> or <em>empty</em>. 
+Each board specifies an initial set of cells that are full.  These
+initial board configurations may contain useful information to
+contestants.</p>
+
+<h2>Units</h2>
+<div class="floating figure"><img src="icfpc-2015-example_shapes.png" alt="example shapes">
+<div class="caption">Example units.<br> The pivot is marked by a dot.</div>
+</div>
+<p>A unit is a non-empty collection of cells that are manipulated together,
+and a <em>pivot point</em> used for some commands.
+A unit is in a <em>valid location</em> if all of its cells are on empty
+board cells. Note that a unit's pivot point need not be on a board cell. 
+</p>
+
+<p>When a new unit is spawned (i.e., it emerges from the ether and comes 
+under player control), it appears centered at the top of the board.  More 
+precisely:</p>
+
+<ul>
+<li>the unit appears in its original orientation, as specified in the unit list;
+<li>the unit's top-most members are in row 0;
+<li>the unit is centered, so that its left-most and right-most members are
+equidistant from the left and right sides of the board, respectively.
+If the distance to the sides is not a whole number, then round
+toward the left (i.e., there will be less space on the left).
+</ul>
+
+<p>If the spawn location is not a valid location for this unit, the game ends.</p>
+
+
+<h2>Unit Commands</h2>
+
+<p>Each unit supports the following commands (as abstract syntax):</p>
+<dl>
+<dt><code><b>move</b> [ <b>E</b> | <b>W</b> | <b>SE</b> | <b>SW</b> ]</code>
+</dt>
+<dd>Move all members of the unit one cell in the given direction.</dd>
+<dt><code><b>turn</b> [ <b>clockwise</b> | <b>counter-clockwise</b> ]</code></dt>
+<dd>Rotate all members of the unit by 60 degrees in the specified direction,
+around the unit's pivot point.</dd>
+</dl>
+
+<p>Issuing a command that would result in an invalid placement for the
+unit <em>locks</em> the unit in place without any movement. The members
+of a locked unit become part of the board, and the corresponding cells
+on the board become full.  Locking units into place is one way to score
+points.</p>
+
+<p><em>Important:</em> the same unit cannot visit a location more than
+once.  <i>(The Old Ones do not take kindly to stuttering
+computations!)</i>  Issuing a command that would move all members and
+the pivot to locations that they have previously occupied is
+an <em>error</em>, and the program will score <em>0 points</em> for
+that board.</p>
+
+<h2>Updating the Board</h2>
+
+<p>When a unit becomes locked, the board is updated as follows:</p>
+
+<ol>
+<li>the members of the unit are added to the board, making the corresponding
+cells full;
+<li>if all cells in a row became full, then the row is <em>cleared</em>; and
+<li>if any units remain in the source, the next unit is spawned; otherwise, the game ends.
+</ol>
+
+<p>When a row is cleared all of its cells become empty.  Also, the cells from
+all rows above (i.e., with smaller numbers) are moved one row down.  Note that
+this means that the cells in a row will move either to the SE or SW,
+depending on the row number.</p>
+
+<h2 id="phrases">Phrases of Power</h2>
+
+<p>There are <em>eighteen</em> phrases of power that can be invoked
+within a sequence of commands. Phrases of power are case insensitive
+(the fundamental forces of the universe are unperturbed by minor issues
+like capitalization). Points are earned for invoking and repeating these
+phrases, as described below.</p>
+
+<p>The shortest phrase of power is the three character phrase
+"<em>Ei!</em>". The longest phrase of power is of length fifty-one.
+The phrases of power can be found in contest artifacts, tweets, and
+background literature and media.</p>
+
+<p>The "Power" columns on the leaderboards indicate how many distinct
+phrases of power were invoked in a team's solution to a particular
+problem, or over all a team's solutions.</p>
+
+<h2 id="scoring">Scoring</h2>
+<p>The player scores points for each locked unit.  There are three factors
+that contribute to the number of points that are won:
+<ul>
+<li>the number of cells in the unit, <em>size</em>,
+<li>the number of lines cleared with the current unit, <em>ls</em>,
+<li>the number of lines cleared with the previous
+  unit, <em>ls_old</em>,
+</ul>
+
+<p>The points are computed according to this formula:</p>
+<pre>
+move_score = points + line_bonus
+  <b>where</b>
+  points = size + 100 * (1 + ls) * ls / 2
+  line_bonus  = <b>if</b> ls_old > 1
+                <b>then</b> floor ((ls_old - 1) * points / 10)
+                <b>else</b> 0
+</pre>
+
+<p>The sum of move scores for all locked units is denoted <em>move_scores</em>.</p>
+
+<p>The player also scores points for invoking phrases of
+   power.  For each phrase of power <em>p</em>, there
+   are two factors that contribute to the number of points scored:</p>
+   
+   <ul>
+     <li>the length of the phrase of power, <em>len<sub>p</sub></em>; and
+     <li>the number of times the phrase of power appears in the
+       sequence of commands, <em>reps<sub>p</sub></em>.</li>
+   </ul>
+
+<p>The score for a phrase of power <em>p</em> is computed according to
+this formula:</p>
+
+<pre>
+  power_score<sub>p</sub> = 2 * len<sub>p</sub> * reps<sub>p</sub> + power_bonus<sub>p</sub>
+  <b>where</b>
+  power_bonus<sub>p</sub> = <b>if</b> reps<sub>p</sub> > 0
+                 <b>then</b> 300
+                 <b>else</b> 0
+</pre>
+
+<p>The sum of power scores for all phrases of power is
+denoted <em>power_scores</em>.</p>
+
+<p>Consequently, the total number of points earned for a board is:</p>
+<pre>
+  points = move_scores + power_scores
+</pre>
+
+<p>As previously mentioned, issuing a command that would result in an error 
+immediately ends the game and the player receives <em>0 points</em> for that board.
+</p>
+
+<h1>Formats</h1>
+
+<h2 id="input">Input</h2>
+<p>Programs will be given <a href="http://json.org/">JSON</a> objects
+describing the game configurations
+and information on how many games to play using the following JSON schema
+(names that are in bold correspond to objects described in subsequent sections):
+
+<pre class="figure">
+{ "id": number              <span class="comment">/* A unique number identifying the problem */</span>
+
+, "units": [ <em>Unit</em> ]
+  <span class="comment">/* The various unit configurations that may appear in this game.
+     There might be multiple entries for the same unit.
+     When a unit is spawned, it will start off in the orientation
+     specified in this field. */</span>
+
+, "width":  number          <span class="comment">/* The number of cells in a row */</span>
+
+, "height": number          <span class="comment">/* The number of rows on the board */</span>
+
+, "filled": [ <em>Cell</em> ]        <span class="comment">/* Which cells start filled */</span>
+
+, "sourceLength": number    <span class="comment">/* How many units in the source */</span>
+
+, "sourceSeeds": [ number ] <span class="comment">/* How to generate the source and
+                               how many games to play */</span>
+}
+</pre> 
+
+<p>For each such JSON object, the program should play one game for each
+<em>seed</em> in the field <code>sourceSeeds</code>.  Each of these
+games will be scored separately, and will be played using the same
+units, board configuration, and number of units. However, the order of
+the units will differ depending on the seed.  Full details on how to
+order the units in the source are <a href="#the_source">below</a>.</p>
+
+<h3>Cell</h3>
+Identifies a cell, either on the board or within a unit.
+<pre class="figure">
+{ "x": number, "y": number } <span class="comment">/* x: column, y: row */</span>
+</pre>
+
+<h3>Unit</h3> 
+
+The configuration of a unit.  The cells are relative to a local
+coordinate system, and will be translated to the board when the unit is
+spawned. The local coordinate system of each cell, like the board's
+coordinate system, has smaller row numbers in the "up" direction and
+smaller column numbers in the "left" direction.
+
+<pre class="figure">
+{ "members":  [ <em>Cell</em> ]  <span class="comment">/* The unit members. */</span>
+, "pivot":   <em>Cell</em>       <span class="comment">/* The rotation point of the unit. */</span>
+}
+</pre>
+Note that the pivot cell does not have to be a member of the unit.
+
+<h3 id="the_source">The Source</h3>
+<p>The order of the units in the source will be determined using a
+pseudo-random sequence of numbers, starting with a given <em>seed</em>.
+The unit identified by a random number is obtained by indexing
+(starting from 0) into the field <code>units</code>, after computing
+the modulo of the number and the length of field <code>units</code>.
+So, for example, if the configuration contains 5 units,
+then the number 0 will refer to the first unit, while the number 7
+will refer the 3rd one (because <code>7 mod 5</code> is 2, which
+refers to the 3<sup>rd</sup> element).</p>
+
+<p>The pseudo-random sequence of numbers will be computed from a given
+seed using a
+<a href="https://en.wikipedia.org/wiki/Linear_congruential_generator">linear
+congruential generator</a> with the following parameters:</p>
+<table class="figure">
+<tr><td>modulus:</td><td>2<sup>32</sup></td></tr>
+<tr><td>multiplier:</td><td>1103515245</td></tr>
+<tr><td>increment:</td><td>12345</td></tr>
+</table>
+<p>The random number associated with a seed consists of bits 30..16 of that seed,
+where bit 0 is the least significant bit.
+For example, here are the first 10 outputs for the sequence
+starting with seed 17:
+<code>0,24107,16552,12125,9427,13152,21440,3383,6873,16117</code>.
+</p>
+
+<h3 id="flags">Command Line Parameters</h3>
+<p>Submissions should support the following command line parameters, which
+may be provided in any order:
+<table id="params" class="figure">
+<tr><th>Flag</th><th>Type</th><th>Description</th></tr>
+<tr><td><code>-f</code></td>
+    <td><code>FILENAME</code></td><td>File containing JSON encoded input</td>
+</tr>
+<tr><td><code>-t</code></td><td><code>NUMBER</code></td>
+    <td>Time limit, in seconds, to produce output</td>
+</tr>
+<tr><td><code>-m</code></td><td><code>NUMBER</code></td>
+    <td>Memory limit, in megabytes, to produce output</td>
+</tr>
+<tr><td><code>-c</code></td><td><code>NUMBER</code></td>
+    <td>Number of processor cores available</td>
+</tr>
+<tr><td><code>-p</code></td><td><code>STRING</code></td>
+    <td>Phrase of power</td>
+</tr>
+</table>
+
+<p>
+The parameter <code>-f</code> may be provided multiple times, which means
+that the program should produce results for all of the given inputs.
+</p>
+
+<p> If provided, the parameter <code>-t</code> indicates the execution
+time to produce the output for <em>all problems</em>. If it has not
+finished, the program will be killed after that many seconds. If
+<code>-t</code> is not provided, no time limit is imposed on the
+program. </p>
+
+<p> If provided, the parameter <code>-m</code> indicates the maximum
+amount of memory that the program is allowed to use at any time.
+Programs that try to allocate more than this amount of memory will be
+killed. If <code>-m</code> is not provided, no memory limit  (other than
+the hard memory limit of the system the judges choose to run it on) is
+imposed on the program.</p>
+
+<p> If provided, the parameter <code>-c</code> indicates the number of
+processor cores available to the program.</p>
+
+<p> If provided, the parameter <code>-p</code> is a phrase of power (for
+example, <em>Ei!</em> for the phrase given <a
+href="#phrases">above</a>). The parameter <code>-p</code> may be
+provided multiple times, once for each phrase of power the program
+should attempt to invoke in its output. As you discover more phrases of
+power, you can re-run the program with additional <code>-p</code>
+command line options; during judging (except for the lightning
+division), the program will be passed all the phrases of power.</p>
+
+<h2 id="output">Output</h2>
+
+<p>The output of the program should be a JSON list, containing one entry per problem and seed, using the following
+schema:</p>
+
+<pre class="figure">
+[ { "problemId": number   <span class="comment">/* The `id` of the game configuration */</span>
+  , "seed":      number   <span class="comment">/* The seed for the particular game */</span>
+  , "tag":       string   <span class="comment">/* A tag for this solution. */</span>
+  , "solution":  <em>Commands</em>
+  }
+]
+</pre>
+
+<p>The <code>tag</code> field is meant to allow teams to associate
+scores on the leaderboards with specific submitted solutions. If no
+<code>tag</code> field is supplied, a tag will be generated from the
+submission time.</p>
+
+<!-- <p>This format may be used to time.</p> -->
+
+
+<h2 id="commands">Commands</h2>
+<p>For each game played, the program should compute a sequence of commands.
+The sequence of commands should be represented as a JSON string, where
+each character corresponds to a command, using the following encoding:</p>
+
+<table class="figure">
+<tr><td>{p, ', !, ., 0, 3}</td><td><code>move W</code></td></tr>
+<tr><td>{b, c, e, f, y, 2}</td><td><code>move E</code></td></tr>
+<tr><td>{a, g, h, i, j, 4}</td><td><code>move SW</code></td></tr>
+<tr><td>{l, m, n, o, <em>space</em>, 5}&nbsp;&nbsp;&nbsp;&nbsp;</td><td><code>move SE</code></td></tr>
+<tr><td>{d, q, r, v, z, 1}</td><td><code>rotate clockwise</code></td></tr>
+<tr><td>{k, s, t, u, w, x}</td><td><code>rotate counter-clockwise</code></td></tr>
+<tr><td>\t, \n, \r</td><td>(ignored)</td></tr>
+</table>
+
+<p>Exactly one character from each set is used to denote the
+corresponding command; the sets are comma-separated, and no command is
+denoted by a comma character. For example, the character sequences
+ "2xjw 4s" and "cthulhu" both correspond to the command sequences <code>move
+E</code>, <code>rotate counter-clockwise</code>, <code>move SW</code>,
+<code>rotate counter-clockwise</code>, <code>move SE</code>, <code>move
+SW</code>, <code>rotate counter-clockwise</code>. </p>
+
+<p>(<em>Note:</em> to clarify possibly-ambiguous font rendering, the
+letter "l" is a command for <code>move SE</code>, while the number "1"
+is a command for <code>rotate clockwise</code>)</p>
+
+<p>The multiple possible choices for each command enable the embedding
+of <em>phrases of power</em> (described <a href="#phrases">above</a>)
+into command sequences to earn additional points (and help keep the
+flesh-eating darkness at bay).</p>
+
+<p>The three white-space characters listed in the table may appear in
+the command sequence and will be ignored.  Any symbol in the command
+sequence that is not listed in the table will be treated as an
+<em>error</em>, and the program will be awarded <em>0 points</em> for
+this particular execution. </p>
+
+<h1>Tournament</h1>
+
+<p>Program evaluation will be done in two phases: the
+<em>qualifiers</em> and the <em>finals</em>. The qualifiers, which are
+additionally split into the <em>lightning division</em> and the
+<em>qualifying division</em>, will happen live during the programming
+contest. The finals will be conducted by the judges after the
+contest ends.</p>
+
+<p>During the qualifiers, teams will submit solutions to a collection of
+known problems.  Based on their submissions, teams will be ranked, and
+the top-ranking teams will enter the finals.  The number of teams to
+enter the finals will be determined by the judges.</p>
+
+<p>The finals will be conducted after the contest, and will determine
+the winners. The judges will build the finalists' programs and present
+them with a collection of problems that may be different from those used
+during the qualifiers.  The resulting solutions will be ranked, and this
+ranking will determine the overall winners of the contest.</p>
+
+<h2>The Qualifiers</h2>
+
+<p>The qualifiers will determine the teams that will enter the finals.</p>
+
+<h3>Individual Problem Ranking</h3> 
+
+<p>During the contest, teams will have an opportunity to submit
+solutions to the <a href="icfpc-2015-problems.html">qualifier problems</a>.  Each
+qualifier problem has its own leaderboard, where teams are ranked
+based on the solutions they have submitted for that problem. The score
+for a team is the average score of the <em>latest</em> submitted
+solutions for each seed of the problem, rounded down to the closest
+integer. So, for individual problems, <em>bigger scores</em> are
+better.  Seeds without solutions, or that result in errors, score 0
+points. In the event of a tie score, the team whose solution invokes
+more distinct phrases of power receives the higher ranking. Teams that
+tie with respect to both score and number of distinct phrases of power
+invoked receive the same ranking.</p>
+
+<h3>Overall Qualifier Ranking</h3>
+
+<p>The overall leaderboard will determine the finalists. The overall
+score for a team is the sum of their <em>rankings</em> for the
+individual problems.  So, on the overall leaderboard, <em>smaller
+scores</em> are better.</p>
+
+<h3>Lightning Division</h3>
+
+<p>The lightning division includes all solutions <em>for which source
+code is submitted</em> during the first 24 hours of the contest. Scoring
+in the lightning division includes only move-related points, and phrases
+of power are not considered. That is, scoring for the lightning division
+is exactly as described <a href="#scoring">above</a> except that the
+final formula is <code>points = move_scores</code> instead of
+<code>points = move_scores + power_scores</code>. Rankings for the
+lightning division are determined without the phrases of power
+tiebreaker; in the lightning division, all teams with the same score on
+the same problem receive the same ranking for that problem. In the
+unlikely event of an overall tie in the lightning division, the earliest
+of the tied submissions wins.</p>
+
+<p>There is no separate leaderboard for the lightning division.
+Lightning division submissions are also qualifying division submissions,
+and they appear on the leaderboard accordingly.</p>
+
+<h2>The Finals</h2>
+
+<p>The teams that have the highest overall rank during the qualifiers
+will enter the finals. The programs of these teams will be evaluated
+by the judges on another set of problems.</p>
+
+<h2>Submitting Solutions</h2>
+
+<p>Before submitting solutions, at least one competitor on a team must
+obtain an API token from the login server (<a
+href="https://davar.icfpcontest.org/">davar.icfpcontest.org</a>). The
+team must also be created on the login server. It is not possible to join 
+an existing team using the login server; instead, <em>one</em> team member 
+should create the team and add the email addresses of all the other team 
+members.</p>
+
+<p>Solutions are submitted using an HTTP <code>POST</code> to the
+submission server. One way to accomplish this is to invoke
+<code>curl</code>, as follows:</p>
+
+<pre>
+    curl --user :$API_TOKEN -X POST -H "Content-Type: application/json" \
+        -d $OUTPUT \
+        https://davar.icfpcontest.org/teams/$TEAM_ID/solutions
+</pre>
+
+The variables referenced in the <code>curl</code> invocation are the following:
+
+<table class="figure">
+
+<tr><td><code>API_TOKEN&nbsp;&nbsp;&nbsp;&nbsp;</code></td><td>The API
+token obtained from the login server. It must be prefixed with a colon,
+as shown in the command above.</td></tr>
+
+<tr><td><code>OUTPUT</code></td><td>The output of the program (a JSON list, as 
+described <a href="#output">above</a>).</td></tr>
+
+<tr><td><code>TEAM_ID</td><td>The numeric team ID of the team submitting the 
+solution.</td></tr>
+
+</table>
+
+<p>The URL in the <code>curl</code> invocation is the same as the
+submission URL provided in the web interface.</p>
+
+<h2>Submitting Source Code</h2> 
+
+<p>All teams should <a href="https://davar.icfpcontest.org/">submit their
+source code</a>. The judges may build and evaluate the source code
+further&mdash;in particular, the judges will use it to evaluate the
+finalists, to determine the Judges' Prize, and to determine the winner
+of the lightning division.</p>
+
+<p>The source code should be submitted as a single <code>.tar.gz</code> file
+that should containing at least the following:</p>
+
+<ul>
+<li>A <code>Makefile</code> to be used by the GNU <code>make</code> utility.
+<li>A text file called <code>README</code>.
+</ul>
+
+<p>The <code>Makefile</code> will be used the build the program.  The
+program should build by just executing <code>make</code>.  The result
+should be an executable file called <code>play_icfp2015</code>, which
+will be used to compute solutions.  This executable should support
+the required <a href="#flags">command line parameters</a>.
+
+<p>The <code>README</code> should describe what you'd like the judges to
+know about your program&mdash;anything you can write here that will help
+the judges build the program and appreciate its cleverness would be
+appreciated! In particular, you may want to list the dependencies of
+your program, in case it fails to build in the judges' build
+environment.  The judges will try to install additional dependencies,
+within reason. </p>
+
+<p>When the judges choose to build a program, the build will be done
+on a standard Linux system running a recent Ubuntu flavor, with a
+standard set of development tools, plus any additional compilers or
+interpreters that might be needed. If the build requires a platform
+other than Linux, we will obtain and use it.  We have at our disposal
+and expertise a wide array of systems, including those of Microsoft
+and Apple. </p>
+
+<h2>System Integrity</h2>
+
+<p>OGA takes the integrity of our systems very seriously. Any attempts
+to compromise the integrity of the submission server or any other
+contest infrastructure will result in disqualification (and more...
+<em>serious</em> penalties).</p>
+
+</body>
+
+<!-- Mirrored from icfpcontest.org/spec.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:21:58 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+</html>

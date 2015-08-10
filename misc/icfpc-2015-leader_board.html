@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+<!-- Mirrored from icfpcontest.org/leader_board.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:22:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<link rel="icon" type="image/png" href="icfpc-2015-logo-32x32.png">
+<title>Leaderboard / ICFP 2015 Programming Contest</title>
+<script src="icfpc-2015-jquery.js"></script>
+<script src="icfpc-2015-rankings.js"></script>
+<link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia' rel='stylesheet' type='text/css'>
+<link href='icfpc-2015-web_style.css' rel='stylesheet' type='text/css'>
+</style>
+<script>
+
+function renderTeam(tid,t,tags) {
+
+  var teamClass = "cl_" + tid
+  var tagTxt = $('<div/>').text(tags.join(', ')).hide()
+  var team_name = $('<span/>').text(t)
+  var tag_link = $('<span/>').text(' (see tags)')
+                 .click(function() {
+                    tagTxt.toggle()
+                 })
+
+
+  var d = $('<div/>').addClass('team').addClass(teamClass).append(team_name)
+  if (tags.length > 0) d.append([team_name,tag_link,tagTxt])
+  d.click(function() {
+    $('.team').removeClass('selected')
+    $('.team.' + teamClass).addClass('selected')
+  })
+
+  return d
+}
+
+function renderRanks(s, withPower) {
+  var table = $('<table/>').addClass('ranking')
+  var power = withPower ? [ $('<th/>').text('Power') ] : []
+  table.append($('<tr/>')
+              .append($('<th/>').text('Rank'))
+              .append($('<th/>').text('Score'))
+              .append($('<th/>').text('Team Name'))
+              .append(power)
+              )
+
+  var curRank = 0
+  var cell
+
+  jQuery.each(s, function(ix,r) {
+    cell = $('<td/>')
+    var power = withPower ? [ $('<td/>').addClass('power').text(r.power_score) ] : []
+    table.append($('<tr/>')
+              .append($('<td/>').addClass('rank').text(r.rank))
+              .append($('<td/>').addClass('score').text(r.score))
+              .append(cell)
+              .append(power)
+              )
+    curRank = r.rank
+    cell.append(renderTeam(r.teamId, r.team, r.tags))
+  })
+  return table
+}
+
+function renderSetting(s) {
+  var t = renderRanks(s.rankings,true)
+          .hide()
+          .addClass('setting')
+
+  var btn = $('<div/>')
+            .addClass('setting header').text(s.setting)
+
+  function handler() {
+    $('.ranking.setting').hide()
+    $('.setting.header').removeClass('selected')
+    btn.addClass('selected')
+    t.show()
+  }
+
+  btn.click(handler)
+
+  return { btn: btn, rank: t, handler: handler }
+}
+
+$(document).ready(function() {
+  var b = $('body')
+  var tab=$('#tables')
+  var left=$('#left')
+  var mid=$('#mid')
+  var right=$('#right')
+
+  left.append(renderRanks(data.data.rankings,true))
+  jQuery.each(data.data.settings, function(ix,s) {
+    var x = renderSetting(s)
+    mid.append(x.btn)
+    right.append(x.rank)
+    if(ix === 0) x.handler()
+  })
+
+  $('#updated').text(data.time)
+})
+</script>
+</head>
+<body>
+<img src="icfpc-2015-icfp_small.png">
+<h1>Leaderboard</h1>
+<div id="updated"></div>
+<p>The white leaderboard on the left has the overall standings.
+The black leaderboards on the right contain the individual team rankings
+for each of the problems.  You may switch between the leaderboards
+by clicking on the problem names.  You may highlight the entries for a
+particular team by clicking on the team name.
+</p>
+<div width="100%">
+<table id="tables">
+<tr><th>Overall Standings</th><th>Problem</th><th>Problem Leaderboards</th></tr>
+<tr><td id="left"></td><td id="mid"></td><td id="right"></td></tr>
+</table>
+</div>
+</body>
+
+<!-- Mirrored from icfpcontest.org/leader_board.html by HTTrack Website Copier/3.x [XR&CO'2010], Mon, 10 Aug 2015 14:22:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+</html>
