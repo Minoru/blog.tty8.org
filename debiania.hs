@@ -168,7 +168,7 @@ createFeed name content conf extension compiler =
 
 {---- SETTINGS ----}
 
-rootUrl = "http://debiania.in.ua"
+rootUrl = "http://blog.debiania.in.ua"
 
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =
