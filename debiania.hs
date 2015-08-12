@@ -86,7 +86,6 @@ main = hakyllWith config $ do
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
 
     -- Render feeds
-    -- TODO: look for 'description' field and use it instead (if present)
     let allContent = loadAllSnapshots "posts/*" "content"
           >>= mapM absolutizeUrls
     let russianContent = allContent
