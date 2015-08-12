@@ -1,6 +1,0 @@
-* Hyphenation (use `language` header to detect language)
-
-* Squash all CSS into one file before minimizing it
-
-* Some automatic way of optimizing images
-
