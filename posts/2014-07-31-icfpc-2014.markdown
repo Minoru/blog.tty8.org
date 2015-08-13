@@ -107,9 +107,11 @@ tags: programming, icfpc
 не менее, не могла даже заставить призрака покинуть комнатушку в центре
 дефолтной карты:
 
-<center>
-<img src="/images/icfpc-2014-playground.png" width="460px" height="440px" />
-</center>
+<div class="center">
+<img src="/images/icfpc-2014-playground.png"
+    width="460px" height="440px"
+    alt="Дефолтная карта с контеста" />
+</div>
 
 Над чем я и бился следующие полчаса. Дальше я просто процитирую лог нашего
 командного чатика:

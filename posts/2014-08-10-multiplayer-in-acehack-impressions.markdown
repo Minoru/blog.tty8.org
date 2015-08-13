@@ -48,7 +48,7 @@ nethack@conference.jabber.ru и в ответ получил от zHz реком
 title="Dungeon level, уровень подземелья">dlvl</span> 1 — из него-то и будут
 появляться приглашённые игроки). Выглядит это так:
 
-<div style="margin-left: -20px">
+<div class="center">
 <img src="/images/acehack-multiplayer.png"
     width="640px" height="388px"
     alt="Acehack Multiplayer screenshot" />

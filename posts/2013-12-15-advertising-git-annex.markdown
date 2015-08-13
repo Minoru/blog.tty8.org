@@ -20,12 +20,13 @@ language: russian
 средством почти не пользовался и потому не знаю, насколько оно совершенно. Если
 у вас острая нетерпимость CLI, пожалуйста, не читайте дальше.
 
-<center>
+<div class="center">
 <a href="/images/git-annex-assistant-joeyh-screenshot.png">
 <img src="/images/git-annex-assistant-joeyh-screenshot-thumbnail.jpg"
-    width="400px"/>
+    width="400px" height="234px"
+    alt="Git-annex web UI" />
 </a>
-</center>
+</div>
 
 Итак, предлог следующий. У многих из нас есть коллекции фотографий, музыки,
 научных статей, видео с конференций — кучи немаленьких файлов, которые хотелось

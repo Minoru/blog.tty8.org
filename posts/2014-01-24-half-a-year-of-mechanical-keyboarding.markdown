@@ -17,9 +17,10 @@ language: russian
 [словарик][tactile-dictionary] из неплохого FAQ по теме, иначе заметная часть
 текста может пройти мимо.
 
-<div style="text-align: center;">
+<div class="center">
 <img src="/images/razer_blackwidow_tournament_edition_2013.png"
-    style="width: 450px;" />
+    width="450px" height="264px"
+    alt="Razer BlackWidow Torunament Edition 2013" />
 </div>
 
 В первую очередь хочется отметить тот, поначалу неочевидный, факт, что для

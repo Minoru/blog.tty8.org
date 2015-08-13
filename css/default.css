@@ -31,7 +31,7 @@ a:active {
 }
 
 #blog-header h1 {
-    font-size: 4em;   
+    font-size: 4em;
     margin: 0;
     text-transform: uppercase;
 }
@@ -103,6 +103,8 @@ nav#navigation a:active {
 }
 
 #post {
+    display: flex;
+    flex-direction: column;
     line-height: 1.467em;
 }
 
@@ -130,17 +132,21 @@ footer#blog-footer {
     text-align: center;
 }
 
+footer#blog-footer > div#microbuttons {
+    display: flex;
+    justify-content: center;
+}
+
+footer#blog-footer > div#microbuttons > a {
+    margin: 0.5em 1px;
+}
+
 /**********************************
  * Miscellaneous
  */
 
-.image {
-    text-align: center;
-    margin: 0 auto;
-}
-
 .center {
-    text-align: center;
+    align-self: center;
 }
 
 /* This class can be used to avoid adding <div style="clear: both;"></div> at
