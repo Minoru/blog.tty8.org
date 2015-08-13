@@ -191,6 +191,9 @@ Haskell.
 Тем не менее, свою долю фана я получил, и в следующем году непременно буду
 участвовать вновь.
 
+portnov, кстати говоря, тоже поделился впечатлениями от контеста, можете
+почитать [у него в блоге][portnov-report].
+
 # На следующий год
 
 Вещи, которые нужно учесть:
@@ -228,3 +231,5 @@ Haskell.
     IEEE Transactions (Volume 4, Issue: 9)"
 [icfpc-2015-codingteam]: https://github.com/codingteam/icfpc-2015
     "GitHub: codingteam/icfpc-2015"
+[portnov-report]: http://iportnov.blogspot.ru/2015/08/icfpc-icfpc-2015.html
+    "Как не надо участвовать в ICFPC (типа отчёт об ICFPC-2015)"
