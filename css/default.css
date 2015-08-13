@@ -31,7 +31,7 @@ a:active {
 }
 
 #blog-header h1 {
-    font-size: 4em;   
+    font-size: 4em;
     margin: 0;
     text-transform: uppercase;
 }
@@ -130,6 +130,15 @@ footer#blog-footer {
     padding-bottom: 4px;
     font-size: 0.8em;
     text-align: center;
+}
+
+footer#blog-footer > div#microbuttons {
+    display: flex;
+    justify-content: center;
+}
+
+footer#blog-footer > div#microbuttons > a {
+    margin: 0.5em 1px;
 }
 
 /**********************************
