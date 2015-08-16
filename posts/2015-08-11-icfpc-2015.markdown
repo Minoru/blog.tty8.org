@@ -191,8 +191,8 @@ Haskell.
 Тем не менее, свою долю фана я получил, и в следующем году непременно буду
 участвовать вновь.
 
-portnov, кстати говоря, тоже поделился впечатлениями от контеста, можете
-почитать [у него в блоге][portnov-report].
+portnov и ForNeVeR, кстати говоря, тоже поделились впечатлениями от контеста,
+[обязательно][portnov-report] [почитайте][fornever-report].
 
 # На следующий год
 
@@ -233,3 +233,5 @@ portnov, кстати говоря, тоже поделился впечатле
     "GitHub: codingteam/icfpc-2015"
 [portnov-report]: http://iportnov.blogspot.ru/2015/08/icfpc-icfpc-2015.html
     "Как не надо участвовать в ICFPC (типа отчёт об ICFPC-2015)"
+[fornever-report]: https://fornever.me/posts/2015-08-14-icfpc-2015-report_ru.html
+    "Отчёт об ICFP Contest 2015"
