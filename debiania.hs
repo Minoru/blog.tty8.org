@@ -204,7 +204,7 @@ tagsCtx tags =
 
 allFeedConfiguration :: FeedConfiguration
 allFeedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania, yet another Debian blog"
+    { feedTitle = "Debiania"
     , feedDescription = "All posts"
     , feedAuthorName = "Alexander Batischev"
     , feedAuthorEmail = "eual.jp@gmail.com"
@@ -213,7 +213,7 @@ allFeedConfiguration = FeedConfiguration
 
 russianFeedConfiguration :: FeedConfiguration
 russianFeedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania, ещё один блог о Debian"
+    { feedTitle = "Debiania"
     , feedDescription = "Посты на русском"
     , feedAuthorName = "Александр Батищев"
     , feedAuthorEmail = "eual.jp@gmail.com"
@@ -222,7 +222,7 @@ russianFeedConfiguration = FeedConfiguration
 
 englishFeedConfiguration :: FeedConfiguration
 englishFeedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania, yet another Debian blog"
+    { feedTitle = "Debiania"
     , feedDescription = "Posts in English only"
     , feedAuthorEmail = "eual.jp@gmail.com"
     , feedAuthorName = "Alexander Batischev"
@@ -231,7 +231,7 @@ englishFeedConfiguration = FeedConfiguration
 
 linuxRussianFeedConfiguration :: FeedConfiguration
 linuxRussianFeedConfiguration = FeedConfiguration
-    { feedTitle = "Debiania, ещё один блог о Debian"
+    { feedTitle = "Debiania"
     , feedDescription = "О Linux"
     , feedAuthorName = "Александр Батищев"
     , feedAuthorEmail = "eual.jp@gmail.com"
