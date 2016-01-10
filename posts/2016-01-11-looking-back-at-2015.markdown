@@ -47,9 +47,9 @@ I'm not a big fan of Vim plugins, but I do have a few. I've used to use
 Pathogen, but it's more like a *loop running `:source`*, not a real *manager*.
 [Vim-Plug][vim-plug], on the other hand, is able to pull from GitHub repos,
 where all the cool kids seem to put their stuff these days anyway. I now just
-run `:PlugUpdate` once in a while, and be confident that all the stuff I want is
-up to date. I keep Vim-Plug itself in my dotfiles repo, so bootstrapping is that
-same `:PlugUpdate` command.
+run `:PlugUpdate` once in a while, and stay confident that all the stuff I want
+is up to date. I keep Vim-Plug itself in [my dotfiles repo][minoru-dotfiles],
+so bootstrapping is that same `:PlugUpdate` command.
 
 # Tabular
 
@@ -155,6 +155,8 @@ Syntax/Plugin/FTDetect"
 
 [vim-plug]: https://github.com/junegunn/vim-plug "Vim-Plug, a minimalist Vim
 Plugin Manager"
+
+[minoru-dotfiles]: https://github.com/Minoru/dotfiles "@Minoru's dotfiles"
 
 [gsomix]: http://gsomix.github.io/ "Buckwheat-driven development"
 
