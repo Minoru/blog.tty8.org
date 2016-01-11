@@ -158,7 +158,7 @@ Plugin Manager"
 
 [minoru-dotfiles]: https://github.com/Minoru/dotfiles "@Minoru's dotfiles"
 
-[gsomix]: http://gsomix.github.io/ "Buckwheat-driven development"
+[gsomix]: https://github.com/gsomix "gsomix at GitHub"
 
 [tabular]: https://github.com/godlygeek/tabular "Tabular, Vim script for text
 filtering and alignment"
