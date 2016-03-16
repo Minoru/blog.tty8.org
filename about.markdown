@@ -6,10 +6,10 @@ title: About
 
 Hello,
 
-My name is Alexander Batischev. I'm a student at Kyiv Polytechnic Institute,
-Ukraine. I've got Bch. CS already and am pursuing master's degree now. I'm fond
-of listening to rock music (Pink Floyd, Nightwish, Manowar and Dream Theater
-are my favourite bands) and reading sci-fi books.
+My name is Alexander Batischev. In 2015, I received my Master's degree in
+Computer Science from Kyiv Polytechnic Institute, Ukraine. I'm fond of
+listening to rock music (Pink Floyd, Nightwish, Manowar and Dream Theater are
+my favourite bands), reading science fiction and hacking free software.
 
 I'm the owner of [PGP key 0x356961a20c8bfd03][pgp]. If you ever [mail
 me][email], I'd appreciate it if you make a digital signature (or better yet,
