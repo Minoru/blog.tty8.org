@@ -7,6 +7,11 @@ body {
     font-family: Georgia;
 }
 
+p,
+pre {
+    margin: 0.5em 0;
+}
+
 a:link {
     color: #0008a0;
 }
