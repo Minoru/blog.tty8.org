@@ -11,7 +11,7 @@ body {
     justify-content: space-around;
 }
 
-pre {
-    padding-left: 0.5em;
-    margin-left: -0.5em;
+pre, blockquote {
+    border-left: none !important;
+    padding-left: 1em !important;
 }

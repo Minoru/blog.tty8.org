@@ -8,7 +8,8 @@ body {
 }
 
 p,
-pre {
+pre,
+blockquote {
     margin: 0.5em 0;
 }
 
@@ -172,10 +173,12 @@ code {
 }
 
 pre {
+    border-left: 0.3em solid #a5a5a5;
     background-color: #f5f5f5;
-    padding-left: 1em;
     margin-left: -1em;
-    border-left: 2px solid #a5a5a5;
+    padding-left: 0.7em; /* 1em of margin minus 0.3em of border */
+    margin-right: -1em;
+    padding-right: 1em;
 }
 
 pre code {
@@ -183,14 +186,17 @@ pre code {
 }
 
 blockquote {
-    border-left: 2px solid green;
-    padding-left: 1em;
+    border-left: 0.3em solid green;
+    background-color: rgba(0, 255, 0, 0.07);
     margin-left: -1em;
-    margin-right: 0;
+    padding-left: 0.7em; /* 1em of margin minus 0.3em of border */
+    margin-right: -1em;
+    padding-right: 1em;
 }
 
 blockquote.warning {
-    border-left: 2px solid red;
+    border-left: 0.3em solid red;
+    background-color: rgba(255, 0, 0, 0.07);
 }
 
 ul {
