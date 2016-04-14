@@ -9,8 +9,13 @@ body {
 
 p,
 pre,
-blockquote {
+blockquote,
+ul {
     margin: 0.5em 0;
+}
+
+ul {
+    padding-left: 1em;
 }
 
 a:link {
