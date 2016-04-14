@@ -6,7 +6,8 @@ language: english
 <div class="center">
 <img src="/images/I_have_no_memory_of_this_code.png"
     width="450" height="554"
-    alt="I have no memory of this code" />
+    alt="I have no memory of this code"
+    class="fullscreen" />
 </div>
 
 Yes, I already shared this on Google+, but tineye said he can't find that image

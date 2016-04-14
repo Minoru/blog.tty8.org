@@ -110,7 +110,8 @@ tags: programming, icfpc
 <div class="center">
 <img src="/images/icfpc-2014-playground.png"
     width="460px" height="440px"
-    alt="Дефолтная карта с контеста" />
+    alt="Дефолтная карта с контеста"
+    class="fullscreen" />
 </div>
 
 Над чем я и бился следующие полчаса. Дальше я просто процитирую лог нашего

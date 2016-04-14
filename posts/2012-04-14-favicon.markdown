@@ -9,7 +9,8 @@ logo?
 <div class="center">
 <img src="/images/evil-face-within-debian-logo.png"
     width="450" height="559"
-    alt="Evil face within Debian logo" />
+    alt="Evil face within Debian logo"
+    class="fullscreen" />
 </div>
 
 Just turn your head about 45° counterclockwise and see for yourself — it's in

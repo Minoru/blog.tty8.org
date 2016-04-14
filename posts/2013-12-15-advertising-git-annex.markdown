@@ -24,7 +24,8 @@ language: russian
 <a href="/images/git-annex-assistant-joeyh-screenshot.png">
 <img src="/images/git-annex-assistant-joeyh-screenshot-thumbnail.jpg"
     width="400px" height="234px"
-    alt="Git-annex web UI" />
+    alt="Git-annex web UI"
+    class="fullscreen" />
 </a>
 </div>
 

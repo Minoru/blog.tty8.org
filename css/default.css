@@ -197,3 +197,9 @@ ul {
     list-style-type: circle;
 }
 
+img.fullscreen {
+    width: calc(100% + 2em);
+    height: calc(100% + 2em);
+    margin-left: -1em;
+    margin-right: -1em;
+}
