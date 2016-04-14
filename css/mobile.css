@@ -7,9 +7,8 @@ body {
     display: none;
 }
 
-#blog-header-title {
-    float: none;
-    text-align: center;
+#blog-logo-and-title {
+    justify-content: space-around;
 }
 
 pre {
