@@ -47,10 +47,6 @@ a:active {
     text-transform: uppercase;
 }
 
-#blog-header h2 {
-    margin-top: 0;
-}
-
 a:link#blog-header-link,
 a:visited#blog-header-link,
 a:hover#blog-header-link,
