@@ -31,6 +31,10 @@ a:active {
     color: #0008a0;
 }
 
+h1,h2,h3,h4,h5,h6 {
+    font-family: Verdana, sans-serif;
+}
+
 
 /**********************************
  * Blog header
@@ -45,6 +49,7 @@ a:active {
     font-size: 4em;
     margin: 0;
     text-transform: uppercase;
+    font-family: Georgia, serif;
 }
 
 a:link#blog-header-link,
