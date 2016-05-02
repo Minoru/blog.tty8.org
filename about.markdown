@@ -44,9 +44,18 @@ To make the job a bit easier for Daniel Graystone (and, undoubtedly, for Big
 Brother as well), here's a list of other corners of the Internet where one can
 find me self-expressing:
 
+* [GitHub](https://github.com/Minoru)
 * [BNW](https://bnw.im/u/minoru)
 * [Google Plus](https://plus.google.com/112065341571031957772/posts)
-* [GitHub](https://github.com/Minoru)
+* and last but not least, StackExchange network:
+
+    <a href="http://stackexchange.com/users/157366/alexander-batischev"><img src="/images/stackexchange-flair.png" width="208" height="58" alt="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
+
+    <!-- That's right: the flair is mirrored to my site. There's no need for
+    StackExchange to know that you're reading my blog.
+
+    Also, this almost certainly speeds things up as your browser doesn't have
+    to open another HTTPS connection. -->
 
 There are also sites where I was present at some point in time, but which
 I do not use anymore:
