@@ -47,6 +47,7 @@ find me self-expressing:
 * [GitHub](https://github.com/Minoru)
 * [BNW](https://bnw.im/u/minoru)
 * [Google Plus](https://plus.google.com/112065341571031957772/posts)
+* [Goodreads](https://www.goodreads.com/user/show/46952552-alexander)
 * and last but not least, StackExchange network:
 
     <a href="http://stackexchange.com/users/157366/alexander-batischev"><img src="/images/stackexchange-flair.png" width="208" height="58" alt="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
