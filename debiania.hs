@@ -5,6 +5,7 @@ import Data.List (intersect)
 import Data.Monoid ((<>))
 import Network.HTTP.Base (urlEncode)
 import qualified Data.Text as T
+import Data.Time.Format (defaultTimeLocale, parseTimeM)
 
 import Hakyll
 
@@ -84,6 +85,7 @@ main = hakyllWith config $ do
         compile $ pandocCompiler
           >>= loadAndApplyTemplate "templates/about.html" defaultContext
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= relativizeUrls
 
     -- Render feeds
     let allContent = loadAllSnapshots "posts/*" "content"
@@ -159,7 +161,24 @@ createFeed name content conf extension compiler =
     compile $ do
       content
         >>= fmap (take 10) . recentFirst
-        >>= compiler conf feedCtx
+        >>= compiler
+              conf
+              (feedCtx
+              `mappend`
+              field "root" (\item -> do
+                             let id = itemIdentifier item
+                             published <- getItemUTC defaultTimeLocale id
+
+                             httpsSwitchDate <-
+                               parseTimeM
+                                 False
+                                 defaultTimeLocale
+                                 "%FT%TZ"
+                                 "2016-06-26T00:00:00Z"
+
+                             if published > httpsSwitchDate
+                               then return rootUrl
+                               else return oldRootUrl))
 
   where feedpath = fromFilePath
           $ T.unpack
@@ -167,7 +186,8 @@ createFeed name content conf extension compiler =
 
 {---- SETTINGS ----}
 
-rootUrl = "http://blog.debiania.in.ua"
+rootUrl = "https://blog.debiania.in.ua"
+oldRootUrl = "http://blog.debiania.in.ua"
 
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =

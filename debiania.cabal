@@ -17,3 +17,4 @@ Executable debiania
                  , HTTP == 4000.*
                  , hakyll == 4.*
                  , text
+                 , time
