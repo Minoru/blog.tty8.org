@@ -87,6 +87,15 @@ main = hakyllWith config $ do
           >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
 
+    create ["sitemap.xml"] $ do
+       route   idRoute
+       compile $ do
+         posts <- recentFirst =<< loadAll "posts/*"
+         let sitemapCtx =    listField "posts" postCtx (return posts)
+                          <> debianiaCtx
+         makeItem ""
+          >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
+
     -- Render feeds
     let allContent = loadAllSnapshots "posts/*" "content"
           >>= mapM absolutizeUrls

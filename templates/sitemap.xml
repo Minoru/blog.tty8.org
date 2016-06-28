@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+$for(posts)$
+    <url>
+        <loc>$root$$url$</loc>
+        <changefreq>yearly</changefreq>
+        <priority>1.0</priority>
+    </url>
+$endfor$
+    <url>
+        <loc>$root$/about.html</loc>
+        <changefreq>yearly</changefreq>
+    </url>
+</urlset>
