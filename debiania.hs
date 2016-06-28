@@ -38,7 +38,7 @@ main = hakyllWith config $ do
           posts <- fmap (take 8) . recentFirst =<< loadAll "posts/*"
           let ctx =    constField "title" "Home"
                     <> listField "posts" postCtx (return posts)
-                    <> defaultContext
+                    <> debianiaCtx
 
           makeItem ""
             >>= loadAndApplyTemplate "templates/index.html" ctx
@@ -53,7 +53,7 @@ main = hakyllWith config $ do
           >>= loadAndApplyTemplate
                 "templates/post.html"
                 (urlEncodedTitleCtx <> postCtx <> tagsCtx tags)
-          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
 
     -- Render Archives page
@@ -63,7 +63,7 @@ main = hakyllWith config $ do
           posts <- recentFirst =<< loadAll "posts/*"
           let ctx =    constField "title" "Archives"
                     <> listField "posts" postCtx (return posts)
-                    <> defaultContext
+                    <> debianiaCtx
 
           makeItem ""
             >>= loadAndApplyTemplate "templates/archives.html" ctx
@@ -74,8 +74,8 @@ main = hakyllWith config $ do
     create ["about.markdown", "subscribe.markdown"] $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-          >>= loadAndApplyTemplate "templates/about.html" defaultContext
-          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
 
     -- Error 404 page is special in a way that it doesn't need URL
@@ -83,8 +83,8 @@ main = hakyllWith config $ do
     create ["404.markdown"] $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-          >>= loadAndApplyTemplate "templates/about.html" defaultContext
-          >>= loadAndApplyTemplate "templates/default.html" defaultContext
+          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
 
     -- Render feeds
@@ -189,6 +189,11 @@ createFeed name content conf extension compiler =
 rootUrl = "https://blog.debiania.in.ua"
 oldRootUrl = "http://blog.debiania.in.ua"
 
+debianiaCtx :: Context String
+debianiaCtx =
+       constField "root" rootUrl
+    <> defaultContext
+
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =
   field
@@ -203,9 +208,9 @@ urlEncodedTitleCtx =
 
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y"
+       dateField "date" "%B %e, %Y"
     <> dateField "datetime" "%Y-%m-%d"
-    <> defaultContext
+    <> debianiaCtx
 
 feedCtx :: Context String
 feedCtx =
@@ -215,7 +220,7 @@ feedCtx =
 tagsCtx :: Tags -> Context String
 tagsCtx tags =
     tagsField "tags" tags
-    <> defaultContext
+    <> debianiaCtx
 
 {---- FEED CONFIGURATIONS ----}
 
