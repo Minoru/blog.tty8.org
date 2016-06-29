@@ -174,22 +174,22 @@ createFeed name content conf extension compiler =
         >>= fmap (take 10) . recentFirst
         >>= compiler
               conf
-              (feedCtx
+              (field "root" (\item -> do
+                              let id = itemIdentifier item
+                              published <- getItemUTC defaultTimeLocale id
+
+                              httpsSwitchDate <-
+                                parseTimeM
+                                  False
+                                  defaultTimeLocale
+                                  "%FT%TZ"
+                                  "2016-06-26T00:00:00Z"
+
+                              if published > httpsSwitchDate
+                                then return rootUrl
+                                else return oldRootUrl)
               `mappend`
-              field "root" (\item -> do
-                             let id = itemIdentifier item
-                             published <- getItemUTC defaultTimeLocale id
-
-                             httpsSwitchDate <-
-                               parseTimeM
-                                 False
-                                 defaultTimeLocale
-                                 "%FT%TZ"
-                                 "2016-06-26T00:00:00Z"
-
-                             if published > httpsSwitchDate
-                               then return rootUrl
-                               else return oldRootUrl))
+              feedCtx)
 
   where feedpath = fromFilePath
           $ T.unpack

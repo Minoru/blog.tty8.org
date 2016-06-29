@@ -92,32 +92,39 @@ What we need to do is to replace it with the following code:
 ```haskell
 renderRss
   feedConfig
-  (defaultContext
+  (field "root" (\item -> do
+                  let id = itemIdentifier item
+                  published <- getItemUTC defaultTimeLocale id
+
+                  httpsSwitchDate <-
+                    parseTimeM
+                      False
+                      defaultTimeLocale
+                      "%FT%TZ"
+                      "2016-06-26T00:00:00Z"
+
+                  if published > httpsSwitchDate
+                    then return newRootUrl
+                    else return oldRootUrl)
   `mappend`
-  field "root" (\item -> do
-                 let id = itemIdentifier item
-                 published <- getItemUTC defaultTimeLocale id
-
-                 httpsSwitchDate <-
-                   parseTimeM
-                     False
-                     defaultTimeLocale
-                     "%FT%TZ"
-                     "2016-06-26T00:00:00Z"
-
-                 if published > httpsSwitchDate
-                   then return newRootUrl
-                   else return oldRootUrl))
+  defaultContext)
 ```
 
-As you can see, `defaultContext` is being augmented with a field called "root",
-which is mapped to a lambda. The lambda figures out when the given item was
-published and compares that date to a constant value we have embedded in the
-code. This constant is the day you've moved your site to the new location.
-Everything posted after it will have new `feedRoot`, while older posts will keep
-using the old `feedRoot`.
+As you can see, we're defining a field called "root", which is mapped to
+a lambda. The lambda figures out when the given item was published and compares
+that date to a constant value we have embedded in the code. This constant is
+the day you've moved your site to the new location. Everything posted after it
+will have new `feedRoot`, while older posts will keep using the old `feedRoot`.
+
+Note that we're `mappend`ing `defaultContext` to our field, not the other way
+around. This is important, as only the first definition of each field matters.
+You'll probably use your own custom context instead of the default one, and it
+might overwrite "root" key if you `mappend` in the wrong order. Be careful! (I
+actually made this mistake when I put this article out.)
 
 To tell the truth, I find the solution a bit messy and hacky, but such is the
 price of compatibility.
+
+**Update 29.06.2016**: note that `mappend`ing order matters.
 
 [feedconfiguration]: https://hackage.haskell.org/package/hakyll-4.7.5.1/docs/Hakyll-Web-Feed.html#t:FeedConfiguration
