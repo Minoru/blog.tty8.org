@@ -12,7 +12,7 @@ tags: linux,tips'n'tricks
 <br /><pre class="code">GTK_IM_MODULE="xim"</pre></li><li>сохраняем документ и перезагружаем систему</li></ol>Всё! После такого простого действия все GTK приложения «образумятся» и начнут «понимать» Compose Key.
 <br />Удачи! ;)
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2009-03-24T21:00:00.000+02:00, Andrey wrote:</p>
 <p class='hakyll-convert-comment-body'>

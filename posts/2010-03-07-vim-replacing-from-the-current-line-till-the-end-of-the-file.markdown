@@ -7,7 +7,7 @@ tags: vim
 
 Продолжая постигать основы vim, открыл для себя диапазоны (range). Например, стандартная команда замены «bad» на «good» по всему файлу выглядит так:<br /><div class="code">:%s/bad/good/gc</div>Диапазоном здесь является символ процента — он означает «все строки файла».<br /><br />Если хочется заменить всё, начиная с текущей строки и аж до конца файла, пишем:<br /><div class="code">:.,$s/bad/good/gc</div><br />Точка здесь одначает текущую строку, а символ доллара — последнюю строку файла.<br /><br />Спасибо Google и составителю <a href="http://www.eec.com/business/vi.html">вот этого</a> замечательного cheatsheat'а за помощь.
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-03-07T22:05:28.896+02:00, aonick wrote:</p>
 <p class='hakyll-convert-comment-body'>

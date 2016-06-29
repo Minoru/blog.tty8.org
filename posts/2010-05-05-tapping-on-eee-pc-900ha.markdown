@@ -7,7 +7,7 @@ tags: Eee PC,linux,debian
 
 Недельки этак три назад у меня внезапно поломался таппинг — возможность совершать клики ударом по тачпаду. Благо, кнопки на тачпаде всё ещё работали, да и кликать приходилось только в браузере — менеджер окон, <code>dwm</code>, завязан на клавиатуру.<br /><br />Ох, сколько же времени я провёл в гугле, пытаясь найти хоть какую-то ниточку к решению…<br /><br />Сегодня же бродил по спискам рассылки Debian и внезпно это самое решение нашёл. Как ни странно, оно <a href="http://en.gentoo-wiki.com/wiki/Synaptics_Touchpad#Tapping_does_not_work_anymore">расположено в wiki Gentoo</a> :D<br /><a name='more'></a><br />Вкратце рецепт сводится к следующему действию: файл <code>/usr/share/X11/xorg.conf.d/50-synaptics.conf</code> следует привести к такому виду:<br /><div class="code">Section "InputClass"<br />        Identifier "touchpad catchall"<br />        Driver "synaptics"<br />        MatchIsTouchpad "on"<br />        Option      "TapButton1" "1"<br />        Option      "TapButton2" "2"<br />        Option      "TapButton3" "3"<br />EndSection</div>Ура! ☺
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-05-05T23:18:19.349+03:00, Михаил wrote:</p>
 <p class='hakyll-convert-comment-body'>

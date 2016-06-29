@@ -7,7 +7,7 @@ tags: blog
 
 Добавил облако тегов. Пока что выглядит не очень — постов мало, но со временем, думаю, это дело разрастётся до вполне приличного облака. <strike>Впредь не забывайте зонтики — авось ливень пойдёт.</strike><br /><br /><a href="http://phy3blog.googlepages.com/Beta-Blogger-Label-Cloud.html">Как сделать себе такое же</a>.
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2009-02-26T09:33:00.000+02:00, virens wrote:</p>
 <p class='hakyll-convert-comment-body'>

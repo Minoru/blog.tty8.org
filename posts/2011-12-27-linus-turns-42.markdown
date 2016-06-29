@@ -7,7 +7,7 @@ tags:
 
 Публикация поздравлений Линуса с днём рождения стали хоть и бессмысленной, но традицией этого блога. В этом году тем более грех не поздравить, ибо отцу-основателю ядрышка нашей любимой операционки исполняется 42 года! (Кто не понял намёка, гуглите «Автостопом по Галактике»). Так что здоровья ему, удачи и особенно — терпения, ведь от работы Торвальдса зависит судьба и Debian, и всего FOSS в целом.<br /><br />P.S. В Blogger поломали посты по расписанию, что ли? Эта заметка должна была быть опубликована ещё 28-го числа!
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2012-01-07T13:11:58.541+02:00, virens wrote:</p>
 <p class='hakyll-convert-comment-body'>

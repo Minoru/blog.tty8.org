@@ -7,7 +7,7 @@ tags: web
 
 «Have you been recently called a geek, a dork, a NERD? Do you want to be a nerd, geek, or dork? Well, this test is for you!»<br />Именно так выглядят первые слова предисловия к интересному тесту на уровень нердства, ссылку на который я подцепил в <a href="http://l1feh4ck3r.blogspot.com/">блоге l1feh4ck3r</a>'а.<a name='more'></a> Довольно интересная вещь, да и результат неожиданный:<center><a href="http://www.nerdtests.com/ft_nq.php"><img src="http://www.nerdtests.com/images/ft/nq/a9316c49e5.gif" alt="I am nerdier than 88% of all people. Are you a nerd? Click here to take the Nerd Test, get nerdy images and jokes, and write on the nerd forum!"></a></center><br />«I am nerdier than 88% of all people.» Вау! Между прочим, 8 — моя любимая цифра :)<br /><br /><i>P.S. Знаете, даже после этого я совершенно не чувствую себя нердом… :)</i>
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2009-03-28T23:21:00.000+02:00, booley wrote:</p>
 <p class='hakyll-convert-comment-body'>

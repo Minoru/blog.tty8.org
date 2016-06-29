@@ -7,7 +7,7 @@ tags: linux,debian,holiday
 
 <img src="http://lh4.ggpht.com/_Nb6QYFUvBjY/S976Z1gODoI/AAAAAAAAANU/eIMspqwsIkg/lennybanner_indexed.png" alt="The Universal Operating System — Debian 5.0" style="margin-right: 10px; float: left;" height="310" width="380"><div>Свершилось! Вышел в свет долгожданный релиз самого лучшего в мире дистрибутива — Debian GNU/Linux 5.0 "Lenny"!<br /><br />Новость на русскоязычной главной страничке почему-то не появилась, на английской же <a href="http://debian.org/News/2009/20090214">висит ещё со вчерашнего дня</a>.<br /><br />Поздравляю разработчиков, пользователей и всех остальных с этим замечательным событием!<br /><br />P.S. Не забудьте прочитать <a href="http://debian.org/releases/lenny/releasenotes">release notes</a> перед обновлением.</div>
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2009-02-19T18:44:00.000+02:00, XstyLe wrote:</p>
 <p class='hakyll-convert-comment-body'>

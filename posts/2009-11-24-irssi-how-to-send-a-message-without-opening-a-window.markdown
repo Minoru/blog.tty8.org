@@ -7,6 +7,6 @@ tags: irssi
 
 Оказалось, всё очень просто:<br /><pre class="code">/^msg target text</pre>где<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target — получатель сообщения<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text — собственно сообщение<br /><br />Да, «крыша» после слеша — это не опечатка. Это та самая деталь, которую я пропустил, читая чужие конфиги — там такой трюк использовался. А самое главное — команда с «крышей» после слеша не пишется в логи, чего не скажешь об обычном /msg…<br /><br />Вот так-то. Надо внимательнее относится к незначительным, казалось бы, мелочам.
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 
 

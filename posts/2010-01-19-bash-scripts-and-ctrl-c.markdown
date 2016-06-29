@@ -7,7 +7,7 @@ tags: linux,tips'n'tricks
 
 <a href="http://github.com/Minoru/EasyPK">EasyPK</a> всегда страдал тем, что не мог корректно завершиться при нажатии Ctrl+C — он просто прерывал процесс упаковки/распаковки текущего архива и переходил к следующему. Это раздражало, т.к. приходилось клацать Ctrl+C, пока архивы не закончатся. Я почему-то считал, что решить эту проблему будет стоить немалой крови — и я ошибался. В bash есть <a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html">ловушки (traps)</a>, о которых и рассказать-то особо нечего — они просто выполняют команду при поступлении сигнала. Например, я дописал в начало скриптов такую строку:<br /><pre class="code">trap "exit 3" KILL HUP INT TERM</pre>Это значит, что при получении <code>SIGTERM</code>, <code>SIGKILL</code>, <code>SIGINT</code> или <code>SIGHUP</code> мой скрипт сразу же сделает <code>exit 3</code>, т.е. завершится с кодом выхода 3. Легко, понятно, эффективно.<br /><br />Приятного кодинга!
 
-<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-01-19T16:09:57.419+02:00, Анонимный wrote:</p>
 <p class='hakyll-convert-comment-body'>
