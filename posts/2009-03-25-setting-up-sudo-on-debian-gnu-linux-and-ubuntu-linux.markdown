@@ -1,0 +1,89 @@
+---
+title: Установка и настройка sudo в Debian GNU/Linux и Ubuntu Linux
+published: 2009-03-25T17:28:00Z
+categories: 
+tags: mirror,linux,debian
+---
+
+Копия статьи с ныне мёртвого проекта debian-ubuntu-linux.ru.<br />Обратите внимание, что я всего лишь скопировал статью сюда — я не правил её, и не имею никакого отношения к её содержимому (более того, с некоторыми моментами я категорически не согласен). С другой стороны, я считаю эти статьи полезными для новичка, и потому копирую их.<br />Все авторские права принадлежат Дмитрию Белоусову.<br /><a name='more'></a><br /><div align="right">Дмитрий Белоусов<br />Последнее обновление: 02.02.2008</div><br />…По умолчанию в <strong>Debian GNU/Linux</strong> пакет <strong>sudo</strong> отсутствует. Установка <strong>sudo</strong> — это, по глубокому убеждению автора, перовое, что необходимо сделать после завершения установки базовой системы <strong>Debian GNU/Linux</strong>. У пользователей <strong>Ubuntu Linux</strong> <strong>sudo</strong> установлен по умолчанию, однако тоже может потребовать конфигурации.<br /><br /><h3>I.Установка sudo из репозиториев Debian GNU/Linux.</h3>Выполните команду:<br /><div class="code"><code># aptitude install sudo</code></div><br /><h3>II.Базовая настройка sudo.</h3>Sudo — очень гибкий инструмент, позволяющий настроить права на выполнения административных действий для каждого пользователя отдельно. Например одному разрешить перезагружать какой-либо сервер, а другому дать возможность менять права доступа к файлам и папкам. Откройте файл <code>/etc/sudoers</code>. Это можно сделать либо отдав команду на открытие файла в вашем любимом текстовом редакторе, например так:<br /><div class="code"><code># nano /etc/sudoers</code></div>либо при помощи утилиты <code>visudo</code>:<br /><div class="code"><code># visudo</code></div>Последний способ откроет файл <code>/etc/sudoers</code> в редакторе пользователя по умолчанию, или если таковой не задан, то в редакторе vi. Преимущество данного способа в том, что при сохранении файл будет проверен на соответствие синтаксису.<br /><br />Простейшая конфигурация выглядит так:<br /><div class="code"><code>Defaults env_reset<br /># User privilege specification<br />root ALL=(ALL) ALL<br />user ALL=(ALL) ALL</code></div><br />Такая конфигурация дает пользователю user все права пользователя root при выполнении команды sudo. <code>Defaults env_reset</code> полностью запрещает все пользовательские переменные при исполнении команд от имени root. Это хорошо с точки зрения безопасности, однако иногда вызывает проблемы. Можно разрешить использование личных переменных какой-либо группе или отдельному пользователю, добавив подобную этой строку:<br /><div class="code"><code>Defaults:%admin !env_reset</code></div>которая будет сохранять переменные окружения для всех пользователей группы admin, или:<br /><div class="code"><code>Defaults:user env_keep=TZ</code></div>которая сохранит переменную TZ для пользователя user.<br /><br />Если сервер администрируется группой людей, то имеет смысл поступить таким образом:<br /><div class="code"><code>%admin  ALL=(ALL) ALL</code></div>Как можно догадаться, эта запись дает доступ к root-привилегиям всем членам группы admin.<br /><br />Можно настроить для каждого конкретного пользователя доступ только к конкретным командам. Например:<br /><div class="code"><code>user ALL = /bin/mount, /bin/kill</code></div>даст пользователю user права на выполнение команд mount и kill с любой машины, а:<br /><div class="code"><code>user2 mydebiancomp = /sbin/modprobe</code></div>даст пользователю <code>user2</code> права на выполнение <code>modprobe</code> с машины <code>mydebiancomp</code>. Я думаю, что синтаксис понятен:<br /><div class="code"><code>пользователь хост = команда</code></div>где команда прописывается с полным путем. Для группы все аналогично, только добавляется знак "%".<br /><br /><br /><h3>III.Продвинутые настройки sudo.</h3>Очень удобно при настройке sudo создать группу алиасов. Чтобы не вбивать постоянно повторяющиеся команды, пользователей и хосты, мы можем собрать их в группы и устанавливать правила для каждой группы алиасов. Например так:<br /><div class="code"><code>Cmnd_Alias command_alias = command1, command2, ... // алиасы команд<br />Host_Alias host_alias = hostname1, hostname2, ... // алиасы хостов<br />User_Alias user_alias = user1, user2, ... // алиасы пользователей</code></div>Далее именами алиасов можно оперировать точно также, как командами, машинами и пользователями, задавая правила.<br /><br />Исполнение команды от имени другого пользователя тоже возможно. Например при такой записи:<br /><div class="code"><code>user ALL = (user2, user3) /usr/bin/ark</code></div>пользователь user может выполнить команду ark от имени user2 или user3, при помощи ключа u, например так:<br /><div class="code"><code>$ sudo -u user2 ark</code></div><br />По умолчанию sudo запоминает пароли на 5 минут. Если вы этого не хотите, то для каждого пользователя, группы или алиаса можете установить отдельное правило, например при:<br /><div class="code"><code>Defaults:user timestamp_timeout=0</code></div>пароль полдьзователя user не будет запоминаться вообще, а при:<br /><div class="code"><code>Defaults:user timestamp_timeout=-1</code></div>будет запоминаться на все время аптайма.<br /><br />Sudo без паролей также возможно. Для этого существует подобная конструкция:<br /><div class="code"><code>user myubuntucomp = NOPASSWD: /bin/kill</code></div>которая даст возможность пользователю user с хоста myubuntucomp использовать kill без запроса пароля. Вставьте свои значения, например ALL вместо имени хоста и команды, чтобы пользователь user мог вообще никогда не вводить пароль для выполнения команд от имени root с любого хоста, однако помните, что это делает систему очень уязвимой.<br /><br />Надеюсь, что данной информации будет достаточно для настройки ограничений прав доступа при помощи <code>sudo</code>.<br />
+
+<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-27T23:07:00.000+02:00, Andrey wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Статья супер!!!<BR/>Вот только как сделать так, чтобы гномовские административные приложения, запускающиеся через gksu, просили пароль не рута, а юзера?
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-27T23:20:00.000+02:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+<B>Статья супер!!!</B><BR/>Благодарим Дмитрия Белоусова :)<BR/><BR/><B>Вот только как сделать так, чтобы гномовские административные приложения, запускающиеся через gksu, просили пароль не рута, а юзера?</B><BR/>Никак. su (консольная утилита) просит пароль того пользователя, права которого ты хочешь получить (по умолчанию — рута), а gksu является GTK+ интерфейсом для /bin/su.
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-27T23:29:00.000+02:00, Andrey wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Хмм... может как же тогда в убунту реализована эта возможность, ведь там все гномовские административные приложения кушают пароль юзера и довольны :)
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-28T00:34:00.000+02:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+<B>Хмм... может как же тогда в убунту реализована эта возможность, ведь там все гномовские административные приложения кушают пароль юзера и довольны :)</B><BR/>Довели, погуглил :)<BR/>Оказалось, что помимо gksu существует также gksudo (я, честно говоря, подумал о том, что gksudo должна существовать, но почему-то ожидал увидеть реализацию в виде отдельного пакета; очевидно, обе утилиты лежат в gksu), делающий то же,что sudo, но через GTK+ интерфейс. В Debian всё работает правильно, в Ubuntu root'а по умолчанию нет и потому обе утилиты спрашивают пароль текущего юзера. Всей ветки (ссылки ниже) я не читал, но, судя по всему, тебе придётся вручную заменить gksu на gksudo во всех шорткатах в меню, если ты хочешь вводить пасс юзера, а не рута.<BR/><BR/><A HREF="http://ubuntuforums.org/archive/index.php/t-184010.html" REL="nofollow">Первоисточник</A> (у меня не открылся, <A HREF="http://209.85.129.132/search?q=cache:BGva5mCzvYcJ:ubuntuforums.org/archive/index.php/t-184010.html+gksu+current+user+password&cd=1&hl=en&ct=clnk&lr=lang_en%7Clang_ru%7Clang_uk&client=iceweasel-a" REL="nofollow">смотрел в кеше гугла</A>).
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-28T09:58:00.000+02:00, Andrey wrote:</p>
+<p class='hakyll-convert-comment-body'>
+thanks! В выходные озадачусь и прикручу sudo + gksudo :)
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-28T10:07:00.000+02:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Рад, что смог помочь. Удачи!<BR/>Кстати, было бы интересно потом почитать в твоём блоге, чем же дело закончилось — мало ли, вдруг самому когда придётся с этим возится :)
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-03-28T12:22:00.000+02:00, Andrey wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Ок, я в блоге отпишусь обязательно. Давно хотел настроить sudo, да вот никак времени не было
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-04-21T13:45:00.000+03:00, Анонимный wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Ubuntu 8.04<br />Почему, несмотря на наличие в /etc/sudoers<br />строки<br />user ALL = NOPASSWD: /usr/sbin/hibernate<br />sudo при выполнении /usr/sbin/hibernate спрашивает пароль user-а?
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-04-21T17:55:00.000+03:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+<B>Ubuntu 8.04<br />Почему, несмотря на наличие в /etc/sudoers<br />строки<br />user ALL = NOPASSWD: /usr/sbin/hibernate<br />sudo при выполнении /usr/sbin/hibernate спрашивает пароль user-а?</B>Честно говоря, не знаю. Ubuntu я вообще не юзал, хотя учитывая то, что она основана на используемом мною Debian'е, кажется странным то, что ты наблюдаешь.<br />Всё, что могу сделать — посоветовать обратится на форумы. В частности, мне всегда помогали на linuxforum.ru — сходи туда, авось и тебе помогут.
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2013-08-11T22:41:46.475+03:00, kaban wrote:</p>
+<p class='hakyll-convert-comment-body'>
+у меня пишет<br /> # aptitude install sudo<br />Следующие НОВЫЕ пакеты будут установлены:        <br />  sudo <br />0 пакетов обновлено, 1 установлено новых, 0 пакетов отмечено для удаления, и 1 пакетов не обновлено.<br />Необходимо получить 0 B/851 kB архивов. После распаковки 1 885 kB будет занято.<br />Смена носителя: вставьте диск, помеченный как «Debian GNU/Linux 7.1.0 _Wheezy_ - Official i386 CD Binary-1 20130615-21:54» в привод «/media/cdrom/» и нажмите [Enter].<br /><br />как сд еще ему нужен?
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2013-08-12T15:47:40.437+03:00, Minoru wrote:</p>
+<p class='hakyll-convert-comment-body'>
+<b>@kaban</b>, там же ясно написано: нужен первый CD. Это тот диск, с которого ты ставил систему. Если диска у тебя больше нет, можно поправить /etc/apt/sources.list, удалив оттуда соответствующую строку и добавив Интернет-репозитории — тогда пакет скачается оттуда. Удачи!
+</p>
+</div>
+
+
+

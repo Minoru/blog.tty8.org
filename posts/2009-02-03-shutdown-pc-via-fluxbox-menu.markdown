@@ -1,0 +1,40 @@
+---
+title: Shutdown PC via Fluxbox menu
+published: 2009-02-03T16:09:00Z
+categories: 
+tags: fluxbox,tips'n'tricks
+---
+
+<b>Цель:</b> выключать и перезагружать компьютер посредством пунктов в меню ныне мною горячо любимого Fluxbox'а<br /><br /><b>Решение:</b> т.к. время позднее, быстренько гуглим, находим какой-то тред на <a href=http://ubuntuforums.org/archive/index.php/t-635825.html>убунтуфоруме</a>, настраиваем такое же счастье у себя и записываем рецепт, чтобы не забыть.<br /><a name='more'></a><br /><b>Рецепт:</b><ol><li>Настраиваем sudo.<br />Для этого его сначала надо поставить:<br /><div class="code"><code>su -c aptitude install sudo</code></div>, вводим пароль рута и ждём, пока скачается и поставится пакет. После этого правим конфиг, лежащий в <code>/etc/sudoers</code> (обратите внимание на то, что дела:ется это при помощи <code>visudo</code> — он специально для этого и сделан):<br /><div class="code"><code>su -c visudo</code></div>Перед нами появится интерфейс <code>nano</code> с открытым <code>/etc/sudoers</code>. Тут нам надо добавить строку, разрешающую пользователю выполнение команды <code>/sbin/shutdown</code> <u>без ввода пароля</u>. Делается это так:<br /><div class="code"><code>username ALL = (ALL) NOPASSWD:/sbin/shutdown</code></div>У меня эта строка имеет несколько другой вид:<br /><div class="code"><code>username ALL = (ALL) ALL, NOPASSWD:/sbin/shutdown</code></div>, что означает следующее: "пользователю <code>username</code> можно запускать что угодно с вводом пароля, а <code>/sbin/shutdown</code> — без ввода оного".<br />Жмём Ctrl+O, сохраняем результат наших трудов в sudoers.tmp, потом жмём Ctrl+X для выхода.</li><li>Добавить в <code>~/.fluxbox/menu</code> (или <code>/etc/fluxbox/menu</code>, если хочется добавить пункты всем пользователям Fluxbox в системе):<br /><div class="code"><code>vim ~/.fluxbox/menu</code></div>Тут добавляем следующее:<br /><div class="code"><code>[exec] (Shutdown) { sudo shutdown -h now }<br />[exec] (Reboot) { sudo shutdown -r now }</code></div>Теперь у вас с меню должны появится два новых пункта: Shutdown и Reboot, которые делают как раз то, чего нам хотелось.</li></ol><br />Удачи! ;)
+
+<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-02-08T00:00:00.000+02:00, tux wrote:</p>
+<p class='hakyll-convert-comment-body'>
+О, да...флюкс - эт то, что мы любим. Телодвижения довольно известные, но под рукой пригодятся, не всё ж в голове носить.
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-02-08T00:46:00.000+02:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Я, собственно, затем блог и веду — такие себе "заметочки на ходу", оформленные в более-менее приличные посты: и себе памяточка, и, возможно, другим помощь. ;)
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-04-15T14:19:00.000+03:00, Maxim G. Ivanov wrote:</p>
+<p class='hakyll-convert-comment-body'>
+Могу ещё добавить, что можно также подстраховаться от случайного нажатия пункта выключения или перезагрузки.<br />На ArchWiki видел, давненько уже, правда (только что погуглил, с первого раза не нашёл), рецепт, позволяющий при выборе пункта выключения вызывать диалог согласны ли вы выключить компьютер.<br />Для этого можно создать скрипт с таким содержанием:<br />#!/bin/sh<br />if  zenity --question --title "Alert" --text "Выключить компьютер?!"; <br /> then<br />  sudo /sbin/shutdown -h now<br />fi<br /> <br />и вызывать его вместо shutdown -h now.  В данном примере в качестве программы для диалогового окна используется zenity, но можно использовать и xmessage.
+</p>
+</div>
+
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-04-15T19:26:00.000+03:00, Programmaster wrote:</p>
+<p class='hakyll-convert-comment-body'>
+<B>Могу ещё добавить, что можно также подстраховаться от случайного нажатия пункта выключения или перезагрузки.</B>В общем-то да, полезно сделать нечто подобное — но не в моём случае. Дело в том, что я использую довольно мало приложений, основные повешены на хоткеи, основной инструмент — эмулятор терминала, ну а если уж чего GUI'шного захотелось (не повешенного на хоткеи), то запускаю через fbrun (поле ввода имени проги для Fluxbox). Сим джентльменским набором я пользуюсь вот уже несколько месяцев, и всё это время я открываю меню только для выключения машины :)<br />Более того, рабочий стол я практически не вижу ввиду того, что окна у меня во весь экран и я активно использую виртуальные рабочие столы для разделения задач.<br /><br />Ввиду того, что сам я это не пробовал и (в ближайшем будущем) вряд ли попробую, добавлять в статью не буду. Тем не менее, спасибо за идею и комментарий — думаю, кому-нибудь это точно пригодится ;)
+</p>
+</div>
+
+
+

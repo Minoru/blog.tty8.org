@@ -1,0 +1,19 @@
+---
+title: Где найти mid3iconv
+published: 2009-05-17T13:37:00Z
+categories: 
+tags: linux
+---
+
+<code>mid3iconv</code>, часто фигурирующий в инструкциях по конвертированию тегов в MP3, содержится в пакете <code>python-mutagen</code>. Почему-то раньше не встречал упоминания, что ставить, чтобы появилась эта утилита. Решил записать, пока не забыл :)<br /><br />Подсказка найдена <a href="http://takeworld.blogspot.com/2009/05/id3-cp1251.html">здесь</a>.
+
+<h3 id='hakyll-convert-comments-title'>Comments</h3>
+<div class='hakyll-convert-comment'>
+<p class='hakyll-convert-comment-date'>On 2009-06-15T14:20:59.869+03:00, Yurij wrote:</p>
+<p class='hakyll-convert-comment-body'>
+yurij@yurij-eeepc:~$ apt-file find mid3iconv<br />python-mutagen: /usr/bin/mid3iconv<br />python-mutagen: /usr/share/man/man1/mid3iconv.1.gz<br />:)
+</p>
+</div>
+
+
+
