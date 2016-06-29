@@ -1,7 +1,27 @@
 <article>
 <header id="post-header">
-<h1>$title$</h1>
-<div id="post-date"><time datetime="$datetime$">$date$</time></div>
+
+    <div id="header-and-prev-next-buttons">
+        $if(prev_post_url)$
+        <div class="prev_next_post_button"
+             id="prev_post_button">
+            <a href="$prev_post_url$"><span id="prev-anchor"></span></a>
+        </div>
+        $endif$
+
+        <h1>$title$</h1>
+
+        $if(next_post_url)$
+        <div class="prev_next_post_button"
+             id="next_post_button">
+            <a href="$next_post_url$"><span id="next-anchor"></span></a>
+        </div>
+        $endif$
+    </div>
+
+    <hr id="post-date-ruler">
+
+    <div id="post-date"><time datetime="$datetime$">$date$</time></div>
 </header>
 
 <div id="post">

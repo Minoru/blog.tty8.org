@@ -1,11 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Control.Applicative (Alternative (..))
 import Control.Monad (liftM, filterM)
-import Data.List (intersect)
+import Data.List (intersect, sortBy, intercalate)
+import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
 import Data.String.Utils (split)
+import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
 import Network.HTTP.Base (urlEncode)
+import System.FilePath (takeFileName)
 
 import qualified Data.Text as T
 
@@ -217,6 +221,48 @@ debianiaCompiler =
     let newBody = itemBody new
     go (newBody:rest)
 
+previousPostUrl :: Item String -> Compiler String
+previousPostUrl post = do
+    posts <- getMatches "posts/*"
+    let ident = itemIdentifier post
+        sortedPosts = sortIdentifiersByDate posts
+        ident' = itemBefore sortedPosts ident
+    case ident' of
+        Just i -> (fmap (maybe empty $ toUrl) . getRoute) i
+        Nothing -> empty
+
+nextPostUrl :: Item String -> Compiler String
+nextPostUrl post = do
+    posts <- getMatches "posts/*"
+    let ident = itemIdentifier post
+        sortedPosts = sortIdentifiersByDate posts
+        ident' = itemAfter sortedPosts ident
+    case ident' of
+        Just i -> (fmap (maybe empty $ toUrl) . getRoute) i
+        Nothing -> empty
+
+itemAfter :: Eq a => [a] -> a -> Maybe a
+itemAfter xs x =
+    lookup x $ zip xs (tail xs)
+
+itemBefore :: Eq a => [a] -> a -> Maybe a
+itemBefore xs x =
+    lookup x $ zip (tail xs) xs
+
+urlOfPost :: Item String -> Compiler String
+urlOfPost =
+    fmap (maybe empty $ toUrl) . getRoute . itemIdentifier
+
+sortIdentifiersByDate :: [Identifier] -> [Identifier]
+sortIdentifiersByDate identifiers =
+    sortBy byDate identifiers
+        where
+            byDate id1 id2 =
+                let fn1 = takeFileName $ toFilePath id1
+                    fn2 = takeFileName $ toFilePath id2
+                    parseTime' fn = parseTimeM True defaultTimeLocale "%Y-%m-%d" $ intercalate "-" $ take 3 $ splitAll "-" fn
+                in compare ((parseTime' fn1) :: Maybe UTCTime) ((parseTime' fn2) :: Maybe UTCTime)
+
 {---- SETTINGS ----}
 
 rootUrl = "https://blog.debiania.in.ua"
@@ -243,6 +289,8 @@ postCtx :: Context String
 postCtx =
        dateField "date" "%B %e, %Y"
     <> dateField "datetime" "%Y-%m-%d"
+    <> field "prev_post_url" previousPostUrl
+    <> field "next_post_url" nextPostUrl
     <> debianiaCtx
 
 feedCtx :: Context String
