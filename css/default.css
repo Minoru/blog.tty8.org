@@ -270,3 +270,7 @@ div.prev_next_post_button > a:hover,
 div.prev_next_post_button > a:active {
     color: #bbbbbb;
 }
+
+p.hakyll-convert-comment-date {
+    background-color: #f5f5f5;
+}
