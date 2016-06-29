@@ -157,8 +157,6 @@ fork"](http://thinkiii.blogspot.com/2009/12/double-fork-to-avoid-zombie-process.
 (first described in W. Richard Stevens' "Advanced Programming in the UNIX
 Environment"). That means that I effectively disowned by hand.
 
- 
-
 So with a little effort, I yet again ensure that I'm sane, machines are fine and
 world hasn't gone crazy. Till next time, then!
 

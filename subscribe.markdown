@@ -9,7 +9,7 @@ everyone happy I provide a number of different feeds. Both RSS and Atom are
 available. You may further filter out uninteresting posts using services like
 [Feed Rinse](http://feedrinse.com/).
 
-<div class="center">~ * ~</div>
+$break$
 
 **All posts**: [*RSS*](/feeds/all.rss) [*Atom*](/feeds/all.atom)
 

@@ -3,9 +3,11 @@
 import Control.Monad (liftM, filterM)
 import Data.List (intersect)
 import Data.Monoid ((<>))
-import Network.HTTP.Base (urlEncode)
-import qualified Data.Text as T
+import Data.String.Utils (split)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
+import Network.HTTP.Base (urlEncode)
+
+import qualified Data.Text as T
 
 import Hakyll
 
@@ -48,7 +50,7 @@ main = hakyllWith config $ do
     -- Render posts
     match "posts/*" $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ debianiaCompiler
           >>= saveSnapshot "content"
           >>= loadAndApplyTemplate
                 "templates/post.html"
@@ -73,7 +75,7 @@ main = hakyllWith config $ do
     -- Render About and Subscribe pages
     create ["about.markdown", "subscribe.markdown"] $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ debianiaCompiler
           >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
           >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
@@ -82,7 +84,7 @@ main = hakyllWith config $ do
     -- relativization because it would be located in the webserver root
     create ["404.markdown"] $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ debianiaCompiler
           >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
           >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
@@ -192,6 +194,28 @@ createFeed name content conf extension compiler =
   where feedpath = fromFilePath
           $ T.unpack
           $ T.concat [ "feeds/", name, ".", extension ]
+
+-- | Essentially a @pandocCompiler@, but with some preprocessing:
+--
+-- * @$break$@ on a separate line will be replaced by a section break image.
+debianiaCompiler :: Compiler (Item String)
+debianiaCompiler =
+      getResourceBody
+  >>= withItemBody (go . split "\n\n$break$\n\n")
+  >>= renderPandoc
+
+  where
+  go :: [String] -> Compiler String
+  go [] = return ""
+  go [single] = return single
+  go (before:after:rest) = do
+    empty <- makeItem ""
+    new <- loadAndApplyTemplate
+             "templates/break.html"
+             (constField "before" before <> constField "after" after)
+             empty
+    let newBody = itemBody new
+    go (newBody:rest)
 
 {---- SETTINGS ----}
 

@@ -17,7 +17,7 @@ encrypt the message). I also have [an old key, 0x0a1d7d827b52fb07][pgp-old],
 that dates back to the days when I tried PGP software for the first time.
 I lost its revocation certificate, so please just ignore it.
 
-<div class="center">~ * ~</div>
+$break$
 
 I started [blogging](http://debiania.blogspot.com) back in 2008, a few weeks
 after I installed Debian (hence the blog's name). I kept my posts as purely

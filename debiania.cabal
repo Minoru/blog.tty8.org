@@ -15,6 +15,7 @@ Executable debiania
     Main-is: debiania.hs
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
+                 , MissingH
                  , hakyll == 4.*
                  , text
                  , time
