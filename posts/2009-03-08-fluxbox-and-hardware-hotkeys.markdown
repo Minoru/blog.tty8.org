@@ -5,8 +5,69 @@ categories:
 tags: hardware,fluxbox
 ---
 
-Итак, имеется клавиатура <a href="http://www.a4tech.com/ENNEW/product.asp?cid=2&scid=101&id=279">A4Tech KL-7MU</a> (с рядом горячих клавиш, выполненных в виде отдельных кнопок) и Debian GNU/Linux с Fluxbox'ом в качестве менеджера окон. Давайте-ка заставим горячие кнопки делать то, что им положено — к примеру, управлять MPD.<br /><a name='more'></a><br />Собственно, управление сводится к добавлению в ~/.fluxbox/keys строк вида:<br /><pre class="code">None      ИмяКнопки      :ExecCommand mpc действие</pre>Как видите, совершенно ничего сложного. Осталось только определится с именами кнопок и действиями для mpc.<br /><br />Итак, какие в иксах есть кнопки для управления звуком:<br /><pre class="code">Имя кнопки             Производимое действие<br />XF86AudioPrev          Предыдущий трек<br />XF86AudioNext          Следующий трек<br />XF86AudioPlay          Играть/пауза<br />XF86AudioStop          Остановить воспроизведение<br />XF86AudioRaiseVolume   Повысить громкость<br />XF86AudioLowerVolume   Понизить громкость</pre>Всё, что нам нужно сделать — объяснить X.Org'у, где какие клавиши. Клавиши компьютер воспринимает по так называемым кэйкодам (keycode). Для того, чтобы их определить, надо открыть терминал и запустить программу xev. Появится маленькое квадратное окно — именно оно нам и нужно. Не переключаясь на другие окна, поочерёдно нажимайте горячие клавиши и записывайте из кэйкоды (в моём примере вывода они выделены полужирным):<pre class="code">KeyPress event, serial 32, synthetic NO, window 0x2200001,<br />root 0x87, subw 0x0, time 12449423, (-155,433), root:(584,456),<br />state 0x10, <b>keycode 234</b> (keysym 0x0, <font color="green">NoSymbol</font>), same_screen YES,<br />XLookupString gives 0 bytes: <br />XmbLookupString gives 0 bytes: <br />XFilterEvent returns: False<br /><br />KeyRelease event, serial 35, synthetic NO, window 0x2200001,<br />root 0x87, subw 0x0, time 12449548, (-155,433), root:(584,456),<br />state 0x10, <b>keycode 234</b> (keysym 0x0, <font color="green">NoSymbol</font>), same_screen YES,<br />XLookupString gives 0 bytes: <br />XFilterEvent returns: False</pre>Обратите внимание на то, что выделено зелёным — важно, чтобы там было именно NoSymbol. Если там какое-то другое значение, значит этой кнопке уже назначено имя. В таком случае не записывайте код, запишите имя — и пропустите следующий шаг, где мы будем модифицировать .Xmodmap. Хотя для надёжности наблюдайте, чтобы имя совпадало со значением кнопки — и, если оно не совпадает, записывайте кэйкод, чтобы переназначить имя.<br /><br />Ну что же, у нас есть кэйкоды — теперь будем назначать имена.<br /><br />Для этого создадим и отредактируем файл ~/.Xmodmap. Он должен выглядеть примерно так:<pre class="code">keycode 144 = XF86AudioPrev<br />keycode 153 = XF86AudioNext<br />keycode 164 = XF86AudioStop<br />keycode 162 = XF86AudioPlay<br />keycode 176 = XF86AudioRaiseVolume<br />keycode 174 = XF86AudioLowerVolume<br />keycode 160 = XF86AudioMute</pre>Для того, чтобы сразу применить созданную схему, наберите:<pre class="code">xmodmap ~/.Xmodmap</pre><br />Итого, осталась самая малость — прописать хоткеи в конфиге Fluxbox'а.<br />Делается это, естественно, в ~/fluxbox/keys.<br /><br /><i><b>Маленькое замечание:</b> перед прописыванием команд в конфиг вам нужно выяснить, как управлять вашим плеером командами из консоли. У меня MPD, так что я буду использовать mpc. Если у вас amaroK, поглядите в сторону dcop. По остальным плеерам советовать не берусь — гуглите.</i><br />Я не буду долго объяснять, что да как писать — просто продемонстрирую свой участок конфига:<br /><pre class="code">None    XF86AudioPrev        :ExecCommand mpc prev<br />None    XF86AudioPlay        :ExecCommand mpc toggle<br />None    XF86AudioStop        :ExecCommand mpc stop<br />None    XF86AudioNext        :ExecCommand mpc next<br />None    XF86AudioRaiseVolume :ExecCommand mpc volume +5<br />None    XF86AudioLowerVolume :ExecCommand mpc volume -5<br />Control XF86AudioPrev        :ExecCommand mpc seek -00:00:05<br />Control XF86AudioNext        :ExecCommand mpc seek +00:00:05</pre>Пробуйте. Удачи! ;)<br /><i>P.S. Спасибо Bob R.'у за идею с Ctrl+кнопка — очень удобно :)</i>
+Итак, имеется клавиатура [A4Tech KL-7MU](http://www.a4tech.com/ENNEW/product.asp?cid=2&scid=101&id=279) (с рядом горячих клавиш, выполненных в виде отдельных кнопок) и Debian GNU/Linux с Fluxbox'ом в качестве менеджера окон. Давайте-ка заставим горячие кнопки делать то, что им положено — к примеру, управлять MPD.
 
-<h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
+Собственно, управление сводится к добавлению в ~/.fluxbox/keys строк вида:
+```
+None      ИмяКнопки      :ExecCommand mpc действие
+```
+Как видите, совершенно ничего сложного. Осталось только определится с именами кнопок и действиями для mpc.
 
+Итак, какие в иксах есть кнопки для управления звуком:
+```
+Имя кнопки             Производимое действие
+XF86AudioPrev          Предыдущий трек
+XF86AudioNext          Следующий трек
+XF86AudioPlay          Играть/пауза
+XF86AudioStop          Остановить воспроизведение
+XF86AudioRaiseVolume   Повысить громкость
+XF86AudioLowerVolume   Понизить громкость
+```
+Всё, что нам нужно сделать — объяснить X.Org'у, где какие клавиши. Клавиши компьютер воспринимает по так называемым кэйкодам (keycode). Для того, чтобы их определить, надо открыть терминал и запустить программу xev. Появится маленькое квадратное окно — именно оно нам и нужно. Не переключаясь на другие окна, поочерёдно нажимайте горячие клавиши и записывайте из кэйкоды (в моём примере вывода они выделены полужирным):
+<pre><code>KeyPress event, serial 32, synthetic NO, window 0x2200001,
+root 0x87, subw 0x0, time 12449423, (-155,433), root:(584,456),
+state 0x10, <b>keycode 234</b> (keysym 0x0, <font color="green">NoSymbol</font>), same_screen YES,
+XLookupString gives 0 bytes: 
+XmbLookupString gives 0 bytes: 
+XFilterEvent returns: False
 
+KeyRelease event, serial 35, synthetic NO, window 0x2200001,
+root 0x87, subw 0x0, time 12449548, (-155,433), root:(584,456),
+state 0x10, <b>keycode 234</b> (keysym 0x0, <font color="green">NoSymbol</font>), same_screen YES,
+XLookupString gives 0 bytes: 
+XFilterEvent returns: False</code></pre>
+Обратите внимание на то, что выделено зелёным — важно, чтобы там было именно NoSymbol. Если там какое-то другое значение, значит этой кнопке уже назначено имя. В таком случае не записывайте код, запишите имя — и пропустите следующий шаг, где мы будем модифицировать .Xmodmap. Хотя для надёжности наблюдайте, чтобы имя совпадало со значением кнопки — и, если оно не совпадает, записывайте кэйкод, чтобы переназначить имя.
+
+Ну что же, у нас есть кэйкоды — теперь будем назначать имена.
+
+Для этого создадим и отредактируем файл ~/.Xmodmap. Он должен выглядеть примерно так:
+```
+keycode 144 = XF86AudioPrev
+keycode 153 = XF86AudioNext
+keycode 164 = XF86AudioStop
+keycode 162 = XF86AudioPlay
+keycode 176 = XF86AudioRaiseVolume
+keycode 174 = XF86AudioLowerVolume
+keycode 160 = XF86AudioMute
+```
+Для того, чтобы сразу применить созданную схему, наберите:
+```
+xmodmap ~/.Xmodmap
+```
+Итого, осталась самая малость — прописать хоткеи в конфиге Fluxbox'а.
+Делается это, естественно, в ~/fluxbox/keys.
+
+<i><b>Маленькое замечание:</b> перед прописыванием команд в конфиг вам нужно выяснить, как управлять вашим плеером командами из консоли. У меня MPD, так что я буду использовать mpc. Если у вас amaroK, поглядите в сторону dcop. По остальным плеерам советовать не берусь — гуглите.</i>
+Я не буду долго объяснять, что да как писать — просто продемонстрирую свой участок конфига:
+```
+None    XF86AudioPrev        :ExecCommand mpc prev
+None    XF86AudioPlay        :ExecCommand mpc toggle
+None    XF86AudioStop        :ExecCommand mpc stop
+None    XF86AudioNext        :ExecCommand mpc next
+None    XF86AudioRaiseVolume :ExecCommand mpc volume +5
+None    XF86AudioLowerVolume :ExecCommand mpc volume -5
+Control XF86AudioPrev        :ExecCommand mpc seek -00:00:05
+Control XF86AudioNext        :ExecCommand mpc seek +00:00:05
+```
+Пробуйте. Удачи! ;)
+<i>P.S. Спасибо Bob R.'у за идею с Ctrl+кнопка — очень удобно :)</i>

@@ -1,0 +1,41 @@
+OnDesktop Mouse1 	:HideMenus
+OnDesktop Mouse2 	:WorkspaceMenu
+OnDesktop Mouse3 	:RootMenu
+#OnDesktop Mouse4 	:NextWorkspace
+#OnDesktop Mouse5 	:PrevWorkspace
+Control Tab		:NextWorkspace
+
+Mod1 	Tab 		:NextWindow
+#Mod1 	Shift 	Tab	:PrevWindow
+Mod1 	F1 		:Workspace 1
+Mod1 	F2 		:Workspace 2
+Mod1 	F3 		:Workspace 3
+Mod1 	F4 		:Workspace 4
+#Mod1 	F5 		:Workspace 5
+#Mod1 	F6 		:Workspace 6
+#Mod1 	F7 		:Workspace 7
+#Mod1 	F8 		:Workspace 8
+#Mod1 	F9 		:Workspace 9
+#Mod1 	F10 		:Workspace 10
+#Mod1 	F11 		:Workspace 11
+#Mod1 	F12 		:Workspace 12
+
+# Mod1 - Alt
+# Mod4 - Win
+# Shift, Tab and Control mean Shift, Tab and Control :)
+Mod1	f		:ExecCommand firefox
+Mod1	r		:ExecCommand fbrun
+Mod1	t		:ExecCommand urxvt -fn "xft:DejaVu Sans Mono:pixelsize=14" -rv +sb
+Mod1	x		:Close
+Mod1	c		:Maximize
+
+
+# MPD rulez!
+None	XF86AudioPrev	:ExecCommand mpc prev
+None	XF86AudioPlay	:ExecCommand mpc toggle
+None	XF86AudioStop	:ExecCommand mpc stop
+None	XF86AudioNext	:ExecCommand mpc next
+None	XF86AudioRaiseVolume	:ExecCommand mpc volume +5
+None	XF86AudioLowerVolume	:ExecCommand mpc volume -5
+Control	XF86AudioPrev		:ExecCommand mpc seek -00:00:05
+Control	XF86AudioNext		:ExecCommand mpc seek +00:00:05

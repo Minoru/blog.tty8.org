@@ -5,7 +5,21 @@ categories:
 tags: linux,tips'n'tricks
 ---
 
-Иногда возникает такая вот задача: нужно удалить все файлы, кроме одного (или пары) из них. Раньше я не знал, как это сделать, но вчера научился — слава <a href="http://www.commandlinefu.com/commands/view/6652/remove-all-but-one-specific-file">commandlinefu</a>!<br /><br />Итак, сначала вариант для моего любимого ZSH:<br /><div class="code"><code>$ setopt extended_globs<br />$ rm ^file # удаляем всё, кроме file<br />$ rm ^(some|files) # удаляем всё, кроме some и files</code></div><br />А теперь — для BASH:<br /><div class="code"><code>$ shopt -s extglob<br />$ rm !(file)<br />$ rm !(some|files)</code></div>
+Иногда возникает такая вот задача: нужно удалить все файлы, кроме одного (или пары) из них. Раньше я не знал, как это сделать, но вчера научился — слава <a href="http://www.commandlinefu.com/commands/view/6652/remove-all-but-one-specific-file">commandlinefu</a>!
+
+Итак, сначала вариант для моего любимого ZSH:
+```
+$ setopt extended_globs
+$ rm ^file # удаляем всё, кроме file
+$ rm ^(some|files) # удаляем всё, кроме some и files
+```
+
+А теперь — для BASH:
+```
+$ shopt -s extglob
+$ rm !(file)
+$ rm !(some|files)
+```
 
 <h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>

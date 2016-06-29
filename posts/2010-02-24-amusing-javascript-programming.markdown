@@ -5,7 +5,158 @@ categories:
 tags: programming
 ---
 
-Привет!<br /><br />Недавно мой сосед показал мне главную страничку ВКонтакта со счётчиком <strike>идиотов</strike>зарегистрированных пользователей и обратил внимание на то, что инет отключен, а счётчик работает дальше. Ясен пень, что реализовано сиё счастье с помощью JavaScript, потому и работает в оффлайне. Сосед получил разъяснения и успокоился, а у меня зачесались руки — стало интересно, как же работают такие счётчики.<br /><a name='more'></a><br />Я взял код <a href="http://vkontakte.ru/">главной ВКонтакта</a>, а также <a href="http://gmail.com/">login-страницы GMail</a>, на которой присутствует счётчик предоставляемого пользователям места, и проанализировал используемый там код. Если вам всё ещё интересен весь этот бред — читайте дальше :)<br /><br />Начнём с гугла.<br />Код:<br /><div class="code"><font color="#0000c0">// Estimates of nanite storage generation over time.</font><br /><font color="#008080">var</font>&nbsp;CP = <font color="#008080">[</font><br />&nbsp;<font color="#008080">[</font>&nbsp;1199433600000, 6283&nbsp;<font color="#008080">]</font>,<br />&nbsp;<font color="#008080">[</font>&nbsp;1224486000000, 7254&nbsp;<font color="#008080">]</font>,<br />&nbsp;<font color="#008080">[</font>&nbsp;2144908800000, 10996&nbsp;<font color="#008080">]</font>,<br />&nbsp;<font color="#008080">[</font>&nbsp;2147328000000, 43008&nbsp;<font color="#008080">]</font>,<br />&nbsp;<font color="#008080">[</font>&nbsp;46893711600000, <font color="#008000">Number</font>.MAX_VALUE <font color="#008080">]</font><br /><font color="#008080">]</font>;<br /><br /><br /><font color="#008080">function</font>&nbsp;updateQuota()&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(!quota_elem)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;<font color="#8b0000">return</font>;<br />&nbsp;&nbsp;<font color="#008080">}</font><br />&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;now = (<font color="#8b0000">new</font>&nbsp;<font color="#008000">Date</font>()).getTime();<br />&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;i;<br />&nbsp;&nbsp;<font color="#8b0000">for</font>&nbsp;(i = 0; i &lt; CP.length; i++)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(now &lt; CP<font color="#008080">[</font>i<font color="#008080">][</font>0<font color="#008080">]</font>)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8b0000">break</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">}</font><br />&nbsp;&nbsp;<font color="#008080">}</font><br />&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(i == 0)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(updateQuota, 1000); <br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<font color="#8b0000">else</font>&nbsp;<font color="#8b0000">if</font>&nbsp;(i == CP.length)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;quota_elem.innerHTML = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>1<font color="#008080">]</font>;<br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<font color="#8b0000">else</font>&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;ts = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>0<font color="#008080">]</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;bs = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>1<font color="#008080">]</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;quota_elem.innerHTML = format(((now-ts)&nbsp;/ (CP<font color="#008080">[</font>i<font color="#008080">][</font>0<font color="#008080">]</font>-ts)&nbsp;* (CP<font color="#008080">[</font>i<font color="#008080">][</font>1<font color="#008080">]</font>-bs))&nbsp;+ bs); <br />&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(updateQuota, 1000); <br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<br /><font color="#008080">}</font></div>Теперь пошагово разберём процесс получения надписи вроде “Over 2757.272164 megabytes (and counting) of free storage”.<br /><br />Итак, часть первая — массив CP. Комментарий любезно подсказывает, что в массиве этом содержится ничто иное, как прикидки на количество места, которое Гугл будет предоставлять в определённый момент времени. Дальше идёт несколько пар значений вида «таймштамп UNIX (в миллисекундах)»—«мегабайты».<br /><br />Часть вторая — собственно функция, которая обновляет элемент с мегабайтами. Вот код, но уже с моими комментариями:<br /><div class="code"><font color="#008080">function</font>&nbsp;updateQuota()&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;<font color="#0000c0">// существует ли элемент, в который надо выводить мегабайты?</font><br />&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(!quota_elem)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;<font color="#0000c0">// элемента нет — закругляемся</font><br />&nbsp;&nbsp;<font color="#8b0000">return</font>;<br />&nbsp;&nbsp;<font color="#008080">}</font><br /><br />&nbsp;&nbsp;<font color="#0000c0">// получаем текущее время в виде UNIX timestamp в миллисекундах</font><br />&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;now = (<font color="#8b0000">new</font>&nbsp;<font color="#008000">Date</font>()).getTime();<br /><br />&nbsp;&nbsp;<font color="#0000c0">// объявляем переменную для цикла</font><br />&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;i;<br /><br />&nbsp;&nbsp;<font color="#0000c0">// перебираем все записи в CP</font><br />&nbsp;&nbsp;<font color="#8b0000">for</font>&nbsp;(i = 0; i &lt; CP.length; i++)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// если текущий таймштамп меньше того, что в массиве — прерываем цикл</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(now &lt; CP<font color="#008080">[</font>i<font color="#008080">][</font>0<font color="#008080">]</font>)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#8b0000">break</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">}</font><br />&nbsp;&nbsp;<font color="#008080">}</font><br /><br /><br />&nbsp;&nbsp;<font color="#8b0000">if</font>&nbsp;(i == 0)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// если таймштамп, на котором прервались — первый в массиве, то…</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// вызвать данную функцию снова через секунду</font><br />&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(updateQuota, 1000); <br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// по-русски это звучит как «ждать наступления февраля 2008-го года»</font><br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<font color="#8b0000">else</font>&nbsp;<font color="#8b0000">if</font>&nbsp;(i == CP.length)&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// если вышеприведённое условие не сработало и</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// если все таймштампы в массиве меньше текущего времени, то</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// записать количество мегабайт из последней записи в массиве</font><br />&nbsp;&nbsp;&nbsp;&nbsp;quota_elem.innerHTML = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>1<font color="#008080">]</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// это на случай, если код долго не будут апдейтить — тогда в качестве мегабайт будет принято</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// самое большое число, допустимое в JavaScript — это около 1.7976931348623157e+308</font><br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<font color="#8b0000">else</font>&nbsp;<font color="#008080">{</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// если ни одно из вышеприведённых условий не сработало, то</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// переменной ts присвоить таймштамп последней записи,</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// а переменной bs — кол-во мегабайт, соответствующих этому таймштампу</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;ts = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>0<font color="#008080">]</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#008080">var</font>&nbsp;bs = CP<font color="#008080">[</font>i - 1<font color="#008080">][</font>1<font color="#008080">]</font>;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// обновить запись с помощью нехитрой математики:</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// now-ts — разность между текущим временем и используемым таймштампом</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// CP[i][0]-ts — это разность во времени между текущим и следующим таймштампами</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// CP[i][1]-bs — разность в мегабайтах между текущим и следующим таймштампами</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// ((now-ts) / (CP[i][0]-ts) * (CP[i][1]-bs)) — сколько дополнительного места начал</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">//&nbsp;&nbsp;&nbsp;&nbsp; давать Гугл относительно текущего таймштампа</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// +bs — относительную величину (прирост мегабайт) превращаем в абсолютную (сколько же</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">//&nbsp;&nbsp;&nbsp;&nbsp; мегабайт выдают теперь)</font><br />&nbsp;&nbsp;&nbsp;&nbsp;quota_elem.innerHTML = format(((now-ts)&nbsp;/ (CP<font color="#008080">[</font>i<font color="#008080">][</font>0<font color="#008080">]</font>-ts)&nbsp;* (CP<font color="#008080">[</font>i<font color="#008080">][</font>1<font color="#008080">]</font>-bs))&nbsp;+ bs); <br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000c0">// выставляем таймер — через секунду опять обновить значение</font><br />&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(updateQuota, 1000); <br />&nbsp;&nbsp;<font color="#008080">}</font>&nbsp;<br /><font color="#008080">}</font></div><br /><br />Так-то. Теперь перейдём к ВКонтакту. Программисты Дурова, очевидно, очень любят математику, в особенности статистику и генерацию случайных чисел. Вот их код:<br /><div class="code"><font color="#008080">var</font>&nbsp;memCount = 63301534;<br /><font color="#008080">var</font>&nbsp;memPerSec = 2.16273601705;<br /><font color="#008080">function</font>&nbsp;updateCount()&nbsp;<font color="#008080">{</font><br />&nbsp;next = -(1000&nbsp;/ memPerSec)*Math.log(Math.random());<br />&nbsp;memCountString = <font color="#c00000">''</font>&nbsp;+ memCount;<br />&nbsp;len = memCountString.length;<br />&nbsp;memCountString = memCountString.substr(0,len-6)+<font color="#c00000">'&lt;span style=&quot;font-size:8px&quot;&gt; &lt;/span&gt;'</font>+memCountString.substr(len-6,3)+<font color="#c00000">'&lt;span style=&quot;font-size:8px&quot;&gt; &lt;/span&gt;'</font>+memCountString.substr(len-3,3);<br />&nbsp;ge(<font color="#c00000">'memCount'</font>).innerHTML = memCountString;<br />&nbsp;memCount = memCount + 1;<br />&nbsp;setTimeout(updateCount, next);<br /><font color="#008080">}</font></div>Как видите, всё очень лаконично: сейчас насчитывается <code>memCount</code> пиплов, каждую секунду к ним присоединяется ещё <code>memPerSec</code> тел. Вот только незадача: каждую секунду добавлять по чуть более чем два человека некрасиво. Лучше уж почаще, но по одному целому. Т.к. люди несовершенны, они не регистрируются каждые, скажем, 500 милисекунд — это тоже надо учесть. Короче, пришлось им придумать специальную формулу, которую я подробно рассматриваю в коде ниже:<br /><div class="code"><font color="#0000c0">// текущее количество пользователей Вконтакта</font><br /><font color="#008080">var</font>&nbsp;memCount = 63301534;<br /><font color="#0000c0">// примерное количество регистрирующихся в секунду</font><br /><font color="#008080">var</font>&nbsp;memPerSec = 2.16273601705;<br /><br /><font color="#0000c0">// собственно функция, обновляющая счётчик</font><br /><font color="#008080">function</font>&nbsp;updateCount()&nbsp;<font color="#008080">{</font><br />&nbsp;<font color="#0000c0">// хитрая математическая формула, вычисляющая длинну промежутков между</font><br />&nbsp;<font color="#0000c0">//&nbsp;&nbsp;&nbsp;&nbsp; регистрациями</font><br />&nbsp;<font color="#0000c0">// 1000 / memPerSec — среднее время между регистрациями</font><br />&nbsp;<font color="#0000c0">// random возвращает дробное число от 0 до 1</font><br />&nbsp;<font color="#0000c0">// логарифм используется для того, чтобы хотя бы иногда получать время</font><br />&nbsp;<font color="#0000c0">//&nbsp;&nbsp;&nbsp;&nbsp;_больше_ среднего</font><br />&nbsp;<font color="#0000c0">// минус перед формулой компенсирует тот факт, что логарифм числа из</font><br />&nbsp;<font color="#0000c0">//&nbsp;&nbsp;&nbsp;&nbsp;диапазона 0..1 отрицателен</font><br />&nbsp;next = -(1000&nbsp;/ memPerSec)*Math.log(Math.random());<br />&nbsp;<font color="#0000c0">// конвертируем число в строку</font><br />&nbsp;memCountString = <font color="#c00000">''</font>&nbsp;+ memCount;<br />&nbsp;<font color="#0000c0">// вычисляем длинну строки, чтобы потом красиво разбить его на разряды</font><br />&nbsp;len = memCountString.length;<br />&nbsp;<font color="#0000c0">// собственно разбивка на разряды</font><br />&nbsp;<font color="#0000c0">// жду миллиардного пользователя, на котором эта конструкция обломается и выдаст «1000 000 000»</font><br />&nbsp;memCountString = memCountString.substr(0,len-6)+<font color="#c00000">'&lt;span style=&quot;font-size:8px&quot;&gt; &lt;/span&gt;'</font>+memCountString.substr(len-6,3)+<font color="#c00000">'&lt;span style=&quot;font-size:8px&quot;&gt; &lt;/span&gt;'</font>+memCountString.substr(len-3,3);<br />&nbsp;<font color="#0000c0">// выводим данные</font><br />&nbsp;ge(<font color="#c00000">'memCount'</font>).innerHTML = memCountString;<br />&nbsp;<font color="#0000c0">// наконец, добавляем к счётчику свежезарегистрировавшегося пользователя</font><br />&nbsp;memCount = memCount + 1;<br />&nbsp;<font color="#0000c0">// выставляем таймер, чтобы через next миллисекунд обновить счётчик</font><br />&nbsp;setTimeout(updateCount, next);<br /><font color="#008080">}</font></div><br /><br />Не знаю, насколько полезно такое вот спонтанное и бессистемное ковыряние в коде, но мне это нравится. Надеюсь, я не один такой, и этот пост будет интересен кому-то ещё ;)
+Привет!
+
+Недавно мой сосед показал мне главную страничку ВКонтакта со счётчиком <strike>идиотов</strike>зарегистрированных пользователей и обратил внимание на то, что инет отключен, а счётчик работает дальше. Ясен пень, что реализовано сиё счастье с помощью JavaScript, потому и работает в оффлайне. Сосед получил разъяснения и успокоился, а у меня зачесались руки — стало интересно, как же работают такие счётчики.
+
+Я взял код <a href="http://vkontakte.ru/">главной ВКонтакта</a>, а также <a href="http://gmail.com/">login-страницы GMail</a>, на которой присутствует счётчик предоставляемого пользователям места, и проанализировал используемый там код. Если вам всё ещё интересен весь этот бред — читайте дальше :)
+
+Начнём с гугла.<br/>
+Код:
+```javascript
+// Estimates of nanite storage generation over time.
+var CP = [
+ [ 1199433600000, 6283 ],
+ [ 1224486000000, 7254 ],
+ [ 2144908800000, 10996 ],
+ [ 2147328000000, 43008 ],
+ [ 46893711600000, Number.MAX_VALUE ]
+];
+
+
+function updateQuota() {
+  if (!quota_elem) {
+  return;
+  }
+  var now = (new Date()).getTime();
+  var i;
+  for (i = 0; i < CP.length; i++) {
+    if (now < CP[i][0]) {
+      break;
+    }
+  }
+  if (i == 0) {
+    setTimeout(updateQuota, 1000);
+  } else if (i == CP.length) {
+    quota_elem.innerHTML = CP[i - 1][1];
+  } else {
+    var ts = CP[i - 1][0];
+    var bs = CP[i - 1][1];
+    quota_elem.innerHTML = format(((now-ts) / (CP[i][0]-ts) * (CP[i][1]-bs)) + bs);
+    setTimeout(updateQuota, 1000);
+  } 
+}
+```
+Теперь пошагово разберём процесс получения надписи вроде “Over 2757.272164 megabytes (and counting) of free storage”.
+
+Итак, часть первая — массив CP. Комментарий любезно подсказывает, что в массиве этом содержится ничто иное, как прикидки на количество места, которое Гугл будет предоставлять в определённый момент времени. Дальше идёт несколько пар значений вида «таймштамп UNIX (в миллисекундах)»—«мегабайты».
+
+Часть вторая — собственно функция, которая обновляет элемент с мегабайтами. Вот код, но уже с моими комментариями:
+```javascript
+function updateQuota() {
+  // существует ли элемент, в который надо выводить мегабайты?
+  if (!quota_elem) {
+  // элемента нет — закругляемся
+  return;
+  }
+
+  // получаем текущее время в виде UNIX timestamp в миллисекундах
+  var now = (new Date()).getTime();
+
+  // объявляем переменную для цикла
+  var i;
+
+  // перебираем все записи в CP
+  for (i = 0; i < CP.length; i++) {
+    // если текущий таймштамп меньше того, что в массиве — прерываем цикл
+    if (now < CP[i][0]) {
+      break;
+    }
+  }
+
+
+  if (i == 0) {
+    // если таймштамп, на котором прервались — первый в массиве, то…
+    // вызвать данную функцию снова через секунду
+    setTimeout(updateQuota, 1000);
+    // по-русски это звучит как «ждать наступления февраля 2008-го года»
+  } else if (i == CP.length) {
+    // если вышеприведённое условие не сработало и
+    // если все таймштампы в массиве меньше текущего времени, то
+    // записать количество мегабайт из последней записи в массиве
+    quota_elem.innerHTML = CP[i - 1][1];
+    // это на случай, если код долго не будут апдейтить — тогда в качестве мегабайт будет принято
+    // самое большое число, допустимое в JavaScript — это около 1.7976931348623157e+308
+  } else {
+    // если ни одно из вышеприведённых условий не сработало, то
+    // переменной ts присвоить таймштамп последней записи,
+    // а переменной bs — кол-во мегабайт, соответствующих этому таймштампу
+    var ts = CP[i - 1][0];
+    var bs = CP[i - 1][1];
+    // обновить запись с помощью нехитрой математики:
+    // now-ts — разность между текущим временем и используемым таймштампом
+    // CP[i][0]-ts — это разность во времени между текущим и следующим таймштампами
+    // CP[i][1]-bs — разность в мегабайтах между текущим и следующим таймштампами
+    // ((now-ts) / (CP[i][0]-ts) * (CP[i][1]-bs)) — сколько дополнительного места начал
+    //     давать Гугл относительно текущего таймштампа
+    // +bs — относительную величину (прирост мегабайт) превращаем в абсолютную (сколько же
+    //     мегабайт выдают теперь)
+    quota_elem.innerHTML = format(((now-ts) / (CP[i][0]-ts) * (CP[i][1]-bs)) + bs);
+    // выставляем таймер — через секунду опять обновить значение
+    setTimeout(updateQuota, 1000);
+  } 
+}
+```
+
+Так-то. Теперь перейдём к ВКонтакту. Программисты Дурова, очевидно, очень любят математику, в особенности статистику и генерацию случайных чисел. Вот их код:
+```javascript
+var memCount = 63301534;
+var memPerSec = 2.16273601705;
+function updateCount() {
+ next = -(1000 / memPerSec)*Math.log(Math.random());
+ memCountString = '' + memCount;
+ len = memCountString.length;
+ memCountString = memCountString.substr(0,len-6)+'<span style="font-size:8px"> </span>'+memCountString.substr(len-6,3)+'<span style="font-size:8px"> </span>'+memCountString.substr(len-3,3);
+ ge('memCount').innerHTML = memCountString;
+ memCount = memCount + 1;
+ setTimeout(updateCount, next);
+}
+```
+Как видите, всё очень лаконично: сейчас насчитывается <code>memCount</code> пиплов, каждую секунду к ним присоединяется ещё <code>memPerSec</code> тел. Вот только незадача: каждую секунду добавлять по чуть более чем два человека некрасиво. Лучше уж почаще, но по одному целому. Т.к. люди несовершенны, они не регистрируются каждые, скажем, 500 милисекунд — это тоже надо учесть. Короче, пришлось им придумать специальную формулу, которую я подробно рассматриваю в коде ниже:
+```javascript
+// текущее количество пользователей Вконтакта
+var memCount = 63301534;
+// примерное количество регистрирующихся в секунду
+var memPerSec = 2.16273601705;
+
+// собственно функция, обновляющая счётчик
+function updateCount() {
+ // хитрая математическая формула, вычисляющая длинну промежутков между
+ //     регистрациями
+ // 1000 / memPerSec — среднее время между регистрациями
+ // random возвращает дробное число от 0 до 1
+ // логарифм используется для того, чтобы хотя бы иногда получать время
+ //    _больше_ среднего
+ // минус перед формулой компенсирует тот факт, что логарифм числа из
+ //    диапазона 0..1 отрицателен
+ next = -(1000 / memPerSec)*Math.log(Math.random());
+ // конвертируем число в строку
+ memCountString = '' + memCount;
+ // вычисляем длинну строки, чтобы потом красиво разбить его на разряды
+ len = memCountString.length;
+ // собственно разбивка на разряды
+ // жду миллиардного пользователя, на котором эта конструкция обломается и выдаст «1000 000 000»
+ memCountString = memCountString.substr(0,len-6)+'<span style="font-size:8px"> </span>'+memCountString.substr(len-6,3)+'<span style="font-size:8px"> </span>'+memCountString.substr(len-3,3);
+ // выводим данные
+ ge('memCount').innerHTML = memCountString;
+ // наконец, добавляем к счётчику свежезарегистрировавшегося пользователя
+ memCount = memCount + 1;
+ // выставляем таймер, чтобы через next миллисекунд обновить счётчик
+ setTimeout(updateCount, next);
+}
+```
+
+Не знаю, насколько полезно такое вот спонтанное и бессистемное ковыряние в коде, но мне это нравится. Надеюсь, я не один такой, и этот пост будет интересен кому-то ещё ;)
 
 <h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
@@ -32,14 +183,18 @@ tags: programming
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-02-24T22:08:57.904+02:00, Анонимный wrote:</p>
 <p class='hakyll-convert-comment-body'>
-В описании дважды гугловский код FAIL!<br /><br />Реквестирую качественное капитанство, так-то.
+В описании дважды гугловский код FAIL!
+
+Реквестирую качественное капитанство, так-то.
 </p>
 </div>
 
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-02-24T23:12:45.461+02:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-Спасибо комментаторам за их замечания, исправил.<br /><br />Ежели к «капитанству» было отнесено обилие комментариев или сам факт существования этого поста, то извиняйте — волен писать о том, о чём хочу. Может быть, какому-то начинающему web-дизайнеру будет интересно почитать, как такие счётчики делать.
+Спасибо комментаторам за их замечания, исправил.
+
+Ежели к «капитанству» было отнесено обилие комментариев или сам факт существования этого поста, то извиняйте — волен писать о том, о чём хочу. Может быть, какому-то начинающему web-дизайнеру будет интересно почитать, как такие счётчики делать.
 </p>
 </div>
 
@@ -53,7 +208,10 @@ tags: programming
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-02-25T16:40:22.444+02:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-<b>2 Alexey Romanenko:</b><br />Потому что мне кажется, что 2*rand — более очевидное решение, нежели log(rand).<br /><br />А вообще абзац перед кодом ВКонтакта нужно воспринимать шутливо — там ни капли злобы или наезда, клянусь.
+<b>2 Alexey Romanenko:</b><br/>
+Потому что мне кажется, что 2\*rand — более очевидное решение, нежели log(rand).
+
+А вообще абзац перед кодом ВКонтакта нужно воспринимать шутливо — там ни капли злобы или наезда, клянусь.
 </p>
 </div>
 

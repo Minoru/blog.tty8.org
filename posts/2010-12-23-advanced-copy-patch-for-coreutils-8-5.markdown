@@ -5,7 +5,575 @@ categories:
 tags: linux,tips'n'tricks
 ---
 
-Привет!<br /><br />Полтора часа назад в <a href="http://psto.net/">псто</a> пролетело упоминание об интересном патче для <code>coreutils</code> <a href="http://www.beatex.org/web/advancedcopy.html">Advanced Copy</a>, добавляющем в <code>cp</code> и <code>mv</code> прогресс–бар. Выглядит это так:<br /><br /><div class="code"><code>% cp -g ~/torrents/downloads/Patent_Absurdity_HQ_768kbit.ogv /dev/null<br />cp: переписать «/dev/null»? <b>y</b>344                                      <br />                                                                              <br />0 files copied so far...                                 135,7 MiB / 159,5 MiB<br />[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-----------] 85,1 %<br />Copying at   1,0 GiB/s (about 0h 0m 0s remaining)<br />...ru/torrents/downloads/Patent_Absurdity_HQ_768kbit.ogv 135,7 MiB / 159,4 MiB<br />[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-----------] 85,2 %</code></div><br /><br />Польза этой штуки лично для меня под вопросом, но я решил всё же попробовать её. Так как в Debian Squeeze сейчас уже <code>coreutils</code> версии 8.5, патч пришлось немного поправить. Модифицированную версию можно <a href="http://ix.io/1kI">скачать</a> или <a href="http://ix.io/1kI/diff">смотреть онлайн</a> (вторая ссылка отличается наличием подсветки). Также на всякий случай добавлю его в пост — как говаривал <b>virens</b>, сторонние сервисы могут отказывать, но если уж упадёт блог…<br /><a name='more'></a><br /><br /><div class="code"><code><font face="monospace"> <font color="#008000">diff -Nru coreutils-8.5/src/copy.c coreutils-8.5-1/src/copy.c</font><br> <font color="#008000">--- coreutils-8.5/src/copy.c&nbsp;&nbsp;&nbsp;&nbsp;2010-04-20 22:52:04.000000000 +0300</font><br> <font color="#008000">+++ coreutils-8.5-1/src/copy.c&nbsp;&nbsp;2010-12-23 13:51:23.000000000 +0200</font><br> <font color="#8b0000">@@ -457,6 +457,56 @@</font><br> &nbsp;&nbsp; return lchmod (name, mode);<br> &nbsp;}<br> &nbsp;<br> <font color="#008080">+/* BEGIN progress mod */</font><br> <font color="#008080">+static void file_progress_bar ( char * _cDest, int _iBarLength, int _iProgress, int _iTotal )</font><br> <font color="#008080">+{</font><br> <font color="#008080">+&nbsp;&nbsp;// write number to progress bar</font><br> <font color="#008080">+&nbsp;&nbsp;float fPercent = ( float ) _iProgress / ( float ) _iTotal * 100.f;</font><br> <font color="#008080">+&nbsp;&nbsp;sprintf ( _cDest + ( _iBarLength - 6 ), &quot;%4.1f&quot;, fPercent );</font><br> <font color="#008080">+&nbsp;&nbsp;// remove zero</font><br> <font color="#008080">+&nbsp;&nbsp;_cDest[_iBarLength - 2] = ' ';</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;// fill rest with '-'</font><br> <font color="#008080">+&nbsp;&nbsp;int i;</font><br> <font color="#008080">+&nbsp;&nbsp;for ( i = 1; i &lt;= _iBarLength - 9; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;if ( fPercent &gt; ( float ) ( i - 1 ) / ( _iBarLength - 10 ) * 100.f )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_cDest[i] = '|';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_cDest[i] = '-';</font><br> <font color="#008080">+&nbsp;&nbsp;}</font><br> <font color="#008080">+}</font><br> <font color="#008080">+</font><br> <font color="#008080">+int file_size_format ( char * _cDst, int _iSize, int _iCounter )</font><br> <font color="#008080">+{</font><br> <font color="#008080">+&nbsp;&nbsp;int iCounter = _iCounter;</font><br> <font color="#008080">+&nbsp;&nbsp;double dSize = ( double ) _iSize;</font><br> <font color="#008080">+&nbsp;&nbsp;while ( dSize &gt;= 1000. )</font><br> <font color="#008080">+&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;dSize /= 1024.;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;iCounter++;</font><br> <font color="#008080">+&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;/* get unit */</font><br> <font color="#008080">+&nbsp;&nbsp;char * sUnit;</font><br> <font color="#008080">+&nbsp;&nbsp;if ( iCounter == 0 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;B&quot;;</font><br> <font color="#008080">+&nbsp;&nbsp;else if ( iCounter == 1 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;KiB&quot;;</font><br> <font color="#008080">+&nbsp;&nbsp;else if ( iCounter == 2 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;MiB&quot;;</font><br> <font color="#008080">+&nbsp;&nbsp;else if ( iCounter == 3 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;GiB&quot;;</font><br> <font color="#008080">+&nbsp;&nbsp;else if ( iCounter == 4 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;TiB&quot;;</font><br> <font color="#008080">+&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sUnit = &quot;N/A&quot;;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;/* write number */</font><br> <font color="#008080">+&nbsp;&nbsp;return sprintf ( _cDst, &quot;%5.1f %s&quot;, dSize, sUnit );</font><br> <font color="#008080">+}</font><br> <font color="#008080">+/* END progress mod */</font><br> <font color="#008080">+</font><br> &nbsp;/* Copy a regular file from SRC_NAME to DST_NAME.<br> &nbsp;&nbsp;&nbsp;&nbsp;If the source file contains holes, copies holes and blocks of zeros<br> &nbsp;&nbsp;&nbsp;&nbsp;in the source file as holes in the destination file.<br> <font color="#8b0000">@@ -709,8 +759,146 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buf_alloc = xmalloc (buf_size + buf_alignment_slop);<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buf = ptr_align (buf_alloc, buf_alignment);<br> &nbsp;<br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* create a field of 6 lines */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char ** cProgressField = ( char ** ) calloc ( 6, sizeof ( char * ) );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* get console width */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int iBarLength = 80;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct winsize win;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( ioctl (STDOUT_FILENO, TIOCGWINSZ, (char *) &amp;win) == 0 &amp;&amp; win.ws_col &gt; 0 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iBarLength = win.ws_col;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* create rows */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int it;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( it = 0; it &lt; 6; it++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[it] = ( char * ) malloc ( iBarLength + 1 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* init with spaces */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int j;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( j = 0; j &lt; iBarLength; j++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[it][j] = ' ';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[it][iBarLength] = '\0';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* global progress bar? */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( g_iTotalSize )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* init global progress bar */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[2][0] = '[';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[2][iBarLength - 8] = ']';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[2][iBarLength - 7] = ' ';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[2][iBarLength - 1] = '%';</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* total size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[1][iBarLength - 11] = '/';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( cProgressField[1] + iBarLength - 9, g_iTotalSize, 1 );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* show how many files were written */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int sum_length = sprintf ( cProgressField[1], &quot;%d files copied so far...&quot;, g_iFilesCopied );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[1][sum_length] = ' ';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* truncate filename? */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int fn_length;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( strlen ( src_name ) &gt; iBarLength - 22 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fn_length =</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf ( cProgressField[4], &quot;...%s&quot;, src_name + ( strlen ( src_name ) - iBarLength + 25 ) );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fn_length = sprintf ( cProgressField[4], &quot;%s&quot;, src_name );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[4][fn_length] = ' ';</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* filesize */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[4][iBarLength - 11] = '/';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( cProgressField[4] + iBarLength - 9, src_open_sb.st_size, 0 );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int iCountDown = 1;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char * sProgressBar = cProgressField[5];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sProgressBar[0] = '[';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sProgressBar[iBarLength - 8] = ']';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sProgressBar[iBarLength - 7] = ' ';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sProgressBar[iBarLength - 1] = '%';</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* this will always save the time in between */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct timeval last_time;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday ( &amp; last_time, NULL );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int last_size = g_iTotalWritten;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (;;)<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* update countdown */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iCountDown--;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( iCountDown &lt; 0 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iCountDown = 100;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* just print one line with the percentage, but not always */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( iCountDown == 0 )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* calculate current speed */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct timeval cur_time;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday ( &amp; cur_time, NULL );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int cur_size = g_iTotalWritten + n_read_total / 1024;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int usec_elapsed = cur_time.tv_usec - last_time.tv_usec;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double sec_elapsed = ( double ) usec_elapsed / 1000000.f;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sec_elapsed += ( double ) ( cur_time.tv_sec - last_time.tv_sec );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int copy_speed = ( int ) ( ( double ) ( cur_size - last_size )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ sec_elapsed );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char s_copy_speed[20];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( s_copy_speed, copy_speed, 1 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* update vars */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_time = cur_time;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_size = cur_size;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* how many time has passed since the start? */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int isec_elapsed = cur_time.tv_sec - g_oStartTime.tv_sec;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int sec_remaining = ( int ) ( ( double ) isec_elapsed / cur_size</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* g_iTotalSize ) - isec_elapsed;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int min_remaining = sec_remaining / 60;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sec_remaining -= min_remaining * 60;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int hours_remaining = min_remaining / 60;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min_remaining -= hours_remaining * 60;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* print out */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf ( cProgressField[3],</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Copying at %s/s (about %dh %dm %ds remaining)&quot;, s_copy_speed,</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hours_remaining, min_remaining, sec_remaining );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int fs_len;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( g_iTotalSize )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* global progress bar */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_progress_bar ( cProgressField[2], iBarLength,</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalWritten + n_read_total / 1024, g_iTotalSize );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* print the global status */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs_len = file_size_format ( cProgressField[1] + iBarLength - 21,</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalWritten + n_read_total / 1024, 1 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[1][iBarLength - 21 + fs_len] = ' ';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* current progress bar */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file_progress_bar ( sProgressBar, iBarLength, n_read_total, src_open_sb.st_size );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* print the status */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fs_len = file_size_format ( cProgressField[4] + iBarLength - 21, n_read_total, 0 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cProgressField[4][iBarLength - 21 + fs_len] = ' ';</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* print the field */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( it = g_iTotalSize ? 0 : 3; it &lt; 6; it++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\033[K%s\n&quot;, cProgressField[it] );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( strlen ( cProgressField[it] ) &lt; iBarLength )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ( g_iTotalSize )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[6A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[3A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fflush ( stdout );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; word *wp = NULL;<br> &nbsp;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssize_t n_read = read (source_desc, buf, buf_size);<br> <font color="#8b0000">@@ -791,6 +979,19 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/proc with linux kernels from at least 2.6.9 .. 2.6.29.&nbsp;&nbsp;*/<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br> <font color="#008080">+if (progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* update total size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalWritten += n_read_total / 1024;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g_iFilesCopied++;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int i;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( i = 0; i &lt; 6; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free ( cProgressField[i] );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free ( cProgressField );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+}</font><br> <font color="#008080">+</font><br> &nbsp;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* If the file ends with a `hole', we need to do something to record<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the length of the file.&nbsp;&nbsp;On modern systems, calling ftruncate does<br> <font color="#008000">diff -Nru coreutils-8.5/src/copy.h coreutils-8.5-1/src/copy.h</font><br> <font color="#008000">--- coreutils-8.5/src/copy.h&nbsp;&nbsp;&nbsp;&nbsp;2010-04-20 22:52:04.000000000 +0300</font><br> <font color="#008000">+++ coreutils-8.5-1/src/copy.h&nbsp;&nbsp;2010-12-23 13:52:40.000000000 +0200</font><br> <font color="#8b0000">@@ -223,6 +223,10 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create destination directories as usual. */<br> &nbsp;&nbsp; bool symbolic_link;<br> &nbsp;<br> <font color="#008080">+&nbsp;&nbsp;/* if true, draw a nice progress bar on screen */</font><br> <font color="#008080">+&nbsp;&nbsp;bool progress_bar;</font><br> <font color="#008080">+</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp; /* If true, do not copy a nondirectory that has an existing destination<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with the same or newer modification time. */<br> &nbsp;&nbsp; bool update;<br> <font color="#8b0000">@@ -281,4 +285,15 @@</font><br> &nbsp;bool chown_failure_ok (struct cp_options const *);<br> &nbsp;mode_t cached_umask (void);<br> &nbsp;<br> <font color="#008080">+/* BEGIN progress mod */</font><br> <font color="#008080">+int file_size_format ( char * _cDst, int _iSize, int _iCounter );</font><br> <font color="#008080">+</font><br> <font color="#008080">+long g_iTotalSize;</font><br> <font color="#008080">+long g_iTotalWritten;</font><br> <font color="#008080">+int g_iFilesCopied;</font><br> <font color="#008080">+struct timeval g_oStartTime;</font><br> <font color="#008080">+int g_iTotalFiles;</font><br> <font color="#008080">+bool progress;</font><br> <font color="#008080">+/* END progress mod */</font><br> <font color="#008080">+</font><br> &nbsp;#endif<br> <font color="#008000">diff -Nru coreutils-8.5/src/cp.c coreutils-8.5-1/src/cp.c</font><br> <font color="#008000">--- coreutils-8.5/src/cp.c&nbsp;&nbsp;2010-03-13 17:14:09.000000000 +0200</font><br> <font color="#008000">+++ coreutils-8.5-1/src/cp.c&nbsp;&nbsp;&nbsp;&nbsp;2010-12-23 13:55:44.000000000 +0200</font><br> <font color="#8b0000">@@ -139,6 +139,7 @@</font><br> &nbsp;&nbsp; {&quot;target-directory&quot;, required_argument, NULL, 't'},<br> &nbsp;&nbsp; {&quot;update&quot;, no_argument, NULL, 'u'},<br> &nbsp;&nbsp; {&quot;verbose&quot;, no_argument, NULL, 'v'},<br> <font color="#008080">+&nbsp;&nbsp;{&quot;progress-bar&quot;, no_argument, NULL, 'g'},</font><br> &nbsp;&nbsp; {GETOPT_HELP_OPTION_DECL},<br> &nbsp;&nbsp; {GETOPT_VERSION_OPTION_DECL},<br> &nbsp;&nbsp; {NULL, 0, NULL, 0}<br> <font color="#8b0000">@@ -176,6 +177,7 @@</font><br> &nbsp;&nbsp; -f, --force&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if an existing destination file cannot be\n\<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opened, remove it and try again (redundant if\n\<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the -n option is used)\n\<br> <font color="#008080">+&nbsp;&nbsp;-g, --progress-bar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add progress-bar\n\</font><br> &nbsp;&nbsp; -i, --interactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prompt before overwrite (overrides a previous -n\n\<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; option)\n\<br> &nbsp;&nbsp; -H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; follow command-line symbolic links in SOURCE\n\<br> <font color="#8b0000">@@ -612,6 +614,57 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quote (file[n_files - 1]));<br> &nbsp;&nbsp;&nbsp;&nbsp; }<br> &nbsp;<br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;struct timeval start_time;</font><br> <font color="#008080">+if (progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalSize = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iFilesCopied = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalWritten = 0;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* save time */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday ( &amp; start_time, NULL );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_oStartTime = start_time;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;Calculating total size... \r&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;fflush ( stdout );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;long iTotalSize = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int iFiles = n_files;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;if ( ! target_directory )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iFiles = n_files - 1;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int j;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;for (j = 0; j &lt; iFiles; j++)</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* call du -s for each file */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* create command */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char command[1024];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sprintf ( command, &quot;du -s \&quot;%s\&quot;&quot;, file[j] );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* TODO: replace all quote signs in file[i] */</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE *fp;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char output[1024];</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* run command */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fp = popen(command, &quot;r&quot;);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (fp == NULL || fgets(output, sizeof(output)-1, fp) == NULL) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;failed to run du.\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* isolate size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strchr ( output, '\t' )[0] = '\0';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iTotalSize += atol ( output );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;Calculating total size... %ld\r&quot;, iTotalSize );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fflush ( stdout );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* close */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pclose(fp);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalSize = iTotalSize;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+}</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp; if (target_directory)<br> &nbsp;&nbsp;&nbsp;&nbsp; {<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* cp file1...filen edir<br> <font color="#8b0000">@@ -754,6 +807,46 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ok = copy (source, new_dest, 0, x, &amp;unused, NULL);<br> &nbsp;&nbsp;&nbsp;&nbsp; }<br> &nbsp;<br> <font color="#008080">+if (progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* remove everything */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int i;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;if ( g_iTotalSize )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( i = 0; i &lt; 6; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\033[K\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[6A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( i = 0; i &lt; 3; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\033[K\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[3A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* save time */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;struct timeval end_time;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday ( &amp; end_time, NULL );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int usec_elapsed = end_time.tv_usec - start_time.tv_usec;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;double sec_elapsed = ( double ) usec_elapsed / 1000000.f;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sec_elapsed += ( double ) ( end_time.tv_sec - start_time.tv_sec );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* get total size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char sTotalWritten[20];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( sTotalWritten, g_iTotalSize, 1 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* TODO: using g_iTotalWritten would be more correct, but is less accurate */</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* calculate speed */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int copy_speed = ( int ) ( ( double ) g_iTotalWritten / sec_elapsed );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char s_copy_speed[20];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( s_copy_speed, copy_speed, 1 );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* good-bye message */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;%d files (%s) copied in %.1f seconds (%s/s).\n&quot;, g_iFilesCopied, sTotalWritten,</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sec_elapsed, s_copy_speed );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+}</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp; return ok;<br> &nbsp;}<br> &nbsp;<br> <font color="#8b0000">@@ -785,6 +878,7 @@</font><br> &nbsp;&nbsp; x-&gt;recursive = false;<br> &nbsp;&nbsp; x-&gt;sparse_mode = SPARSE_AUTO;<br> &nbsp;&nbsp; x-&gt;symbolic_link = false;<br> <font color="#008080">+&nbsp;&nbsp;x-&gt;progress_bar = false;</font><br> &nbsp;&nbsp; x-&gt;set_mode = false;<br> &nbsp;&nbsp; x-&gt;mode = 0;<br> &nbsp;<br> <font color="#8b0000">@@ -923,7 +1017,7 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;we'll actually use backup_suffix_string.&nbsp;&nbsp;*/<br> &nbsp;&nbsp; backup_suffix_string = getenv (&quot;SIMPLE_BACKUP_SUFFIX&quot;);<br> &nbsp;<br> <font color="#c000c0">-&nbsp;&nbsp;while ((c = getopt_long (argc, argv, &quot;abdfHilLnprst:uvxPRS:T&quot;,</font><br> <font color="#008080">+&nbsp;&nbsp;while ((c = getopt_long (argc, argv, &quot;abdfgHilLnprst:uvxPRS:T&quot;,</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long_opts, NULL))<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!= -1)<br> &nbsp;&nbsp;&nbsp;&nbsp; {<br> <font color="#8b0000">@@ -975,6 +1069,10 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x.unlink_dest_after_failed_open = true;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br> &nbsp;<br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 'g':</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progress = true;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'H':<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x.dereference = DEREF_COMMAND_LINE_ARGUMENTS;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br> <font color="#008000">diff -Nru coreutils-8.5/src/mv.c coreutils-8.5-1/src/mv.c</font><br> <font color="#008000">--- coreutils-8.5/src/mv.c&nbsp;&nbsp;2010-01-01 15:06:47.000000000 +0200</font><br> <font color="#008000">+++ coreutils-8.5-1/src/mv.c&nbsp;&nbsp;&nbsp;&nbsp;2010-12-23 13:59:21.000000000 +0200</font><br> <font color="#8b0000">@@ -64,6 +64,7 @@</font><br> &nbsp;&nbsp; {&quot;target-directory&quot;, required_argument, NULL, 't'},<br> &nbsp;&nbsp; {&quot;update&quot;, no_argument, NULL, 'u'},<br> &nbsp;&nbsp; {&quot;verbose&quot;, no_argument, NULL, 'v'},<br> <font color="#008080">+&nbsp;&nbsp;{&quot;progress-bar&quot;, no_argument, NULL, 'g'},</font><br> &nbsp;&nbsp; {GETOPT_HELP_OPTION_DECL},<br> &nbsp;&nbsp; {GETOPT_VERSION_OPTION_DECL},<br> &nbsp;&nbsp; {NULL, 0, NULL, 0}<br> <font color="#8b0000">@@ -159,10 +160,94 @@</font><br> &nbsp;static bool<br> &nbsp;do_move (const char *source, const char *dest, const struct cp_options *x)<br> &nbsp;{<br> <font color="#008080">+&nbsp;&nbsp;struct timeval start_time;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;if(progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalSize = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iFilesCopied = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalWritten = 0;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday (&amp; start_time, NULL);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_oStartTime = start_time;</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;printf (&quot;Calculating total size... \r&quot;);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;fflush (stdout);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;long iTotalSize = 0;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* call du -s for each file */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* create command */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char command[1024];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sprintf ( command, &quot;du -s \&quot;%s\&quot;&quot;, source );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* TODO: replace all quote signs in file[i] */</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;FILE *fp;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char output[1024];</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* run command */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;fp = popen(command, &quot;r&quot;);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;if (fp == NULL || fgets(output, sizeof(output)-1, fp) == NULL) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf(&quot;failed to run du.\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* isolate size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strchr ( output, '\t' )[0] = '\0';</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iTotalSize += atol ( output );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;Calculating total size... %ld\r&quot;, iTotalSize );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fflush ( stdout );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* close */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;pclose(fp);</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;g_iTotalSize = iTotalSize;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp; bool copy_into_self;<br> &nbsp;&nbsp; bool rename_succeeded;<br> &nbsp;&nbsp; bool ok = copy (source, dest, false, x, &amp;copy_into_self, &amp;rename_succeeded);<br> &nbsp;<br> <font color="#008080">+&nbsp;&nbsp;if (progress) {</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* BEGIN progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* remove everything */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int i;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;if ( g_iTotalSize )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( i = 0; i &lt; 6; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\033[K\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[6A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;else</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;{</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ( i = 0; i &lt; 3; i++ )</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\033[K\n&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;\r\033[3A&quot; );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* save time */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;struct timeval end_time;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;gettimeofday ( &amp; end_time, NULL );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int usec_elapsed = end_time.tv_usec - start_time.tv_usec;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;double sec_elapsed = ( double ) usec_elapsed / 1000000.f;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;sec_elapsed += ( double ) ( end_time.tv_sec - start_time.tv_sec );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* get total size */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char sTotalWritten[20];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( sTotalWritten, g_iTotalSize, 1 );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* TODO: using g_iTotalWritten would be more correct, but is less accurate */</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* calculate speed */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;int copy_speed = ( int ) ( ( double ) g_iTotalWritten / sec_elapsed );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;char s_copy_speed[20];</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;file_size_format ( s_copy_speed, copy_speed, 1 );</font><br> <font color="#008080">+</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* good-bye message */</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;printf ( &quot;%d files (%s) moved in %.1f seconds (%s/s).\n&quot;, g_iFilesCopied, sTotalWritten,</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sec_elapsed, s_copy_speed );</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;/* END progress mod */</font><br> <font color="#008080">+&nbsp;&nbsp;}</font><br> <font color="#008080">+</font><br> &nbsp;&nbsp; if (ok)<br> &nbsp;&nbsp;&nbsp;&nbsp; {<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char const *dir_to_remove;<br> <font color="#8b0000">@@ -298,6 +383,7 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --backup[=CONTROL]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; make a backup of each existing destination file\n\<br> &nbsp;&nbsp; -b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; like --backup but does not accept an argument\n\<br> &nbsp;&nbsp; -f, --force&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do not prompt before overwriting\n\<br> <font color="#008080">+&nbsp;&nbsp;-g, --progress-bar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add progress-bar\n\</font><br> &nbsp;&nbsp; -i, --interactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prompt before overwrite\n\<br> &nbsp;&nbsp; -n, --no-clobber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do not overwrite an existing file\n\<br> &nbsp;If you specify more than one of -i, -f, -n, only the final one takes effect.\n\<br> <font color="#8b0000">@@ -366,7 +452,7 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;we'll actually use backup_suffix_string.&nbsp;&nbsp;*/<br> &nbsp;&nbsp; backup_suffix_string = getenv (&quot;SIMPLE_BACKUP_SUFFIX&quot;);<br> &nbsp;<br> <font color="#c000c0">-&nbsp;&nbsp;while ((c = getopt_long (argc, argv, &quot;bfint:uvS:T&quot;, long_options, NULL))</font><br> <font color="#008080">+&nbsp;&nbsp;while ((c = getopt_long (argc, argv, &quot;bfint:uvgS:T&quot;, long_options, NULL))</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!= -1)<br> &nbsp;&nbsp;&nbsp;&nbsp; {<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (c)<br> <font color="#8b0000">@@ -411,6 +497,9 @@</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'v':<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x.verbose = true;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'g':</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;progress = true;</font><br> <font color="#008080">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'S':<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; make_backups = true;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backup_suffix_string = optarg;<br> </font></code></div>
+Привет!
+
+Полтора часа назад в [псто](http://psto.net/) пролетело упоминание об
+интересном патче для `coreutils` [Advanced
+Copy](http://www.beatex.org/web/advancedcopy.html), добавляющем в `cp` и `mv`
+прогресс-бар. Выглядит это так:
+
+```
+% cp -g ~/torrents/downloads/Patent_Absurdity_HQ_768kbit.ogv /dev/null
+cp: переписать «/dev/null»? y344
+
+0 files copied so far...                                 135,7 MiB / 159,5 MiB
+[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-----------] 85,1 %
+Copying at   1,0 GiB/s (about 0h 0m 0s remaining)
+...ru/torrents/downloads/Patent_Absurdity_HQ_768kbit.ogv 135,7 MiB / 159,4 MiB
+[||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-----------] 85,2 %
+```
+
+Польза этой штуки лично для меня под вопросом, но я решил всё же попробовать
+её. Так как в Debian Squeeze сейчас уже `coreutils` версии 8.5, патч пришлось
+немного поправить. Модифицированную версию можно [скачать](http://ix.io/1kI)
+или [смотреть онлайн](http://ix.io/1kI/diff) (вторая ссылка отличается наличием
+подсветки). Также на всякий случай добавлю его в пост — как говаривал
+**virens**, сторонние сервисы могут отказывать, но если уж упадёт блог…
+
+```diff
+diff -Nru coreutils-8.5/src/copy.c coreutils-8.5-1/src/copy.c
+--- coreutils-8.5/src/copy.c	2010-04-20 22:52:04.000000000 +0300
++++ coreutils-8.5-1/src/copy.c	2010-12-23 13:51:23.000000000 +0200
+@@ -457,6 +457,56 @@
+   return lchmod (name, mode);
+ }
+ 
++/* BEGIN progress mod */
++static void file_progress_bar ( char * _cDest, int _iBarLength, int _iProgress, int _iTotal )
++{
++  // write number to progress bar
++  float fPercent = ( float ) _iProgress / ( float ) _iTotal * 100.f;
++  sprintf ( _cDest + ( _iBarLength - 6 ), "%4.1f", fPercent );
++  // remove zero
++  _cDest[_iBarLength - 2] = ' ';
++
++  // fill rest with '-'
++  int i;
++  for ( i = 1; i <= _iBarLength - 9; i++ )
++  {
++    if ( fPercent > ( float ) ( i - 1 ) / ( _iBarLength - 10 ) * 100.f )
++      _cDest[i] = '|';
++    else
++      _cDest[i] = '-';
++  }
++}
++
++int file_size_format ( char * _cDst, int _iSize, int _iCounter )
++{
++  int iCounter = _iCounter;
++  double dSize = ( double ) _iSize;
++  while ( dSize >= 1000. )
++  {
++    dSize /= 1024.;
++    iCounter++;
++  }
++
++  /* get unit */
++  char * sUnit;
++  if ( iCounter == 0 )
++    sUnit = "B";
++  else if ( iCounter == 1 )
++    sUnit = "KiB";
++  else if ( iCounter == 2 )
++    sUnit = "MiB";
++  else if ( iCounter == 3 )
++    sUnit = "GiB";
++  else if ( iCounter == 4 )
++    sUnit = "TiB";
++  else
++    sUnit = "N/A";
++
++  /* write number */
++  return sprintf ( _cDst, "%5.1f %s", dSize, sUnit );
++}
++/* END progress mod */
++
+ /* Copy a regular file from SRC_NAME to DST_NAME.
+    If the source file contains holes, copies holes and blocks of zeros
+    in the source file as holes in the destination file.
+@@ -709,8 +759,146 @@
+       buf_alloc = xmalloc (buf_size + buf_alignment_slop);
+       buf = ptr_align (buf_alloc, buf_alignment);
+ 
++      /* BEGIN progress mod */
++      /* create a field of 6 lines */
++      char ** cProgressField = ( char ** ) calloc ( 6, sizeof ( char * ) );
++      /* get console width */
++      int iBarLength = 80;
++      struct winsize win;
++      if ( ioctl (STDOUT_FILENO, TIOCGWINSZ, (char *) &win) == 0 && win.ws_col > 0 )
++         iBarLength = win.ws_col;
++      /* create rows */
++      int it;
++      for ( it = 0; it < 6; it++ )
++      {
++        cProgressField[it] = ( char * ) malloc ( iBarLength + 1 );
++        /* init with spaces */
++        int j;
++        for ( j = 0; j < iBarLength; j++ )
++          cProgressField[it][j] = ' ';
++        cProgressField[it][iBarLength] = '\0';
++      }
++
++      /* global progress bar? */
++      if ( g_iTotalSize )
++      {
++        /* init global progress bar */
++        cProgressField[2][0] = '[';
++        cProgressField[2][iBarLength - 8] = ']';
++        cProgressField[2][iBarLength - 7] = ' ';
++        cProgressField[2][iBarLength - 1] = '%';
++
++        /* total size */
++        cProgressField[1][iBarLength - 11] = '/';
++        file_size_format ( cProgressField[1] + iBarLength - 9, g_iTotalSize, 1 );
++
++        /* show how many files were written */
++        int sum_length = sprintf ( cProgressField[1], "%d files copied so far...", g_iFilesCopied );
++        cProgressField[1][sum_length] = ' ';
++      }
++
++      /* truncate filename? */
++      int fn_length;
++      if ( strlen ( src_name ) > iBarLength - 22 )
++        fn_length =
++          sprintf ( cProgressField[4], "...%s", src_name + ( strlen ( src_name ) - iBarLength + 25 ) );
++      else
++        fn_length = sprintf ( cProgressField[4], "%s", src_name );
++      cProgressField[4][fn_length] = ' ';
++
++      /* filesize */
++      cProgressField[4][iBarLength - 11] = '/';
++      file_size_format ( cProgressField[4] + iBarLength - 9, src_open_sb.st_size, 0 );
++
++      int iCountDown = 1;
++      char * sProgressBar = cProgressField[5];
++      sProgressBar[0] = '[';
++      sProgressBar[iBarLength - 8] = ']';
++      sProgressBar[iBarLength - 7] = ' ';
++      sProgressBar[iBarLength - 1] = '%';
++
++      /* this will always save the time in between */
++      struct timeval last_time;
++      gettimeofday ( & last_time, NULL );
++      int last_size = g_iTotalWritten;
++      /* END progress mod */
++
+       for (;;)
+         {
++          if (progress) {
++          /* BEGIN progress mod */
++          /* update countdown */
++          iCountDown--;
++          if ( iCountDown < 0 )
++            iCountDown = 100;
++
++          /* just print one line with the percentage, but not always */
++          if ( iCountDown == 0 )
++          {
++            /* calculate current speed */
++            struct timeval cur_time;
++            gettimeofday ( & cur_time, NULL );
++            int cur_size = g_iTotalWritten + n_read_total / 1024;
++            int usec_elapsed = cur_time.tv_usec - last_time.tv_usec;
++            double sec_elapsed = ( double ) usec_elapsed / 1000000.f;
++            sec_elapsed += ( double ) ( cur_time.tv_sec - last_time.tv_sec );
++            int copy_speed = ( int ) ( ( double ) ( cur_size - last_size )
++              / sec_elapsed );
++            char s_copy_speed[20];
++            file_size_format ( s_copy_speed, copy_speed, 1 );
++            /* update vars */
++            last_time = cur_time;
++            last_size = cur_size;
++
++            /* how many time has passed since the start? */
++            int isec_elapsed = cur_time.tv_sec - g_oStartTime.tv_sec;
++            int sec_remaining = ( int ) ( ( double ) isec_elapsed / cur_size
++              * g_iTotalSize ) - isec_elapsed;
++            int min_remaining = sec_remaining / 60;
++            sec_remaining -= min_remaining * 60;
++            int hours_remaining = min_remaining / 60;
++            min_remaining -= hours_remaining * 60;
++            /* print out */
++            sprintf ( cProgressField[3],
++              "Copying at %s/s (about %dh %dm %ds remaining)", s_copy_speed,
++              hours_remaining, min_remaining, sec_remaining );
++
++            int fs_len;
++            if ( g_iTotalSize )
++            {
++              /* global progress bar */
++              file_progress_bar ( cProgressField[2], iBarLength,
++                                  g_iTotalWritten + n_read_total / 1024, g_iTotalSize );
++
++              /* print the global status */
++              fs_len = file_size_format ( cProgressField[1] + iBarLength - 21,
++                                              g_iTotalWritten + n_read_total / 1024, 1 );
++              cProgressField[1][iBarLength - 21 + fs_len] = ' ';
++            }
++
++            /* current progress bar */
++            file_progress_bar ( sProgressBar, iBarLength, n_read_total, src_open_sb.st_size );
++
++            /* print the status */
++            fs_len = file_size_format ( cProgressField[4] + iBarLength - 21, n_read_total, 0 );
++            cProgressField[4][iBarLength - 21 + fs_len] = ' ';
++
++            /* print the field */
++            for ( it = g_iTotalSize ? 0 : 3; it < 6; it++ )
++            {
++              printf ( "\033[K%s\n", cProgressField[it] );
++              if ( strlen ( cProgressField[it] ) < iBarLength )
++                printf ( "" );
++            }
++            if ( g_iTotalSize )
++              printf ( "\r\033[6A" );
++            else
++              printf ( "\r\033[3A" );
++            fflush ( stdout );
++          }
++          /* END progress mod */
++          }
++
+           word *wp = NULL;
+ 
+           ssize_t n_read = read (source_desc, buf, buf_size);
+@@ -791,6 +979,19 @@
+                  /proc with linux kernels from at least 2.6.9 .. 2.6.29.  */
+             }
+         }
++if (progress) {
++      /* BEGIN progress mod */
++      /* update total size */
++      g_iTotalWritten += n_read_total / 1024;
++      g_iFilesCopied++;
++
++      int i;
++      for ( i = 0; i < 6; i++ )
++        free ( cProgressField[i] );
++      free ( cProgressField );
++      /* END progress mod */
++}
++
+ 
+       /* If the file ends with a `hole', we need to do something to record
+          the length of the file.  On modern systems, calling ftruncate does
+diff -Nru coreutils-8.5/src/copy.h coreutils-8.5-1/src/copy.h
+--- coreutils-8.5/src/copy.h	2010-04-20 22:52:04.000000000 +0300
++++ coreutils-8.5-1/src/copy.h	2010-12-23 13:52:40.000000000 +0200
+@@ -223,6 +223,10 @@
+      Create destination directories as usual. */
+   bool symbolic_link;
+ 
++  /* if true, draw a nice progress bar on screen */
++  bool progress_bar;
++
++
+   /* If true, do not copy a nondirectory that has an existing destination
+      with the same or newer modification time. */
+   bool update;
+@@ -281,4 +285,15 @@
+ bool chown_failure_ok (struct cp_options const *);
+ mode_t cached_umask (void);
+ 
++/* BEGIN progress mod */
++int file_size_format ( char * _cDst, int _iSize, int _iCounter );
++
++long g_iTotalSize;
++long g_iTotalWritten;
++int g_iFilesCopied;
++struct timeval g_oStartTime;
++int g_iTotalFiles;
++bool progress;
++/* END progress mod */
++
+ #endif
+diff -Nru coreutils-8.5/src/cp.c coreutils-8.5-1/src/cp.c
+--- coreutils-8.5/src/cp.c	2010-03-13 17:14:09.000000000 +0200
++++ coreutils-8.5-1/src/cp.c	2010-12-23 13:55:44.000000000 +0200
+@@ -139,6 +139,7 @@
+   {"target-directory", required_argument, NULL, 't'},
+   {"update", no_argument, NULL, 'u'},
+   {"verbose", no_argument, NULL, 'v'},
++  {"progress-bar", no_argument, NULL, 'g'},
+   {GETOPT_HELP_OPTION_DECL},
+   {GETOPT_VERSION_OPTION_DECL},
+   {NULL, 0, NULL, 0}
+@@ -176,6 +177,7 @@
+   -f, --force                  if an existing destination file cannot be\n\
+                                  opened, remove it and try again (redundant if\n\
+                                  the -n option is used)\n\
++  -g, --progress-bar           add progress-bar\n\
+   -i, --interactive            prompt before overwrite (overrides a previous -n\n\
+                                   option)\n\
+   -H                           follow command-line symbolic links in SOURCE\n\
+@@ -612,6 +614,57 @@
+                quote (file[n_files - 1]));
+     }
+ 
++    struct timeval start_time;
++if (progress) {
++    /* BEGIN progress mod */
++    g_iTotalSize = 0;
++    g_iFilesCopied = 0;
++    g_iTotalWritten = 0;
++
++    /* save time */
++    gettimeofday ( & start_time, NULL );
++    g_oStartTime = start_time;
++
++    printf ( "Calculating total size... \r" );
++    fflush ( stdout );
++    long iTotalSize = 0;
++    int iFiles = n_files;
++    if ( ! target_directory )
++      iFiles = n_files - 1;
++    int j;
++    for (j = 0; j < iFiles; j++)
++    {
++      /* call du -s for each file */
++      /* create command */
++      char command[1024];
++      sprintf ( command, "du -s \"%s\"", file[j] );
++      /* TODO: replace all quote signs in file[i] */
++
++      FILE *fp;
++      char output[1024];
++
++      /* run command */
++      fp = popen(command, "r");
++      if (fp == NULL || fgets(output, sizeof(output)-1, fp) == NULL) {
++        printf("failed to run du.\n" );
++      }
++      else
++      {
++        /* isolate size */
++        strchr ( output, '\t' )[0] = '\0';
++        iTotalSize += atol ( output );
++
++        printf ( "Calculating total size... %ld\r", iTotalSize );
++        fflush ( stdout );
++      }
++
++      /* close */
++      pclose(fp);
++    }
++    g_iTotalSize = iTotalSize;
++    /* END progress mod */
++}
++
+   if (target_directory)
+     {
+       /* cp file1...filen edir
+@@ -754,6 +807,46 @@
+       ok = copy (source, new_dest, 0, x, &unused, NULL);
+     }
+ 
++if (progress) {
++    /* BEGIN progress mod */
++    /* remove everything */
++    int i;
++    if ( g_iTotalSize )
++    {
++      for ( i = 0; i < 6; i++ )
++        printf ( "\033[K\n" );
++      printf ( "\r\033[6A" );
++    }
++    else
++    {
++      for ( i = 0; i < 3; i++ )
++        printf ( "\033[K\n" );
++      printf ( "\r\033[3A" );
++    }
++
++    /* save time */
++    struct timeval end_time;
++    gettimeofday ( & end_time, NULL );
++    int usec_elapsed = end_time.tv_usec - start_time.tv_usec;
++    double sec_elapsed = ( double ) usec_elapsed / 1000000.f;
++    sec_elapsed += ( double ) ( end_time.tv_sec - start_time.tv_sec );
++
++    /* get total size */
++    char sTotalWritten[20];
++    file_size_format ( sTotalWritten, g_iTotalSize, 1 );
++    /* TODO: using g_iTotalWritten would be more correct, but is less accurate */
++
++    /* calculate speed */
++    int copy_speed = ( int ) ( ( double ) g_iTotalWritten / sec_elapsed );
++    char s_copy_speed[20];
++    file_size_format ( s_copy_speed, copy_speed, 1 );
++
++    /* good-bye message */
++    printf ( "%d files (%s) copied in %.1f seconds (%s/s).\n", g_iFilesCopied, sTotalWritten,
++             sec_elapsed, s_copy_speed );
++    /* END progress mod */
++}
++
+   return ok;
+ }
+ 
+@@ -785,6 +878,7 @@
+   x->recursive = false;
+   x->sparse_mode = SPARSE_AUTO;
+   x->symbolic_link = false;
++  x->progress_bar = false;
+   x->set_mode = false;
+   x->mode = 0;
+ 
+@@ -923,7 +1017,7 @@
+      we'll actually use backup_suffix_string.  */
+   backup_suffix_string = getenv ("SIMPLE_BACKUP_SUFFIX");
+ 
+-  while ((c = getopt_long (argc, argv, "abdfHilLnprst:uvxPRS:T",
++  while ((c = getopt_long (argc, argv, "abdfgHilLnprst:uvxPRS:T",
+                            long_opts, NULL))
+          != -1)
+     {
+@@ -975,6 +1069,10 @@
+           x.unlink_dest_after_failed_open = true;
+           break;
+ 
++        case 'g':
++          progress = true;
++          break;
++
+         case 'H':
+           x.dereference = DEREF_COMMAND_LINE_ARGUMENTS;
+           break;
+diff -Nru coreutils-8.5/src/mv.c coreutils-8.5-1/src/mv.c
+--- coreutils-8.5/src/mv.c	2010-01-01 15:06:47.000000000 +0200
++++ coreutils-8.5-1/src/mv.c	2010-12-23 13:59:21.000000000 +0200
+@@ -64,6 +64,7 @@
+   {"target-directory", required_argument, NULL, 't'},
+   {"update", no_argument, NULL, 'u'},
+   {"verbose", no_argument, NULL, 'v'},
++  {"progress-bar", no_argument, NULL, 'g'},
+   {GETOPT_HELP_OPTION_DECL},
+   {GETOPT_VERSION_OPTION_DECL},
+   {NULL, 0, NULL, 0}
+@@ -159,10 +160,94 @@
+ static bool
+ do_move (const char *source, const char *dest, const struct cp_options *x)
+ {
++  struct timeval start_time;
++
++  if(progress) {
++    /* BEGIN progress mod */
++    g_iTotalSize = 0;
++    g_iFilesCopied = 0;
++    g_iTotalWritten = 0;
++
++    gettimeofday (& start_time, NULL);
++    g_oStartTime = start_time;
++
++    printf ("Calculating total size... \r");
++    fflush (stdout);
++    long iTotalSize = 0;
++    /* call du -s for each file */
++    /* create command */
++    char command[1024];
++    sprintf ( command, "du -s \"%s\"", source );
++    /* TODO: replace all quote signs in file[i] */
++
++    FILE *fp;
++    char output[1024];
++
++    /* run command */
++    fp = popen(command, "r");
++    if (fp == NULL || fgets(output, sizeof(output)-1, fp) == NULL) {
++      printf("failed to run du.\n" );
++    }
++    else
++    {
++      /* isolate size */
++      strchr ( output, '\t' )[0] = '\0';
++      iTotalSize += atol ( output );
++      printf ( "Calculating total size... %ld\r", iTotalSize );
++      fflush ( stdout );
++    }
++
++    /* close */
++    pclose(fp);
++    g_iTotalSize = iTotalSize;
++    /* END progress mod */
++
++  }
++
+   bool copy_into_self;
+   bool rename_succeeded;
+   bool ok = copy (source, dest, false, x, &copy_into_self, &rename_succeeded);
+ 
++  if (progress) {
++    /* BEGIN progress mod */
++    /* remove everything */
++    int i;
++    if ( g_iTotalSize )
++    {
++      for ( i = 0; i < 6; i++ )
++        printf ( "\033[K\n" );
++      printf ( "\r\033[6A" );
++    }
++    else
++    {
++      for ( i = 0; i < 3; i++ )
++        printf ( "\033[K\n" );
++      printf ( "\r\033[3A" );
++    }
++
++    /* save time */
++    struct timeval end_time;
++    gettimeofday ( & end_time, NULL );
++    int usec_elapsed = end_time.tv_usec - start_time.tv_usec;
++    double sec_elapsed = ( double ) usec_elapsed / 1000000.f;
++    sec_elapsed += ( double ) ( end_time.tv_sec - start_time.tv_sec );
++
++    /* get total size */
++    char sTotalWritten[20];
++    file_size_format ( sTotalWritten, g_iTotalSize, 1 );
++    /* TODO: using g_iTotalWritten would be more correct, but is less accurate */
++
++    /* calculate speed */
++    int copy_speed = ( int ) ( ( double ) g_iTotalWritten / sec_elapsed );
++    char s_copy_speed[20];
++    file_size_format ( s_copy_speed, copy_speed, 1 );
++
++    /* good-bye message */
++    printf ( "%d files (%s) moved in %.1f seconds (%s/s).\n", g_iFilesCopied, sTotalWritten,
++             sec_elapsed, s_copy_speed );
++    /* END progress mod */
++  }
++
+   if (ok)
+     {
+       char const *dir_to_remove;
+@@ -298,6 +383,7 @@
+       --backup[=CONTROL]       make a backup of each existing destination file\n\
+   -b                           like --backup but does not accept an argument\n\
+   -f, --force                  do not prompt before overwriting\n\
++  -g, --progress-bar	       add progress-bar\n\
+   -i, --interactive            prompt before overwrite\n\
+   -n, --no-clobber             do not overwrite an existing file\n\
+ If you specify more than one of -i, -f, -n, only the final one takes effect.\n\
+@@ -366,7 +452,7 @@
+      we'll actually use backup_suffix_string.  */
+   backup_suffix_string = getenv ("SIMPLE_BACKUP_SUFFIX");
+ 
+-  while ((c = getopt_long (argc, argv, "bfint:uvS:T", long_options, NULL))
++  while ((c = getopt_long (argc, argv, "bfint:uvgS:T", long_options, NULL))
+          != -1)
+     {
+       switch (c)
+@@ -411,6 +497,9 @@
+         case 'v':
+           x.verbose = true;
+           break;
++	    case 'g':
++          progress = true;
++	      break;
+         case 'S':
+           make_backups = true;
+           backup_suffix_string = optarg;
+```
 
 <h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
@@ -18,14 +586,26 @@ tags: linux,tips'n'tricks
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-12-24T01:51:55.348+02:00, virens wrote:</p>
 <p class='hakyll-convert-comment-body'>
-Если прогресс-бар будет опцией, то почему бы и нет. А то копируешь чего-нибудь, а оно сидит себе и ничего не говорит.
+Если прогресс-бар будет опцией, то почему бы и нет. А то копируешь чего-нибудь,
+а оно сидит себе и ничего не говорит.
 </p>
 </div>
 
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2010-12-24T07:37:09.496+02:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-<b>2 butch</b>:<br />Тот факт, что тебе нужен прогрессбар, как правило осознаёшь только когда копирование уже запущено :) Да и переучиваться набирать вместо cp гоаздо более длинное rsync тупо лень. Хотя не исключено, что это лучше, чем указанный патч. Я себе пакетик собрал, поюзаю месяцок — погляжу, насколько мне эти прогрессбары нужны.<br /><br /><b>2 virens</b>:<br />Ты только учти, что патч этот вроде как в апстрим не принимают, что вполне логично — coreutils и так уже довольно жирные. То есть если хочешь попробовать, берёшь патч, мой перевод статьи про пересборку пакетов, закрываешься в тёмной комнате (хотя можно и без этого) и собираешь себе свои собственные coreutils.
+<b>2 butch</b>:
+Тот факт, что тебе нужен прогрессбар, как правило осознаёшь только когда
+копирование уже запущено :) Да и переучиваться набирать вместо cp гоаздо более
+длинное rsync тупо лень. Хотя не исключено, что это лучше, чем указанный патч.
+Я себе пакетик собрал, поюзаю месяцок — погляжу, насколько мне эти прогрессбары
+нужны.
+
+<b>2 virens</b>:
+Ты только учти, что патч этот вроде как в апстрим не принимают, что вполне
+логично — coreutils и так уже довольно жирные. То есть если хочешь попробовать,
+берёшь патч, мой перевод статьи про пересборку пакетов, закрываешься в тёмной
+комнате (хотя можно и без этого) и собираешь себе свои собственные coreutils.
 </p>
 </div>
 
@@ -39,21 +619,68 @@ tags: linux,tips'n'tricks
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2011-01-19T01:43:25.010+02:00, Анонимный wrote:</p>
 <p class='hakyll-convert-comment-body'>
-пользуюсь iotop когда надо оценить время завершения процесса копирования (или другой дисковой примитивной операции)
+пользуюсь iotop когда надо оценить время завершения процесса копирования (или
+другой дисковой примитивной операции)
 </p>
 </div>
 
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2011-02-27T16:56:59.641+02:00, Альгис wrote:</p>
 <p class='hakyll-convert-comment-body'>
-Раньше приходилось собирать пакеты из исходников, но вот патчить их не приходилось пока. Хочется научиться. Порылся в гугле, кой-чего нашел, но патч накладывается с ошибками. У меня Debian Sqeeze, сoreutils_8.5-1. Может я чего делаю не так? Вот мой краткий &quot;лог&quot;:<br /><br />mkdir coreutils-drc<br />cd coreutils-src<br />apt-get source coreutils<br />wget http://ix.io/1kI # тот самый патч<br />patch -p1 &lt; 1kI<br />patching file src/copy.c<br />Hunk #1 FAILED at 457.<br />Hunk #2 FAILED at 709.<br />Hunk #3 FAILED at 791.<br />3 out of 3 hunks FAILED -- saving rejects to file src/copy.c.rej<br />patching file src/copy.h<br />Hunk #1 FAILED at 223.<br />Hunk #2 FAILED at 281.<br />2 out of 2 hunks FAILED -- saving rejects to file src/copy.h.rej<br />patching file src/cp.c<br />Hunk #1 FAILED at 139.<br />Hunk #2 FAILED at 176.<br />Hunk #3 FAILED at 612.<br />Hunk #4 FAILED at 754.<br />Hunk #5 FAILED at 785.<br />Hunk #6 FAILED at 923.<br />Hunk #7 FAILED at 975.<br />7 out of 7 hunks FAILED -- saving rejects to file src/cp.c.rej<br />patching file src/mv.c<br />Hunk #1 FAILED at 64.<br />Hunk #2 FAILED at 159.<br />Hunk #3 FAILED at 298.<br />Hunk #4 FAILED at 366.<br />Hunk #5 FAILED at 411.<br />5 out of 5 hunks FAILED -- saving rejects to file src/mv.c.rej
+Раньше приходилось собирать пакеты из исходников, но вот патчить их не
+приходилось пока. Хочется научиться. Порылся в гугле, кой-чего нашел, но патч
+накладывается с ошибками. У меня Debian Sqeeze, сoreutils_8.5-1. Может я чего
+делаю не так? Вот мой краткий &quot;лог&quot;:
+
+```
+mkdir coreutils-drc
+cd coreutils-src
+apt-get source coreutils
+wget http://ix.io/1kI # тот самый патч
+patch -p1 &lt; 1kI
+patching file src/copy.c
+Hunk #1 FAILED at 457.
+Hunk #2 FAILED at 709.
+Hunk #3 FAILED at 791.
+3 out of 3 hunks FAILED -- saving rejects to file src/copy.c.rej
+patching file src/copy.h
+Hunk #1 FAILED at 223.
+Hunk #2 FAILED at 281.
+2 out of 2 hunks FAILED -- saving rejects to file src/copy.h.rej
+patching file src/cp.c
+Hunk #1 FAILED at 139.
+Hunk #2 FAILED at 176.
+Hunk #3 FAILED at 612.
+Hunk #4 FAILED at 754.
+Hunk #5 FAILED at 785.
+Hunk #6 FAILED at 923.
+Hunk #7 FAILED at 975.
+7 out of 7 hunks FAILED -- saving rejects to file src/cp.c.rej
+patching file src/mv.c
+Hunk #1 FAILED at 64.
+Hunk #2 FAILED at 159.
+Hunk #3 FAILED at 298.
+Hunk #4 FAILED at 366.
+Hunk #5 FAILED at 411.
+5 out of 5 hunks FAILED -- saving rejects to file src/mv.c.rej
+```
 </p>
 </div>
 
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2011-02-27T19:16:24.721+02:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-<b>2 Анонимный:</b><br />iotop, конечно, штука хорошая, но прогрессбар всяко лучше. Впрочем, спустя два месяца использования Advanced Copy заявляю: оно не нужно. Все равно в нужный момент забываешь указать нужную опцию, а  если добавить алиас, то оно скорее мешет, чем помогает. Так что лучше уж никак, чем так.<br /><br /><b>2 Альгис</b>:<br />Судя по всему, накладывается больше одного патча и некоторые из них пересекаются (т.е. первый меняет строку, а когда дело доходит до второго, он видит несоответствие шаблону и ругается). <a href="http://debiania.blogspot.com/2010/12/dpatch.html" rel="nofollow">Юзай dpatch!</a>
+<b>2 Анонимный:</b>
+iotop, конечно, штука хорошая, но прогрессбар всяко лучше. Впрочем, спустя два
+месяца использования Advanced Copy заявляю: оно не нужно. Все равно в нужный
+момент забываешь указать нужную опцию, а  если добавить алиас, то оно скорее
+мешет, чем помогает. Так что лучше уж никак, чем так.
+
+<b>2 Альгис</b>:
+Судя по всему, накладывается больше одного патча и некоторые из них
+пересекаются (т.е. первый меняет строку, а когда дело доходит до второго, он
+видит несоответствие шаблону и ругается). [Юзай
+dpatch!](http://debiania.blogspot.com/2010/12/dpatch.html)
 </p>
 </div>
 
@@ -67,7 +694,10 @@ tags: linux,tips'n'tricks
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2011-02-27T21:32:33.734+02:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-Увы, пакет с сорцами я не создавал, так что остались только .deb&#39;ы под i386:<br /><br /><a href="http://ompldr.org/vN2w2aQ/mktemp_8.5-1minoru1_all.deb" rel="nofollow">mktemp_8.5-1minoru1_all.deb</a> (<a href="http://ompldr.org/iN2w2aQ" rel="nofollow">info</a>) [16K]<br /><a href="http://ompldr.org/vN2w2aA/coreutils_8.5-1minoru1_i386.deb" rel="nofollow">coreutils_8.5-1minoru1_i386.deb</a> (<a href="http://ompldr.org/iN2w2aA" rel="nofollow">info</a>) [4.3Mb]
+Увы, пакет с сорцами я не создавал, так что остались только .deb'ы под i386:
+
+*(Здесь были мёртвые ссылки на файлы, которых у меня больше нет, поэтому текст
+я тоже удалил).*
 </p>
 </div>
 

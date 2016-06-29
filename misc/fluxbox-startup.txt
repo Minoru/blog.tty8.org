@@ -1,0 +1,11 @@
+exec /usr/bin/fluxbox &
+fbpid=$!
+sleep 1
+{
+xmodmap ~/.Xmodmap
+xbindkeys
+xpad --hide-old &
+conky --config=~/.conkyrc --daemonize
+xset -b
+}&
+wait $fbpid

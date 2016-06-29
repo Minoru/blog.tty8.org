@@ -1,0 +1,60 @@
+background		no
+use_xft			yes
+xftfont			DejaVu Sans:size=12
+double_buffer   yes
+update_interval 2
+alignment		top_right
+gap_x			10
+gap_y			10
+no_buffers		yes
+minimum_size 	365x500
+pad_percents	3
+mpd_host		localhost
+mpd_port		6600
+
+#  mpd_artist           Artist in current MPD song
+#                       (must be enabled at compile)
+#  mpd_album            Album in current MPD song
+#  mpd_bar(height)      Bar of mpd's progress
+#  mpd_bitrate          Bitrate of current song
+#  mpd_status           Playing, stopped, et cetera.
+#  mpd_title            Title of current MPD song
+#  mpd_vol              MPD's volume
+#  mpd_elapsed          Song's elapsed time
+#  mpd_length           Song's length
+#  mpd_percent          Percent of song's progress
+
+TEXT
+${font Bitstream Vera Sans:size=12}${alignc}MPD: ${mpd_status}
+${font DejaVu Sans Mono:size=12}Artist: ${font Bitstream Vera Sans:size=12}${mpd_artist}
+${font DejaVu Sans Mono:size=12}Title:  ${font Bitstream Vera Sans:size=12}${mpd_title}
+${font DejaVu Sans Mono:size=12}Album:  ${font Bitstream Vera Sans:size=12}${mpd_album}
+${mpd_elapsed}${alignc}${mpd_percent}%${alignr}${mpd_length}
+${color #ccddff}${mpd_bar}${color}
+$stippled_hr
+${color #FF0000}RAM:${alignc}${mem}/${memmax}${alignr}${memperc}%
+${membar 8}
+Swap:${alignc}${swap}/${swapmax}${alignr}${swapperc}%
+${swapbar 8}
+CPU: ${cpu}% ${cpubar 8}
+
+${if_mounted /}${color #FFFF00}/${alignc}${fs_used /} / ${fs_size /}${alignr}${fs_used_perc /}%
+${fs_bar 8 /}${endif}
+${if_mounted /home}/home${alignc}${fs_used /home} / ${fs_size /home} ${alignr}${fs_used_perc /home}%
+${fs_bar 8 /home}${endif}
+${if_mounted /mnt}/mnt${alignc}${fs_used /mnt} / ${fs_size /mnt} ${alignr}${fs_used_perc /mnt}%
+${fs_bar 8 /mnt}${endif}
+
+${if_up ppp0}${color #00FF00}ppp0:
+${color #00FF00}Down: ${downspeedf ppp0} kbps ${alignr}${totaldown ppp0} total
+${downspeedgraph ppp0}
+${color #00FF00}Up: ${upspeedf ppp0} kbps ${alignr}${totalup ppp0} total
+${upspeedgraph ppp0}
+
+${endif}
+${if_up eth1}${color #00FF00}eth1:
+${color #00FF00}Down: ${downspeedf eth1} kbps ${alignr}${totaldown eth1} total
+${downspeedgraph eth1}
+${color #00FF00}Up: ${upspeedf eth1} kbps ${alignr}${totalup eth1} total
+${upspeedgraph eth1}
+${endif}

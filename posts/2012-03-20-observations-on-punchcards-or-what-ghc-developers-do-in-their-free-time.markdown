@@ -5,7 +5,72 @@ categories:
 tags: linux,debian
 ---
 
-Бесцельно ползая по github'у длинным вторничным вечером (уф, что-то давненько не случалось таких вечеров!), наткнулся на любопытные, как мне кажется, закономерности в punchcard'ах некоторых проектов.<br /><br />Punchcard — это декартова плоскость, где по одной оси идёт время суток, а по другой — день недели. Размер точек на пересечениях дня и времени показывает, как много коммитов было сделано в такие время и день. В каком-нибудь вялотекущем любительском проектике punchcard будет содержать всего пяток точек, в то время как в огромном проекте точки почти равного размера будут равномерно распределены по всей плоскости.<br /><br />Итак, поехали!<br /><a name='more'></a><br />Начнём, пожалуй, с punchcard'а <a href='http://www.haskell.org/ghc/'>GHC</a>, The Glasgow Haskell Compiler:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-DREX2TokF0M/T2jRKSf0NsI/AAAAAAAAAoI/MJ-f29eGjfQ/s1600/ghc.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="225" width="600" src="http://4.bp.blogspot.com/-DREX2TokF0M/T2jRKSf0NsI/AAAAAAAAAoI/MJ-f29eGjfQ/s400/ghc.png" /></a></div><br />GHC является академическим проектом, и пилят его, судя по всему, по большей части в рабочее время, с восьми до пяти. Ничего интересного.<br /><br />По крайней мере, пока вы не посмотрели на punchcard <a href='http://www.postgresql.org/'>PostgreSQL</a>:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-H3JTEhADwAI/T2jSiqpBoHI/AAAAAAAAAoU/Drq4IDeRuHg/s1600/postgres.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="225" width="600" src="http://2.bp.blogspot.com/-H3JTEhADwAI/T2jSiqpBoHI/AAAAAAAAAoU/Drq4IDeRuHg/s400/postgres.png" /></a></div><br />Теперь понятно, чем занимаются разработчики GHC, когда они не на работе ☺<br /><br />На самом же деле PostgreSQL является СУБД, разрабатываемой сообществом без поддержки корпораций (как в случае с MySQL), так что такая картина вполне ожидаема.<br /><br />А что же со светом наших сердец — <a href='http://kernel.org/'>ядром Linux</a>?<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-CaHDoOxrjV4/T2jTi37VImI/AAAAAAAAAog/pBfkQoAKp08/s1600/linux.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="225" width="600" src="http://3.bp.blogspot.com/-CaHDoOxrjV4/T2jTi37VImI/AAAAAAAAAog/pBfkQoAKp08/s400/linux.png" /></a></div><br />Честно говоря, меня такая картина шокировала. Да, я в курсе, что многие разработчики Linux работают в Red Hat и потому в основном коммитят в рабочее время, но чтобы эти коммиты составляли <b>настолько</b> заметную часть общего потока… Весьма, весьма неожиданно.<br /><br />После Linux моё внимание, естественно, привлекла <a href='http://gcc.gnu.org/'>GCC</a>, GNU Compiler Collection:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-9-SSnIvCuyg/T2jVfJr7isI/AAAAAAAAAos/fWdNpOOEyYI/s1600/gcc.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="225" width="600" src="http://2.bp.blogspot.com/-9-SSnIvCuyg/T2jVfJr7isI/AAAAAAAAAos/fWdNpOOEyYI/s400/gcc.png" /></a></div><br />Судя по картинке, разработчики GCC все до единого садятся за компьютеры в семь утра, работают до одиннадцати, обедают, потом работают до часу ночи и валятся спать. Каждый день в полночь происходит стресс-тест git'а и прочей инфраструктуры — все коммитят всё, что попалось под руку (отсюда красивенький столбец слева). Суббота и воскресенье — прогулки^Wпоездки на конференции. Суровые программисты на Си, чо. ☺<br /><br />Вся эта красота и равномерность заставила меня пойти искать что-нибудь этакое, и вот результат:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-c8kngMFam-U/T2jXg5h-9cI/AAAAAAAAAo4/D08Y5_59m4I/s1600/clojure.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="225" width="600" src="http://4.bp.blogspot.com/-c8kngMFam-U/T2jXg5h-9cI/AAAAAAAAAo4/D08Y5_59m4I/s400/clojure.png" /></a></div><br />Это punchcard <a href='http://clojure.org/'>Clojure</a>, диалекта Lisp, ориентированного на JVM. Проект, насколько мне известно, начинался как хак, но быстро обрёл популярность и сейчас является, наверное, самым живым и бурно развивающимся Лиспом. Собственно, по картинке это сразу видно: народ пилит и пилит код, так что коммиты никак не упорядочены. Пробелы в районе пяти–шести утра — это, судя по всему, моменты, когда организм не выдерживает гонки и просто выключается на сутки ☺<br /><br />Очень жаль, что на github'е нет зеркал таких проектов, как zsh, vim, urxvt, Firefox, mutt и прочих — я бы с огромным удовольствием полюбовался на их статистику. Также прошу прощения у тех читателей, кому на протяжении первых пары абзацев не хватало картинок — я честно хотел вставить туда punchcard одного из моих проектиков, но github сказал, что «this graph is not avaliable yet» ☹ Напоследок, если кого-то это раздражает — извините за обилие смайликов.<br /><br />P.S. (Точнее, P.P. — <i>post postum</i>): это сотый пост. Ура!
+Бесцельно ползая по github'у длинным вторничным вечером (уф, что-то давненько не случалось таких вечеров!), наткнулся на любопытные, как мне кажется, закономерности в punchcard'ах некоторых проектов.
+
+Punchcard — это декартова плоскость, где по одной оси идёт время суток, а по другой — день недели. Размер точек на пересечениях дня и времени показывает, как много коммитов было сделано в такие время и день. В каком-нибудь вялотекущем любительском проектике punchcard будет содержать всего пяток точек, в то время как в огромном проекте точки почти равного размера будут равномерно распределены по всей плоскости.
+
+Итак, поехали!
+
+Начнём, пожалуй, с punchcard'а <a href='http://www.haskell.org/ghc/'>GHC</a>, The Glasgow Haskell Compiler:
+
+<div class="center">
+<img src="/images/punchcard-ghc.png"
+    width="600px" height="225px"
+    alt="GHC punchcard"
+    class="fullscreen" />
+</div>
+
+GHC является академическим проектом, и пилят его, судя по всему, по большей части в рабочее время, с восьми до пяти. Ничего интересного.
+
+По крайней мере, пока вы не посмотрели на punchcard <a href='http://www.postgresql.org/'>PostgreSQL</a>:
+
+<div class="center">
+<img src="/images/punchcard-postgres.png"
+    width="600px" height="225px"
+    alt="GHC punchcard"
+    class="fullscreen" />
+</div>
+
+Теперь понятно, чем занимаются разработчики GHC, когда они не на работе ☺
+
+На самом же деле PostgreSQL является СУБД, разрабатываемой сообществом без поддержки корпораций (как в случае с MySQL), так что такая картина вполне ожидаема.
+
+А что же со светом наших сердец — <a href='http://kernel.org/'>ядром Linux</a>?
+
+<div class="center">
+<img src="/images/punchcard-linux.png"
+    width="600px" height="225px"
+    alt="GHC punchcard"
+    class="fullscreen" />
+</div>
+
+Честно говоря, меня такая картина шокировала. Да, я в курсе, что многие разработчики Linux работают в Red Hat и потому в основном коммитят в рабочее время, но чтобы эти коммиты составляли <b>настолько</b> заметную часть общего потока… Весьма, весьма неожиданно.
+
+После Linux моё внимание, естественно, привлекла <a href='http://gcc.gnu.org/'>GCC</a>, GNU Compiler Collection:
+
+<div class="center">
+<img src="/images/punchcard-gcc.png"
+    width="600px" height="225px"
+    alt="GHC punchcard"
+    class="fullscreen" />
+</div>
+
+Судя по картинке, разработчики GCC все до единого садятся за компьютеры в семь утра, работают до одиннадцати, обедают, потом работают до часу ночи и валятся спать. Каждый день в полночь происходит стресс-тест git'а и прочей инфраструктуры — все коммитят всё, что попалось под руку (отсюда красивенький столбец слева). Суббота и воскресенье — прогулки^Wпоездки на конференции. Суровые программисты на Си, чо. ☺
+
+Вся эта красота и равномерность заставила меня пойти искать что-нибудь этакое, и вот результат:
+
+<div class="center">
+<img src="/images/punchcard-clojure.png"
+    width="600px" height="225px"
+    alt="GHC punchcard"
+    class="fullscreen" />
+</div>
+
+Это punchcard <a href='http://clojure.org/'>Clojure</a>, диалекта Lisp, ориентированного на JVM. Проект, насколько мне известно, начинался как хак, но быстро обрёл популярность и сейчас является, наверное, самым живым и бурно развивающимся Лиспом. Собственно, по картинке это сразу видно: народ пилит и пилит код, так что коммиты никак не упорядочены. Пробелы в районе пяти–шести утра — это, судя по всему, моменты, когда организм не выдерживает гонки и просто выключается на сутки ☺
+
+Очень жаль, что на github'е нет зеркал таких проектов, как zsh, vim, urxvt, Firefox, mutt и прочих — я бы с огромным удовольствием полюбовался на их статистику. Также прошу прощения у тех читателей, кому на протяжении первых пары абзацев не хватало картинок — я честно хотел вставить туда punchcard одного из моих проектиков, но github сказал, что «this graph is not avaliable yet» ☹ Напоследок, если кого-то это раздражает — извините за обилие смайликов.
+
+P.S. (Точнее, P.P. — <i>post postum</i>): это сотый пост. Ура!
 
 <h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>
