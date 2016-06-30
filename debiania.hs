@@ -1,16 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Applicative (Alternative (..))
+import Control.Arrow ((***))
 import Control.Monad (liftM, filterM)
 import Data.List (intersect, sortBy, intercalate)
 import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
+import Data.Ord (comparing)
 import Data.String.Utils (split)
 import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
 import Network.HTTP.Base (urlEncode)
 import System.FilePath (takeFileName)
 
+import qualified Data.Map.Strict as M
 import qualified Data.Text as T
 
 import Hakyll
@@ -24,6 +27,12 @@ main :: IO ()
 main = hakyllWith config $ do
     -- Build tags (will be used later on)
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+
+    postsMetadata <-
+            map fst
+         .  sortBy (comparing snd)
+         .  map (id *** M.findWithDefault "date" "")
+        <$> getAllMetadata "posts/*"
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -69,13 +78,20 @@ main = hakyllWith config $ do
     -- Render posts
     match "posts/*" $ do
         route   $ setExtension "html"
-        compile $ debianiaCompiler
-          >>= saveSnapshot "content"
-          >>= loadAndApplyTemplate
-                "templates/post.html"
-                (urlEncodedTitleCtx <> postCtx <> tagsCtx tags)
-          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
-          >>= relativizeUrls
+        compile $ do
+          prevNextCtx <- genPrevNextCtx postsMetadata =<< getUnderlying
+
+          debianiaCompiler
+            >>= saveSnapshot "content"
+            >>= loadAndApplyTemplate
+                  "templates/post.html"
+                  (mconcat [ urlEncodedTitleCtx
+                           , postCtx
+                           , tagsCtx tags
+                           , prevNextCtx
+                           ])
+            >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
+            >>= relativizeUrls
 
     -- Render Archives page
     create ["posts.html"] $ do
@@ -236,47 +252,22 @@ debianiaCompiler =
     let newBody = itemBody new
     go (newBody:rest)
 
-previousPostUrl :: Item String -> Compiler String
-previousPostUrl post = do
-    posts <- getMatches "posts/*"
-    let ident = itemIdentifier post
-        sortedPosts = sortIdentifiersByDate posts
-        ident' = itemBefore sortedPosts ident
-    case ident' of
-        Just i -> (fmap (maybe empty $ toUrl) . getRoute) i
-        Nothing -> empty
-
-nextPostUrl :: Item String -> Compiler String
-nextPostUrl post = do
-    posts <- getMatches "posts/*"
-    let ident = itemIdentifier post
-        sortedPosts = sortIdentifiersByDate posts
-        ident' = itemAfter sortedPosts ident
-    case ident' of
-        Just i -> (fmap (maybe empty $ toUrl) . getRoute) i
-        Nothing -> empty
-
-itemAfter :: Eq a => [a] -> a -> Maybe a
-itemAfter xs x =
-    lookup x $ zip xs (tail xs)
-
-itemBefore :: Eq a => [a] -> a -> Maybe a
-itemBefore xs x =
-    lookup x $ zip (tail xs) xs
-
-urlOfPost :: Item String -> Compiler String
-urlOfPost =
-    fmap (maybe empty $ toUrl) . getRoute . itemIdentifier
-
-sortIdentifiersByDate :: [Identifier] -> [Identifier]
-sortIdentifiersByDate identifiers =
-    sortBy byDate identifiers
-        where
-            byDate id1 id2 =
-                let fn1 = takeFileName $ toFilePath id1
-                    fn2 = takeFileName $ toFilePath id2
-                    parseTime' fn = parseTimeM True defaultTimeLocale "%Y-%m-%d" $ intercalate "-" $ take 3 $ splitAll "-" fn
-                in compare ((parseTime' fn1) :: Maybe UTCTime) ((parseTime' fn2) :: Maybe UTCTime)
+-- | Given a chronologically ordered list of posts' identifiers, find previous
+-- and next post for a given one.
+getPrevNextPosts ::
+       [Identifier]
+    -> Identifier
+    -> (Maybe Identifier, Maybe Identifier)
+getPrevNextPosts (id1 : rest@(id2:id3:_)) id
+  | id == id1 = (Nothing, Just id2)
+  | id > id2  = getPrevNextPosts rest id
+  | id == id2 = (Just id1, Just id3)
+  | otherwise = (Nothing, Nothing)
+getPrevNextPosts [id1, id2] id
+  | id == id1 = (Nothing, Just id2)
+  | id == id2 = (Just id1, Nothing)
+  | otherwise = (Nothing, Nothing)
+getPrevNextPosts _ _ = (Nothing, Nothing)
 
 {---- SETTINGS ----}
 
@@ -304,9 +295,27 @@ postCtx :: Context String
 postCtx =
        dateField "date" "%B %e, %Y"
     <> dateField "datetime" "%Y-%m-%d"
-    <> field "prev_post_url" previousPostUrl
-    <> field "next_post_url" nextPostUrl
     <> debianiaCtx
+
+genPrevNextCtx :: [Identifier] -> Identifier -> Compiler (Context String)
+genPrevNextCtx posts identifier = do
+    let (prev_url, next_url) = getPrevNextPosts posts identifier
+
+    let getRoute' = maybe (return Nothing) getRoute
+    prevUrl <- getRoute' prev_url
+    nextUrl <- getRoute' next_url
+
+    let genField url' field =
+          case url' of
+            -- getRoute returned a path relative to the site root, but without
+            -- a slash at the beginning. We have to fix that.
+            Just url -> [ constField field ("/" ++ url) ]
+            Nothing  -> []
+
+    return $ mconcat $ concat [
+        genField prevUrl "prev_post_url"
+      , genField nextUrl "next_post_url"
+      ]
 
 feedCtx :: Context String
 feedCtx =

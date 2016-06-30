@@ -16,6 +16,7 @@ Executable debiania
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
                  , MissingH
+                 , containers
                  , filepath
                  , hakyll == 4.*
                  , text
