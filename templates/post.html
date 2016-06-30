@@ -5,7 +5,10 @@
         $if(prev_post_url)$
         <div class="prev_next_post_button"
              id="prev_post_button">
-            <a href="$prev_post_url$"><span id="prev-anchor"></span></a>
+            <a href="$prev_post_url$">
+                <span class="content-desktop">‹</span>
+                <span class="content-mobile">←</span>
+            </a>
         </div>
         $endif$
 
@@ -14,7 +17,10 @@
         $if(next_post_url)$
         <div class="prev_next_post_button"
              id="next_post_button">
-            <a href="$next_post_url$"><span id="next-anchor"></span></a>
+            <a href="$next_post_url$">
+                <span class="content-desktop">›</span>
+                <span class="content-mobile">→</span>
+            </a>
         </div>
         $endif$
     </div>

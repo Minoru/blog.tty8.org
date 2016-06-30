@@ -16,6 +16,7 @@
             media="only screen and (min-width: 769px)" href="/css/desktop.css">
         <link rel="stylesheet" type="text/css" media="all"
             href="/css/syntax.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
         <link rel="alternate" type="application/rss+xml"
             title="Debiania" href="/feeds/all.rss">
         <link rel="alternate" type="application/atom+xml"
@@ -27,13 +28,34 @@
                 <div id="blog-logo-and-title">
                     <img id="blog-header-logo"
                          src="/images/debiania-logo-mainpage.svg" />
-                    <h1>Debiania</h1>
+                    <h1 id="blog-header-title">Debiania</h1>
                 </div>
             </a>
             <nav id="navigation">
-                <a href="/about.html" style="flex-grow: 3;">About</a>
-                <a href="/posts.html">Archives</a>
-                <a href="/subscribe.html" style="flex-grow: 3;">Subscribe</a>
+                <a id="nav-about" href="/about.html">
+                    <span class="content-desktop">
+                        About
+                    </span>
+                    <span class="content-mobile">
+                        <i class='fa fa-question fa-4x' aria-hidden='true'></i>
+                    </span>
+                </a>
+                <a id="nav-posts" href="/posts.html">
+                    <span class="content-desktop">
+                        Archives
+                    </span>
+                    <span class="content-mobile">
+                        <i class='fa fa-hdd-o fa-4x' aria-hidden='true'></i>
+                    </span>
+                </a>
+                <a id="nav-subscribe" href="/subscribe.html">
+                    <span class="content-desktop">
+                        Subscribe
+                    </span>
+                    <span class="content-mobile">
+                        <i class='fa fa-rss fa-4x' aria-hidden='true'></i>
+                    </span>
+                </a>
             </nav>
         </header>
 

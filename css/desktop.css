@@ -2,6 +2,11 @@ body {
     width: 35em;
 }
 
+a#nav-about,
+a#nav-subscribe {
+    flex: 3;
+}
+
 div.prev_next_post_button {
     position: fixed;
     top: 50%;
@@ -12,15 +17,10 @@ div#prev_post_button {
     left: calc((100% - 35em) / 4);
 }
 
-
 div#next_post_button {
     right: calc((100% - 35em) / 4)
 }
 
-span#prev-anchor::after {
-    content: "‹";
-}
-
-span#next-anchor::after {
-    content: "›";
+.content-desktop {
+    display: inline;
 }

@@ -3,12 +3,27 @@ body {
     margin: 0 1em;
 }
 
-#blog-header-logo {
+header#blog-header {
+    border-bottom: 1px solid #b0b0b0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#blog-header-title {
     display: none;
 }
 
-#blog-logo-and-title {
-    justify-content: space-around;
+nav#navigation {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    width: calc(80% - 5em);
+}
+
+a#nav-about,
+a#nav-posts,
+a#nav-subscribe {
+    flex: 1;
 }
 
 pre, blockquote {
@@ -51,10 +66,6 @@ div#next_post_button {
     text-align: right;
 }
 
-span#prev-anchor::after {
-    content: "←";
-}
-
-span#next-anchor::after {
-    content: "→";
+.content-mobile {
+    display: inline;
 }

@@ -237,3 +237,8 @@ div.prev_next_post_button > a:hover,
 div.prev_next_post_button > a:active {
     color: #bbbbbb;
 }
+
+.content-desktop,
+.content-mobile {
+    display: none;
+}

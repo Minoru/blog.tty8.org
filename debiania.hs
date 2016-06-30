@@ -34,7 +34,7 @@ main = hakyllWith config $ do
         compile compressCssCompiler
 
     -- Images and miscellaneous files
-    match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do
+    match ( "images/*" .||. "misc/*" .||. "fonts/*" .||. "robots.txt" ) $ do
         route   idRoute
         compile copyFileCompiler
 
