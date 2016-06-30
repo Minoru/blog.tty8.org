@@ -30,8 +30,23 @@ main = hakyllWith config $ do
 
     -- Compress CSS
     match "css/*" $ do
-        route   idRoute
+        -- No `route` rule means these files won't be present in generated
+        -- site. The point of this whole block is to compress the files and put
+        -- them into the cache so that later on, we can use `loadBody` to take
+        -- them out and generate debiania.css out of them.
         compile compressCssCompiler
+
+    create ["css/debiania.css"] $ do
+        route idRoute
+        compile $ do
+          styles <- mapM
+                      (loadBody . fromFilePath . ("css/"++))
+                      [ "normalize.css"
+                      , "syntax.css"
+                      , "default.css"
+                      , "desktop.css"
+                      , "mobile.css"]
+          makeItem (concat (styles :: [String]))
 
     -- Images and miscellaneous files
     match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do

@@ -1,3 +1,5 @@
+@media only screen and (min-width: 769px) {
+
 body {
     width: 35em;
 }
@@ -12,7 +14,6 @@ div#prev_post_button {
     left: calc((100% - 35em) / 4);
 }
 
-
 div#next_post_button {
     right: calc((100% - 35em) / 4)
 }
@@ -23,4 +24,6 @@ span#prev-anchor::after {
 
 span#next-anchor::after {
     content: "›";
+}
+
 }

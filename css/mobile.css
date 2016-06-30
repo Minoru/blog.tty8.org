@@ -1,3 +1,5 @@
+@media only screen and (max-width: 768px) {
+
 body {
     font-size: 1em;
     margin: 0 1em;
@@ -57,4 +59,6 @@ span#prev-anchor::after {
 
 span#next-anchor::after {
     content: "→";
+}
+
 }
