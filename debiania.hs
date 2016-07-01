@@ -2,14 +2,14 @@
 
 import Control.Applicative (Alternative (..))
 import Control.Arrow ((***))
-import Control.Monad (liftM, filterM)
+import Control.Monad (liftM, filterM, msum)
 import Data.List (intersect, sortBy, intercalate)
 import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
 import Data.Ord (comparing)
 import Data.String.Utils (split)
 import Data.Time.Clock (UTCTime)
-import Data.Time.Format (defaultTimeLocale, parseTimeM)
+import Data.Time.Format (defaultTimeLocale, parseTimeM, formatTime)
 import Network.HTTP.Base (urlEncode)
 import System.FilePath (takeFileName)
 
@@ -28,10 +28,23 @@ main = hakyllWith config $ do
     -- Build tags (will be used later on)
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
 
+    let withDate (identifier, m) =
+          let fn = takeFileName $ toFilePath identifier
+              datetime = parseTimeM True defaultTimeLocale "%Y-%m-%d" $
+                         intercalate "-" $
+                         take 3 $
+                         splitAll "-" fn
+              date = fromMaybe "" $
+                       msum [ M.lookup "published" m
+                            , M.lookup "date" m
+                            , fmap
+                                (formatTime defaultTimeLocale "%F")
+                                (datetime :: Maybe UTCTime)
+                            ]
+          in (identifier, date)
+
     postsMetadata <-
-            map fst
-         .  sortBy (comparing snd)
-         .  map (id *** M.findWithDefault "date" "")
+            map fst . sortBy (comparing snd) . map withDate
         <$> getAllMetadata "posts/*"
 
     -- Read templates
