@@ -273,9 +273,15 @@ getPrevNextPosts ::
     -> (Maybe Identifier, Maybe Identifier)
 getPrevNextPosts (id1 : rest@(id2:id3:_)) id
   | id == id1 = (Nothing, Just id2)
-  | id > id2  = getPrevNextPosts rest id
   | id == id2 = (Just id1, Just id3)
-  | otherwise = (Nothing, Nothing)
+  {- Original algorithm (copied from
+   - https://github.com/arthuraa/poleiro/blob/43cf1157e45188ff2ffcddd21787750b361d38b6/site.hs)
+   - recursed only if `id > id2`. Unfortunatelly, this doesn't always work if
+   - one has more than one article published in a single day.
+   -
+   - Just meditate on how this works if `id` is "posts/1970-01-01-foo.markdown"
+   - and `id2` is "posts/1970-01-01-bar.markdown". -}
+  | otherwise = getPrevNextPosts rest id
 getPrevNextPosts [id1, id2] id
   | id == id1 = (Nothing, Just id2)
   | id == id2 = (Just id1, Nothing)
