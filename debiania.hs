@@ -28,21 +28,6 @@ main = hakyllWith config $ do
     -- Build tags (will be used later on)
     tags <- buildTags "posts/*" (fromCapture "tags/*.html")
 
-    let withDate (identifier, m) =
-          let fn = takeFileName $ toFilePath identifier
-              datetime = parseTimeM True defaultTimeLocale "%Y-%m-%d" $
-                         intercalate "-" $
-                         take 3 $
-                         splitAll "-" fn
-              date = fromMaybe "" $
-                       msum [ M.lookup "published" m
-                            , M.lookup "date" m
-                            , fmap
-                                (formatTime defaultTimeLocale "%F")
-                                (datetime :: Maybe UTCTime)
-                            ]
-          in (identifier, date)
-
     postsMetadata <-
             map fst . sortBy (comparing snd) . map withDate
         <$> getAllMetadata "posts/*"
@@ -287,6 +272,23 @@ getPrevNextPosts [id1, id2] id
   | id == id2 = (Just id1, Nothing)
   | otherwise = (Nothing, Nothing)
 getPrevNextPosts _ _ = (Nothing, Nothing)
+
+
+withDate :: (Identifier, Metadata) -> (Identifier, String)
+withDate (identifier, m) =
+  let fn = takeFileName $ toFilePath identifier
+      datetime = parseTimeM True defaultTimeLocale "%Y-%m-%d" $
+                 intercalate "-" $
+                 take 3 $
+                 splitAll "-" fn
+      date = fromMaybe "" $
+               msum [ M.lookup "published" m
+                    , M.lookup "date" m
+                    , fmap
+                        (formatTime defaultTimeLocale "%F")
+                        (datetime :: Maybe UTCTime)
+                    ]
+  in (identifier, date)
 
 {---- SETTINGS ----}
 
