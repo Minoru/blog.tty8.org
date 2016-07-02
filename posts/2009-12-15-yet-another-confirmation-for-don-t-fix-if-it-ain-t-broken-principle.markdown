@@ -17,7 +17,7 @@ tags: linux,debian
 
 Всё как всегда: вечер перед сдачей _чего-то_там_важного_ (в данном случае — отчётов по лабораторным), а ты сидишь у компа и занимаешься починкой того, что вообще не сломалось бы, если бы не твоя тяга к экспериментам. И винить можно только себя…
 
-<b>UPD:</b> <a href="http://debiania.blogspot.com/2009/12/openoffice.html">OOo починил</a></span>
+<b>UPD:</b> [OOo починил](/posts/2009-12-15-if-openoffice-icons-suddenly-disappear.html)</span>
 
 <h3 id='hakyll-convert-comments-title'>Comments (migrated from Blogger)</h3>
 <div class='hakyll-convert-comment'>

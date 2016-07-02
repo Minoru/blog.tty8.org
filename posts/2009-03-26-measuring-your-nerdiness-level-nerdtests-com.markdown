@@ -37,7 +37,7 @@ tags: web
 <p class='hakyll-convert-comment-body'>
 Ничего, вырастешь — будешь гиковатее любого гика :D<br/>
 А вообще, всё эти тесты — just for fun…<br/>
-Если хочешь, можешь пройти ещё и «Which OS are you?» — подробнее <A HREF="http://debiania.blogspot.com/2008/08/which-os-are-you.html" REL="nofollow">тут</A>.
+Если хочешь, можешь пройти ещё и «Which OS are you?» — подробнее [тут](/posts/2008-08-18-which-os-are-you.html).
 </p>
 </div>
 

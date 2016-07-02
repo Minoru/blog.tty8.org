@@ -35,6 +35,6 @@ find -type f -print | sort | sed "s/./$curdir/"
 curdir=$(pwd | sed 's/\//\\\//g') && \
 find -type f -print | sort | sed "s/./$curdir/"
 ```
-сохраните его в <code>/usr/bin</code> под каким-нибудь понятным именем (<code>mkfilelist</code>, к примеру), установите бит исполняемости (<code>mode +x mkfilelist</code>) и используйте на здоровье. А лучше поступите так, как я <a href="http://debiania.blogspot.com/2008/08/bash.html">советовал ранее</a>, и не засоряйте системные каталоги.
+сохраните его в <code>/usr/bin</code> под каким-нибудь понятным именем (<code>mkfilelist</code>, к примеру), установите бит исполняемости (<code>mode +x mkfilelist</code>) и используйте на здоровье. А лучше поступите так, как я [советовал ранее](/posts/2008-08-29-making-life-easier-integrating-bash-scripts-into-the-system.html), и не засоряйте системные каталоги.
 
 Удачи!

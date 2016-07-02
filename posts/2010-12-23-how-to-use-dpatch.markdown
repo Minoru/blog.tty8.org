@@ -5,7 +5,7 @@ categories:
 tags: debian
 ---
 
-Для полноты картины с пересборкой Debian–пакетов (см. мой <a href="http://debiania.blogspot.com/2010/12/debian.html">предыдущий пост</a>) решил перевести статью об использовании тулзы для менеджмента патчей — dpatch.
+Для полноты картины с пересборкой Debian–пакетов (см. мой [предыдущий пост](/posts/2010-12-23-how-to-rebuild-debian-packages.html)) решил перевести статью об использовании тулзы для менеджмента патчей — dpatch.
 
 <p align="right">Эта статья является переводом поста<br/>
 Сандро Тоси (Sandro Tosi) <a href="http://matrixhasu.altervista.org/index.php?view=use_dpatch">“HowTo use <code>dpatch</code>”</a></p>

@@ -5,7 +5,7 @@ categories:
 tags: web
 ---
 
-Некоторое время назад я <a href="http://debiania.blogspot.com/2009/05/blog-post.html">упоминал</a>  <a href="http://dotfiles.org/">dotfiles.org</a>. Он умер почти сразу же после моего поста, о чём я не мог не грустить — идея просто отличная.
+Некоторое время назад я [упоминал](/posts/2009-05-02-two-interesting-internet-projects.html)  <a href="http://dotfiles.org/">dotfiles.org</a>. Он умер почти сразу же после моего поста, о чём я не мог не грустить — идея просто отличная.
 
 Сегодня же фактически случайно отправился на страничку проекта и увидел такой текст:
 

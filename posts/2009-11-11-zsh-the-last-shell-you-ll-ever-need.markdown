@@ -137,6 +137,7 @@ echo =bla
 </p>
 </div>
 
+<a name="virens-comment"></a>
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2009-11-12T20:27:48.575+02:00, virens wrote:</p>
 <p class='hakyll-convert-comment-body'>

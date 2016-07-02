@@ -5,7 +5,7 @@ categories:
 tags: linux
 ---
 
-На пробельной клавише <a href='http://debiania.blogspot.com/2011/08/asus-p52f-380m-debian.html'>моего Asus P52F-380M</a> нарисован какой-то бегущий человечек (JFYI: клавиши у P52F не такие, как на фото, но это не важно):
+На пробельной клавише [моего Asus P52F-380M](/posts/2011-08-30-asus-p52f-380m-and-debian.html) нарисован какой-то бегущий человечек (JFYI: клавиши у P52F не такие, как на фото, но это не важно):
 
 <div class="center">
 <img src="/images/asus-p52f-so003x.jpg"
