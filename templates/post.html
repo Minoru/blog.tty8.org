@@ -2,6 +2,7 @@
 <header id="post-header">
 
     <div id="header-and-prev-next-buttons">
+        <span>
         $if(prev_post_url)$
         <div class="prev_next_post_button"
              id="prev_post_button">
@@ -9,14 +10,15 @@
         </div>
         $endif$
 
-        <h1>$title$</h1>
-
         $if(next_post_url)$
         <div class="prev_next_post_button"
              id="next_post_button">
             <a href="$next_post_url$"><span id="next-anchor"></span></a>
         </div>
         $endif$
+        </span>
+
+        <h1>$title$</h1>
     </div>
 
     <hr id="post-date-ruler">

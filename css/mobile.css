@@ -18,7 +18,7 @@ pre, blockquote {
     padding-left: 1em !important;
 }
 
-div#header-and-prev-next-buttons {
+div#header-and-prev-next-buttons > span {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,11 +31,12 @@ div#header-and-prev-next-buttons > h1 {
     padding: 0;
 }
 
-div#header-and-prev-next-buttons > div.prev_next_post_button {
+div.prev_next_post_button {
     font-size: 3em;
 }
 
-div#header-and-prev-next-buttons > div.prev_next_post_button a {
+div#prev_post_button > a,
+div#next_post_button > a {
     color: #bbbbbb;
 }
 
