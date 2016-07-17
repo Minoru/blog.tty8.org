@@ -2,8 +2,9 @@
 
 import Control.Applicative (Alternative (..))
 import Control.Arrow ((***))
-import Control.Monad (liftM, filterM, msum)
-import Data.List (intersect, sortBy, intercalate)
+import Control.Monad (liftM, filterM, forM, msum)
+import Data.Function (on)
+import Data.List (intersect, sortBy, groupBy, sortOn, intercalate)
 import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
 import Data.Ord (comparing)
@@ -95,14 +96,57 @@ main = hakyllWith config $ do
     create ["posts.html"] $ do
         route     idRoute
         compile $ do
-          posts <- recentFirst =<< loadAll "posts/*"
-          let ctx =    constField "title" "Archives"
-                    <> listField "posts" postCtx (return posts)
-                    <> debianiaCtx
+          -- On this page, we're listing posts by year (in reverse
+          -- chronological order.
+
+          -- First of all, load all the posts
+          posts <- loadAll "posts/*"
+          -- Now pair each post with the year it was posted on
+          years <- forM posts $ \post -> do
+                     let id = itemIdentifier post
+                     time <- getItemUTC defaultTimeLocale id
+                     let year = formatTime defaultTimeLocale "%Y" time
+                     return (year, post)
+
+          -- Convert the list of pairs into a map, from year to a list of posts
+          -- that were posted that year
+          let postsByYear = M.fromList
+                          $ toMapElem
+                          $ groupBy ((==) `on` fst)
+                          $ reverse
+                          $ sortOn fst years
+
+          -- Here's how we're going to achieve our goal. First, we create
+          -- a list of items, one item per year. The body of the item contains
+          -- a single string--the year. That list is available in `yearsCtx`
+          -- context.
+          --
+          -- In the template, we will walk over that list and evaluate each
+          -- item in `yearCtx` context. This will give us two fields: `year`,
+          -- which is a string with the year in it; and `posts`, which is
+          -- a list of posts that were posted that year.
+          --
+          -- When we're walking over `posts` list, we're evaluating it in the
+          -- `postCtx` context, but with a twitch: `date` field will look like
+          -- "Jul 01" (with non-breaking space!).
+          let yearCtx =  field "year" (return . itemBody)
+                      <> listFieldWith
+                            "posts"
+                            -- format date as "Jul 01", "Mar 21" etc.
+                            (  dateField "date" "%b&nbsp;%d"
+                            <> postCtx)
+                            (\item -> do let year = itemBody item
+                                         return $ postsByYear M.! year)
+
+          let yearsDescending = reverse $ M.keys postsByYear
+          let yearsCtx = listField "years" yearCtx (mapM makeItem yearsDescending)
 
           makeItem ""
-            >>= loadAndApplyTemplate "templates/archives.html" ctx
-            >>= loadAndApplyTemplate "templates/default.html" ctx
+            >>= loadAndApplyTemplate "templates/archives.html" yearsCtx
+            >>= loadAndApplyTemplate
+                  "templates/default.html"
+                  (  constField "title" "Archives"
+                  <> debianiaCtx)
             >>= relativizeUrls
 
     -- Render About and Subscribe pages
@@ -289,6 +333,19 @@ withDate (identifier, m) =
                         (datetime :: Maybe UTCTime)
                     ]
   in (identifier, date)
+
+-- | Prepare a list to be used as a base to constuct a Map.
+--
+-- Example input:
+--
+--    [[(1, "hello"), (1, "hi"), (1, "hey")], [(2, "bye"), (2, "see ya")]]
+--
+-- ...will result in:
+--
+--    [(1, ["hello", "hi", "hey"]), (2, ["bye", "see ya"])]
+toMapElem :: [[(a, b)]] -> [(a, [b])]
+toMapElem [] = []
+toMapElem (((a, b):as):xs) = (a, b : map snd as) : toMapElem xs
 
 {---- SETTINGS ----}
 

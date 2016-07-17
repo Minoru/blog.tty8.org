@@ -1,5 +1,17 @@
 <article id="service-page">
-<h1>$title$</h1>
-
-$partial("templates/posts.html")$
+$for(years)$
+<center>
+    <h2>$year$</h2>
+</center>
+$for(posts)$
+<p class="archive-post-entry">
+    <a href="$url$">$title$</a>
+    <span class="date">
+        <time datetime="$datetime$">
+            $date$
+        </time>
+    </span>
+</p>
+$endfor$
+$endfor$
 </article>

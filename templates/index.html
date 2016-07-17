@@ -1,5 +1,14 @@
 <article id="posts">
-    $partial("templates/posts.html")$
+    $for(posts)$
+    <p>
+        <a href="$url$">$title$</a>
+        <span class="date">
+            <time datetime="$datetime$">
+                $date$
+            </time>
+        </span>
+    </p>
+    $endfor$
 
     <p style="text-align: center; font-size: 88%; font-style: italic;">
     <a href="/posts.html">There's more!</a>
