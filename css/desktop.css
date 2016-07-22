@@ -26,4 +26,40 @@ span#next-anchor::after {
     content: "›";
 }
 
+/* Solution for dot leaders lifted from
+ * https://github.com/dompdf/dompdf/issues/770
+ * and
+ * https://www.w3.org/Style/Examples/007/leaders.en.html */
+div.year-posts-list {
+    padding: 0;
+    overflow-x: hidden;
+}
+div.year-posts-list p:after {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content: ". . . . . . . . . . . . . . . . . . . . "
+             ". . . . . . . . . . . . . . . . . . . . "
+             ". . . . . . . . . . . . . . . . . . . . "
+             ". . . . . . . . . . . . . . . . . . . . ";
+    color: #bbb;
+}
+div.year-posts-list a {
+    background: white;
+    margin-right: 0.1em;
+    padding-right: 0.3em;
+}
+div.year-posts-list span {
+    background: white;
+    margin-left: 0.1em;
+    float: right;
+    padding-left: 0.3em;
+    position: relative;
+    z-index: 1;
+}
+
+div#year-posts-list-clearfix {
+    clear: both;
+}
+
 }

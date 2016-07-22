@@ -62,4 +62,17 @@ span#next-anchor::after {
     content: "→";
 }
 
+div.year-posts-list > p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px dashed grey;
+}
+
+div.year-posts-list span {
+    align-self: flex-end;
+    margin-left: 1em;
+}
+
 }

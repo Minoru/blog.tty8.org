@@ -275,22 +275,10 @@ p.hakyll-convert-comment-date {
     background-color: #f5f5f5;
 }
 
-article#service-page > p.archive-post-entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    border-bottom: 1px dashed grey;
-}
-
-article#service-page > p.archive-post-entry > a {
-    text-decoration: none;
-}
-
-article#service-page > p.archive-post-entry > span.date {
-    margin-left: 1em;
-}
-
-article#service-page > p.archive-post-entry > span.date > time {
+div.year-posts-list time {
     font-family: monospace;
+}
+
+div.year-posts-list a {
+    text-decoration: none;
 }
