@@ -12,6 +12,7 @@ pre,
 blockquote,
 ul {
     margin: 0.5em 0;
+    line-height: 1.467em;
 }
 
 pre {
@@ -155,7 +156,6 @@ nav#navigation a:active {
 #post {
     display: flex;
     flex-direction: column;
-    line-height: 1.467em;
 }
 
 #post hr {
@@ -205,10 +205,6 @@ footer#blog-footer > div#microbuttons > a {
     padding-bottom: 0;
     margin-left: auto;
     margin-right: auto;
-}
-
-#service-page p {
-    line-height: 1.467em;
 }
 
 code {
