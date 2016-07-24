@@ -10,7 +10,8 @@ body {
 p,
 pre,
 blockquote,
-ul {
+ul,
+ol {
     margin: 0.5em 0;
     line-height: 1.467em;
 }
@@ -19,7 +20,7 @@ pre {
     overflow-x: auto;
 }
 
-ul {
+ul, ol {
     padding-left: 1em;
 }
 
