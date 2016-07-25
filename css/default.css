@@ -13,6 +13,9 @@ blockquote,
 ul,
 ol {
     margin: 0.5em 0;
+}
+
+article {
     line-height: 1.467em;
 }
 
