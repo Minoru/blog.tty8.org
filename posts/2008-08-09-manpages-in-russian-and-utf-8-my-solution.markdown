@@ -1,5 +1,5 @@
 ---
-title: Русские маны и UTF-8: моё решение
+title: "Русские маны и UTF-8: моё решение"
 published: 2008-08-09T12:31:00Z
 categories: 
 tags: linux

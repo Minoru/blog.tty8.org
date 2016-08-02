@@ -1,5 +1,5 @@
 ---
-title: Xchat: проблемы при отображении channel switcher'а в виде дерева
+title: "Xchat: проблемы при отображении channel switcher'а в виде дерева"
 published: 2008-08-16T17:29:00Z
 categories: 
 tags: linux

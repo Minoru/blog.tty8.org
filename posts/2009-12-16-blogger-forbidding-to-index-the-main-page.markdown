@@ -1,5 +1,5 @@
 ---
-title: Blogger: запрет индексирования главной
+title: "Blogger: запрет индексирования главной"
 published: 2009-12-16T18:00:00Z
 categories: 
 tags: blog

@@ -1,5 +1,5 @@
 ---
-title: Русские маны и UTF-8: эпизод второй
+title: "Русские маны и UTF-8: эпизод второй"
 published: 2008-11-24T05:00:00Z
 categories: 
 tags: linux

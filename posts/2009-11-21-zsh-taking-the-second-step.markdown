@@ -1,5 +1,5 @@
 ---
-title: ZSH: делаем второй шаг
+title: "ZSH: делаем второй шаг"
 published: 2009-11-21T17:20:00Z
 categories: 
 tags: zsh,linux

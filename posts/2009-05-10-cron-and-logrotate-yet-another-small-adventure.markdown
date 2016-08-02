@@ -1,5 +1,5 @@
 ---
-title: cron и logrotate: ещё одно маленькое приключение
+title: "cron и logrotate: ещё одно маленькое приключение"
 published: 2009-05-10T06:57:00Z
 categories: 
 tags: linux

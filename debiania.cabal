@@ -17,8 +17,9 @@ Executable debiania
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
                  , MissingH
-                 , containers
+                 , aeson
                  , filepath
                  , hakyll == 4.*
                  , text
                  , time
+                 , unordered-containers

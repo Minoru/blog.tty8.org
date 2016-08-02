@@ -14,7 +14,8 @@ import Data.Time.Format (defaultTimeLocale, parseTimeM, formatTime)
 import Network.HTTP.Base (urlEncode)
 import System.FilePath (takeFileName)
 
-import qualified Data.Map.Strict as M
+import qualified Data.Aeson.Types as A
+import qualified Data.HashMap.Strict as M
 import qualified Data.Text as T
 
 import Hakyll
@@ -329,10 +330,10 @@ withDate (identifier, m) =
                msum [ M.lookup "published" m
                     , M.lookup "date" m
                     , fmap
-                        (formatTime defaultTimeLocale "%F")
+                        (A.String . T.pack . (formatTime defaultTimeLocale "%F"))
                         (datetime :: Maybe UTCTime)
                     ]
-  in (identifier, date)
+  in (identifier, show date)
 
 -- | Prepare a list to be used as a base to constuct a Map.
 --

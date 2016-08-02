@@ -1,5 +1,5 @@
 ---
-title: Конфигурирование Hotkeys: In A True Way
+title: "Конфигурирование Hotkeys: In A True Way"
 published: 2008-12-30T14:47:00Z
 categories: 
 tags: hardware,linux
