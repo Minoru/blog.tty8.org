@@ -15,8 +15,10 @@ import Network.HTTP.Base (urlEncode)
 import System.FilePath (takeFileName)
 
 import qualified Data.Aeson.Types as A
+import qualified Data.ByteString.Lazy as LBS
 import qualified Data.HashMap.Strict as M
 import qualified Data.Text as T
+import qualified Data.Text.Encoding as TE
 
 import Hakyll
 
@@ -28,11 +30,11 @@ config = defaultConfiguration {
 main :: IO ()
 main = hakyllWith config $ do
     -- Build tags (will be used later on)
-    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+    tags <- buildTags ("posts/*" .&&. hasNoVersion) (fromCapture "tags/*.html")
 
     postsMetadata <-
             map fst . sortBy (comparing snd) . map withDate
-        <$> getAllMetadata "posts/*"
+        <$> getAllMetadata ("posts/*" .&&. hasNoVersion)
 
     -- Read templates
     match "templates/*" $ compile templateCompiler
@@ -65,7 +67,7 @@ main = hakyllWith config $ do
     create ["index.html"] $ do
         route     idRoute
         compile $ do
-          posts <- fmap (take 8) . recentFirst =<< loadAll "posts/*"
+          posts <- fmap (take 8) . recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
           let ctx =    constField "title" "Home"
                     <> listField "posts" postCtx (return posts)
                     <> debianiaCtx
@@ -94,14 +96,14 @@ main = hakyllWith config $ do
             >>= relativizeUrls
 
     -- Render Archives page
-    create ["posts.html"] $ do
-        route     idRoute
+    create ["posts.markdown"] $ do
+        route   $ setExtension "html"
         compile $ do
           -- On this page, we're listing posts by year (in reverse
           -- chronological order.
 
           -- First of all, load all the posts
-          posts <- loadAll "posts/*"
+          posts <- loadAll ("posts/*" .&&. hasVersion "html")
           -- Now pair each post with the year it was posted on
           years <- forM posts $ \post -> do
                      let id = itemIdentifier post
@@ -150,17 +152,8 @@ main = hakyllWith config $ do
                   <> debianiaCtx)
             >>= relativizeUrls
 
-    -- Render About and Subscribe pages
-    create ["about.markdown", "subscribe.markdown"] $ do
-        route   $ setExtension "html"
-        compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
-          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
-          >>= relativizeUrls
-
-    -- Error 404 page is special in a way that it doesn't need URL
-    -- relativization because it would be located in the webserver root
-    create ["404.markdown"] $ do
+    -- Render About, Subscribe and 404 pages
+    create ["about.markdown", "subscribe.markdown", "404.markdown"] $ do
         route   $ setExtension "html"
         compile $ debianiaCompiler
           >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
@@ -170,14 +163,38 @@ main = hakyllWith config $ do
     create ["sitemap.xml"] $ do
        route   idRoute
        compile $ do
-         posts <- recentFirst =<< loadAll "posts/*"
+         posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
          let sitemapCtx =    listField "posts" postCtx (return posts)
                           <> debianiaCtx
          makeItem ""
           >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 
+    create ["sitemap.xml"] $ version "gzipped" $ do
+        route   $ setExtension "xml.gz"
+        compile gzipFileCompiler
+
+    create ["css/debiania.css.gz"] $ do
+        route idRoute
+        compile $ do
+          css <- load "css/debiania.css"
+          makeItem (itemBody css)
+            >>= gzip
+
+    match "posts/*" $ version "gzipped" $ do
+        route   $ setExtension "html.gz"
+        compile gzipFileCompiler
+
+    create ["about.markdown"
+           , "subscribe.markdown"
+           , "404.markdown"
+           , "posts.markdown"
+           , "index.html"]
+      $ version "gzipped" $ do
+        route   $ setExtension "html.gz"
+        compile gzipFileCompiler
+
     -- Render feeds
-    let allContent = loadAllSnapshots "posts/*" "content"
+    let allContent = loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
           >>= mapM absolutizeUrls
     let russianContent = allContent
           >>= filterLanguage "russian"
@@ -244,7 +261,7 @@ createFeed
           -> [Item String]
           -> Compiler (Item String))
      -> Rules ()
-createFeed name content conf extension compiler =
+createFeed name content conf extension compiler = do
   create [ feedpath ] $ do
     route     idRoute
     compile $ do
@@ -268,6 +285,11 @@ createFeed name content conf extension compiler =
                                 else return oldRootUrl)
               `mappend`
               feedCtx)
+
+  -- compressed version
+  create [ feedpath ] $ version "gzipped" $ do
+    route   $ customRoute $ (++ ".gz") . toFilePath
+    compile gzipFileCompiler
 
   where feedpath = fromFilePath
           $ T.unpack
@@ -347,6 +369,27 @@ withDate (identifier, m) =
 toMapElem :: [[(a, b)]] -> [(a, [b])]
 toMapElem [] = []
 toMapElem (((a, b):as):xs) = (a, b : map snd as) : toMapElem xs
+
+gzip :: Item String -> Compiler (Item LBS.ByteString)
+gzip = withItemBody
+         (unixFilterLBS
+           "7z"
+           [ "a"      -- create archive
+           , "dummy"  -- archive's filename (won't be used)
+           , "-tgzip" -- archive format
+           , "-mx9"   -- m-m-maximum compression
+           , "-si"    -- read data from stdin
+           , "-so"    -- write archive to stdout
+           ]
+         . LBS.fromStrict
+         . TE.encodeUtf8
+         . T.pack)
+
+gzipFileCompiler :: Compiler (Item LBS.ByteString)
+gzipFileCompiler = do id <- getUnderlying
+                      item <- load (setVersion Nothing id)
+                      makeItem (itemBody item)
+                        >>= gzip
 
 {---- SETTINGS ----}
 

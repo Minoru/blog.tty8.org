@@ -18,6 +18,7 @@ Executable debiania
                  , HTTP == 4000.*
                  , MissingH
                  , aeson
+                 , bytestring
                  , filepath
                  , hakyll == 4.*
                  , text
