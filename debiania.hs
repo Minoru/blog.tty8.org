@@ -103,7 +103,7 @@ main = hakyllWith config $ do
           -- chronological order.
 
           -- First of all, load all the posts
-          posts <- loadAll ("posts/*" .&&. hasVersion "html")
+          posts <- loadAll ("posts/*" .&&. hasNoVersion)
           -- Now pair each post with the year it was posted on
           years <- forM posts $ \post -> do
                      let id = itemIdentifier post
