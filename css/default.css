@@ -285,3 +285,24 @@ div.year-posts-list time {
 div.year-posts-list a {
     text-decoration: none;
 }
+
+.break {
+    height: 0.7em;
+    margin-top: 1em;
+    /* If we set bot top and bottom margins to same value, the image will appear
+     * to be closer to the previous paragraph than the next. Why is that?
+     *
+     * Well, the space occupied by the top margin is, visually, the one between
+     * baseline of the paragraph and the top line of the image. But the space
+     * occupied by the bottom margin is the one between the bottom of the image
+     * and the line at the x-height of the following paragraph! I think this
+     * happens due to the fact that space between cap- and x-height of the
+     * typeface is very sparse, so it appears visually empty. Thus the bottom
+     * margin of the image seems wider by cap-height minus x-height. By making
+     * the bottom margin tighter by the same amount, we can compensate for that
+     * effect.
+     *
+     * Default font size is 16px. We use Georgia typeface. At 16px, the distance
+     * between cap- and x-height of Georgia is 4px, or 1/4 of the em. */
+    margin-bottom: 0.75em;
+}
