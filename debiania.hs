@@ -193,6 +193,12 @@ main = hakyllWith config $ do
         route   $ setExtension "html.gz"
         compile gzipFileCompiler
 
+    match "images/*.svg" $ version "gzipped" $ do
+        route   $ setExtension "svg.gz"
+        compile $ do
+          getResourceBody
+            >>= gzip
+
     -- Render feeds
     let allContent = loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
           >>= mapM absolutizeUrls
@@ -387,8 +393,8 @@ gzip = withItemBody
 
 gzipFileCompiler :: Compiler (Item LBS.ByteString)
 gzipFileCompiler = do id <- getUnderlying
-                      item <- load (setVersion Nothing id)
-                      makeItem (itemBody item)
+                      body <- loadBody (setVersion Nothing id)
+                      makeItem body
                         >>= gzip
 
 {---- SETTINGS ----}
