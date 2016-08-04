@@ -407,7 +407,7 @@ urlEncodedTitleCtx =
 
 postCtx :: Context String
 postCtx =
-       dateField "date" "%B %e, %Y"
+       dateField "date" "%e %B %Y"
     <> dateField "datetime" "%Y-%m-%d"
     <> debianiaCtx
 
