@@ -4,7 +4,7 @@ import Control.Applicative (Alternative (..))
 import Control.Arrow ((***))
 import Control.Monad (liftM, filterM, forM, msum)
 import Data.Function (on)
-import Data.List (intersect, sortBy, groupBy, sortOn, intercalate)
+import Data.List (intersect, sort, sortBy, groupBy, sortOn, intercalate)
 import Data.Maybe (fromMaybe)
 import Data.Monoid ((<>))
 import Data.Ord (comparing)
@@ -141,7 +141,7 @@ main = hakyllWith config $ do
                             (\item -> do let year = itemBody item
                                          return $ postsByYear M.! year)
 
-          let yearsDescending = reverse $ M.keys postsByYear
+          let yearsDescending = reverse $ sort $ M.keys postsByYear
           let yearsCtx = listField "years" yearCtx (mapM makeItem yearsDescending)
 
           makeItem ""
