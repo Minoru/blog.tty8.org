@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" font-size="1px" xmlns="http://www.w3.org/2000/svg" height="499" width="461" stroke="#000000" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 460.99956 498.99956">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-23.048 -220.18)" stroke="#000" stroke-miterlimit="10" stroke-width="1.8477" fill="#808080">
+  <path d="m68.404 500 394.97-136.55v-9.3602h-7.3504l-23.05-29.353-4.1091-26.206-14.665 2.2994-46.663-59.422-130.92 87.266-101.77 15.957-77.011 88.012 2.1577 13.761-15.722 10.48 24.126 43.113z"/>
+ </g>
+ <g fill-opacity="0" transform="translate(-9.7873 188.77)" stroke="#f00" stroke-miterlimit="10" stroke-width="1.8477">
+  <g transform="translate(-5.819,30.769)">
+   <path d="m118.92 112.68h336.8"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m127.2 103.22 294.01-46.098"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m455.72 122.04-95.84-122.04"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m68.404 170.42 57.226-7.6642"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m125.19 192.91-75.002-1.68"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m432.64 130.02-72.76-130.02"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m60.751 258.59 394.97-136.55"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m36.625 215.48 323.26-215.48"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m50.19 191.23 77.011-88.012"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m68.404 255.94-31.779-40.46"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m432.64 130.02-11.43-72.898"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m60.751 258.59-24.126-43.11"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m125.63 162.75-6.7062-50.073"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m60.751 258.59-10.561-67.36"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m455.72 122.04v-9.3602"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m68.404 255.94v-85.525"/>
+  </g>
+  <g transform="translate(-5.819,30.769)">
+   <path d="m125.19 192.91 2.0089-89.692"/>
+  </g>
+ </g>
+</svg>

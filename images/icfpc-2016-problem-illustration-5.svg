@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" font-size="1" xmlns="http://www.w3.org/2000/svg" height="1344.5" width="2e3" stroke="rgb(0,0,0)" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 2000 1345">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g stroke="#000" stroke-miterlimit="10" stroke-width="0" fill="#fff">
+  <path d="m2e3 1344.5v-1344.5h-2e3v1344.5z"/>
+ </g>
+ <g stroke="#000" stroke-miterlimit="10" stroke-width="0" fill="#fff">
+  <path d="m1882.4 1226.9v-1109.2h-1764.7v1109.2z"/>
+ </g>
+ <g stroke-miterlimit="10" stroke-width="6.5594">
+  <g fill-opacity="0">
+   <g stroke="#f00">
+    <path d="m667.31 877.95h40.457"/>
+    <path d="m1021.1 589.1l-0.8229-0.864"/>
+    <path d="m996.68 1127.4l-131.27-55.55"/>
+    <path d="m1128 1179.1l-110.44-51.169"/>
+    <path d="m1116.9 1226.9l-110.92-50.775"/>
+    <path d="m1128 1179.1l-244.14-5.9547"/>
+    <path d="m1151.4 1078.8l-139.51-146.48"/>
+    <path d="m996.68 1127.4l-148.69-151.08"/>
+    <path d="m1005.9 1176.1l-298.17-298.17"/>
+    <path d="m1005.5 1176.3l-297.92-298.34"/>
+    <path d="m996.26 1180l-292.29-302.05"/>
+    <path d="m1017.6 1127.9l133.83-49.084"/>
+    <path d="m883.87 1173.1l112.81-45.724"/>
+    <path d="m892.68 1221.4l113.27-45.307"/>
+    <path d="m892.68 1221.4l-225.36-343.48"/>
+    <path d="m1019.4 589.06l0.864-0.8229"/>
+    <path d="m590.12 995.59l117.65-117.65"/>
+    <path d="m590.12 995.59l117.48-117.65"/>
+    <path d="m590.12 995.59l113.85-117.65"/>
+    <path d="m1173.5 984.28l-152.35-395.18"/>
+    <path d="m865.41 1071.9l146.48-139.51"/>
+    <path d="m590.12 995.59l77.19-117.65"/>
+    <path d="m1017.6 1127.9l155.88-143.65"/>
+    <path d="m1005.9 1176.1l435.6-395.06"/>
+    <path d="m1006.4 1176.3l435.18-395.25"/>
+    <path d="m1015.4 1180.5l426.12-399.4"/>
+    <path d="m892.68 1221.4l-44.688-245.09"/>
+    <path d="m847.99 976.34l171.43-387.28"/>
+    <path d="m996.26 1180l0.4191-52.574"/>
+    <path d="m1005.5 1176.3l13.901-587.23"/>
+    <path d="m1005.9 1176.1l5.9453-243.76"/>
+    <path d="m1006.4 1176.3l14.744-587.21"/>
+    <path d="m1015.4 1180.5l2.1444-52.532"/>
+    <path d="m1116.9 1226.9l324.67-445.83"/>
+    <path d="m1116.9 1226.9l56.583-242.62"/>
+   </g>
+   <g stroke="#ff0">
+    <path d="m590.12 995.59l117.65-117.65"/>
+    <path d="m590.12 995.59l113.85-117.65"/>
+    <path d="m590.12 995.59l77.19-117.65"/>
+    <path d="m1005.5 1176.3l13.901-587.23"/>
+   </g>
+   <g stroke="#000">
+    <path d="m1005.5 1176.3l-297.92-298.34"/>
+   </g>
+   <g stroke="#000">
+    <path d="m590.12 995.59l117.48-117.65"/>
+   </g>
+   <g stroke="#fff">
+    <path d="m1882.4 588.24v-235.29h-1764.7v235.29z"/>
+   </g>
+  </g>
+  <g font-size="100px" stroke="#000">
+   <text stroke="none" dominant-baseline="middle" text-anchor="middle" transform="translate(1e3 470.59)">8079 % 8410</text>
+  </g>
+  <g fill-opacity="0" stroke="#fff">
+   <path d="m1882.4 352.94v-235.29h-1764.7v235.29z"/>
+  </g>
+  <g font-size="100px" stroke="#000">
+   <text stroke="none" dominant-baseline="middle" text-anchor="middle" transform="translate(1e3 235.29)">1474011 % 5861770</text>
+  </g>
+ </g>
+</svg>
