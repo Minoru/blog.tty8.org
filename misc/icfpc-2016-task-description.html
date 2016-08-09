@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <link rel="canonical" href="https://icfpc2016.blogspot.jp/2016/08/task-description.html">
+        <title>ICFPC 2016 Task Description</title>
+        <style>
+        body {
+            margin: 0 auto;
+            width: 35em;
+        }
+        </style>
+    </head>
+    <body>
+
+<h1>ICFPC 2016 Task Description</h1>
+
+<hr /><div class="c0 c3 c1 title" id="h.k5zd14mqyixn"><span
+class="c27"></span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0 c11"><span class="c5"><a
+class="c8" href="#h.mjt7gvczbijp">Back Story</a></span></div><div
+class="c0 c11"><span class="c5"><a class="c8"
+href="#h.9sezpeiasjrr">General Remark</a></span></div><div class="c0
+c11"><span class="c5"><a class="c8" href="#h.8wy397r851zw">Problem
+Specification</a></span></div><div class="c0 c11"><span class="c5"><a
+class="c8" href="#h.459yfg8rpequ">Solution
+Specification</a></span></div><ul><li><span class="c5"><a class="c8"
+href="#h.uchxyyhilmya">The source positions
+part</a></span></li><li><span class="c5"><a class="c8"
+href="#h.r0aivot65v45">The facets part</a></span></li><li><span
+class="c5"><a class="c8" href="#h.jsf8msa50i05">The destination
+positions part</a></span></li><li><span class="c5"><a class="c8"
+href="#h.plqo02g3hg7u">Valid solution, Normalized
+solution</a></span></li></ul><div class="c0 c11"><span class="c5"><a
+class="c8" href="#h.a958m6hg45ih">Contest
+Structure</a></span></div><ul><li><span class="c5"><a class="c8"
+href="#h.yf9x5asuoayv">Team Registration and Solution/Problem
+Submission</a></span></li><li><span class="c5"><a class="c8"
+href="#h.6gouw9txma0j">Solution Evaluation</a></span></li><li><span
+class="c5"><a class="c8"
+href="#h.5hc9pxcjo5e4">Scoring</a></span></li><li><span class="c5"><a
+class="c8" href="#h.cg26sptx1t1p">Rate Limits and Leaderboard
+Freeze</a></span></li></ul><div class="c0 c11"><span class="c5"><a
+class="c8" href="#h.j7lfbqyfyb9m">Terms and
+Conditions</a></span></div><div class="c0 c1"><span
+class="c2"></span></div><hr /><div class="c0 c1"><span
+class="c2"></span></div><h1 class="c0 c3" id="h.mjt7gvczbijp"><span
+class="c18">Back Story</span></h1><div class="c0"><span
+style="-webkit-transform: rotate(0.00rad) translatez(0px); border:
+0.00px solid #000000; display: inline-block; height: 390.67px; margin:
+0.00px 0.00px; overflow: hidden; transform: rotate(0.00rad)
+translatez(0px); width: 624.00px;"><img alt=""
+src="icfpc-2016-800px-%E6%8A%98%E9%B6%B4_WUXGA.jpg"
+style="-webkit-transform: rotate(0.00rad) translatez(0px); height:
+312.54px; margin-left: 0.00px; margin-top: 0.00px; transform:
+rotate(0.00rad) translatez(0px); width: 499.20px;" title=""
+/></span></div><div class="c0"><span class="c9"><a class="c8"
+href="https://en.wikipedia.org/wiki/Origami">Origami</a></span>s
+are artistic objects created by folding square papers into shapes,
+without cutting or glueing. Origami also refers to the act of creating
+such objects.</div><div class="c0 c1"><span class="c2"></span></div><div
+class="c0">&nbsp;&nbsp;&nbsp; Origami has been practiced for a long,
+long time in Japan, and is now popular worldwide. But few are aware of
+spiritual powers of origami. They offer protection from disasters such
+as earthquakes,&nbsp;plagues&nbsp;and server failures<span class="c2">.
+Now, we want to enhance the Big Buddha Statue of Nara, by offering
+enchanted origamis to the Buddha. Origami silhouettes of special
+meanings are described in the Kojiki, an ancient scroll, but how to fold
+them is lost knowledge.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; As we are now in the 21st century of
+industry 4.0, big data, and artificial intelligence, we employ drone
+geishas to fold origamis. Your task is to recover the folds, each in
+form of a mapping from a square of paper to a special silhouette, so
+that the drone geishas can be programmed to fold the ancient origamis
+described in the Kojiki.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; To make matters worse, the very act of
+folding origamis using drone geishas draws The Singularity near, that
+clouds everything (also known as IoT) and makes it impossible to see the
+future. In preparation for this, we need to find out more powerful
+origami shapes that were not even predicted in the Kojiki. We need help
+from all of you here; you are all hardworking programmers, so those
+origami shapes that are insoluble by most of you must hold the strongest
+power.</span></div><div class="c0 c1"><span class="c2"></span></div><div
+class="c0">&nbsp;&nbsp;&nbsp; We live in a two-dimensional world, so
+only planar origamis are considered. As long as the origami is a valid
+two-dimensional mapping, it is allowed to specify <span
+class="c17">impossible</span><span class="c2">&nbsp;folds, that require
+papers to penetrate each other. Never mind, one of geisha's jobs is to
+warp the reality into fourth dimension.</span></div><div class="c0
+c1"><span class="c2"></span></div><div class="c0 c12"><br /><span
+class="c2">Sushi and sukiyaki will be rewarded. Wasshoi!</span></div><h1
+class="c0 c15 c3" id="h.9sezpeiasjrr"><span class="c18">General
+Remark</span></h1><div class="c0">In our coordinate system, the <span
+class="c4">x</span>&nbsp;axis points to the right, <span
+class="c4">y</span>&nbsp;to the up. A two-dimensional point is specified
+in the form <span class="c23">a/b,c/d</span>, where the numerators <span
+class="c23">a</span>, <span class="c23">c</span>&nbsp;are integers and
+the denominators <span class="c23">b</span>, <span
+class="c23">d</span>&nbsp;are positive integers. The <span
+class="c23">/</span><span class="c2">&nbsp;and the denominator may be
+abbreviated when the denominator is equal to 1. Fractions may be
+reducible.</span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; Often we treat polygons and edges as sets
+of points. In such cases the boundaries are inclusive. That is, a
+polygon seen as a set of points includes its edges and vertices; an edge
+as a set includes its two vertices.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0 c12">The size of a problem file
+or a solution file is defined by the number of non-whitespace ASCII
+characters in it. This is to avoid the issue of newline-code differences
+among operating systems, of newline characters at the end of file,
+etc.</div><div class="c0 c12">&nbsp;&nbsp;&nbsp; An interactive tool to
+help you understand the idea of the task is provided at <span
+class="c9"><a class="c8"
+href="https://www.google.com/url?q=http://2016sv.icfpcontest.org/play&amp;sa=D&amp;ust=1470357882308000&amp;usg=AFQjCNHVZ2L_1QYV7RvipOImpfxOEVxnqQ">http://2016sv.icfpcontest.org/play</a></span>&nbsp;.
+This tool is provided just for reference; it supports only simple valley
+folds, so you may not be able to create some complex silhouettes with
+this tool. The interactive tool is not part of the task description, and
+the judges offer no guarantee of its consistency with the task
+description. The judges will not use this tool to evaluate your
+solutions.<span class="c25">&nbsp;</span></div><h1 class="c0 c15 c3"
+id="h.8wy397r851zw">Problem Specification</h1><div class="c0 c22"><span
+style="-webkit-transform: rotate(0.00rad) translatez(0px); border:
+0.00px solid #000000; display: inline-block; height: 289.50px; margin:
+0.00px 0.00px; overflow: hidden; transform: rotate(0.00rad)
+translatez(0px); width: 289.50px;"><a
+href="icfpc-2016-s1600-problem.png"
+imageanchor="1"><img border="0" height="240"
+src="icfpc-2016-s320-problem.png"
+width="240" /></a></span></div><div class="c0 c22"><span class="c2"
+style="font-size: x-small;">Figure 1. An origami silhouette with its
+skeleton.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><br />Each problem is specified
+by a <span class="c4">silhouette</span>&nbsp;of the origami, which is a
+two-dimensional figure, in ASCII text format. Additionally, a <span
+class="c4">skeleton</span>&nbsp;of the origami is given as a hint.<span
+class="c2">&nbsp;For the exact definitions of silhouette and skeleton,
+see the “Solution Evaluation” section.</span></div><div class="c0
+c1"><span class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; A silhouette consists of one or more
+polygons. In silhouette specifications, counterclockwise polygons refer
+to polygons with positive area; clockwise polygons are treated as holes
+in the silhouette.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; A silhouette specification consists of the
+following items, each in one line.</span></div><ul class="c21
+lst-kix_x8yhhudn6pd0-0 start"><li class="c13 c0"><span class="c2">the
+number of polygons</span></li></ul><ul class="c21 lst-kix_x8yhhudn6pd0-1
+start"><li class="c16 c0"><span class="c2">for each polygon, the number
+of vertices</span></li></ul><ul class="c21 lst-kix_x8yhhudn6pd0-2
+start"><li class="c0 c24">for each vertex, its coordinates</li></ul><div
+class="c0 c1"><span class="c2"></span></div><div class="c0"><span
+class="c2">A skeleton is a set of edges and folding line segments of the
+origami. A skeleton is specified by the following items, each in one
+line:</span></div><ul class="c21 lst-kix_aw5pwx7k9uxy-0 start"><li
+class="c13 c0"><span class="c2">the number of line
+segments</span></li></ul><ul class="c21 lst-kix_aw5pwx7k9uxy-1
+start"><li class="c16 c0">for each line segment, the coordinates of its
+two vertices, separated by a space</li></ul><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span class="c2">The skeleton
+specification must employ the least number of line segments; any two
+line segments that lie on a same line must be disjoint.</span></div><div
+class="c0 c1"><span class="c2"></span></div><div class="c0"><span
+class="c2">Here is a sample problem specification which corresponds to
+Figure 1:</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><br /><span style="font-family:
+&quot;courier new&quot; , &quot;courier&quot; , monospace;"><span
+class="c10">1<br />4<br />0,0<br />1,0<br />1/2,1/2<br />0,1/2<br />5<br
+/>0,0 1,0<br />1,0 1/2,1/2<br />1/2,1/2 0,1/2<br />0,1/2 0,0<br />0,0
+1/2,1/2</span></span></div><div class="c0 c1"><span style="font-family:
+&quot;courier new&quot; , &quot;courier&quot; ,
+monospace;"></span></div><div class="c0 c12"><br />For a problem to be a
+valid one, there must exist a <span class="c17">valid and
+normalized</span><span class="c2">&nbsp;solution that produces the
+silhouette and the skeleton exactly. The definitions for valid /
+normalized solutions are given in the following sections.</span><br
+/><br /><span class="c2"><span style="color: cyan;">(21:00 UTC, Aug 5)
+Update: Problem submissions must be valid and normalized. On the other
+hand, solution submissions must be valid but not necessarily
+normalized.</span> </span></div><h1 class="c0 c3 c15"
+id="h.459yfg8rpequ"><span class="c18">Solution
+Specification</span></h1><div class="c0 c22"><a
+href="icfpc-2016-s1600-solution_src.png"
+imageanchor="1"><img border="0" height="240"
+src="icfpc-2016-s320-solution_src.png"
+width="240" /></a><a
+href="icfpc-2016-s1600-solution_dest.png"
+imageanchor="1"><img border="0" height="240"
+src="icfpc-2016-s320-solution_dest.png"
+width="240" /></a></div><div class="c0 c22"><span class="c2"
+style="font-size: x-small;">Figure 2. Visualization of facets of an
+origami at their source (left) and destination (right) positions. The
+alphabet labels represent the mapping of the vertices. This mapping
+constitutes a solution to the origami problem in Figure
+1.</span></div><div class="c0 c1"><span class="c2"></span></div><div
+class="c0 c1"><span class="c2"></span></div><div class="c0">A solution
+to a problem is a <span class="c4">mapping</span>&nbsp;that produces the
+given silhouette. An origami consists of <span
+class="c4">facet</span>&nbsp;polygons created as results of folding the
+square paper. All the components of origami such as the facet polygons,
+their edges and vertices have two positions, one at <span
+class="c4">source</span>&nbsp;and the other at <span
+class="c4">destination</span>. The source position is where the paper is
+a square&nbsp;located at &nbsp;(0,0), (1,0), (1,1), (0,1)<span
+class="c2">, and the destination position is where the paper is folded
+to form the silhouette.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; A solution specification consists of three
+parts:</span></div><ul class="c21 lst-kix_6iuycz8uyo2g-0 start"><li
+class="c13 c0"><span class="c2">the source positions part</span></li><li
+class="c0 c13"><span class="c2">the facets part</span></li><li
+class="c13 c0"><span class="c2">the destination positions
+part</span></li></ul><h2 class="c0 c3" id="h.uchxyyhilmya"><span
+class="c6">The source positions part</span></h2><div class="c0"><span
+class="c2">The vertices of an origami are indexed by integers starting
+from 0.</span></div><div class="c0"><span class="c2">The source
+positions part consists of the following items, each in one
+line:</span></div><ul class="c21 lst-kix_amfasrd4zvar-0 start"><li
+class="c13 c0"><span class="c2">the number of
+vertices</span></li></ul><ul class="c21 lst-kix_amfasrd4zvar-1
+start"><li class="c16 c0"><span class="c2">for each vertex, its
+coordinate</span></li></ul><h2 class="c0 c3" id="h.r0aivot65v45"><span
+class="c6">The facets part</span></h2><div class="c0">The facets part
+consists of the list of facet polygons. Each polygon is specified by the
+<span class="c4">indices</span><span class="c2">&nbsp;of the vertices.
+For facet polygons, the vertices can either be listed in clockwise or
+counterclockwise order. In both cases, facet polygons are treated as
+polygons with positive areas.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span class="c2">The facets part
+consists of the following items, each in one line:</span></div><ul
+class="c21 lst-kix_5o7fbsovhkhz-0 start"><li class="c13 c0"><span
+class="c2">the number of facets</span></li></ul><ul class="c21
+lst-kix_5o7fbsovhkhz-1 start"><li class="c0 c16"><span class="c2">for
+each facet, the number of vertices, followed by the list of its vertex
+indices, separated by single space characters.</span></li></ul><h2
+class="c0 c3" id="h.jsf8msa50i05"><span class="c6">The destination
+positions part</span></h2><div class="c0"><span class="c2">In this part,
+destination coordinates of the vertices are listed, in the ascending
+order of the vertex index.</span></div><div class="c0"><span
+class="c2">As an example, here is a solution that corresponds to the
+above example problem.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c26 c0"><br /><span
+style="font-family: &quot;courier new&quot; , &quot;courier&quot; ,
+monospace;"><span class="c10">7<br />0,0<br />1,0<br />1,1<br />0,1<br
+/>0,1/2<br />1/2,1/2<br />1/2,1<br />4<br />4 0 1 5 4<br />4 1 2 6 5<br
+/>3 4 5 3<br />3 5 6 3<br />0,0<br />1,0<br />0,0<br />0,0<br />0,1/2<br
+/>1/2,1/2<br />0,1/2</span></span></div><h2 class="c0 c15 c3"
+id="h.plqo02g3hg7u"><span style="font-family: &quot;courier new&quot; ,
+&quot;courier&quot; , monospace;"></span><span class="c6">Valid solution
+and Normalized solution</span></h2><div class="c0"><span class="c2">A
+solution is valid if and only if it satisfies all of the following
+conditions:</span></div><ul class="c21 lst-kix_6auhaoyob27o-0 start"><li
+class="c13 c0"><span class="c2">All the source positions of the vertices
+are within the initial square spanned by the four vertices (0,0), (1,0),
+(1,1), (0,1).</span></li><li class="c13 c0"><span class="c2">No
+coordinate appears more than once in the source positions
+part.</span></li><li class="c13 c0"><span class="c2">Any edge of any
+facet has length greater than zero.</span></li><li class="c13 c0">At
+source<span class="c2">&nbsp;positions, if two different edges share a
+point, the point should always be one of the endpoints for both the
+edges. That is, an edge touching another edge, or edges crossing each
+other are prohibited.</span></li><li class="c13 c0"><span class="c2">All
+facet polygons are simple; a facet polygon’s perimeter must not
+intersect itself. </span></li><li class="c13 c0">Every facet at
+source<span class="c2">&nbsp;position maps to its destination position,
+by a congruent transformation that maps its source vertices to
+corresponding destination vertices.</span></li><li class="c13 c0"><span
+class="c2">At source position, the intersection set of any two different
+facets has zero area.</span></li><li class="c13 c0">At source position,
+the union set of all facets exactly matches the initial square.</li><li
+class="c13 c0">The size of the solution is no larger than Bs = 5000<span
+class="c2">&nbsp;Bytes.</span></li></ul><div class="c0"><span
+class="c2">Note that all facets are defined to have positive areas,
+regardless of their perimeters being clockwise/counterclockwise, as
+described in “The facets part” section.</span></div><div class="c0
+c1"><span class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; A solution is normalized if and only if it
+satisfies all of the following conditions:</span></div><ul class="c21
+lst-kix_v7nkyx38fnz1-0 start"><li class="c13 c0"><span class="c2">It is
+valid.</span></li><li class="c13 c0">At source position, if two
+different facets share an edge for a length greater than 0, then the
+intersection set of those two facets at destination positions must have
+an area greater than 0. In other words, if an edge separates two facets,
+you should always fold the origami at that edge.</li></ul><div class="c0
+c1"><span class="c2"></span></div><div class="c0"><span
+class="c2">Conversely, the following properties of an origami are
+irrelevant to its validity and normality:</span></div><ul class="c21
+lst-kix_6auhaoyob27o-0"><li class="c13 c0"><span class="c2">The skeleton
+of the origami.</span></li><li class="c13 c0"><span class="c2">Whether
+its destination silhouette fits within the source position (0,0), (1,0),
+(1,1), (0,1) or not.</span></li><li class="c13 c0"><span
+class="c2">Whether the destination position can be reached just by
+folding the paper, or it requires parallel transformation and/or
+rotation of the paper to be reached.</span></li><li class="c13
+c0">Whether the paper is not folded at all.</li></ul><h1 class="c0 c3"
+id="h.a958m6hg45ih"><span class="c18">Contest Structure</span></h1><h2
+class="c0 c3" id="h.yf9x5asuoayv"><span class="c6">Team Registration and
+Solution/Problem Submission</span></h2><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span class="c2">In this section
+we explain the structure and schedule of the contest. We use the Contest
+Clock to refer to the timings of various events in the contest. The
+Contest Clock is set to 00:00 (CC) at the start of the contest, which is
+00:00 (UTC) 5 August, 2016. The contest ends at 72:00
+(CC).</span></div><div class="c0 c1"><span class="c2"></span></div><div
+class="c0">&nbsp;&nbsp;&nbsp; At 00:00 (CC) you can start&nbsp;team
+registration on <span class="c9"><a class="c8"
+href="https://www.google.com/url?q=http://2016sv.icfpcontest.org/&amp;sa=D&amp;ust=1470357882342000&amp;usg=AFQjCNFeFTBKt0ZmhpzIDI8gD42p9dvpKg">http://2016sv.icfpcontest.org/</a></span><span
+class="c2">. You need to register your team to view problems and submit
+solutions.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; The contest consists of two rounds. The
+first 24 hours (00:00 (CC) - 24:00 (CC)) is the Lightning Round where
+contestants can only submit solutions to those problems that are
+described in the Kojiki. You don’t need to submit your source code at
+the end of the Lightning Round.</span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; The following 48 hours (24:00 (CC) - 72:00
+(CC)) is the Full Round where contestants can also view and solve
+problems created by other contestants. At the end of the Full Round, you
+will be asked to submit your source code.</span></div><div class="c0
+c1"><span class="c2"></span></div><div class="c0">Every one hour, the
+contest server reveals one problem per each team, starting at 24:00 (CC)
+and till 69:00 (CC). Therefore, each team can publish a maximum of 46
+problems. You can pre-register the problems you want to publish, and the
+contest server automatically publishes them in the order you specified.
+Pre-registration of the problems starts at 00:00 (CC). Remember, you
+must submit <span class="c17">a valid and normalized </span><span
+class="c17 c20">solution</span>&nbsp;that produces the problem for your
+problem submission to be accepted. <span class="c2">The problem
+specification will be automatically generated from the solution you have
+submitted.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; A team cannot submit a solution to a
+problem submitted by itself.</span></div><h2 class="c0 c3"
+id="h.6gouw9txma0j"><span class="c6">Solution Evaluation</span></h2><div
+class="c0"><span class="c2"><span style="color: cyan;">(21:00 UTC, Aug
+5) Update: Solution submissions must be valid, but not necessarily be
+normalized. Any invalid solution submissions are not
+accepted.&nbsp;</span></span> <br />For an origami solution, its <span
+class="c4">silhouette</span>&nbsp;is the union set of all its facets at
+the destination position. The <span class="c4">skeleton</span><span
+class="c2">&nbsp;of a solution is the union set of all the facet edges
+at the destination positions.</span></div><div class="c0"><span
+class="c2">&nbsp;&nbsp;&nbsp; Our goal is to approximate, and if
+possible, reproduce the problem silhouette using your solutions. The
+skeleton in the problem specification is just a hint, therefore the
+skeleton of a solution is irrelevant for scoring.</span></div><div
+class="c0">&nbsp;&nbsp;&nbsp; Solutions submitted for a problem are
+ranked by <span class="c4">resemblance</span><span class="c2">&nbsp;of
+their silhouette to the problem silhouette. The resemblance of a valid
+solution is calculated by the following formula:</span></div><div
+class="c0 c1"><span class="c2"></span></div><div class="c0"><span
+style="font-family: &quot;courier new&quot; , &quot;courier&quot; ,
+monospace;"><span class="c10">resemblance = area_and /
+area_or</span></span></div><div class="c0 c1"><span
+class="c10"></span></div><ul class="c21 lst-kix_g814hxk1astk-0
+start"><li class="c13 c0"><span style="font-family: &quot;courier
+new&quot; , &quot;courier&quot; , monospace;"><span
+class="c23">area_and</span></span><span class="c2">&nbsp;is the area of
+the intersection set of the solution silhouette and the problem
+silhouette.</span></li><li class="c13 c0"><span style="font-family:
+&quot;courier new&quot; , &quot;courier&quot; , monospace;"><span
+class="c23">area_or</span></span><span class="c2">&nbsp;is the area of
+the union set of the solution silhouette and the problem
+silhouette.</span></li></ul><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">Resemblance of each solution is
+rounded down to six decimal places. Therefore, the high<span
+class="c2">est resemblance attainable by an approximate solution is
+0.999999 .</span></div><h2 class="c0 c3" id="h.5hc9pxcjo5e4">S<span
+class="c6">coring</span></h2><div class="c0">Teams are ranked by <span
+class="c4">team score</span>. Teams can increase their scores both by
+submitting problems and solutions. The team score is the sum of the
+<span class="c4">problem score</span>&nbsp;and the <span
+class="c4">solution score </span><span class="c2">the team receives,
+calculated as following.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; Submitting a
+<span class="c4">perfect solution,</span>&nbsp;that is, a solution with
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot;
+, monospace;">resemblance = 1.0</span>, is important in making high
+scores. For a problem, <strike>let <span style="font-family:
+&quot;courier new&quot; , &quot;courier&quot; , monospace;"><span
+class="c4">s</span></span>&nbsp;be the size of the problem</strike><span
+class="c2"><span style="color: cyan;">(21:15 UTC, Aug 5) Update: let s
+be the size of the solution that produced the problem </span></span> and
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot;
+, monospace;"><span class="c4">n</span></span>&nbsp;be the number of the
+teams that submitted a perfect solution, plus 1. The problem-setting
+team receives <span style="font-family: &quot;courier new&quot; ,
+&quot;courier&quot; , monospace;">(5000 - <span class="c4">s</span>) /
+<span class="c4">n</span></span>&nbsp;points, and each team that
+submitted a perfect solution gets <span style="font-family:
+&quot;courier new&quot; , &quot;courier&quot; , monospace;"><span
+class="c4">s</span>&nbsp;/ <span class="c4">n</span></span>&nbsp;points.
+The scores for the teams with imperfect solutions are
+calculated&nbsp;such that&nbsp;the total points&nbsp;earned by all the
+imperfect solution teams is <span style="font-family: &quot;courier
+new&quot; , &quot;courier&quot; , monospace;"><span
+class="c4">s</span>&nbsp;/ <span class="c4">n</span></span><span
+class="c2">, and each team's share is proportional to the resemblance of
+its solution. Remember, you cannot submit a solution to your own
+problems.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; For example:
+when 39 teams submitted a perfect solution to a 1000-bytes problem, the
+problem-setting team will earn <span style="font-family: &quot;courier
+new&quot; , &quot;courier&quot; , monospace;">(5000 - 1000) / (39 + 1) =
+100.0</span> points.&nbsp;E<span class="c2">ach team that submitted a
+perfect solution will earn <span style="font-family: &quot;courier
+new&quot; , &quot;courier&quot; , monospace;">1000 / (39 + 1) =
+25.0</span> points, and each team that submitted an imperfect solution
+will share the total of <span style="font-family: &quot;courier
+new&quot; , &quot;courier&quot; , monospace;">1000 / (39 + 1) =
+25.0</span> points.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; If you submit
+multiple solutions to one problem, only the best one is used for
+scoring.<span class="c2">&nbsp;That is, the solution with the highest
+resemblance, and in case of a tie, the solution with the smallest
+size.</span></div><div class="c0 c1"><span class="c2"></span></div><div
+class="c0">&nbsp;&nbsp; The team with the highest team score is the
+winner of the contest. In case of a tie, the sum of the sizes of the
+scoring solutions is calculated for each team. The team with smaller
+total size will win. </div><h2 class="c0 c3" id="h.cg26sptx1t1p"><span
+class="c6">Rate Limits and Leaderboard Freeze</span></h2><div
+class="c0">A team may not make more than 1000 submissions per hour (both
+the problem and the solution submissions count.) That is, a&nbsp;team
+can make up to 1000 submissions&nbsp;during 00:00 (CC) - 01:00 (CC),
+1000 submissions&nbsp;during 01:00 (CC) - 02:00 (CC), and so on. Also,
+the period between&nbsp;two consecutive submissions&nbsp;must be greater
+than 1 second. The judges will update the problem list and the ranking
+every&nbsp;hour, so kindly refrain from refreshing too frequently. The
+leaderboard will be updated till 66:00 (CC); after that the leaderboard
+will be frozen, and&nbsp;the final results will be published at ICFP
+2016. The statistics for each problem will be updated till the end of
+the contest.</div><div class="c0 c1"><span class="c2"></span></div><h1
+class="c0 c3" id="h.z6l62pfilbc2"><span class="c18">Clarifications and
+Questions</span></h1><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">Please submit your
+clarifications and questions as comments to this blog article. In order
+to provide consistent answers to all contestants, and to make the
+questions and answers easier to find, we kindly wish your cooperation in
+using this method of asking questions. </div><h1 class="c0 c3"
+id="h.j7lfbqyfyb9m"><span class="c18">Terms and
+Conditions</span></h1><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">By registration, ICFP
+programming contest (ICFPC) participants understand and agree
+to&nbsp;the<span class="c2">&nbsp;following terms and
+conditions.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; Contest
+participants retain ownership of all intellectual property rights in and
+to any submitted solutions, source codes, custom tools, and related
+materials ("submissions") that participants had before submission. As a
+condition of entry, participants grant ICFPC judges a non-exclusive,
+perpetual, irrevocable, worldwide, royalty-free license to use,
+reproduce, publish, distribute, publicly perform,&nbsp;and publicly
+display the submissions for the purposes of allowing ICFPC judges to
+test and evaluate the s<span class="c2">ubmissions for purposes of the
+contest.</span></div><div class="c0 c1"><span
+class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; One person
+may only be member of a single team, and teams may not divide or
+collaborate with each other once the contest has begun. As long as
+contest participants follow these&nbsp;terms and conditions,&nbsp;and
+applicable laws, there is<span class="c2">&nbsp;no limitation to the
+number of members in a single team, and contest participants may use
+whatever programming languages and computer resources.</span></div><div
+class="c0 c1"><span class="c2"></span></div><div
+class="c0">&nbsp;&nbsp;&nbsp; <span class="c2">Although the judges take
+the best effort to keep the contest server running, the server is not
+guaranteed to be available all time throughout the contest. In
+particular, the server may be temporarily unavailable, or available at
+lowered submission rate limits, due to server maintenance, server
+resource constraints or other reasons. Judges are not obliged to take
+any compensation measures in such cases.</span></div><div class="c0
+c1"><span class="c2"></span></div><div class="c0">&nbsp;&nbsp;&nbsp; The
+judges retain the right to monitor, record, and investigate the
+submissions, other contest-related activities, or lack thereof, of
+participants. The records are used for the sole purpose of judgement and
+are discarded once the contest-related events are over. Violations of
+these terms and conditions, any attempts to compromise the integrity of
+the contest infrastructure, attempts to interfere with other
+participants, attempts to spoil the joy and spirit of the contest will
+lead to disqualification of the involved participants and revocation of
+the related scores and prizes. The decisions of the judges on these
+matters are final. There is no right of appeal. In case of dispute, the
+judges retain the right to send ninjas to you to “resolve”<span
+class="c2">&nbsp;the issue.</span></div><div class="c0 c1"><span
+class="c2"></span></div>
+
+    </body>
+</html>
