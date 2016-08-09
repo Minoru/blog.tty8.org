@@ -299,9 +299,9 @@ clipper-а, я допёр только при написании отчёта =\
 
 # Результат
 
-За шесть часов до конца соревнования leaderboard заморозили, но до этого мы были
-44-ми из 293. Окончательный результат объявят во время ICFP, то есть 19–21
-сентября.
+За шесть часов до конца соревнования leaderboard заморозили
+([зеркало][leaderboard-mirror]), но до этого мы были 44-ми из 293.
+Окончательный результат объявят во время ICFP, то есть 19–21 сентября.
 
 Весь код опубликовали на GitHub: [https://github.com/codingteam/icfpc-2016](https://github.com/codingteam/icfpc-2016)
 
@@ -335,6 +335,7 @@ clipper-а, я допёр только при написании отчёта =\
 * Указал правильное время начала контеста для каждого из участников команды.
   (Пять минут спустя: вот теперь уже точно правильные. Ох уж этот
   grouzen-путешественник…)
+* Добавил зеркало leaderboard-а, созданное уже после заморозки.
 
 [icfpc-wiki-ru]: https://ru.wikipedia.org/wiki/ICFP_Programming_Contest
     "Википедия — ICFP Programming Contest"
@@ -377,3 +378,6 @@ clipper-а, я допёр только при написании отчёта =\
 
 [report-portnov]: https://iportnov.blogspot.ru/2016/08/icfpc-2016.html
     "Как можно участвовать в ICFPC (2016)"
+
+[leaderboard-mirror]: /misc/icfpc-2016-leaderboarda553.html
+    "ICFPC 2016 leaderboard"
