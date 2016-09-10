@@ -15,8 +15,8 @@ in `hs`) is licensed under [3-Clause BSD License][bsd3] (copy is in
 
 Stuff under `misc` has no one license. Your best bet is to find where I link to
 it, then from there figure out if it's mine or not. My stuff is licensed as
-described as above; other's stuff might have different license, so you'll have
-to track down the origin. Good luck!
+described above; others' stuff might have different license, so you'll have to
+track down the origin yourself. Good luck!
 
 [cc-by-nc-sa-4]: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
     "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"
