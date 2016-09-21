@@ -302,6 +302,7 @@ clipper-а, я допёр только при написании отчёта =\
 За шесть часов до конца соревнования leaderboard заморозили
 ([зеркало][leaderboard-mirror]), но до этого мы были 44-ми из 293.
 Окончательный результат объявят во время ICFP, то есть 19–21 сентября.
+**Обновление 21-го сентября:** [объявили][results]. Мы заняли 50-е место.
 
 Весь код опубликовали на GitHub: [https://github.com/codingteam/icfpc-2016](https://github.com/codingteam/icfpc-2016)
 
@@ -337,6 +338,10 @@ clipper-а, я допёр только при написании отчёта =\
   grouzen-путешественник…)
 * Добавил зеркало leaderboard-а (после заморозки) и задания (в последней его
   редакции).
+
+**UPD 21.09.2016:**
+
+* Добавил ссылку на [финальные результаты][results]. Мы заняли 50-е место.
 
 [icfpc-wiki-ru]: https://ru.wikipedia.org/wiki/ICFP_Programming_Contest
     "Википедия — ICFP Programming Contest"
@@ -385,3 +390,6 @@ clipper-а, я допёр только при написании отчёта =\
 
 [task-mirror]: /misc/icfpc-2016-task-description.html
     "ICFPC 2016 Task Description"
+
+[results]: https://icfpc2016.blogspot.com/2016/09/contest-results-are-up.html
+    "Contest results are up!"
