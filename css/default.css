@@ -1,25 +1,41 @@
+/* Colors are from this palette:
+ * https://coolors.co/0008a0-ece2d0-f5f3f3-1e5037-fffbea
+ */
+
 /**********************************
  * General settings
  **********/
 
+html {
+    color: #141414;
+    background: #f2f5f5;
+}
+
 body {
     margin: 0 auto;
-    font-family: Georgia, serif;
+    font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
+    /* Using unitless value so that line-height can be re-calculated when
+     * font-size changes inside blockquotes and stuff. */
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
 }
 
 pre,
 p,
 blockquote,
 ul,
-ol {
-    margin: 0.5em 0;
+ol,
+table {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
 }
 
-p,
-blockquote,
-ul,
-ol {
-    line-height: 1.467em;
+blockquote > p {
+    /* Override the rule above. */
+    margin-bottom: 0;
 }
 
 pre {
@@ -27,7 +43,11 @@ pre {
 }
 
 ul, ol {
-    padding-left: 1em;
+    padding-left: 1rem;
+}
+
+ol > li {
+    padding-left: 0.233rem;
 }
 
 a:link {
@@ -43,38 +63,63 @@ a:active {
     color: #0008a0;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: Verdana, sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    font-family: "DejaVu Sans Condensed", "Nimbus Sans L", Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.15;
 }
 
+/* Disable margins for situations where headings of different levels follow
+ * each other. Cases where, for example, h3 follows h4 aren't handled as they
+ * aren't realistic. Cases where e.g. h1 follows h1 aren't handled because in
+ * such situations we *do* want to visually separate the tags. */
+h1 + h2, h1 + h3, h1 + h4, h1 + h5, h1 + h6,
+h2 + h3, h2 + h4, h2 + h5, h2 + h6,
+h3 + h4, h3 + h5, h3 + h6,
+h4 + h5, h4 + h6,
+h5 + h6 {
+    margin-top: 0;
+}
+
+/* Bottom margins follow minor third (5:6 ratio). Top margins are 1.618 times
+ * larger (golden ratio). 1.2rem that we're subtracting is the bottom margin of
+ * <p> and other elements. */
 h1 {
-    font-size: 1.3em;
-    margin: 0.67em 0;
+    color: #083f24;
+    font-size: 1.44rem;
+    margin-top: calc(1.618 * 1rem - 1.2rem);
+    margin-bottom: 1rem;
+}
+
+h2, h3, h4, h5, h6 {
+    color: #646260;
+    font-size: 1.2rem;
 }
 
 h2 {
-    font-size: 1.2em;
-    margin: 0.83em 0;
+    margin-top: calc(1.618 * 0.833rem - 1.2rem);
+    margin-bottom: 0.833rem;
 }
 
 h3 {
-    font-size: 1.1em;
-    margin: 1em 0;
+    margin-top: calc(1.618 * 0.694rem - 1.2rem);
+    margin-bottom: 0.694rem;
 }
 
 h4 {
-    font-size: 1em;
-    margin: 1.33em 0;
+    margin-top: calc(1.618 * 0.579rem - 1.2rem);
+    margin-bottom: 0.579rem;;
 }
 
 h5 {
-    font-size: 0.83em;
-    margin: 1.67em 0;
+    margin-top: calc(1.618 * 0.482rem - 1.2rem);
+    margin-bottom: 0.482rem;
 }
 
 h6 {
-    font-size: 0.75em;
-    margin: 2.33em 0;
+    margin-top: calc(1.618 * 0.402rem - 1.2rem);
+    margin-bottom: 0.402rem;
 }
 
 /**********************************
@@ -86,46 +131,24 @@ h6 {
     margin: 0 auto;
 }
 
-#blog-header h1 {
-    font-size: 4em;
-    margin: 0;
-    text-transform: uppercase;
-    font-family: Georgia, serif;
-}
-
-a:link#blog-header-link,
-a:visited#blog-header-link,
-a:hover#blog-header-link,
-a:active#blog-header-link 
-{
-    color: #0008a0;
-    text-decoration: none;
-}
-
-#blog-logo-and-title {
-    display: flex;
-    justify-content: space-between;
-}
-
-#blog-header-logo {
-    height: 5em;
-}
-
 /**********************************
  * Navigation bar
  */
 
 nav#navigation {
-    border-top: 1px solid #b0b0b0;
-    border-bottom: 1px solid #b0b0b0;
-    padding: 7px 0;
+    border-bottom: 1px solid #083f24;
+    padding-top: 7px;
     display: flex;
     justify-content: space-around;
+    margin-bottom: 1.2rem;
 }
 
 nav#navigation a {
     text-decoration: none;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 7px; /* Same as padding-bottom on nav#navigation. */
+    flex-grow: 1;
 }
 
 nav#navigation a:link,
@@ -135,34 +158,55 @@ nav#navigation a:active {
     color: black;
 }
 
+nav#navigation a#navbar-selected-link {
+    border-bottom: 3px solid #083f24;
+    /* 3px border will push the bottom of the nav#navigation down, so we
+     * decreate the padding to keep bottom border in the same place. */
+    padding-bottom: 4px;
+}
+
 /**********************************
  * Post
  */
 
 #post-header {
-    padding-bottom: 0.3em;
+    margin-top: 1.618rem;
 }
 
-#post-header h1 {
-    font-size: 2em;
-    margin-bottom: 0em;
-    padding-bottom: 0.2em;
+#post-header > h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    text-align: center;
+    /* Just a bit of limitation to force browsers make the heading narrower. */
+    width: 95%;
+    margin: 0 auto;
 }
 
-#post-header > hr {
-    border: none;
-    border-bottom: 1px dashed #b0b0b0;
-    margin-top: 0;
-    padding: 0;
-}
-
-#post h2 {
-    font-size: 95%;
+#post-date {
+    font-size: 0.833rem;
+    text-align: center;
+    margin-top: 0.907rem;
+    /* 3.5rem is one octave above 1rem if we're using minor third. We substract
+     * top margin and the height of the date line itself, and this is our
+     * bottom margin! */
+    margin-bottom: calc(3.5rem - 0.907rem - 0.833rem * 1.35);
 }
 
 #post {
     display: flex;
     flex-direction: column;
+}
+
+/* Headings have a bit of margin at the top to better stand out. Hovewer, we
+ * don't want that behaviour when the heading comes first thing in the post,
+ * because we already have some whitespace above it. */
+#post > h1:first-child,
+#post > h2:first-child,
+#post > h3:first-child,
+#post > h4:first-child,
+#post > h5:first-child,
+#post > h6:first-child {
+    margin-top: 0;
 }
 
 #post hr {
@@ -172,21 +216,15 @@ nav#navigation a:active {
     background-color: #b0b0b0;
 }
 
-#post-date {
-    font-size: 0.8em;
-    text-align: right;
-}
-
 /**********************************
  * Footer
  */
 
 footer#blog-footer {
-    border-top: 1px solid #b0b0b0;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    font-size: 0.8em;
+    border-top: 1px solid #083f24;
+    font-size: 0.833rem;
     text-align: center;
+    padding-top: calc(0.833rem / 1.618);
 }
 
 footer#blog-footer > div#microbuttons {
@@ -195,7 +233,57 @@ footer#blog-footer > div#microbuttons {
 }
 
 footer#blog-footer > div#microbuttons > a {
-    margin: 0.5em 1px;
+    margin: calc(0.833rem / 3) 3px 0;
+}
+
+.footer-button {
+    height: 15px;
+    width: 80px;
+}
+
+/**********************************
+ * Archives
+ */
+
+.archives-year-container {
+    /* Same as <h1>. */
+    margin-top: 1.618rem;
+    margin-bottom: 1rem;
+}
+
+.service-page > .archives-year-container:first-child {
+    margin-top: 0;
+}
+
+.archives-year {
+    /* Same as <h1>. */
+    color: #083f24;
+    font-size: 1.44rem;
+    width: 4rem; /* Same as .archives-post-date */
+    text-align: right;
+    display: inline-block;
+}
+
+.archives-posts-container {
+    border-top: 1px dotted #9b9c9c;
+}
+
+.archives-post-container {
+    /* We use flex to keep both .archives-post-date and .archives-post-title on
+     * the same line. */
+    display: flex;
+}
+
+.archives-post-date {
+    display: inline-block;
+    width: 4rem; /* Same as .archives-year */
+    text-align: right;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.archives-post-title {
+    display: inline-block;
 }
 
 /**********************************
@@ -204,46 +292,39 @@ footer#blog-footer > div#microbuttons > a {
 
 .center {
     align-self: center;
-}
-
-#service-page h1 {
     text-align: center;
-    width: 90%;
-    padding-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 code {
-    font-size: 0.8em;
-    background-color: #f5f5f5;
-    margin: 0 0.2em;
+    font-size: 0.8rem;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    background-color: #f5f3f3;
+    margin: 0 0.2rem;
 }
 
 pre {
-    border-left: 0.3em solid #a5a5a5;
-    background-color: #f5f5f5;
-    margin-left: -1em;
-    padding-left: 0.7em; /* 1em of margin minus 0.3em of border */
-    margin-right: -1em;
-    padding-right: 1em;
+    border-top: 1px solid #9b9c9c;
+    border-bottom: 1px solid #9b9c9c;
+    padding: 0.3rem 0;
 }
 
 pre code {
     margin: 0;
+    background-color: transparent;
 }
 
 blockquote {
-    border-left: 0.3em solid green;
-    background-color: rgba(0, 255, 0, 0.07);
-    margin-left: -1em;
-    padding-left: 0.7em; /* 1em of margin minus 0.3em of border */
-    margin-right: -1em;
-    padding-right: 1em;
+    border-left: 0.3rem solid #083f24;
+    font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
+    margin-left: -1rem;
+    padding-left: 0.7rem; /* 1em of margin minus 0.3em of border */
+    margin-right: -1rem;
+    padding-right: 1rem;
+    font-size: 0.833rem;
 }
 
 blockquote.warning {
-    border-left: 0.3em solid red;
+    border-left: 0.3rem solid red;
     background-color: rgba(255, 0, 0, 0.07);
 }
 
@@ -252,45 +333,25 @@ ul {
 }
 
 img.bleed {
-    width: calc(100% + 2em);
-    height: calc(100% + 2em);
-    margin-left: -1em;
-    margin-right: -1em;
-}
-
-.footer-button {
-    height: 15px;
-    width: 80px;
-}
-
-div.prev_next_post_button > a:link,
-div.prev_next_post_button > a:visited {
-    color: #f5f5f5;
-    text-decoration: none;
-}
-
-div.prev_next_post_button > a:hover,
-div.prev_next_post_button > a:active {
-    color: #bbbbbb;
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
 }
 
 p.hakyll-convert-comment-date {
-    background-color: #f5f5f5;
-}
-
-div.year-posts-list time {
-    font-family: monospace;
-}
-
-div.year-posts-list a {
-    text-decoration: none;
+    background-color: #dcd6d3;
 }
 
 .break {
-    height: 0.7em;
-    margin-top: 1em;
-    /* If we set bot top and bottom margins to same value, the image will appear
-     * to be closer to the previous paragraph than the next. Why is that?
+    height: 0.618rem;
+
+    /* We don't set top margin because paragraphs etc. already have bottom
+     * margin equal to 1.2rem. */
+
+    /* If we set both top and bottom margins to the same value, the image will
+     * appear to be closer to the previous paragraph than the next. Why is
+     * that?
      *
      * Well, the space occupied by the top margin is, visually, the one between
      * baseline of the paragraph and the top line of the image. But the space
@@ -302,7 +363,7 @@ div.year-posts-list a {
      * the bottom margin tighter by the same amount, we can compensate for that
      * effect.
      *
-     * Default font size is 16px. We use Georgia typeface. At 16px, the distance
-     * between cap- and x-height of Georgia is 4px, or 1/4 of the em. */
-    margin-bottom: 0.75em;
+     * Font size is 19px. We use Gentium Plus typeface, where the distance
+     * between cap- and x-height is 1/4 of the em. */
+    margin-bottom: calc(1.2rem - 0.25rem);
 }

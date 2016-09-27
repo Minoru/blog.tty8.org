@@ -1,21 +1,21 @@
-<article id="service-page">
+<article class="service-page" id="archives">
 $for(years)$
-    <center>
-        <h2>$year$</h2>
-    </center>
+<div class="archives-year-container">
+    <span class="archives-year">$year$</span>
 
-    <div class="year-posts-list">
+    <div class="archives-posts-container">
     $for(posts)$
-        <p>
-            <a href="$url$">$title$</a>
-            <span>
-                <time datetime="$datetime$">
-                    $date$
-                </time>
+        <div class="archives-post-container">
+            <span class="archives-post-date">
+                <time datetime="$datetime$">$date$</time>
             </span>
-        </p>
-        <div id="year-posts-list-clearfix"></div>
+
+            <span class="archives-post-title">
+                <a href="$url$">$title$</a>
+            </span>
+        </div>
     $endfor$
     </div>
+</div>
 $endfor$
 </article>

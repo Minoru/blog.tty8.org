@@ -2,8 +2,6 @@
 title: About
 ---
 
-# About
-
 Hello,
 
 My name is Alexander Batischev. In 2015, I received my Master's degree in

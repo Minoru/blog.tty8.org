@@ -2,16 +2,8 @@
 title: Subscribe
 ---
 
-# Subscribe
+**All posts**: [*RSS*](/feeds/all.rss) or [*Atom*](/feeds/all.atom)
 
-My posts span a number of topics and are written in two languages, so to make
-everyone happy I provide a number of different feeds. Both RSS and Atom are
-available.
+**Posts in English only**: [*RSS*](/feeds/english.rss) or [*Atom*](/feeds/english.atom)
 
-$break$
-
-**All posts**: [*RSS*](/feeds/all.rss) [*Atom*](/feeds/all.atom)
-
-**Posts in English only**: [*RSS*](/feeds/english.rss) [*Atom*](/feeds/english.atom)
-
-**Посты на русском**: [*RSS*](/feeds/russian.rss) [*Atom*](/feeds/russian.atom)
+**Посты на русском**: [*RSS*](/feeds/russian.rss) или [*Atom*](/feeds/russian.atom)

@@ -1,36 +1,14 @@
 <article>
 <header id="post-header">
-
-    <div id="header-and-prev-next-buttons">
-        <span>
-        $if(prev_post_url)$
-        <div class="prev_next_post_button"
-             id="prev_post_button">
-            <a href="$prev_post_url$"><span id="prev-anchor"></span></a>
-        </div>
-        $endif$
-
-        $if(next_post_url)$
-        <div class="prev_next_post_button"
-             id="next_post_button">
-            <a href="$next_post_url$"><span id="next-anchor"></span></a>
-        </div>
-        $endif$
-        </span>
-
-        <h1>$title$</h1>
-    </div>
-
-    <hr id="post-date-ruler">
-
+    <h1>$title$</h1>
     <div id="post-date"><time datetime="$datetime$">$date$</time></div>
 </header>
 
 <div id="post">
 $body$
 </div>
-<p style="text-align: center">
+<p class="center">
 <a href="mailto:eual.jp@gmail.com?subject=Debiania:%20$urlEncodedTitle$">Drop me a line!</a>
-(<a href="/posts/2012-03-21-why-no-comments.html">wonder where’s comments form?</a>)
+(<a href="/posts/2012-03-21-why-no-comments.html">wonder where’s the comments form?</a>)
 </p>
 </article>

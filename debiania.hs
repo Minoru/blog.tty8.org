@@ -32,13 +32,6 @@ main = hakyllWith config $ do
     -- Build tags (will be used later on)
     tags <- buildTags ("posts/*" .&&. hasNoVersion) (fromCapture "tags/*.html")
 
-    postsMetadata <- do
-      ids <- getMatches ("posts/*" .&&. hasNoVersion)
-      withDates <- forM ids $ \id -> do
-        date <- getItemUTC defaultTimeLocale id
-        return (id, date)
-      return $ map fst $ sortBy (comparing snd) withDates
-
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
@@ -72,6 +65,7 @@ main = hakyllWith config $ do
         compile $ do
           posts <- fmap (take 8) . recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
           let ctx =    constField "title" "Home"
+                    <> constField "navbar-home" "Yep"
                     <> listField "posts" postCtx (return posts)
                     <> debianiaCtx
 
@@ -84,8 +78,6 @@ main = hakyllWith config $ do
     match "posts/*" $ do
         route   $ setExtension "html"
         compile $ do
-          prevNextCtx <- genPrevNextCtx postsMetadata =<< getUnderlying
-
           debianiaCompiler
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate
@@ -93,7 +85,6 @@ main = hakyllWith config $ do
                   (mconcat [ urlEncodedTitleCtx
                            , postCtx
                            , tagsCtx tags
-                           , prevNextCtx
                            ])
             >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
             >>= relativizeUrls
@@ -152,11 +143,30 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate
                   "templates/default.html"
                   (  constField "title" "Archives"
+                  <> constField "navbar-archives" "Yep"
                   <> debianiaCtx)
             >>= relativizeUrls
 
     -- Render About, Subscribe and 404 pages
-    create ["about.markdown", "subscribe.markdown", "404.markdown"] $ do
+    create ["about.markdown"] $ do
+        route   $ setExtension "html"
+        compile $ debianiaCompiler
+          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate
+                "templates/default.html"
+                (debianiaCtx <> constField "navbar-about" "Yep")
+          >>= relativizeUrls
+
+    create ["subscribe.markdown"] $ do
+        route   $ setExtension "html"
+        compile $ debianiaCompiler
+          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate
+                "templates/default.html"
+                (debianiaCtx <> constField "navbar-subscribe" "Yep")
+          >>= relativizeUrls
+
+    create ["404.markdown"] $ do
         route   $ setExtension "html"
         compile $ debianiaCompiler
           >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
@@ -326,29 +336,6 @@ debianiaCompiler =
     let newBody = itemBody new
     go (newBody:rest)
 
--- | Given a chronologically ordered list of posts' identifiers, find previous
--- and next post for a given one.
-getPrevNextPosts ::
-       [Identifier]
-    -> Identifier
-    -> (Maybe Identifier, Maybe Identifier)
-getPrevNextPosts (id1 : rest@(id2:id3:_)) id
-  | id == id1 = (Nothing, Just id2)
-  | id == id2 = (Just id1, Just id3)
-  {- Original algorithm (copied from
-   - https://github.com/arthuraa/poleiro/blob/43cf1157e45188ff2ffcddd21787750b361d38b6/site.hs)
-   - recursed only if `id > id2`. Unfortunatelly, this doesn't always work if
-   - one has more than one article published in a single day.
-   -
-   - Just meditate on how this works if `id` is "posts/1970-01-01-foo.markdown"
-   - and `id2` is "posts/1970-01-01-bar.markdown". -}
-  | otherwise = getPrevNextPosts rest id
-getPrevNextPosts [id1, id2] id
-  | id == id1 = (Nothing, Just id2)
-  | id == id2 = (Just id1, Nothing)
-  | otherwise = (Nothing, Nothing)
-getPrevNextPosts _ _ = (Nothing, Nothing)
-
 -- | Prepare a list to be used as a base to constuct a Map.
 --
 -- Example input:
@@ -410,26 +397,6 @@ postCtx =
        dateField "date" "%e %B %Y"
     <> dateField "datetime" "%Y-%m-%d"
     <> debianiaCtx
-
-genPrevNextCtx :: [Identifier] -> Identifier -> Compiler (Context String)
-genPrevNextCtx posts identifier = do
-    let (prev_url, next_url) = getPrevNextPosts posts identifier
-
-    let getRoute' = maybe (return Nothing) getRoute
-    prevUrl <- getRoute' prev_url
-    nextUrl <- getRoute' next_url
-
-    let genField url' field =
-          case url' of
-            -- getRoute returned a path relative to the site root, but without
-            -- a slash at the beginning. We have to fix that.
-            Just url -> [ constField field ("/" ++ url) ]
-            Nothing  -> []
-
-    return $ mconcat $ concat [
-        genField prevUrl "prev_post_url"
-      , genField nextUrl "next_post_url"
-      ]
 
 feedCtx :: Context String
 feedCtx =

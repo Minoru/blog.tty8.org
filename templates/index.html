@@ -1,16 +1,14 @@
-<article id="posts">
-    $for(posts)$
-    <p>
-        <a href="$url$">$title$</a>
-        <span class="date">
-            <time datetime="$datetime$">
-                $date$
-            </time>
-        </span>
-    </p>
-    $endfor$
+<p>Welcome to my blog! Here's a few recent posts:</p>
 
-    <p style="text-align: center; font-size: 88%; font-style: italic;">
-    <a href="/posts.html">There's more!</a>
-    </p>
+<article id="posts">
+    <ul style="list-style-type: '— ';">
+    $for(posts)$
+        <li>
+            <a href="$url$">$title$</a>
+        </li>
+    $endfor$
+    </ul>
+
+    <p>…and there’s plenty more <a href="/posts.html">in the archives</a>!
+    I hope you enjoy your stay.</p>
 </article>

@@ -1,78 +1,7 @@
 @media only screen and (max-width: 768px) {
 
 body {
-    font-size: 1em;
-    margin: 0 1em;
-}
-
-#blog-header-logo {
-    display: none;
-}
-
-#blog-logo-and-title {
-    justify-content: space-around;
-}
-
-pre, blockquote {
-    border-left: none !important;
-    padding-left: 1em !important;
-}
-
-div#header-and-prev-next-buttons > span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-div#header-and-prev-next-buttons > h1 {
-    text-align: center;
-    align-self: center;
-    margin: 0;
-    padding: 0;
-}
-
-div.prev_next_post_button {
-    font-size: 3em;
-}
-
-div#prev_post_button > a,
-div#next_post_button > a {
-    color: #bbbbbb;
-}
-
-div#prev_post_button,
-div#next_post_button {
-    flex-grow: 5;
-    flex-grow: 5;
-}
-
-div#prev_post_button {
-    text-align: left;
-}
-
-div#next_post_button {
-    text-align: right;
-}
-
-span#prev-anchor::after {
-    content: "←";
-}
-
-span#next-anchor::after {
-    content: "→";
-}
-
-div.year-posts-list > p{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    border-bottom: 1px dashed grey;
-}
-
-div.year-posts-list span {
-    align-self: flex-end;
-    margin-left: 1em;
+    margin: 0 1rem;
 }
 
 }
