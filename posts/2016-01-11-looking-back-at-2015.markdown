@@ -5,7 +5,7 @@ description:
 tags: linux, programming, debian
 ----
 
-In this post, I'd like to give shootouts to all the nice pieces of software and
+In this post, I'd like to give shoutouts to all the nice pieces of software and
 technology that entered my life in year 2015. I can't stress enough how much
 [VCSH][vcsh] helped in writing this post, so if you aren't a user yet,
 I strongly encourage you to check it out. Мои русскоязычные читатели могут найти
