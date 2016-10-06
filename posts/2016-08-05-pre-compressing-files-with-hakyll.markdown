@@ -136,7 +136,7 @@ experience the major drawback of this solution, namely the fact that it requires
 separate rules for different filename extensions. If you have a Markdown file
 compiled into HTML and a bunch of SVG files that are just copied over, you'll
 have to write two rules. If you find a way to scrap that boilerplate, please let
-me know; my email is at the end of this article.
+me know; my email is at the end of this post.
 
 $break$
 
