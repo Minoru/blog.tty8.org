@@ -370,10 +370,9 @@ HOWTO](http://tldp.org/HOWTO/LVM-HOWTO/) for details on LVM inner structure):
 # lvm lvchange -ay lvm
 ```
 
-*He's dead, Jim!* (troubleshooting section)
-===========================================
+# *He's dead, Jim!* (troubleshooting section)
 
-**I can't boot, after GRUB menu there's an error message and nothing happens**.
+## I can't boot, after GRUB menu there's an error message and nothing happens
 
 If you're sure you did install `lvm2` and `cryptsetup` packages, google the
 error you get and figure things out yourself — I don't know anything about your
@@ -389,13 +388,13 @@ properly due to dependency problems (`sudo apt-get -f install` might be useful
 here). It's tiresome, but manageable (unless you had your system in terribly
 desynchronised state — then you might end up upgrading it all by hand).
 
-**I can't chroot, it says something about ELF being wrong**.
+## I can't chroot, it says something about ELF being wrong
 
 You're trying to chroot into 32-bit system from the 64-bit one, or vice versa.
 That won't work (not without a lot of trouble). Just boot with appropriate
 kernel and try again.
 
-**`update-initramfs` complains that it "can't find canonical device for X"**.
+## `update-initramfs` complains that it "can't find canonical device for X"
 
 That means you have X specified as a resume device (or something), but since we
 re-partitioned the disk, X doesn't exist anymore. Use the following command to
@@ -405,7 +404,7 @@ find out which file you need to change:
 $ sudo grep X -R /etc
 ```
 
-**I can't resume from hibernate (suspend to disk) anymore**.
+## I can't resume from hibernate (suspend to disk) anymore
 
 If you use `pm-hibernate` (`pm-utils` package), add resume parameter to
 `GRUB_CMDLINE_LINUX` in `/etc/default/grub`, like this:
