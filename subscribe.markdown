@@ -15,5 +15,3 @@ $break$
 **Posts in English only**: [*RSS*](/feeds/english.rss) [*Atom*](/feeds/english.atom)
 
 **Посты на русском**: [*RSS*](/feeds/russian.rss) [*Atom*](/feeds/russian.atom)
-
-**О Linux** (специально для [runix](http://runix.org/)): [*RSS*](/feeds/linux-rus.rss) [*Atom*](/feeds/linux-rus.atom)
