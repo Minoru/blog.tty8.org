@@ -10,7 +10,7 @@ still have better places for them._
 gave some people confidence that they can do whatever they want, even have fun
 at the expense of others. It's bitter when that kind of people are around, it's
 pointless to talk to them, so I just cut communications off (though not
-completely — you can still read my entries, right?)
+completely—you can still read my entries, right?)
 
 **People misuse it**. Though often useful (typo corrections, suggestions, new
 ideas etc.), feedback may degrade into helping forum (with screenful of command
@@ -19,10 +19,10 @@ listings and more questions than answers), offtopic or some flame war, and
 next point.
 
 **We have beter places for discussions**. Hacker News, Reddit, Google+,
-whatever — just use what you like. Come here to read the entry and then go
-spread the word. After all, search engines became an entry gates to Internet
-and it doesn't matter anymore if you commented my article here or elsewhere —
-your feedback still can be found.
+whatever—just use what you like. Come here to read the entry and then go spread
+the word. After all, search engines became an entry gates to Internet and it
+doesn't matter anymore if you commented my article here or elsewhere—your
+feedback still can be found.
 
 And that's all to it.
 
