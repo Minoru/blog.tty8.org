@@ -11,7 +11,7 @@ tags: hardware,debian
 <img src="/images/stupid_arrow_keys_design_ASUS_P52F-380.jpg"
     width="588px" height="400px"
     alt="Глупое расположение стрелочек на Asus P52F-380"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 То есть кнопка «вправо» находится в области, занимаемой numpad'ом, что, поверьте мне, очень неудобно (в основном из-за огромного RgtCtrl, который я постоянно нажимаю вместо стрелочки влево). Даже на EeePC сделали лучше:
@@ -20,7 +20,7 @@ tags: hardware,debian
 <img src="/images/arrow_keys_design_ASUS_EeePC_900HA.jpg"
     width="481px" height="400px"
     alt="Расположение стрелочек на Asus EeePC-900HA"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Думаю, теперь я таки перейду на hjkl в vim'е ☺

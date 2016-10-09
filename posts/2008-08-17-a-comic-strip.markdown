@@ -10,7 +10,7 @@ tags: web
 <div class="center">
 <img src="/images/cautionary.png"
     width="665px" height="277px"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Поржали напару с другом :) Сразу же появилась мысль запостить это в блог — как-никак, по теме Linux, да и Debian там упоминается :) Т.к. я английским владею плохо, то перевод у меня получился довольно корявый (точнее сказать — буквальный; смысл уловить я смог, но сразу написать литературный текст не получилось). Короче, перевод сделал друг (за что я ему очень благодарен; кстати, можете почитать его <a href="http://bobby-r.livejournal.com/">"Днявку"</a>). Ну а потом я, вооружившись Gimp'ом, нарисовал вот это:
@@ -18,7 +18,7 @@ tags: web
 <div class="center">
 <img src="/images/cautionary-translated-ru.png"
     width="665px" height="277px"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Шрифт[^font-note] был любезно предоставлен всё тем же другом.

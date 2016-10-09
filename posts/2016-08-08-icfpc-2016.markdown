@@ -53,7 +53,7 @@ Ruby; опрос об эквивалентности двух функций; п
 <img src="/images/icfpc-2016-problem-illustration-1.svg"
     width="489px" height="562px"
     alt="Силуэт и скелет задания"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Решение не обязательно должно было быть точным: за похожие силуэты тоже давали
@@ -136,7 +136,7 @@ portnov][report-portnov] и пока ещё не написанному отчё
 <img src="/images/icfpc-2016-problem-illustration-2.svg"
     width="532px" height="346px"
     alt="Сворачивание по нескольким рёбрам одновременно"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Никакого специального алгоритма для таких случаев мне в голову не пришло,
@@ -205,7 +205,7 @@ clipper-а, я допёр только при написании отчёта =\
 <img src="/images/icfpc-2016-problem-illustration-3.svg"
     width="659px" height="325px"
     alt="«Висящие в воздухе» рёбра скелета"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 На таких скелетах поиск образованных сгибом половинок не работает — с точки
@@ -243,7 +243,7 @@ clipper-а, я допёр только при написании отчёта =\
 <img src="/images/icfpc-2016-problem-illustration-4.svg"
     width="399px" height="309px"
     alt="Задача с журавликом"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 И я, отчаявшись уже написать что-то работающее, решаю заняться этой задачей
@@ -280,7 +280,7 @@ clipper-а, я допёр только при написании отчёта =\
 <img src="/images/icfpc-2016-problem-illustration-6.svg"
     width="521px" height="211px"
     alt="Пытаемся отличить две очень похожих точки"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Но это не помогает, потому что там, где на этих рисунках чёрные линии,
@@ -324,7 +324,7 @@ clipper-а, я допёр только при написании отчёта =\
 <div class="center">
 <img src="/images/origami-crane-the-choice-of-discriminating-hackers.jpg"
     alt="Origami crane: the choice of discriminating hackers"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 **UPD 09.08.2016:**

@@ -52,7 +52,7 @@ title="Dungeon level, уровень подземелья">dlvl</span> 1 — и
 <img src="/images/acehack-multiplayer.png"
     width="640px" height="388px"
     alt="Acehack Multiplayer screenshot"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Слева я с кошкой, справа — только что приглашённый мною APic.

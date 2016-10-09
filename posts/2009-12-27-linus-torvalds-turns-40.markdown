@@ -10,7 +10,7 @@ tags: holiday
 <img src="/images/200px-Linus_Torvalds.jpeg"
     width="200px" height="307px"
     alt="Линус Торвальдс — творец ядра Linux"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 

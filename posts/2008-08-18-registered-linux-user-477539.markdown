@@ -10,7 +10,7 @@ tags: linux,holiday
 <img src="/images/registered-linux-user-477539.png"
     width="190px" height="110px"
     alt="Registered Linux User #477539"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 

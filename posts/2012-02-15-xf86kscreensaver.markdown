@@ -11,7 +11,7 @@ tags: linux
 <img src="/images/asus-p52f-so003x.jpg"
     width="400px" height="94px"
     alt="Git-annex web UI"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 <code>xev</code> услужливо подсказал, что в комбинации с Fn пробел генерирует специальный код — <code>XF86KScreenSaver</code>. Я немного параноик и постоянно блокирую клавиатуру с помощью <code>xtrlock</code>, запуская последний при помощи Xmonad'овского <a href='http://hackage.haskell.org/packages/archive/xmonad-contrib/0.10/doc/html/XMonad-Prompt-Shell.html#v:shellPrompt'><code>shellPrompt</code></a> (аналоги в других WM/DE/OS: Alt-R, WinKey-R), что, согласитесь, не верх удобства. В общем, забиндил я на этот код вызов <code>xtrlock</code> и нарадоваться не могу — теперь вместо Alt-P, xtr, &lt;Enter&gt; я просто жму Fn-Space и убегаю ☺ Жаль, что на нетбуке такой фичи нет…

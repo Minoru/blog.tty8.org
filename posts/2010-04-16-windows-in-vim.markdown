@@ -18,7 +18,7 @@ tags: vim
 <img src="/images/vim-windows-1-thumbnail.png"
     width="320px" height="255px"
     alt="vim с несколькими окнами"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 Слева NERD_TREE, справа — сорцы любимого ядрышка
@@ -37,7 +37,7 @@ vim -O attr.c open.c sync.c
 <img src="/images/vim-windows-2-thumbnail.png"
     width="320px" height="255px"
     alt="Результат выполнения vim -O attr.c open.c sync.c"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -63,7 +63,7 @@ h j l
 <img src="/images/vim-windows-3-thumbnail.png"
   width="320px" height="255px"
   alt="vim -d pk.new pk.old"
-  class="fullscreen" />
+  class="bleed" />
 </a>
 </div>
 

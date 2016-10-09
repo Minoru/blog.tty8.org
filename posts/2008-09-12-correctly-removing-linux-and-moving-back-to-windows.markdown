@@ -15,7 +15,7 @@ tags: windows,linux
 <img src="/images/windows-setup.png"
     width="724px" height="400px"
     alt="Установка Windows"
-    class="fullscreen" />
+    class="bleed" />
 <p>Так выглядит экран установщика</p>
 </div>
 

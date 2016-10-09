@@ -111,7 +111,7 @@ $break$
 <img src="/images/icfpc-2014-playground.png"
     width="460px" height="440px"
     alt="Дефолтная карта с контеста"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Над чем я и бился следующие полчаса. Дальше я просто процитирую лог нашего

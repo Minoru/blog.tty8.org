@@ -15,6 +15,6 @@ tags: web
 <img src="/images/you-are-windows-95.jpg"
     width="300px" height="90px"
     alt="You are Windows 95"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>

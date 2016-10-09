@@ -42,7 +42,7 @@ dtach -a $HOME/rtorrent
 <img src="/images/screen-mutt.png"
     width="724px" height="412px"
     alt="Mutt inside Screen"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Всех возможностей <code>screen</code>'а и не пересчитать — это крупный (чтобы не сказать монструозный) проект. В рамках же данной статьи я зацеплю только основы — а именно создание сессий и управление окнами.
@@ -85,7 +85,7 @@ screen -ls
 <img src="/images/screen-list-of-windows.png"
     width="724px" height="412px"
     alt="Screen: list of windows"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 И последняя фича, касающаяся окон — их переименование: нажмите Ctrl+a A и наберите новое имя окна. Задав окнам имена, вы упростите навигацию по вышеупомянутому списку.
@@ -98,7 +98,7 @@ screen -ls
 <img src="/images/tmux-mutt.png"
     width="724px" height="412px"
     alt="Mutt inside Tmux"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Итак, новая сессия создаётся так же, как и в <code>screen</code>'е, т.е. простым запуском <code>tmux</code>'а:

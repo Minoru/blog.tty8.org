@@ -16,7 +16,7 @@ tags: web
 <img src="/images/nerdtests-result.gif"
     width="105px" height="105px"
     alt="I am nerdier than 88% of all people. Are you a nerd? Click here to take the Nerd Test, get nerdy images and jokes, and write on the nerd forum!"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 

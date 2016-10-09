@@ -21,7 +21,7 @@ language: russian
 <img src="/images/razer_blackwidow_tournament_edition_2013.png"
     width="450px" height="264px"
     alt="Razer BlackWidow Torunament Edition 2013"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 В первую очередь хочется отметить тот, поначалу неочевидный, факт, что для

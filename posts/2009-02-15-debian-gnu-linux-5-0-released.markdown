@@ -9,7 +9,7 @@ tags: linux,debian,holiday
 <img src="/images/lennybanner-indexed.png"
     width="380px" height="310px"
     alt="The Universal Operating System — Debian 5.0"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Свершилось! Вышел в свет долгожданный релиз самого лучшего в мире дистрибутива — Debian GNU/Linux 5.0 "Lenny"!

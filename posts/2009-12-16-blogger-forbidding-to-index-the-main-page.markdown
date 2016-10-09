@@ -11,7 +11,7 @@ tags: blog
 <img src="/images/google-results-crap.png"
     width="720px" height="154px"
     alt="Чепуха в выдаче Гугла"
-    class="fullscreen" />
+    class="bleed" />
 </div>
 
 Позавчера таки собрался и сделал, пока что работает :)

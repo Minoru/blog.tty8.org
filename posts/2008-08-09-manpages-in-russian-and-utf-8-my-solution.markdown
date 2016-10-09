@@ -15,7 +15,7 @@ tags: linux
 <img src="/images/man-chown-thumbnail.jpg"
     width="400px" height="280px"
     alt="man chown"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 

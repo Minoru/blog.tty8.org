@@ -10,7 +10,7 @@ tags: programming,linux,debian
 <img src="/images/pdf-screenshot-epiphany-thumbnail.png"
     width="108px" height="300px"
     alt="PDF screenshot of Epiphany"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 

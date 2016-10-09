@@ -22,7 +22,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/00. Install hv3_polipo request-thumbnail.png"
     width="320px" height="131px"
     alt="Запрос Hv3 на установку hv3_polite"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -33,7 +33,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/01. Hv3 main window-thumbnail.png"
     width="320px" height="280px"
     alt="Главное окно программы"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -44,7 +44,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/02. Hv3' homepage - view in Hv3-thumbnail.png"
     width="320px" height="280px"
     alt="Домашняя страничка Hv3, открытая в самом Hv3"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -57,7 +57,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/03. Differences in views-thumbnail.png"
     width="320px" height="244px"
     alt="Разница в отображении блога virens'а"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -66,7 +66,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/04. Differences in views - 2-thumbnail.png"
     width="320px" height="244px"
     alt="Разница в отображении блога virens'а - 2"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -78,7 +78,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/06. Mail.ru in Hv3-thumbnail.png"
     width="320px" height="244px"
     alt="Mail.ru in Hv3"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -87,7 +87,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/05. Mail.ru in Iceweasel-thumbnail.png"
     width="320px" height="244px"
     alt="Mail.ru in Iceweasel"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
@@ -99,7 +99,7 @@ chmod 755 hv3-linux-nightly-08_0203
 <img src="/images/07. Creating new bookmark-thumbnail.png"
     width="320px" height="244px"
     alt="Bookmarks in Hv3"
-    class="fullscreen" />
+    class="bleed" />
 </a>
 </div>
 
