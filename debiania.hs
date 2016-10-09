@@ -236,11 +236,11 @@ absolutizeUrls item = do
 
 -- | Return only items that have at least one of the specified tags
 filterTags :: [String] -> [Item a] -> Compiler [Item a]
-filterTags tags items = filterM (hasTags tags) items
+filterTags tags items = filterM (tagsIncludeOneOf tags) items
 
 -- | Check if the given item has at least one of the specified tags
-hasTags :: [String] -> Item a -> Compiler Bool
-hasTags tags item = do
+tagsIncludeOneOf :: [String] -> Item a -> Compiler Bool
+tagsIncludeOneOf tags item = do
   let identifier = itemIdentifier item
   tags' <- getTags identifier
   return $ not $ null $ tags' `intersect` tags
