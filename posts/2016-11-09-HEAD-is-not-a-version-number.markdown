@@ -17,7 +17,7 @@ I knew that `HEAD` moves all the time, of course, but I thought that the date on
 the GitHub comment is enough to disambiguate that. Now I realize that it's not.
 
 The thing is, Git only records the time the commits were *made*, but not the
-time whey were *pushed*. Furthermore, due to history rewriting, it's possible to
+time they were *pushed*. Furthermore, due to history rewriting, it's possible to
 get a sequence of commits with no order to the dates whatsoever: a commit made
 today can be followed by one made last Friday, followed by another that was made
 yesterday. Add a possibility of race condition where you push new commits in
