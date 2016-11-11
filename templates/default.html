@@ -23,7 +23,14 @@
                 <a href="/posts.html"
                    $if(navbar-archives)$id="navbar-selected-link"$endif$>Archives</a>
                 <a href="/subscribe.html"
-                   $if(navbar-subscribe)$id="navbar-selected-link"$endif$>Subscribe</a>
+                   $if(navbar-subscribe)$id="navbar-selected-link"$endif$>
+                    <span class="content-desktop">
+                        Subscribe
+                    </span>
+                    <span class="content-mobile">
+                        <img src="/images/feedicon.svg" style="height: 1rem;">
+                    </span>
+                </a>
             </nav>
         </header>
 

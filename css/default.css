@@ -367,3 +367,8 @@ p.hakyll-convert-comment-date {
      * between cap- and x-height is 1/4 of the em. */
     margin-bottom: calc(1.2rem - 0.25rem);
 }
+
+.content-desktop,
+.content-mobile {
+    display: none;
+}
