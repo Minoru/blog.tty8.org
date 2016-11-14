@@ -33,6 +33,10 @@ table {
     margin-bottom: 1.2rem;
 }
 
+li + li {
+    margin-top: 1rem;
+}
+
 blockquote > p {
     /* Override the rule above. */
     margin-bottom: 0;
