@@ -13,6 +13,8 @@ import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM, formatTime)
 import Network.HTTP.Base (urlEncode)
 import System.FilePath (takeFileName)
+import Text.Pandoc.Options (WriterOptions(writerHTMLMathMethod),
+    HTMLMathMethod(MathJax), def)
 
 import qualified Data.Aeson.Types as A
 import qualified Data.ByteString.Lazy as LBS
@@ -57,6 +59,15 @@ main = hakyllWith config $ do
 
     -- Images and miscellaneous files
     match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    -- MathJax stuff
+    match ( "MathJax/MathJax.js" .||.
+            "MathJax/extensions/**" .||.
+            "MathJax/fonts/**" .||.
+            "MathJax/jax/**" .||.
+            "MathJax/localization/**") $ do
         route   idRoute
         compile copyFileCompiler
 
@@ -321,7 +332,11 @@ debianiaCompiler :: Compiler (Item String)
 debianiaCompiler =
       getResourceBody
   >>= withItemBody (go . split "\n\n$break$\n\n")
-  >>= renderPandoc
+  >>= renderPandocWith
+        def
+        -- The empty string is path to mathjax.js. We don't want Pandoc to
+        -- embed it in output for us as we already do that in Hakyll templates.
+        (def { writerHTMLMathMethod = MathJax "" })
 
   where
   go :: [String] -> Compiler String

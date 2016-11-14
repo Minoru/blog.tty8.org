@@ -21,6 +21,7 @@ Executable debiania
                  , bytestring
                  , filepath
                  , hakyll == 4.*
+                 , pandoc
                  , text
                  , time
                  , unordered-containers

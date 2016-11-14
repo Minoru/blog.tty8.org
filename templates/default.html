@@ -12,6 +12,19 @@
             title="Debiania" href="/feeds/all.rss">
         <link rel="alternate" type="application/atom+xml"
             title="Debiania" href="/feeds/all.atom">
+        $if(enable-mathjax)$
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                jax: ["input/TeX", "output/HTML-CSS", "output/NativeMML", "output/SVG"],
+                extensions: ["tex2jax.js", "MathMenu.js", "MathZoom.js", "AssistiveMML.js"],
+                TeX: {
+                    extensions: ["AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"]
+                }
+            });
+        </script>
+        <script type="text/javascript" async src="/MathJax/MathJax.js">
+        </script>
+        $endif$
     </head>
     <body>
         <header id="blog-header">
