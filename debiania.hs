@@ -333,10 +333,10 @@ debianiaCompiler =
       getResourceBody
   >>= withItemBody (go . split "\n\n$break$\n\n")
   >>= renderPandocWith
-        def
+        defaultHakyllReaderOptions
         -- The empty string is path to mathjax.js. We don't want Pandoc to
         -- embed it in output for us as we already do that in Hakyll templates.
-        (def { writerHTMLMathMethod = MathJax "" })
+        (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "" })
 
   where
   go :: [String] -> Compiler String
