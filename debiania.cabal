@@ -12,6 +12,7 @@ Build-type: Simple
 Cabal-version: >= 1.2
 
 Executable debiania
+    Hs-Source-Dirs: src
     Main-is: debiania.hs
     GHC-Options: -threaded -rtsopts -with-rtsopts=-N
     Build-Depends: base == 4.*
