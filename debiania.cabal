@@ -21,6 +21,7 @@ Executable debiania
                  , Debiania.Feeds
                  , Debiania.Posts
                  , Debiania.Settings
+                 , Debiania.Sitemap
     GHC-Options: -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
     Build-Depends: base == 4.*
                  , HTTP == 4000.*

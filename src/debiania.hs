@@ -11,6 +11,7 @@ import Debiania.Compilers
 import Debiania.Feeds
 import Debiania.Posts
 import Debiania.Settings
+import Debiania.Sitemap
 
 config :: Configuration
 config = defaultConfiguration {
@@ -68,18 +69,7 @@ main = hakyllWith config $ do
           >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
           >>= relativizeUrls
 
-    create ["sitemap.xml"] $ do
-       route   idRoute
-       compile $ do
-         posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
-         let sitemapCtx =    listField "posts" postCtx (return posts)
-                          <> debianiaCtx
-         makeItem ""
-          >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
-
-    create ["sitemap.xml"] $ version "gzipped" $ do
-        route   $ setExtension "xml.gz"
-        compile gzipFileCompiler
+    sitemapRules
 
     create ["about.markdown"
            , "subscribe.markdown"
