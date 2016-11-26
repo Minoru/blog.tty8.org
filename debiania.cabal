@@ -14,6 +14,10 @@ Cabal-version: >= 1.2
 Executable debiania
     Hs-Source-Dirs: src
     Main-is: debiania.hs
+    Other-Modules: Debiania.Compilers
+                 , Debiania.Feeds
+                 , Debiania.Posts
+                 , Debiania.Settings
     GHC-Options: -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
