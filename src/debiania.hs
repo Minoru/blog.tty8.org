@@ -4,11 +4,7 @@ import Control.Monad (forM)
 import Data.Function (on)
 import Data.List (sort, groupBy, sortOn)
 import Data.Monoid ((<>))
-import Data.String.Utils (split)
 import Data.Time.Format (defaultTimeLocale, formatTime)
-import Network.HTTP.Base (urlEncode)
-import Text.Pandoc.Options (WriterOptions(writerHTMLMathMethod),
-    HTMLMathMethod(MathJax))
 
 import qualified Data.HashMap.Strict as M
 
@@ -26,9 +22,6 @@ config = defaultConfiguration {
 
 main :: IO ()
 main = hakyllWith config $ do
-    -- Build tags (will be used later on)
-    tags <- buildTags ("posts/*" .&&. hasNoVersion) (fromCapture "tags/*.html")
-
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
@@ -80,20 +73,7 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
 
-    -- Render posts
-    match "posts/*" $ do
-        route   $ setExtension "html"
-        compile $ do
-          debianiaCompiler
-            >>= saveSnapshot "content"
-            >>= loadAndApplyTemplate
-                  "templates/post.html"
-                  (mconcat [ urlEncodedTitleCtx
-                           , postCtx
-                           , tagsCtx tags
-                           ])
-            >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
-            >>= relativizeUrls
+    postsRules
 
     -- Render Archives page
     create ["posts.markdown"] $ do
@@ -199,10 +179,6 @@ main = hakyllWith config $ do
           makeItem (itemBody css)
             >>= gzip
 
-    match "posts/*" $ version "gzipped" $ do
-        route   $ setExtension "html.gz"
-        compile gzipFileCompiler
-
     create ["about.markdown"
            , "subscribe.markdown"
            , "404.markdown"
@@ -220,32 +196,6 @@ main = hakyllWith config $ do
 
     feedsRules
 
--- | Essentially a @pandocCompiler@, but with some preprocessing:
---
--- * @$break$@ on a separate line will be replaced by a section break image.
-debianiaCompiler :: Compiler (Item String)
-debianiaCompiler =
-      getResourceBody
-  >>= withItemBody (go . split "\n\n$break$\n\n")
-  >>= renderPandocWith
-        defaultHakyllReaderOptions
-        -- The empty string is path to mathjax.js. We don't want Pandoc to
-        -- embed it in output for us as we already do that in Hakyll templates.
-        (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "" })
-
-  where
-  go :: [String] -> Compiler String
-  go [] = return ""
-  go [single] = return single
-  go (before:after:rest) = do
-    emptyItem <- makeItem ("" :: String)
-    newItem <- loadAndApplyTemplate
-                 "templates/break.html"
-                 (constField "before" before <> constField "after" after)
-                 emptyItem
-    let newBody = itemBody newItem
-    go (newBody:rest)
-
 -- | Prepare a list to be used as a base to constuct a Map.
 --
 -- Example input:
@@ -259,22 +209,3 @@ toMapElem :: [[(a, b)]] -> [(a, [b])]
 toMapElem [] = []
 toMapElem ([]:xs) = toMapElem xs
 toMapElem (((a, b):as):xs) = (a, b : map snd as) : toMapElem xs
-
-{---- SETTINGS ----}
-
-urlEncodedTitleCtx :: Context String
-urlEncodedTitleCtx =
-  field
-    "urlEncodedTitle"
-    (\item -> do
-      let identifier = itemIdentifier item
-      title <- getMetadataField identifier "title"
-      case title of
-        Nothing -> return ""
-        Just t  -> return $ urlEncode t
-    )
-
-tagsCtx :: Tags -> Context String
-tagsCtx tags =
-    tagsField "tags" tags
-    <> debianiaCtx
