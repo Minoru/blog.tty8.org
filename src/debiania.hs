@@ -5,6 +5,7 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Archives
+import Debiania.Assets
 import Debiania.CSS
 import Debiania.Compilers
 import Debiania.Feeds
@@ -22,20 +23,7 @@ main = hakyllWith config $ do
     match "templates/*" $ compile templateCompiler
 
     cssRules
-
-    -- Images and miscellaneous files
-    match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do
-        route   idRoute
-        compile copyFileCompiler
-
-    -- MathJax stuff
-    match ( "MathJax/MathJax.js" .||.
-            "MathJax/extensions/**" .||.
-            "MathJax/fonts/**" .||.
-            "MathJax/jax/**" .||.
-            "MathJax/localization/**") $ do
-        route   idRoute
-        compile copyFileCompiler
+    assetsRules
 
     create ["index.html"] $ do
         route     idRoute
@@ -100,11 +88,5 @@ main = hakyllWith config $ do
       $ version "gzipped" $ do
         route   $ setExtension "html.gz"
         compile gzipFileCompiler
-
-    match "images/*.svg" $ version "gzipped" $ do
-        route   $ setExtension "svg.gz"
-        compile $ do
-          getResourceBody
-            >>= gzip
 
     feedsRules

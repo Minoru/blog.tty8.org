@@ -15,6 +15,7 @@ Executable debiania
     Hs-Source-Dirs: src
     Main-is: debiania.hs
     Other-Modules: Debiania.Archives
+                 , Debiania.Assets
                  , Debiania.CSS
                  , Debiania.Compilers
                  , Debiania.Feeds
