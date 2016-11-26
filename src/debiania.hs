@@ -9,6 +9,7 @@ import Debiania.Assets
 import Debiania.CSS
 import Debiania.Compilers
 import Debiania.Feeds
+import Debiania.IndexPage
 import Debiania.Posts
 import Debiania.Settings
 import Debiania.Sitemap
@@ -25,21 +26,7 @@ main = hakyllWith config $ do
 
     cssRules
     assetsRules
-
-    create ["index.html"] $ do
-        route     idRoute
-        compile $ do
-          posts <- fmap (take 8) . recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
-          let ctx =    constField "title" "Home"
-                    <> constField "navbar-home" "Yep"
-                    <> listField "posts" postCtx (return posts)
-                    <> debianiaCtx
-
-          makeItem ""
-            >>= loadAndApplyTemplate "templates/index.html" ctx
-            >>= loadAndApplyTemplate "templates/default.html" ctx
-            >>= relativizeUrls
-
+    indexPageRules
     postsRules
     archivesRules
 
@@ -73,8 +60,7 @@ main = hakyllWith config $ do
 
     create ["about.markdown"
            , "subscribe.markdown"
-           , "404.markdown"
-           , "index.html"]
+           , "404.markdown"]
       $ version "gzipped" $ do
         route   $ setExtension "html.gz"
         compile gzipFileCompiler

@@ -19,6 +19,7 @@ Executable debiania
                  , Debiania.CSS
                  , Debiania.Compilers
                  , Debiania.Feeds
+                 , Debiania.IndexPage
                  , Debiania.Posts
                  , Debiania.Settings
                  , Debiania.Sitemap
