@@ -10,16 +10,12 @@ import Debiania.Feeds
 import Debiania.IndexPage
 import Debiania.NotFoundPage
 import Debiania.Posts
+import Debiania.Settings
 import Debiania.Sitemap
 import Debiania.SubscribePage
 
-config :: Configuration
-config = defaultConfiguration {
-  deployCommand = "rsync -rPv --chmod=ugo=rwX _site/ www-blog@theke.debiania.in.ua:"
-}
-
 main :: IO ()
-main = hakyllWith config $ do
+main = hakyllWith debianiaConfig $ do
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
