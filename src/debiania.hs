@@ -10,6 +10,7 @@ import qualified Data.HashMap.Strict as M
 
 import Hakyll
 
+import Debiania.CSS
 import Debiania.Compilers
 import Debiania.Feeds
 import Debiania.Posts
@@ -25,25 +26,7 @@ main = hakyllWith config $ do
     -- Read templates
     match "templates/*" $ compile templateCompiler
 
-    -- Compress CSS
-    match "css/*" $ do
-        -- No `route` rule means these files won't be present in generated
-        -- site. The point of this whole block is to compress the files and put
-        -- them into the cache so that later on, we can use `loadBody` to take
-        -- them out and generate debiania.css out of them.
-        compile compressCssCompiler
-
-    create ["css/debiania.css"] $ do
-        route idRoute
-        compile $ do
-          styles <- mapM
-                      (loadBody . fromFilePath . ("css/"++))
-                      [ "normalize.css"
-                      , "syntax.css"
-                      , "default.css"
-                      , "desktop.css"
-                      , "mobile.css"]
-          makeItem (concat (styles :: [String]))
+    cssRules
 
     -- Images and miscellaneous files
     match ( "images/*" .||. "misc/*" .||. "robots.txt" ) $ do
@@ -171,13 +154,6 @@ main = hakyllWith config $ do
     create ["sitemap.xml"] $ version "gzipped" $ do
         route   $ setExtension "xml.gz"
         compile gzipFileCompiler
-
-    create ["css/debiania.css.gz"] $ do
-        route idRoute
-        compile $ do
-          css <- load "css/debiania.css"
-          makeItem (itemBody css)
-            >>= gzip
 
     create ["about.markdown"
            , "subscribe.markdown"

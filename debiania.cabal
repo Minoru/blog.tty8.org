@@ -14,7 +14,8 @@ Cabal-version: >= 1.2
 Executable debiania
     Hs-Source-Dirs: src
     Main-is: debiania.hs
-    Other-Modules: Debiania.Compilers
+    Other-Modules: Debiania.CSS
+                 , Debiania.Compilers
                  , Debiania.Feeds
                  , Debiania.Posts
                  , Debiania.Settings
