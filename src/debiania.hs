@@ -1,18 +1,17 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import Data.Monoid ((<>))
-
 import Hakyll
 
+import Debiania.AboutPage
 import Debiania.Archives
 import Debiania.Assets
 import Debiania.CSS
-import Debiania.Compilers
 import Debiania.Feeds
 import Debiania.IndexPage
+import Debiania.NotFoundPage
 import Debiania.Posts
-import Debiania.Settings
 import Debiania.Sitemap
+import Debiania.SubscribePage
 
 config :: Configuration
 config = defaultConfiguration {
@@ -29,40 +28,8 @@ main = hakyllWith config $ do
     indexPageRules
     postsRules
     archivesRules
-
-    -- Render About, Subscribe and 404 pages
-    create ["about.markdown"] $ do
-        route   $ setExtension "html"
-        compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
-          >>= loadAndApplyTemplate
-                "templates/default.html"
-                (debianiaCtx <> constField "navbar-about" "Yep")
-          >>= relativizeUrls
-
-    create ["subscribe.markdown"] $ do
-        route   $ setExtension "html"
-        compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
-          >>= loadAndApplyTemplate
-                "templates/default.html"
-                (debianiaCtx <> constField "navbar-subscribe" "Yep")
-          >>= relativizeUrls
-
-    create ["404.markdown"] $ do
-        route   $ setExtension "html"
-        compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
-          >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
-          >>= relativizeUrls
-
+    aboutPageRules
+    subscribePageRules
     sitemapRules
-
-    create ["about.markdown"
-           , "subscribe.markdown"
-           , "404.markdown"]
-      $ version "gzipped" $ do
-        route   $ setExtension "html.gz"
-        compile gzipFileCompiler
-
+    notFoundPageRules
     feedsRules

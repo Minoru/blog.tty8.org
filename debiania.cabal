@@ -14,15 +14,18 @@ Cabal-version: >= 1.2
 Executable debiania
     Hs-Source-Dirs: src
     Main-is: debiania.hs
-    Other-Modules: Debiania.Archives
+    Other-Modules: Debiania.AboutPage
+                 , Debiania.Archives
                  , Debiania.Assets
                  , Debiania.CSS
                  , Debiania.Compilers
                  , Debiania.Feeds
                  , Debiania.IndexPage
+                 , Debiania.NotFoundPage
                  , Debiania.Posts
                  , Debiania.Settings
                  , Debiania.Sitemap
+                 , Debiania.SubscribePage
     GHC-Options: -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
