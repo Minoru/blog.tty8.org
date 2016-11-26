@@ -1,22 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Applicative (Alternative (..))
-import Control.Arrow ((***))
-import Control.Monad (liftM, filterM, forM, msum)
+import Control.Monad (filterM, forM)
 import Data.Function (on)
-import Data.List (intersect, sort, sortBy, groupBy, sortOn, intercalate)
-import Data.Maybe (fromMaybe)
+import Data.List (intersect, sort, groupBy, sortOn)
 import Data.Monoid ((<>))
-import Data.Ord (comparing)
 import Data.String.Utils (split)
-import Data.Time.Clock (UTCTime)
 import Data.Time.Format (defaultTimeLocale, parseTimeM, formatTime)
 import Network.HTTP.Base (urlEncode)
-import System.FilePath (takeFileName)
 import Text.Pandoc.Options (WriterOptions(writerHTMLMathMethod),
-    HTMLMathMethod(MathJax), def)
+    HTMLMathMethod(MathJax))
 
-import qualified Data.Aeson.Types as A
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.HashMap.Strict as M
 import qualified Data.Text as T
@@ -111,8 +104,8 @@ main = hakyllWith config $ do
           posts <- loadAll ("posts/*" .&&. hasNoVersion)
           -- Now pair each post with the year it was posted on
           years <- forM posts $ \post -> do
-                     let id = itemIdentifier post
-                     time <- getItemUTC defaultTimeLocale id
+                     let identifier = itemIdentifier post
+                     time <- getItemUTC defaultTimeLocale identifier
                      let year = formatTime defaultTimeLocale "%Y" time
                      return (year, post)
 
@@ -149,7 +142,7 @@ main = hakyllWith config $ do
           let yearsDescending = reverse $ sort $ M.keys postsByYear
           let yearsCtx = listField "years" yearCtx (mapM makeItem yearsDescending)
 
-          makeItem ""
+          makeItem ("" :: String)
             >>= loadAndApplyTemplate "templates/archives.html" yearsCtx
             >>= loadAndApplyTemplate
                   "templates/default.html"
@@ -250,10 +243,10 @@ main = hakyllWith config $ do
 
 absolutizeUrls :: Item String -> Compiler (Item String)
 absolutizeUrls item = do
-  route <- getRoute $ itemIdentifier item
-  return $ case route of
+  itemRoute <- getRoute $ itemIdentifier item
+  return $ case itemRoute of
     Nothing -> item
-    Just r  -> fmap (relativizeUrlsWith rootUrl) item
+    Just _  -> fmap (relativizeUrlsWith rootUrl) item
 
 -- | Return only items that have at least one of the specified tags
 filterTags :: [String] -> [Item a] -> Compiler [Item a]
@@ -300,8 +293,8 @@ createFeed name content conf extension compiler = do
         >>= compiler
               conf
               (field "root" (\item -> do
-                              let id = itemIdentifier item
-                              published <- getItemUTC defaultTimeLocale id
+                              let identifier = itemIdentifier item
+                              published <- getItemUTC defaultTimeLocale identifier
 
                               httpsSwitchDate <-
                                 parseTimeM
@@ -343,12 +336,12 @@ debianiaCompiler =
   go [] = return ""
   go [single] = return single
   go (before:after:rest) = do
-    empty <- makeItem ""
-    new <- loadAndApplyTemplate
-             "templates/break.html"
-             (constField "before" before <> constField "after" after)
-             empty
-    let newBody = itemBody new
+    emptyItem <- makeItem ("" :: String)
+    newItem <- loadAndApplyTemplate
+                 "templates/break.html"
+                 (constField "before" before <> constField "after" after)
+                 emptyItem
+    let newBody = itemBody newItem
     go (newBody:rest)
 
 -- | Prepare a list to be used as a base to constuct a Map.
@@ -362,6 +355,7 @@ debianiaCompiler =
 --    [(1, ["hello", "hi", "hey"]), (2, ["bye", "see ya"])]
 toMapElem :: [[(a, b)]] -> [(a, [b])]
 toMapElem [] = []
+toMapElem ([]:xs) = toMapElem xs
 toMapElem (((a, b):as):xs) = (a, b : map snd as) : toMapElem xs
 
 gzip :: Item String -> Compiler (Item LBS.ByteString)
@@ -380,13 +374,14 @@ gzip = withItemBody
          . T.pack)
 
 gzipFileCompiler :: Compiler (Item LBS.ByteString)
-gzipFileCompiler = do id <- getUnderlying
-                      body <- loadBody (setVersion Nothing id)
+gzipFileCompiler = do identifier <- getUnderlying
+                      body <- loadBody (setVersion Nothing identifier)
                       makeItem body
                         >>= gzip
 
 {---- SETTINGS ----}
 
+rootUrl, oldRootUrl :: String
 rootUrl = "https://blog.debiania.in.ua"
 oldRootUrl = "http://blog.debiania.in.ua"
 
@@ -400,7 +395,7 @@ urlEncodedTitleCtx =
   field
     "urlEncodedTitle"
     (\item -> do
-      identifier <- getUnderlying
+      let identifier = itemIdentifier item
       title <- getMetadataField identifier "title"
       case title of
         Nothing -> return ""
