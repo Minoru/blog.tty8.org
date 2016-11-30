@@ -22,6 +22,7 @@ tmux has-session -t debiania || (
         echo    'language: english russian'
         echo    'description: '
         echo -n 'tags: ' && ./gather_tags
+        echo    'enable-mathjax: true # delete if you do not need MathJax'
         echo    '----'
     )`
     tmux new-session -d -s debiania "echo \"$text\" | $vim"
