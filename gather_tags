@@ -12,7 +12,7 @@ use warnings;
 
 my %tags = ();
 
-foreach my $line ( `git grep 'tags: ' -- '*.markdown'` ) {
+foreach my $line ( `git grep --no-line-number 'tags: ' -- '*.markdown'` ) {
   chomp $line;
   # git-grep prints out the filename and the match divided by a colon
   $line =~ s/^.*\.markdown:tags: //;
