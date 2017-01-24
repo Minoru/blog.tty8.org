@@ -1,4 +1,4 @@
-Copyright (c) 2012-2016, Alexander Batischev <eual.jp@gmail.com>
+Copyright (c) 2012-2017, Alexander Batischev <eual.jp@gmail.com>
 
 All rights reserved.
 
