@@ -3,10 +3,6 @@
  * wide and narrow screens. */
 @media only screen and (min-width: 769px) {
 
-html {
-    font-size: 17px;
-}
-
 body {
     width: 35rem;
 }
