@@ -1,0 +1,52 @@
+https://keybase.io/minoru
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.debiania.in.ua
+  * I am minoru (https://keybase.io/minoru) on keybase.
+  * I have a public key ASCXYFjOys-FgLjEHR55hlmhWVGELQD8mLlGtwItGFqqDQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120976058cecacf8580b8c41d1e798659a15951842d00fc98b946b7022d185aaa0d0a",
+            "host": "keybase.io",
+            "kid": "0120976058cecacf8580b8c41d1e798659a15951842d00fc98b946b7022d185aaa0d0a",
+            "uid": "7aae3f5559d8d8fc4574af43872bcc19",
+            "username": "minoru"
+        },
+        "service": {
+            "hostname": "blog.debiania.in.ua",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1486295195,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1486295161,
+        "hash": "ec08e079cfb071c883e5489189ec343fb51e029755a9d9a8f914c133c8bd6fa571cbc265405f17002e37a407c7cd32aaa1154a358e8913f65ab9f5f39ac7a6af",
+        "seqno": 836365
+    },
+    "prev": "5c8bb4b30044074051fd6a3440cdd342a32c992354dc842de44b1f17f8dad6c6",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgl2BYzsrPhYC4xB0eeYZZoVlRhC0A/Ji5RrcCLRhaqg0Kp3BheWxvYWTFAvl7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwOTc2MDU4Y2VjYWNmODU4MGI4YzQxZDFlNzk4NjU5YTE1OTUxODQyZDAwZmM5OGI5NDZiNzAyMmQxODVhYWEwZDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwOTc2MDU4Y2VjYWNmODU4MGI4YzQxZDFlNzk4NjU5YTE1OTUxODQyZDAwZmM5OGI5NDZiNzAyMmQxODVhYWEwZDBhIiwidWlkIjoiN2FhZTNmNTU1OWQ4ZDhmYzQ1NzRhZjQzODcyYmNjMTkiLCJ1c2VybmFtZSI6Im1pbm9ydSJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiYmxvZy5kZWJpYW5pYS5pbi51YSIsInByb3RvY29sIjoiaHR0cHM6In0sInR5cGUiOiJ3ZWJfc2VydmljZV9iaW5kaW5nIiwidmVyc2lvbiI6MX0sImNsaWVudCI6eyJuYW1lIjoia2V5YmFzZS5pbyBnbyBjbGllbnQiLCJ2ZXJzaW9uIjoiMS4wLjE4In0sImN0aW1lIjoxNDg2Mjk1MTk1LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0ODYyOTUxNjEsImhhc2giOiJlYzA4ZTA3OWNmYjA3MWM4ODNlNTQ4OTE4OWVjMzQzZmI1MWUwMjk3NTVhOWQ5YThmOTE0YzEzM2M4YmQ2ZmE1NzFjYmMyNjU0MDVmMTcwMDJlMzdhNDA3YzdjZDMyYWFhMTE1NGEzNThlODkxM2Y2NWFiOWY1ZjM5YWM3YTZhZiIsInNlcW5vIjo4MzYzNjV9LCJwcmV2IjoiNWM4YmI0YjMwMDQ0MDc0MDUxZmQ2YTM0NDBjZGQzNDJhMzJjOTkyMzU0ZGM4NDJkZTQ0YjFmMTdmOGRhZDZjNiIsInNlcW5vIjo3LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQG5gGjtEsiSN5pjhKgD7UN0KjYUhKcaUBi7vCieFKTI27EC15npz8/C/2PUesfe3WMZPzAyKbz6AZvkP8xPq6g+oc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCDitclXibPHwkA3JbPTLtmiLSOCEwbcBi9z00SXnau376N0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/minoru
+
