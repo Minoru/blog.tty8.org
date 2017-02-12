@@ -2,7 +2,7 @@ flags: {}
 packages:
 - '.'
 extra-deps: []
-resolver: lts-6.29
+resolver: lts-8.0
 nix:
     enable: true
     # Hakyll needs access to correct locale to be able to read the files
