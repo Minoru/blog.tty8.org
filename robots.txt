@@ -1,1 +1,4 @@
 Sitemap: https://blog.debiania.in.ua/sitemap.xml
+
+# For Yandex and Mail.ru bots
+Host: https://blog.debiania.in.ua/
