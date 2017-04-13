@@ -21,5 +21,5 @@ debianiaCtx =
 debianiaConfig :: Configuration
 debianiaConfig = defaultConfiguration {
   deployCommand =
-    "rsync -rPv --chmod=ugo=rwX _site/ www-blog@theke.debiania.in.ua:"
+    "rsync -rPvce ssh --chmod=ugo=rwX --no-times _site/ www-blog@theke.debiania.in.ua:"
 }
