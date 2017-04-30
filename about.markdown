@@ -15,6 +15,8 @@ encrypt the message). I also have [an old key, 0x0a1d7d827b52fb07][pgp-old],
 that dates back to the days when I tried PGP software for the first time.
 I lost its revocation certificate, so please just ignore it.
 
+I also have a [Keybase account](https://keybase.io/minoru).
+
 The site is called Debiania after my first blog, which I started just a few
 weeks after I installed Debian. I actually migrated all of my old posts over
 here, although I don't know *why* I did that—reading the older ones make me
