@@ -24,7 +24,16 @@ assetsRules = do
     -- MathJax stuff
     match ( "MathJax/MathJax.js" .||.
             "MathJax/extensions/**" .||.
-            "MathJax/fonts/**" .||.
+            "MathJax/fonts/Asana-Math/**" .||.
+            "MathJax/fonts/Gyre-Pagella/**" .||.
+            "MathJax/fonts/Gyre-Termes/**" .||.
+            "MathJax/fonts/Latin-Modern/**" .||.
+            "MathJax/fonts/Neo-Euler/**" .||.
+            "MathJax/fonts/STIX-Web/**" .||.
+            "MathJax/fonts/TeX/eot/**" .||.
+            "MathJax/fonts/TeX/otf/**" .||.
+            "MathJax/fonts/TeX/svg/**" .||.
+            "MathJax/fonts/TeX/woff/**" .||.
             "MathJax/jax/**" .||.
             "MathJax/localization/**") $ do
         route   idRoute
