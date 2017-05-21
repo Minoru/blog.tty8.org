@@ -34,6 +34,11 @@ table {
     margin-bottom: 1.2rem;
 }
 
+ol > li:last-child > *,
+ul > li:last-child > * {
+    margin-bottom: 0;
+}
+
 li + li {
     margin-top: 1rem;
 }
