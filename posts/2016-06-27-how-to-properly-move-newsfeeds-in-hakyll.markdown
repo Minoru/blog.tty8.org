@@ -1,8 +1,8 @@
 ----
 title: How to properly move newsfeeds in Hakyll
 language: english
-description: How to change feed's root URL without causing all the old articles
-    re-appear as new
+description: How to change RSS/Atom feed's root URL without causing all the old
+    articles to re-appear as new.
 tags: programming
 ----
 

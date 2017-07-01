@@ -1,7 +1,10 @@
 ----
 title: QIntValidator gotcha
 language: english
-description: 
+description: If validator's range is “sloped” towards the negative, e.g. it’s
+    from -128 to 127, your validator will seemingly accept “128”. In fact,
+    it’ll see 128 as intermediate state, so you can detect and handle that in
+    your UI.
 tags: tips'n'tricks, programming
 ----
 

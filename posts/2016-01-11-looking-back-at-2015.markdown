@@ -1,7 +1,7 @@
 ----
 title: Looking back at 2015
 language: english
-description: 
+description: A few shoutouts to programs that I fell in love with in year 2015.
 tags: linux, programming, debian
 ----
 

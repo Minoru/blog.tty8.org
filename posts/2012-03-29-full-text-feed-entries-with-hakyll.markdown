@@ -35,7 +35,7 @@ remark, here's how you can populate it with some text in Markdown:
 
 ```Markdown
 ---
-description: Here goes a description of a post
+description: Here goes a description of a post.
 ---
 ```
 

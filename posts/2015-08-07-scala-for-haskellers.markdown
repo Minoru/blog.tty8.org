@@ -1,7 +1,7 @@
 ----
 title: Scala for Haskellers
 language: english
-description: A quick primer on syntax and basic differences between the languages
+description: A quick primer on syntax and basic differences between the languages.
 tags: programming
 ----
 

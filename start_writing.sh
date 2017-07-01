@@ -20,7 +20,7 @@ tmux has-session -t debiania || (
     text=`(   echo    '----'
         echo    'title: '
         echo    'language: english russian'
-        echo    'description: '
+        echo    'description: # No double quotes; end with a period'
         echo -n 'tags: ' && ./gather_tags
         echo    'enable-mathjax: true # delete if you do not need MathJax'
         echo    '----'

@@ -1,6 +1,6 @@
 ---
 title: Forcing innovation by ditching Flash plugin
-description: My experience of living a month without Adobe Flash
+description: My experience of living a month without Adobe Flash.
 language: english
 ---
 

@@ -1,7 +1,8 @@
 ----
 title: What changed in Let's Encrypt Subscriber Agreement
 language: english
-description: Human-readable list of changes with quotations of the old and new versions of each point
+description: Human-readable list of changes with quotations of the old and new
+    versions of each point.
 tags: EULA
 ----
 
