@@ -1,10 +1,10 @@
-----
+---
 title: HEAD is not a version number
 language: english
 description: Don't use HEAD in your bug reports and issues because it might
     be(come) very hard to tell which commit you're referring to.
 tags: programming, thoughts
-----
+---
 
 For quite some time now I've been commenting on issues in one of my pet projects
 using phrases like "the bug isn't reproducible with `HEAD`" or "both 2.9 and

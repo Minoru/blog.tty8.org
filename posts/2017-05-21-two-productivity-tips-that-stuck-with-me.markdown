@@ -1,10 +1,10 @@
-----
+---
 title: Two productivity tips that stuck with me
 language: english
 description: 1. A way to write todo lists. 2. Jerry Seinfeld’s “Don’t break the
     chain” technique.
 tags: tips'n'tricks
-----
+---
 
 Personal productivity is all about finding things that work for *you*. In
 today's post, I'd like to highlight a couple of tricks that I've been using for

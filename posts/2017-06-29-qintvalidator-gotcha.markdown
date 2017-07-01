@@ -1,4 +1,4 @@
-----
+---
 title: QIntValidator gotcha
 language: english
 description: If validator's range is “sloped” towards the negative, e.g. it’s
@@ -6,7 +6,7 @@ description: If validator's range is “sloped” towards the negative, e.g. it�
     it’ll see 128 as intermediate state, so you can detect and handle that in
     your UI.
 tags: tips'n'tricks, programming
-----
+---
 
 <div style="margin-left: 50%; font-size: 0.833rem;">
 <p style="font-style: italic;">

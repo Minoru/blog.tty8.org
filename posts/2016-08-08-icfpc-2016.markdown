@@ -1,9 +1,9 @@
-----
+---
 title: ICFPC 2016
 language: russian
 description: Мои впечатления от участия в ICFPC 2016.
 tags: programming, icfpc
-----
+---
 
 Снова лето, снова август, и снова [ICFPC][icfpc-wiki-ru]. Я уже полтора раза
 принимал участие в этом соревновании (чуть-чуть

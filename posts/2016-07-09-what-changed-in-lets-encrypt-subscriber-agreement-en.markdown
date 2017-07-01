@@ -1,10 +1,10 @@
-----
+---
 title: What changed in Let's Encrypt Subscriber Agreement
 language: english
 description: Human-readable list of changes with quotations of the old and new
     versions of each point.
 tags: EULA
-----
+---
 
 <i>**Disclaimer**: I'm not a lawyer, and this document does not constitute
 legal advice. My paraphrases might be imprecise or entirely wrong.</i>

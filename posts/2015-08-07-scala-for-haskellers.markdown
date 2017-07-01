@@ -1,9 +1,9 @@
-----
+---
 title: Scala for Haskellers
 language: english
 description: A quick primer on syntax and basic differences between the languages.
 tags: programming
-----
+---
 
 It's only half an hour till ICFPC 2015 and your team suddenly decides to switch
 to Scala for this year? Don't panic — you've got just enough time to bring

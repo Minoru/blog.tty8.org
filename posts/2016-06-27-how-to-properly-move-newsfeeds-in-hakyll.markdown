@@ -1,10 +1,10 @@
-----
+---
 title: How to properly move newsfeeds in Hakyll
 language: english
 description: How to change RSS/Atom feed's root URL without causing all the old
     articles to re-appear as new.
 tags: programming
-----
+---
 
 Theoretically, static sites are location-independent, i.e. they don't care where
 they are deployed—there are no references, neither in generator nor in the

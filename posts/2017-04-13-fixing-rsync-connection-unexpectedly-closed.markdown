@@ -1,11 +1,11 @@
-----
+---
 title: "Fixing “rsync: connection unexpectedly closed”"
 language: english
 description: "If you run into “rsync: connection unexpectedly closed” error and
     the official FAQ doesn't help, check if you have a command specified in
     ~/.ssh/authorized_keys on the remote end."
 tags: tips'n'tricks, linux
-----
+---
 
 I roll this blog out with `rsync`. Yesterday I realized that my server is
 accumulating stale files, like no-longer-used stylesheets and images, so I added

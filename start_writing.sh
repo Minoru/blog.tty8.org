@@ -17,13 +17,14 @@ tmux has-session -t debiania || (
     #   - read initial file from the stdin
     vim="vim +2 -c 'startinsert!' -c \"$vimoptions\" -"
     # initial text. This is post metadata as used by Hakyll.
-    text=`(   echo    '----'
+    text=`(
+        echo    '---'
         echo    'title: '
         echo    'language: english russian'
         echo    'description: # No double quotes; end with a period'
         echo -n 'tags: ' && ./gather_tags
         echo    'enable-mathjax: true # delete if you do not need MathJax'
-        echo    '----'
+        echo    '---'
     )`
     tmux new-session -d -s debiania "echo \"$text\" | $vim"
     tmux rename-window -t debiania:0 vim
