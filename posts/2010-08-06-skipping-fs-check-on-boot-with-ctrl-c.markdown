@@ -3,6 +3,8 @@ title: Пропуск проверки ФС при загрузке с CTRL-C
 published: 2010-08-06T21:34:00Z
 categories: 
 tags: linux,tips'n'tricks,debian
+description: Добавьте в /etc/e2fsck.conf в секцию options строчку
+    allow_cancellation=true.
 ---
 
 Эта маленькая заметка — перевод <a href='http://www.lucas-nussbaum.net/blog/?p=511'>поста Лукаса Нуссбаума (Lucas Hussbaum)</a>.

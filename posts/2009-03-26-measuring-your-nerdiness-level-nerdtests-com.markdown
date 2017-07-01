@@ -3,6 +3,7 @@ title: Замеряем уровень нердства — nerdtests.com
 published: 2009-03-26T21:30:00Z
 categories: 
 tags: web
+description: Опять результаты забавных Интернет-тестиков.
 ---
 
 «Have you been recently called a geek, a dork, a NERD? Do you want to be a nerd, geek, or dork? Well, this test is for you!»

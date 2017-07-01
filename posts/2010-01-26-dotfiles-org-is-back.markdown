@@ -3,6 +3,7 @@ title: dotfiles.org is BACK!
 published: 2010-01-26T17:44:00Z
 categories: 
 tags: web
+description: Сервис для хранения ваших конфигов возвращается из небытия.
 ---
 
 Некоторое время назад я [упоминал](/posts/2009-05-02-two-interesting-internet-projects.html)  <a href="http://dotfiles.org/">dotfiles.org</a>. Он умер почти сразу же после моего поста, о чём я не мог не грустить — идея просто отличная.

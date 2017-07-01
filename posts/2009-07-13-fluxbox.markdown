@@ -3,6 +3,8 @@ title: Fluxbox
 published: 2009-07-13T16:26:00Z
 categories: 
 tags: mirror,fluxbox,linux
+description: Сказ о Fluxbox для тех, кто всё ещё не попробовал этот
+    замечательный менеджер окон.
 ---
 
 Привет! Эта статья написана в рамках <a href="http://welinux.ru/post/1036/">«недели DE/WM»</a> на <a href="http://welinux.ru/">welinux.ru</a> (<a href="http://welinux.ru/post/1044">оригинал</a>), и речь в ней пойдёт о моём любимом WM — Fluxbox.

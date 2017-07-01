@@ -3,6 +3,7 @@ title: "Hv3: первое впечатление"
 published: 2008-12-02T20:39:00Z
 categories: 
 tags: review,web
+description: Пробуем новый браузер Hv3.
 ---
 
 Недавно на <a href="http://www.blogger.com/www.linux.org.ru" target="_blank">www.linux.org.ru</a> появился <a href="http://www.linux.org.ru/view-message.jsp?msgid=3299226" target="_blank">коротенький анонс</a> новенького браузера — Hv3. Меня, конечно же, захлестнуло любопытство, и я его скачал. О моих впечатлениях от 20-тиминутного тестинга читайте ниже.

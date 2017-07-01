@@ -3,6 +3,7 @@ title: Установка и настройка sudo в Debian GNU/Linux и Ubun
 published: 2009-03-25T17:28:00Z
 categories: 
 tags: mirror,linux,debian
+description: Копия полезной статьи с канувшего в Лету сайта.
 ---
 
 Копия статьи с ныне мёртвого проекта debian-ubuntu-linux.ru.<br/>

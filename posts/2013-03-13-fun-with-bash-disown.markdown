@@ -2,6 +2,9 @@
 title: On BASH that has no &!, and old tricks suddenly rediscovered
 tags: linux
 language: english
+description: In BASH, &! sends the process to background but doesn't detach it.
+    Yet I managed to run it in such a way that I thought it *did* detach.
+    Here’s a postmortem.
 ---
 
 **TL;DR:** *don't want to spoil the fun, so please check [Summary](#summary) at

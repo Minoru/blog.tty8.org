@@ -3,6 +3,7 @@ title: XF86KScreenSaver
 published: 2012-02-15T22:30:00Z
 categories: 
 tags: linux
+description: Учим Linux корректно обрабатывать одну спецкнопочку моего ноутбука.
 ---
 
 На пробельной клавише [моего Asus P52F-380M](/posts/2011-08-30-asus-p52f-380m-and-debian.html) нарисован какой-то бегущий человечек (JFYI: клавиши у P52F не такие, как на фото, но это не важно):

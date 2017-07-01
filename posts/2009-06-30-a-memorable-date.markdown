@@ -3,6 +3,7 @@ title: Памятная дата настала!
 published: 2009-06-30T21:00:00Z
 categories: 
 tags: blog,holiday
+description: Годовщина использования Debian.
 ---
 
 Внимание!<br/>

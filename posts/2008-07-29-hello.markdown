@@ -3,6 +3,7 @@ title: Здрасти :)
 published: 2008-07-29T13:12:00Z
 categories: 
 tags: blog
+description: Мой первый блог-пост.
 ---
 
 Вот начитался таких вещей, как <a href="http://mir-debian.blogspot.com/" target="_blank">Мир Debian</a>, <a href="http://krivenkov.blogspot.com/" target="_blank">Linux is Easy</a>, <a href="http://mczim-debian.blogspot.com/" target="_blank">Debian for me</a> да и решил и себе бложок замутить. А почему бы и нет? Я вроде как уже чуточку линуксоид, и ориентирован я именно на дебиан  (целых две недели и два дня стажа!). Пожалуй, последую примеру <a href="http://www.blogger.com/profile/04588004238800891401" target="_blank">anjolio</a> и для начала опишу, как же я докатился до такой жизни :)

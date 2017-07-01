@@ -2,6 +2,8 @@
 title: Novice's mind blown by an application of one of Unix principles
 tags: linux
 language: english
+description: You can pass /dev/sda to your virtual machine just as if it was
+    a qcow2 image.
 ---
 
 In Unix, everything is a file ([Unless It

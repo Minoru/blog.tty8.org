@@ -3,6 +3,7 @@ title: Transcend T.Sonic 630 и MP3 теги
 published: 2009-12-05T17:43:00Z
 categories: 
 tags: hardware,tips'n'tricks
+description: Нужно использовать ID3 версии 2.3 и кодировку UTF-16 little endian или CP1251.
 ---
 
 Короткая заметочка о требованиях моего MP3-плеера к тегам.

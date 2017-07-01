@@ -3,6 +3,7 @@ title: Установка и настройка Samba в Debian GNU/Linux и Ubu
 published: 2009-05-13T16:09:00Z
 categories: 
 tags: mirror,linux,debian
+description: Ещё одна полезная статья с канувшего в Лету сайта.
 ---
 
 Копия статьи с ныне мёртвого проекта debian-ubuntu-linux.ru.<br/>

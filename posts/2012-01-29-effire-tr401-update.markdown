@@ -3,6 +3,7 @@ title: Обновление Effire TR401
 published: 2012-01-29T11:02:00Z
 categories: 
 tags: hardware,windows
+description: Рецепт по обновлению прошивки на читалке Effire TR401.
 ---
 
 Двенадцатого января Effire выпустили обновление прошивки для <a href='http://effire.ru/catalogue/ebooks/colorbook_tr401/'>Colorbook TR401</a> — небольшого медиаридера, который мне как раз недавно подарили. Учитывая кривоватость стандартной прошивки, я немедленно приступил к обновлению.

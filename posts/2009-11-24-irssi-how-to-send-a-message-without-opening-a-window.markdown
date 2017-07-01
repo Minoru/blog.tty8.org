@@ -3,6 +3,7 @@ title: "irssi: как отправить сообщение, не открыва
 published: 2009-11-24T13:01:00Z
 categories: 
 tags: irssi
+description: /^msg получатель текст
 ---
 
 Оказалось, всё очень просто:

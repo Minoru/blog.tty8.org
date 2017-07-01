@@ -3,6 +3,7 @@ title: Как пересобирать пакеты Debian
 published: 2010-12-23T13:47:00Z
 categories: 
 tags: debian
+description: Перевод поста одного из разработчиков Debian.
 ---
 
 <p align="right">Этот пост является переводом<br/>

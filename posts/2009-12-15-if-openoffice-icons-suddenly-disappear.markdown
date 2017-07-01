@@ -3,6 +3,7 @@ title: Если вдруг исчезли иконки в OpenOffice…
 published: 2009-12-15T20:32:00Z
 categories: 
 tags: linux,tips'n'tricks
+description: …выполните aptitude reinstall '~iopenoffice.org-style-'.
 ---
 
 …то не горюйте, а просто переустановите все <code>openoffice.org-style</code>-пакеты:

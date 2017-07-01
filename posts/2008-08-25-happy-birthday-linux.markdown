@@ -3,6 +3,7 @@ title: С днём рождения, Linux!
 published: 2008-08-25T16:59:00Z
 categories: 
 tags: linux,holiday
+description: Ядру 17 лет.
 ---
 
 Сегодня Linux'у стукнуло 17! Ну вот, ещё год - и он уже совершеннолетний :)

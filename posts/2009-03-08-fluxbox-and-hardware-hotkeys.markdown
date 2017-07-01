@@ -3,6 +3,7 @@ title: Fluxbox и аппаратные горячие клавиши
 published: 2009-03-08T15:38:00Z
 categories: 
 tags: hardware,fluxbox
+description: Обрабатываем мультимедийные клавиши клавиатуры средствами Fluxbox.
 ---
 
 Итак, имеется клавиатура [A4Tech KL-7MU](http://www.a4tech.com/ENNEW/product.asp?cid=2&scid=101&id=279) (с рядом горячих клавиш, выполненных в виде отдельных кнопок) и Debian GNU/Linux с Fluxbox'ом в качестве менеджера окон. Давайте-ка заставим горячие кнопки делать то, что им положено — к примеру, управлять MPD.

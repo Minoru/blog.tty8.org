@@ -3,6 +3,7 @@ title: Занимательное JavaScript программирование
 published: 2010-02-24T15:49:00Z
 categories: 
 tags: programming
+description: Разбираем код счётчиков на страницах ВКонтакте и GMail.
 ---
 
 Привет!

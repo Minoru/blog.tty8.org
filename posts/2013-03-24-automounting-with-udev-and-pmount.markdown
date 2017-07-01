@@ -2,6 +2,8 @@
 title: Automounting with udev and pmount
 tags: linux
 language: english
+description: Writing a script that automatically mounts /dev/sd* as soon as
+    they appear.
 ---
 
 For the past few years I was relying on a lengthy `udev` rules file to mount

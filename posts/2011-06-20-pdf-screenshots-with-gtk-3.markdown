@@ -3,6 +3,8 @@ title: Скриншоты в PDF с GTK 3
 published: 2011-06-20T22:01:00Z
 categories: 
 tags: programming,linux
+description: Перевод поста о том, как с помощью специального модуля для GTK3
+    делать векторные скриншоты окон.
 ---
 
 Для тех, кто не читает <a href='http://planet.debian.org/'>Planet Debian</a>, маленький итог из двух тамошних постов.

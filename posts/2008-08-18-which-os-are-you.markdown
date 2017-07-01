@@ -3,6 +3,7 @@ title: Which OS are you?
 published: 2008-08-18T18:28:00Z
 categories: 
 tags: web
+description: Прошёл забавный тест и узнал, что я, оказывается, Windows 95!
 ---
 
 В <a href="http://www.in4.org.ua">блоге diesel'а</a> вычитал любопытный <a href="http://www.in4.org.ua/2007/05/which-os-are-you.html">пост о тесте</a>. Решил и себе пройти...

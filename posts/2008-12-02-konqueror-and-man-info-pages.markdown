@@ -3,6 +3,7 @@ title: konqueror и страницы man/info
 published: 2008-12-02T10:56:00Z
 categories: 
 tags: linux,tips'n'tricks
+description: Оказывается, в Konqueror можно читать маны и страницы info.
 ---
 
 В процессе чтения <a href=http://tldp.org/LDP/intro-linux/ target="_blank">Introduction to Linux</a> был выяснен интересный факт: Konqueror, стандартный браузер KDE, умеет отображать man- и info-страницы! Для этого достаточно вбить в адресную строку такое:

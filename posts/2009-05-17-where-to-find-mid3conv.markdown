@@ -3,6 +3,7 @@ title: Где найти mid3iconv
 published: 2009-05-17T13:37:00Z
 categories: 
 tags: linux
+description: Ставьте пакет python-mutagen.
 ---
 
 <code>mid3iconv</code>, часто фигурирующий в инструкциях по конвертированию тегов в MP3, содержится в пакете <code>python-mutagen</code>. Почему-то раньше не встречал упоминания, что ставить, чтобы появилась эта утилита. Решил записать, пока не забыл :)

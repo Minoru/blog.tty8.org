@@ -2,6 +2,7 @@
 title: On structure of the home directory
 tags: linux
 language: english
+description: Comparing my homedir structure with that of Joey Hess.
 ---
 
 I'm thinking again of following into Joey Hess' steps and putting all my stuff

@@ -3,6 +3,8 @@ title: Dropbox Terms of Service и Privacy Policy
 published: 2012-02-03T14:43:00Z
 categories: 
 tags: EULA
+description: Очередное прочтение условий использования Dropbox показывает,
+    сколько там противоречий.
 ---
 
 Уже упоминавшийся в предыдущем посте разговор также сподвиг меня на прочтение <a href='https://www.dropbox.com/terms#terms'>условий сервиса</a>, которым я больше не пользуюсь — Dropbox.

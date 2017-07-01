@@ -3,6 +3,7 @@ title: Подстраиваем Midnight Commander под себя
 published: 2008-08-09T18:51:00Z
 categories: 
 tags: linux
+description: Учимся править mc.ext.
 ---
 
 Небольшой пост с лирическим отступлением, где я поведаю вам, как переопределить ассоциации файлов в mc.

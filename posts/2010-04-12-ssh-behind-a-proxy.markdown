@@ -3,6 +3,7 @@ title: SSH за проксей
 published: 2010-04-12T10:21:00Z
 categories: 
 tags: mirror
+description: Перевод статьи про обход проксей с помощью openssh и corkscrew.
 ---
 
 Этот пост является переводом статьи <a href="http://daniel.haxx.se/docs/sshproxy.html">«SSH Over Proxy»</a> Даниэля Стенберга (Daniel Stenberg), выполненный для <a href="http://welinux.ru">welinux.ru</a> <a href="http://welinux.ru/post/2664/#cmnt48772">по просьбе пользователя |xed|</a><br/>

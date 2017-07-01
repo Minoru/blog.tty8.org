@@ -3,6 +3,7 @@ title: Debian GNU/Linux 5.0 released
 published: 2009-02-15T10:06:00Z
 categories: 
 tags: linux,debian,holiday
+description: Ура! Новый релиз!
 ---
 
 <div class="center">

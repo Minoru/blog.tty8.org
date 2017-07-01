@@ -3,6 +3,7 @@ title: Выдержки из LinkedIn User Agreement
 published: 2012-01-15T21:46:00Z
 categories: 
 tags: EULA
+description: Ку-уча всякого подозрительного из LinkedIn EULA.
 ---
 
 Ранее я [уже писал о тех пунктах Skype EULA](/posts/2010-04-19-skype-eula-excerpts.html), которые привлекли моё внимание. Некоторое время назад я зарегистрировался на LinkedIn, и в данном посте хотелось бы перечислить те пункты <a href='http://www.linkedin.com/static?key=user_agreement'>их пользовательского соглашения</a>, которые я счёл особо важными или волнующими.

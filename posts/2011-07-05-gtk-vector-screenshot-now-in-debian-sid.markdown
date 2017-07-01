@@ -3,6 +3,8 @@ title: "gtk-vector-screenshot: теперь в Debian sid!"
 published: 2011-07-05T10:01:00Z
 categories: 
 tags: programming,linux,debian
+description: Программа для создания векторных скриншотов окон GTK-приложений уже
+    в экспериментальной ветке Debian!
 ---
 
 <div class="center">
