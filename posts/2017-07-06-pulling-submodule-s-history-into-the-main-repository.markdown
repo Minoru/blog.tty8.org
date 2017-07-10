@@ -30,8 +30,10 @@ take a step back and see why the popular recipe doesn't quite cut it.
 Let's visualize our repo and its submodule like this:
 
 <div class="center">
-<img src="/images/submerge-setup.png"
-    width="1016px" height="429px"
+<img src="/images/submerge-setup-629px.png"
+    sizes="(min-width: 769px) 35rem, 100vw"
+    srcset="/images/submerge-setup-629px.png 1x,
+            /images/submerge-setup.png 1.5x"
     alt="A Git repository with its submodule"
     class="bleed" />
 </div>
@@ -45,8 +47,10 @@ Now, if you follow the recipe from SO, you'll end up with a history that looks
 like this:
 
 <div class="center">
-<img src="/images/submerge-traditional.png"
-    width="1016px" height="536px"
+<img src="/images/submerge-traditional-629px.png"
+    sizes="(min-width: 769px) 35rem, 100vw"
+    srcset="/images/submerge-traditional-629px.png 1x,
+            /images/submerge-traditional.png 1.6x"
     alt="A Git repository with submodule's history merged into master branch"
     class="bleed" />
 </div>
@@ -95,8 +99,10 @@ repo but in reality it'll be a repo that includes itself as a submodule.
 Here's what we want to get:
 
 <div class="center">
-<img src="/images/submerge-unto-itself.png"
-    width="969px" height="346px"
+<img src="/images/submerge-unto-itself-629px.png"
+    sizes="(min-width: 769px) 35rem, 100vw"
+    srcset="/images/submerge-unto-itself-629px.png 1x,
+            /images/submerge-unto-itself.png 1.6x"
     alt="A repository that includes itself as a submodule"
     class="bleed" />
 </div>
@@ -170,8 +176,10 @@ another post.) I do think that we can come pretty close, though. How does this
 history look to you?
 
 <div class="center">
-<img src="/images/submerge-git-submerge.png"
-    width="980px" height="275px"
+<img src="/images/submerge-git-submerge-629px.png"
+    sizes="(min-width: 769px) 35rem, 100vw"
+    srcset="/images/submerge-git-submerge-629px.png 1x,
+            /images/submerge-git-submerge.png 1.6x"
     alt="git-submerge history example"
     class="bleed" />
 </div>
