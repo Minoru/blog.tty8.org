@@ -202,8 +202,10 @@ twice:
 
 I won't dare to actually try and do this with `filter-branch`. Instead,
 I started writing a tool called `git-submerge` which will do everything for me.
-[The first release][git-submerge-release-0.5] rolled out this week, and I hope
-to see it through to 1.0 within this year.
+[The first release][git-submerge-release-0.5] rolled out this week, ~~and
+I hope to see it through to 1.0 within this year.~~ **UPD 30.07.2017:** hope
+abandoned. The multiple histories approach is simpler and should generally be
+preferred.
 
 [git-submerge-release-0.5]:
     https://github.com/Minoru/git-submerge/releases/tag/v0.5
@@ -218,11 +220,9 @@ work. Finally, you can do some heavy history rewriting in order to turn your
 submodule into a kind of an unnatural feature branch that never inherited from
 master, but was often merged into it.
 
-Your choice will depend on your particular situation—this is tricky stuff and
-I don't dare give you instructions; you'll have to do with mere guidelines.
-What I can *recommend against*, though, is using `git-submerge` in production,
-and throwing away your original history after you applied any of the options
-above—you might well need it sooner than you think.
+**UPD 30.07.2017:** The second approach is a safe generic one. The first one
+can be used if your submodule is public and isn't going anywhere. The third
+approach is complicated and requires good excuse to be used at all.
 
 With that, I bid you farewell, and wish you to always guess right if the
 submodules are the right tool for the job. Because seriously, fixing this later
