@@ -1,0 +1,209 @@
+---
+title: ICFPC 2017
+language: russian
+description: Мои впечатления от участия в ICFPC 2017.
+tags: programming, icfpc
+---
+
+В этом году контест по ряду причин был унылым, так что пост будет коротким <s>и
+тоже унылым</s>. Я и так целый месяц тянул с написанием отчёта, так что либо
+так, либо вообще никак.
+
+# Задание
+
+Нам снова предложили [игру на графе][task-pdf] ([зеркало][task-pdf-mirror]).
+К примеру, вот на такой версии Оксфорда:
+
+<div class="center">
+<img src="/images/icfpc-2017-map-oxford.png"
+    alt="Карта «Oxford» с ICFPC-2017"
+    class="bleed" />
+</div>
+
+Здесь зелёные точки — это «города», некоторые из которых имеют «шахты» (красные
+кружки). «Города» соединены «реками» (серые линии). В шахтах добываются
+«лямбды» (отсылка к заданию 2012-го года), которые нужно доставлять в города.
+В чем более далёкий город удалось доставить лямбду, тем больше получается
+очков.
+
+Команды пишут ботов, которые по очереди занимают реки. В конце игры для каждой
+пары шахта-город, соединённой реками бота, рассчитывается минимальный путь
+в графе (d), и бот получает d × d очков.
+
+В течение контеста было выпущено три обновления задания, добавлявших:
+
+* [futures][futures-pdf] ([зеркало][futures-pdf-mirror]) — бот в начале игры
+    может сделать «ставку» на то, что ему удастся соединить некие шахту и город.
+    Если ему действительно это удаётся, он получает d × d × d очков;
+* [splurges][splurges-pdf] ([зеркало][splurges-pdf-mirror]) — бот может
+    пропустить несколько ходов, после чего занять несколько рек сразу;
+* [options][options-pdf] ([зеркало][options-pdf-mirror]) — бот может занять
+    до n чужих рек, где n — количество шахт.
+
+Для futures мы даже успели что-то реализовать, а остальные два дополнения
+проигнорировали.
+
+# Как мы играли
+
+Вяло (относительно прошлых годов).
+
+[Codingteam][codingteam] в этом году представляли Akon32, ForNeVeR, grouzen,
+nightmare932, portnov и я. Akon32 выступал в ICFPC впервые.
+
+Подробную хронику мне писать лень, поэтому просто перечислю те идеи, которые
+в итоге удалось реализовать. В порядке появления в репозитории:
+
+* [delegating strategy][delegating-strategy] — мета-стратегия, выбирающая из
+    «конкретных» стратегий ту, что лучше всего подходит для сложившейся
+    ситуации. Предполагалось, что каждая из «конкретных» стратегий будет
+    оценивать вероятность хорошего хода, и delegating strategy будет выбирать
+    ту, у которой вероятность наивысшая. На практике вероятности брались чуть ли
+    не с потолка, потому что нормальные алгоритмы оценки писать не проще, чем
+    сами стратегии;
+
+* [random walker][random-walker-strategy] — стратегия, занимающая произвольную
+    незанятую реку. Писалась, естественно, не пользы ради, а обучения для;
+
+* [random connector][random-connector-strategy] — почти как предыдущая, только
+    выбирает не из всех рек, а только из тех, что соединены с городами, до
+    которых уже добрался наш бот;
+
+* [жадная][greedy-strategy] — занимает ту реку, что больше всего увеличит
+    счёт;
+
+* [dumb obstructor][dumb-obstructor-strategy] — как random connector, только
+    выбирает из рек, ближайших к какому-нибудь из противников;
+
+* [mixed][mixed-strategy] — ещё одна мета-стратегия. Случайным образом выбирает
+    из «конкретных» стратегий с учётом вероятностей хорошего хода и заданных
+    нами весов стратегий. Хотелось сделать что-то типа смешанных стратегий из
+    теории игр, но на практике всё упёрлось в подбор весов — мы так и не
+    придумали, как разумней всего их распределить;
+
+* [component connector][component-connector-strategy] — пытается соединить два
+    «кластера», образованных нашими реками;
+
+* [mine occupation][mine-occupation-strategy] — пытается занять как можно больше
+    рек, соединённых с шахтами. Если не дать противнику доступа к шахте, он не
+    сможет получить очков;
+
+* [antihero][antihero-strategy] — выбирает случайного противника и использует
+    жадную стратегию с его точки зрения, таким образом «отбирая» у него выгодный
+    ход;
+
+* [future][future-strategy] — пытается воплотить в жизнь futures, «придуманные»
+    [RandomFutureGenerator][random-future-generator]. Я в код вникнуть не успел,
+    так что логику объяснять не могу.
+
+Были мысли и о более крутых стратегиях, но т.к. имплементация шла медленно, до
+них мы так и не добрались.
+
+# Рефлексия
+
+Уныло было по четырём причинам.
+
+Во-первых, отсутствовал scoreboard. В прошлые годы именно scoreboard поддерживал
+дух соревнования, не давал расслабляться и при этом чётко сообщал, насколько
+хорошо справляется наше решение. В этом же году организаторы предоставили лишь
+игровые сервера, на которых были запущены примитивные боты. Если кому-то
+хотелось поиграть против настоящих противников, нужно было договариваться
+о матче через IRC или как-то ещё. Что-то тестировать в таких условиях было
+проблематично. Я под конец контеста для подбора весов в смешанных стратегиях
+просто написал свою реализацию сервера и сталкивал несколько инстансов нашего
+бота друг с другом.
+
+Во-вторых, Scala. В отличие от 2015-го, я к Скале не готовился и потому кодинг
+шёл туго — приходилось подглядывать то синтаксис match, то названия методов
+у коллекций. По-хорошему, все эти штуки должны были бы быть у меня в кэше, чтобы
+я не отвлекался.
+
+В-третьих, scala-graph. Осиливать такую библиотеку за считанные часы я никак не
+был готов. Малознакомый синтаксис Скалы плюс недостаток документации порой
+выводили из себя. Учитывая, что в итоге из библиотеки мы пользовались только
+маркировкой рёбер и поиском путей, я не уверен, что сто́ило вообще брать
+стороннюю библиотеку.
+
+В-четвёртых, какое-то совершенно непритязательное задание. Не было какой-то
+изюминки, чего-то такого, за что это задание можно было бы вспоминать ещё лет
+десять.
+
+# Результат
+
+Оценивание проводится в три этапа, на каждом из которых после ряда игр
+отсеивается половина участников. Мы [вылетели на первом же][results]
+([зеркало][results-mirror]), заняв 102-е место из 120. В принципе, после
+*такого* выступления я ни на что особо и не рассчитывал; напротив, я несколько
+удивлён, что это не худший наш результат — в 2015-м мы старались гораздо больше
+и получили море фана, но лишь 151-е место из 194-х. Go figure.
+
+Как всегда, весь наш код [можно найти на
+GitHub][codingteam-icfpc-2017].
+
+Надеюсь, в следующем году будет повеселей.
+
+[task-pdf]: https://icfpcontest2017.github.io/static/task.pdf
+    "ICFP Programming Contest 2017. Lambda Punter (1.3)"
+[task-pdf-mirror]: /misc/icfpc-2017-task.pdf
+    "ICFP Programming Contest 2017. Lambda Punter (1.3)"
+
+[futures-pdf]: http://icfpcontest2017.github.io/static/task-futures.pdf
+    "ICFP Programming Contest 2017. Futures (1.0)"
+[futures-pdf-mirror]: /misc/icfpc-2017-task-futures.pdf
+    "ICFP Programming Contest 2017. Futures (1.0)"
+
+[splurges-pdf]: http://icfpcontest2017.github.io/static/task-splurges.pdf
+    "ICFP Programming Contest 2017. Splurges: Is listlessness better than
+    laziness? (1.0)"
+[splurges-pdf-mirror]: /misc/icfpc-2017-task-splurges.pdf
+    "ICFP Programming Contest 2017. Splurges: Is listlessness better than
+    laziness? (1.0)"
+
+[options-pdf]: http://icfpcontest2017.github.io/static/task-options.pdf
+    "ICFP Programming Contest 2017. Options (1.0)"
+[options-pdf-mirror]: /misc/icfpc-2017-task-options.pdf
+    "ICFP Programming Contest 2017. Options (1.0)"
+
+[codingteam]: https://codingteam.org.ru/
+    "Codingteam, an open community of engineers and programmers"
+
+[random-walker-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/RandomWalkerStrategy.scala
+    "RandomWalkerStrategy.scala"
+
+[random-connector-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/RandomConnectorStrategy.scala
+    "RandomConnectorStrategy.scala"
+
+[greedy-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/GreedyStrategy.scala
+    "GreedyStrategy.scala"
+
+[mine-occupation-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/MineOccupationStrategy.scala
+    "MineOccupationStrategy.scala"
+
+[delegating-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/DelegatingStrategy.scala
+    "DelegatingStrategy.scala"
+
+[dumb-obstructor-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/DumbObstructorStrategy.scala 
+    "DumbObstructorStrategy.scala "
+
+[component-connector-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/ComponentConnectorStrategy.scala
+    "ComponentConnectorStrategy.scala"
+
+[mixed-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/MixedStrategy.scala
+    "MixedStrategy.scala"
+
+[antihero-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/AntiheroStrategy.scala
+    "AntiheroStrategy.scala"
+
+[future-strategy]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/strategy/FutureStrategy.scala
+    "FutureStrategy.scala"
+
+[random-future-generator]: https://github.com/codingteam/icfpc-2017/blob/6f5810ed1c6c5e117016b6d1fede0e8895f51c4d/src-scala/src/main/scala/org/codingteam/icfpc2017/futures/RandomFutureGenerator.scala
+    "RandomFutureGenerator.scala"
+
+[results]: https://icfpcontest2017.github.io/post/full-one/
+    "Full contest (I)"
+
+[results-mirror]: /misc/icfpc-2017-results.html
+    "Full contest (I)"
+
+[codingteam-icfpc-2017]: https://github.com/codingteam/icfpc-2017
+    "Сodingteam's ICFP Contest 2017 submission"

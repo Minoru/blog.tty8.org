@@ -1,0 +1,1040 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Full contest (I)</title>
+
+<link rel="stylesheet" href="icfpc-2017-syntax.css">
+<link rel="stylesheet" href="icfpc-2017-main.css">
+</head>
+<body>
+
+
+<header>
+<div id="nav_container">
+<nav>
+
+  <ul>
+    <h1><a href="https://icfpcontest2017.github.io">ICFP Programming Contest 2017</a></h1>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="https://icfpcontest2017.github.io/problem/">Problem Specification</a>
+        
+      </li>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="https://icfpcontest2017.github.io/vm/">Virtual Machine</a>
+        
+      </li>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="https://icfpcontest2017.github.io/faq/">FAQ</a>
+        
+      </li>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="http://icfp17.sigplan.org/attending/code-of-conduct">Code of Conduct</a>
+        
+      </li>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="https://icfpcontest2017.github.io/archives/">Archives</a>
+        
+      </li>
+    
+      
+      
+
+      <li class="">
+        
+        <a class="" href="https://icfpcontest2017.github.io/tags/">Tags</a>
+        
+      </li>
+    
+  </ul>
+  <ul style="display: flex; justify-content: center;">
+    <li><a href="https://twitter.com/ICFPContest2017">Twitter</a></li>
+    <li><a href="http://lists.inf.ed.ac.uk/mailman/listinfo/Icfp-contest2017">Mailing list</a></li>
+    <li><a href="irc://irc.freenode.net/icfp-contest">IRC: #icfp-contest on irc.freenode.net</a></li>
+  </ul>
+
+</nav>
+</div>
+</header>
+
+<section id="main">
+	<article>
+<div class="heading">Full contest (I)</div>
+<p class="meta"><a class="permalink" href="icfpc-2017-results.html">&#9679;</a> 28 Aug 2017</p>
+<p>The results of the first round of the full contest are now
+available. Their were 146 entries in total.</p>
+
+<p>You can watch the replays of all the games on <a href="https://icfpcontest2017.github.io/punttv/">PuntTV</a>.</p>
+
+<h1 id="bad-punters">Bad punters</h1>
+
+<p>As with the lightning contest, we do not include entries that failed
+to score on our <a href="https://icfpcontest2017.github.io/map-viewer/?map=/maps/lambda.json">simplest test map</a>. In total, 26
+entries failed to score:</p>
+
+<ul>
+  <li>ゲームセンターYAGI</li>
+  <li>aelburicus</li>
+  <li>ball.icfp2017</li>
+  <li>Canivsar</li>
+  <li>chirimenjako</li>
+  <li>Dragons</li>
+  <li>frosch03</li>
+  <li>Get Counterstrike and Race for the Galaxy at http://store.steampowered.com/!</li>
+  <li>IKS</li>
+  <li>InforFun</li>
+  <li>Junk Food</li>
+  <li>KMCDragon</li>
+  <li>lambda-llama</li>
+  <li>Lambda Riot</li>
+  <li>Leonardone @ NEETSDKASU</li>
+  <li>Lonely Punter</li>
+  <li>masakt</li>
+  <li>MaxInt</li>
+  <li>Milky Holmes</li>
+  <li>OtakuPunter</li>
+  <li>paiv</li>
+  <li>Parse error</li>
+  <li>sonna*baka*na</li>
+  <li>VorpalSwords</li>
+  <li>Xiphon and the physicists</li>
+  <li>YukashitaOu</li>
+</ul>
+
+<p>The most common problem seems to be that the protocol is not
+implemented correctly — resulting in some kind of exception being
+raised. Several entries fail to include the message size in their
+messages. There are various problems with managing the serialised game
+state. Some entries expect the server to send JSON state in the setup
+message matching a schema that is only defined by their
+clients. Another problem is relying on a particular order for fields
+of JSON objects that did not match the one of our testing
+framework. Some entries rely on writing state to the file system
+(explicitly disallowed by the specification). At least one entry
+always attempts to make illegal moves.</p>
+
+<h1 id="results">Results</h1>
+
+<p>A total of 120 teams took part in the first round. We used the same
+methodology as for the first round of the lightning contest, but with
+one fewer map (we only used one of the randomly generated maps
+compared with two in the first round of the lightning contest).</p>
+
+<p>The maps are here:</p>
+
+<ul>
+  <li><a href="https://icfpcontest2017.github.io/map-viewer/?map=/maps/circle.json">circle</a></li>
+  <li><a href="https://icfpcontest2017.github.io/map-viewer/?map=/maps/lambda.json">lambda</a></li>
+  <li><a href="https://icfpcontest2017.github.io/map-viewer/?map=/maps/randomMedium.json">randomMedium</a></li>
+  <li><a href="https://icfpcontest2017.github.io/map-viewer/?map=/maps/triangle.json">triangle</a></li>
+</ul>
+
+<p>For each of the 8 possible combinations of extensions and each of the
+4 maps we assigned groups of 4 teams (each group playing 4 times in
+order to allow every team to play in every position). This gave rise
+to a total of 3840 games.</p>
+
+<p>The results are as follows.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th style="text-align: right">Points</th>
+      <th style="text-align: right">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DiamondPrincess</td>
+      <td style="text-align: right">122</td>
+      <td style="text-align: right">287576</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Wile E.</td>
+      <td style="text-align: right">120</td>
+      <td style="text-align: right">284758</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Adlersprung</td>
+      <td style="text-align: right">119</td>
+      <td style="text-align: right">292268</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Unagi</td>
+      <td style="text-align: right">119</td>
+      <td style="text-align: right">284628</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Popes who died violently</td>
+      <td style="text-align: right">117</td>
+      <td style="text-align: right">171249</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>cashto</td>
+      <td style="text-align: right">115</td>
+      <td style="text-align: right">273929</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>All your lambda are belong to us</td>
+      <td style="text-align: right">113</td>
+      <td style="text-align: right">259105</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>perpertuum mobile</td>
+      <td style="text-align: right">111</td>
+      <td style="text-align: right">287585</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Blind Hen</td>
+      <td style="text-align: right">111</td>
+      <td style="text-align: right">251009</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>udfew</td>
+      <td style="text-align: right">111</td>
+      <td style="text-align: right">220973</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Frictionless Bananas</td>
+      <td style="text-align: right">110</td>
+      <td style="text-align: right">297107</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>TBD</td>
+      <td style="text-align: right">110</td>
+      <td style="text-align: right">220775</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>fixstars</td>
+      <td style="text-align: right">110</td>
+      <td style="text-align: right">208971</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>negainoido</td>
+      <td style="text-align: right">110</td>
+      <td style="text-align: right">198196</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>A Storm Of Minds</td>
+      <td style="text-align: right">109</td>
+      <td style="text-align: right">229127</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>hayatox</td>
+      <td style="text-align: right">109</td>
+      <td style="text-align: right">228053</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Sampou</td>
+      <td style="text-align: right">108</td>
+      <td style="text-align: right">224011</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Begot</td>
+      <td style="text-align: right">107</td>
+      <td style="text-align: right">225625</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>GennAI</td>
+      <td style="text-align: right">106</td>
+      <td style="text-align: right">221313</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>trup16</td>
+      <td style="text-align: right">105</td>
+      <td style="text-align: right">251285</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>jabber.ru</td>
+      <td style="text-align: right">105</td>
+      <td style="text-align: right">224880</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>CDT</td>
+      <td style="text-align: right">105</td>
+      <td style="text-align: right">211690</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The $ound of .\</td>
+      <td style="text-align: right">104</td>
+      <td style="text-align: right">183459</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Olympia</td>
+      <td style="text-align: right">102</td>
+      <td style="text-align: right">194563</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Piggybank Software</td>
+      <td style="text-align: right">101</td>
+      <td style="text-align: right">256638</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>code-o-matic</td>
+      <td style="text-align: right">101</td>
+      <td style="text-align: right">212059</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>alexf</td>
+      <td style="text-align: right">100</td>
+      <td style="text-align: right">187113</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Love and Lies</td>
+      <td style="text-align: right">100</td>
+      <td style="text-align: right">145037</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>zeta</td>
+      <td style="text-align: right">99</td>
+      <td style="text-align: right">175926</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>HHP</td>
+      <td style="text-align: right">97</td>
+      <td style="text-align: right">208198</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>flash</td>
+      <td style="text-align: right">97</td>
+      <td style="text-align: right">198635</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>kstm.org</td>
+      <td style="text-align: right">97</td>
+      <td style="text-align: right">193453</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>O Caml, My Caml</td>
+      <td style="text-align: right">97</td>
+      <td style="text-align: right">190063</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>301</td>
+      <td style="text-align: right">97</td>
+      <td style="text-align: right">155498</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Udon</td>
+      <td style="text-align: right">96</td>
+      <td style="text-align: right">127771</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>BargeHauler</td>
+      <td style="text-align: right">95</td>
+      <td style="text-align: right">169716</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>AIM Tech</td>
+      <td style="text-align: right">94</td>
+      <td style="text-align: right">217071</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Lambding Snakes vs Coding Monkeys</td>
+      <td style="text-align: right">94</td>
+      <td style="text-align: right">171637</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>THIRTEEN</td>
+      <td style="text-align: right">94</td>
+      <td style="text-align: right">153216</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>punteros</td>
+      <td style="text-align: right">93</td>
+      <td style="text-align: right">211867</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>powder</td>
+      <td style="text-align: right">92</td>
+      <td style="text-align: right">162225</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Turing Machinists</td>
+      <td style="text-align: right">92</td>
+      <td style="text-align: right">108871</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>JODY HiGHROLLERS</td>
+      <td style="text-align: right">91</td>
+      <td style="text-align: right">216176</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>NCPLUG</td>
+      <td style="text-align: right">91</td>
+      <td style="text-align: right">210878</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>SoyuzMultfilm</td>
+      <td style="text-align: right">91</td>
+      <td style="text-align: right">194441</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>FromRedmondWithLove</td>
+      <td style="text-align: right">91</td>
+      <td style="text-align: right">119506</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>SpiritRaccoons</td>
+      <td style="text-align: right">90</td>
+      <td style="text-align: right">131663</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>SKI</td>
+      <td style="text-align: right">89</td>
+      <td style="text-align: right">168599</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Sirius Cybernetics Corporation</td>
+      <td style="text-align: right">89</td>
+      <td style="text-align: right">154378</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Dark Integers</td>
+      <td style="text-align: right">89</td>
+      <td style="text-align: right">114831</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>?!?</td>
+      <td style="text-align: right">88</td>
+      <td style="text-align: right">150481</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>DONT TOUCH MY LAMBDAS</td>
+      <td style="text-align: right">88</td>
+      <td style="text-align: right">149051</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>RagingMushrooms</td>
+      <td style="text-align: right">88</td>
+      <td style="text-align: right">107867</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>peeingbananas</td>
+      <td style="text-align: right">87</td>
+      <td style="text-align: right">96911</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>uguu.org</td>
+      <td style="text-align: right">86</td>
+      <td style="text-align: right">138130</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Lambada Calculus</td>
+      <td style="text-align: right">86</td>
+      <td style="text-align: right">101767</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Eger a Marson</td>
+      <td style="text-align: right">85</td>
+      <td style="text-align: right">161873</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>cw</td>
+      <td style="text-align: right">85</td>
+      <td style="text-align: right">127674</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Frog</td>
+      <td style="text-align: right">83</td>
+      <td style="text-align: right">170566</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>ALAMBDA</td>
+      <td style="text-align: right">82</td>
+      <td style="text-align: right">137211</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Skobochka</td>
+      <td style="text-align: right">81</td>
+      <td style="text-align: right">138173</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Oak</td>
+      <td style="text-align: right">81</td>
+      <td style="text-align: right">114415</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>AK</td>
+      <td style="text-align: right">80</td>
+      <td style="text-align: right">175089</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>MindSweeper</td>
+      <td style="text-align: right">80</td>
+      <td style="text-align: right">110732</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>超凶喵</td>
+      <td style="text-align: right">80</td>
+      <td style="text-align: right">87746</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>uni</td>
+      <td style="text-align: right">79</td>
+      <td style="text-align: right">145770</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Random Hackers</td>
+      <td style="text-align: right">76</td>
+      <td style="text-align: right">102734</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>master_thesis</td>
+      <td style="text-align: right">76</td>
+      <td style="text-align: right">85935</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Mind over Matter</td>
+      <td style="text-align: right">75</td>
+      <td style="text-align: right">86598</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>vim-team</td>
+      <td style="text-align: right">75</td>
+      <td style="text-align: right">71519</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>LILiK</td>
+      <td style="text-align: right">74</td>
+      <td style="text-align: right">101019</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>taxidriver</td>
+      <td style="text-align: right">74</td>
+      <td style="text-align: right">96950</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>DrunkAlexSh</td>
+      <td style="text-align: right">73</td>
+      <td style="text-align: right">57028</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Creeping Lollypop</td>
+      <td style="text-align: right">73</td>
+      <td style="text-align: right">44017</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>This is an albatrocity!</td>
+      <td style="text-align: right">72</td>
+      <td style="text-align: right">97099</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>CitVeterans-Rav</td>
+      <td style="text-align: right">72</td>
+      <td style="text-align: right">67725</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Echo</td>
+      <td style="text-align: right">71</td>
+      <td style="text-align: right">111773</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>kontur.ru</td>
+      <td style="text-align: right">70</td>
+      <td style="text-align: right">111075</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>okeydaj</td>
+      <td style="text-align: right">70</td>
+      <td style="text-align: right">107449</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>cvnm</td>
+      <td style="text-align: right">69</td>
+      <td style="text-align: right">77025</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>DNIWE :: a</td>
+      <td style="text-align: right">68</td>
+      <td style="text-align: right">115651</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>yarunee</td>
+      <td style="text-align: right">68</td>
+      <td style="text-align: right">70407</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Enoch Root</td>
+      <td style="text-align: right">68</td>
+      <td style="text-align: right">65985</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Bottle Kids!</td>
+      <td style="text-align: right">67</td>
+      <td style="text-align: right">77931</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>lambda-daddy</td>
+      <td style="text-align: right">67</td>
+      <td style="text-align: right">42303</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>WILD BASHKORT MAGES</td>
+      <td style="text-align: right">66</td>
+      <td style="text-align: right">65065</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>MIPT Lambda</td>
+      <td style="text-align: right">64</td>
+      <td style="text-align: right">72662</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Flux Ambassadors</td>
+      <td style="text-align: right">64</td>
+      <td style="text-align: right">57113</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Higher Order of Zeuxis</td>
+      <td style="text-align: right">64</td>
+      <td style="text-align: right">41849</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>SML/Punter</td>
+      <td style="text-align: right">63</td>
+      <td style="text-align: right">69689</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Celestial Dire Badger</td>
+      <td style="text-align: right">63</td>
+      <td style="text-align: right">36423</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>TeamDev</td>
+      <td style="text-align: right">63</td>
+      <td style="text-align: right">17971</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Russian Horse Cup</td>
+      <td style="text-align: right">61</td>
+      <td style="text-align: right">58731</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>λ tracéurs</td>
+      <td style="text-align: right">61</td>
+      <td style="text-align: right">37505</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Stifinderne</td>
+      <td style="text-align: right">61</td>
+      <td style="text-align: right">35577</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>WinterMUTE</td>
+      <td style="text-align: right">57</td>
+      <td style="text-align: right">13607</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Goto11</td>
+      <td style="text-align: right">55</td>
+      <td style="text-align: right">17486</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>TFS_is_shit</td>
+      <td style="text-align: right">54</td>
+      <td style="text-align: right">22268</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Sir Bedevere the Wise</td>
+      <td style="text-align: right">53</td>
+      <td style="text-align: right">30302</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Cat is #1!!</td>
+      <td style="text-align: right">53</td>
+      <td style="text-align: right">20212</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>shinh11</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: right">2400</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Invisible Imp</td>
+      <td style="text-align: right">51</td>
+      <td style="text-align: right">23584</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Dis Functional</td>
+      <td style="text-align: right">51</td>
+      <td style="text-align: right">13663</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Lambda In Closure Act</td>
+      <td style="text-align: right">51</td>
+      <td style="text-align: right">8467</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Church of the Least Fixed Punt</td>
+      <td style="text-align: right">50</td>
+      <td style="text-align: right">21409</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Codermal</td>
+      <td style="text-align: right">49</td>
+      <td style="text-align: right">4344</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>called haddock’s eyes</td>
+      <td style="text-align: right">48</td>
+      <td style="text-align: right">9729</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>codingteam</td>
+      <td style="text-align: right">48</td>
+      <td style="text-align: right">7531</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Sunspear</td>
+      <td style="text-align: right">47</td>
+      <td style="text-align: right">2061</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Go-TEAMPLOWULTRAFORCE5Fox1</td>
+      <td style="text-align: right">45</td>
+      <td style="text-align: right">7492</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Embedded Cloud Puntifictation</td>
+      <td style="text-align: right">45</td>
+      <td style="text-align: right">4738</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Pragmatic Russions</td>
+      <td style="text-align: right">45</td>
+      <td style="text-align: right">2742</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>d4o</td>
+      <td style="text-align: right">43</td>
+      <td style="text-align: right">19269</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>blueiris</td>
+      <td style="text-align: right">42</td>
+      <td style="text-align: right">4287</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>The Mikinators</td>
+      <td style="text-align: right">42</td>
+      <td style="text-align: right">-30543</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Die Zwei Nerdigen Drei</td>
+      <td style="text-align: right">40</td>
+      <td style="text-align: right">2344</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>owl</td>
+      <td style="text-align: right">38</td>
+      <td style="text-align: right">2395</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>drop table teams;</td>
+      <td style="text-align: right">38</td>
+      <td style="text-align: right">234</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Sideways Spider</td>
+      <td style="text-align: right">37</td>
+      <td style="text-align: right">2737</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>barvins</td>
+      <td style="text-align: right">36</td>
+      <td style="text-align: right">128</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The median number of points is 81.5. Any team with fewer points is now
+eliminated.</p>
+
+<p>We did not manage to download the DrunkAlexSh full submission because
+it was not properly shared with icfpcontest2017@gmail.com, so their
+entry is the same as the one used for the lightning contest. We do not
+know whether this failure has anything to do with their state of
+inebriation at the time.</p>
+
+<p>A number of other submissions had similar problems, but we think we
+managed to resolve them all. At least one team deliberately
+resubmitted their lightning entry to the full contest (which we have
+no problem with).</p>
+
+
+
+	
+    	<span class="label label-default"><a href="https://icfpcontest2017.github.io/tags#post-contest-ref" title="View posts tagged with &quot;post-contest&quot;">post-contest</a></span>
+    
+
+</article>
+
+</section>
+
+</body>
+</html>
