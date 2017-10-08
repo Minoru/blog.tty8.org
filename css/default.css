@@ -7,7 +7,7 @@
  **********/
 
 html {
-    font-size: 17px;
+    font-size: 18px;
     color: #141414;
     background: #f9f8f8;
 }
@@ -17,7 +17,7 @@ body {
     font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
     /* Using unitless value so that line-height can be re-calculated when
      * font-size changes inside blockquotes and stuff. */
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 a {
