@@ -2,6 +2,8 @@ flags: {}
 packages:
 - '.'
 extra-deps: []
+# Do NOT upgrade until Hakyll fixes the bug that removes spaces around plus and
+# minus operators in calc(): https://github.com/jaspervdj/hakyll/pull/566
 resolver: lts-8.17
 nix:
     enable: true
