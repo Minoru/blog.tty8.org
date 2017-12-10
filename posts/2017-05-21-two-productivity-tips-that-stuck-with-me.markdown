@@ -65,6 +65,19 @@ Isn't that inspiring? Couldn't you just do the same?
 
 Of course you could. And can. And should. And will. Won't you? Happy working!
 
+**UPD 10.12.2017**: I am now also using [Review Heatmap][review-heatmap] add-on,
+which adds an image like this:
+
+<div class="center">
+<img src="/images/anki-heatmap.png"
+    alt="My Anki heatmap for 2017"
+    class="bleed" />
+</div>
+
+This proved to be an even better motivator, because I don't even need to fire up
+the Statistics dialog anymore—the heatmap is right before me the moment I launch
+Anki.
+
 
 
 [gtd-two-minute-rule]:
@@ -82,3 +95,7 @@ Of course you could. And can. And should. And will. Won't you? Happy working!
 [don-t-break-the-chain]:
     https://lifehacker.com/281626/jerry-seinfelds-productivity-secret
     "Jerry Seinfeld’s Productivity Secret — LifeHacker"
+
+[review-heatmap]:
+    https://ankiweb.net/shared/info/1771074083
+    "Review Heatmap — AnkiWeb"
