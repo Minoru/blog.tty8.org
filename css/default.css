@@ -382,3 +382,8 @@ p.hakyll-convert-comment-date {
 .content-mobile {
     display: none;
 }
+
+div.epigraph {
+    margin-left: 33%;
+    font-size: 0.833rem;
+}
