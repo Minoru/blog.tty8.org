@@ -16,4 +16,7 @@ description: Перевод поста о том, как с помощью сп�
 
 На пример такого скриншота можно поглядеть в <a href='http://www.joachim-breitner.de/various/pdf_screenshot_3.pdf'>этой pdf'ке</a>, а <a href='http://www.joachim-breitner.de/various/pdf_screenshot_3.ogv'>здесь</a> можно скачать скринкаст (Ogg Theora, 2Mb), в котором показан процесс её создания. Архивы с исходниками можно скачать <a href='http://www.joachim-breitner.de/archive/gtk-vector-screenshot/'>здесь</a>, а репозиторий — <a href='https://gitorious.org/gtk-vector-screenshot'>найти на gitorious.org</a>.
 
-Собственно, те самые два поста, в которых Joachim описывает свой модуль:<ol><li><a href='http://www.joachim-breitner.de/blog/archives/494-Better-PDF-screenshots-with-gtk-3.html'>Better PDF screenshots with gtk 3</a></li><li><a href='https://www.joachim-breitner.de/blog/archives/502-gtk-vector-screenshot-code-published.html'>gtk-vector-screenshot code published</a></li></ol>
+Собственно, те самые два поста, в которых Joachim описывает свой модуль:
+
+1. <a href='http://www.joachim-breitner.de/blog/archives/494-Better-PDF-screenshots-with-gtk-3.html'>Better PDF screenshots with gtk 3</a>
+2. <a href='https://www.joachim-breitner.de/blog/archives/502-gtk-vector-screenshot-code-published.html'>gtk-vector-screenshot code published</a>
