@@ -343,10 +343,10 @@ ul {
 }
 
 img.bleed {
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    margin-left: -1rem;
-    margin-right: -1rem;
+    width: calc(100% + 4rem);
+    height: calc(100% + 4rem);
+    margin-left: -2rem;
+    margin-right: -2rem;
 }
 
 p.hakyll-convert-comment-date {
