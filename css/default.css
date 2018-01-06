@@ -12,7 +12,7 @@ html {
     background: #f9f8f8;
 }
 
-body {
+body, blockquote {
     margin: 0 auto;
     font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
     /* Using unitless value so that line-height can be re-calculated when
@@ -325,7 +325,6 @@ pre code {
 
 blockquote {
     border-left: 0.3rem solid #083f24;
-    font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
     margin-left: -1rem;
     padding-left: 0.7rem; /* 1em of margin minus 0.3em of border */
     margin-right: -1rem;
