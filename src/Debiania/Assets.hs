@@ -24,16 +24,16 @@ assetsRules = do
     -- MathJax stuff
     match ( "MathJax/MathJax.js" .||.
             "MathJax/extensions/**" .||.
-            "MathJax/fonts/Asana-Math/**" .||.
-            "MathJax/fonts/Gyre-Pagella/**" .||.
-            "MathJax/fonts/Gyre-Termes/**" .||.
-            "MathJax/fonts/Latin-Modern/**" .||.
-            "MathJax/fonts/Neo-Euler/**" .||.
-            "MathJax/fonts/STIX-Web/**" .||.
-            "MathJax/fonts/TeX/eot/**" .||.
-            "MathJax/fonts/TeX/otf/**" .||.
-            "MathJax/fonts/TeX/svg/**" .||.
-            "MathJax/fonts/TeX/woff/**" .||.
+            "MathJax/fonts/HTML-CSS/Asana-Math/**" .||.
+            "MathJax/fonts/HTML-CSS/Gyre-Pagella/**" .||.
+            "MathJax/fonts/HTML-CSS/Gyre-Termes/**" .||.
+            "MathJax/fonts/HTML-CSS/Latin-Modern/**" .||.
+            "MathJax/fonts/HTML-CSS/Neo-Euler/**" .||.
+            "MathJax/fonts/HTML-CSS/STIX-Web/**" .||.
+            "MathJax/fonts/HTML-CSS/TeX/eot/**" .||.
+            "MathJax/fonts/HTML-CSS/TeX/otf/**" .||.
+            "MathJax/fonts/HTML-CSS/TeX/svg/**" .||.
+            "MathJax/fonts/HTML-CSS/TeX/woff/**" .||.
             "MathJax/jax/**" .||.
             "MathJax/localization/**") $ do
         route   idRoute
