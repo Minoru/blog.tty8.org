@@ -72,12 +72,15 @@ LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libv4l/v4l1compat.so mplayer tv://
     ```
     $ sudoedit /etc/pm/config.d/modules
     ```
+
     и пихаем в него вот что:
+
     ```
     SUSPEND_MODULES="usb_storage mac80211 cfg80211 btusb bluetooth ahci libahci sdhci_pci sdhci led_class ath9k ath9k_common ath rfcomm sco bnep l2cap asus_laptop ehci_hcd"
     ```
 
     Не забываем разрешить утилитам читать его:
+
     ```
     $ sudo chmod a+r /etc/pm/config/d/modules
     ```
@@ -87,9 +90,11 @@ LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libv4l/v4l1compat.so mplayer tv://
     ```
     $ sudoedit /etc/pm/sleep.d/10_unbindusb
     ```
+
     и помещаем в него следующее:
+
     ```bash
-#!/bin/bash
+    #!/bin/bash
     function unbind_usb {
        for driver in ehci ohci uhci; do
            cd "/sys/bus/pci/drivers/${driver}_hcd";
@@ -161,6 +166,7 @@ $ sudo modprobe ehci_hcd
     ```
 
     В конец файла нужно дописать следующее:
+
     ```
     allow-hotplug wlan0
     iface wlan0 inet manual
