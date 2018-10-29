@@ -32,6 +32,8 @@ find me self-expressing:
 
 * [GitHub](https://github.com/Minoru)
 * [Goodreads](https://www.goodreads.com/user/show/46952552-alexander)
+* [Mastodon](https://functional.cafe/@minoru) (although I haven't figured out
+  what to use it for)
 * Freenode, where I hang out as Minoru. I'm using a bouncer, so I appear online
   even if I'm not actually at the computer. I'm also using OTR, so if you want
   a *really* private conversation, ask me to get back to you.
