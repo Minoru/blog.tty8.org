@@ -26,7 +26,8 @@ find me self-expressing:
 
 * [GitHub][github]
 * [GoodReads][goodreads]
-* [Mastodon][mastodon] (although I don't know what to use it for)
+* <a rel="me" href="https://functional.cafe/@minoru">Mastodon</a> (although
+  I don't know what to use it for)
 * Freenode, where I hang out as Minoru. I'm using a bouncer, so I appear online
   even if I'm not actually at the computer. I'm also using OTR, so if you want
   a *really* private conversation, ask me to get back to you
@@ -49,4 +50,3 @@ See ya!
 [keybase]: https://keybase.io/minoru "minoru (Alexander Batischev) | Keybase"
 [github]: https://github.com/Minoru "Minoru — GitHub"
 [goodreads]: https://www.goodreads.com/user/show/46952552-alexander "Alexander — GoodReads"
-[mastodon]: https://functional.cafe/@minoru "@minoru — functional.cafe"
