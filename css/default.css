@@ -341,13 +341,6 @@ ul {
     list-style-type: circle;
 }
 
-img.bleed {
-    width: calc(100% + 4rem);
-    height: calc(100% + 4rem);
-    margin-left: -2rem;
-    margin-right: -2rem;
-}
-
 p.hakyll-convert-comment-date {
     background-color: #dcd6d3;
 }

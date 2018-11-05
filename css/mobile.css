@@ -4,6 +4,13 @@ body {
     margin: 0 1rem;
 }
 
+img.bleed {
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
 .content-mobile {
     display: inline;
 }
