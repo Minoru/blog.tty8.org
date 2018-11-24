@@ -73,8 +73,8 @@ start putting code into production, folks!
 
 &nbsp;
 
-That was the first of the series on rewriting Newsboat in Rust. In the next
-installment, I'll tell you how I ported a global mutable singleton, and rant
+That was the first of the series on rewriting Newsboat in Rust. In [the next
+installment][next], I'll tell you how I ported a global mutable singleton, and rant
 about Rust's unit testing framework. If you don't want to miss it,
 [subscribe](/subscribe.html)—via RSS, of course :) Happy coding!
 
@@ -112,3 +112,6 @@ about Rust's unit testing framework. If you don't want to miss it,
     https://stackoverflow.com/questions/41241585/how-to-link-against-rust-crate-from-integration-tests-in-tests-folder-when-bui
     "How to link against Rust crate from integration tests in 'tests' folder
     when building static library? — StackOverflow"
+
+[next]: /posts/2018-11-24-porting-our-logger-to-rust.html
+    "Porting our logger to Rust — Debiania"
