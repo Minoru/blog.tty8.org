@@ -44,7 +44,8 @@ Also note that a replacement keyboard might have these little things on the back
 <div class="center">
 <img src="/images/asus_ux32vd_replacement_keyboard_useless_details.jpg"
 alt="Little pads for screws to hold on, which should be removed if the
-keyboard is to be installed on an UX32VD" />
+keyboard is to be installed on an UX32VD"
+class="bleed" />
 </div>
 
 They're needed for the previous model, UX31, but on UX32VD they'll bend and
