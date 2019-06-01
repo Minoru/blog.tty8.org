@@ -12,7 +12,8 @@ This blog used to be a place to share my experiences with Linux, but over the
 years, it expanded to other topics, ranging from software licenses and ICFP
 programming contest to nice hardware and life lessons. It still retains its
 original name, Debiania, unimaginatively derived from the first distro
-I actually used.
+I actually used. If you're interested in how this site gets put together, take
+a look at [the source code][debiania-src].
 
 I'm always happy to receive some personal email; [shoot me a message][email]!
 Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch.
@@ -44,6 +45,7 @@ See ya!
 
 [pgp]: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
 [pgp-old]: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x0A1D7D827B52FB07 "PGP key 0x0a1d7d827b52fb07 at pgp.mit.edu"
+[debiania-src]: https://github.com/Minoru/blog.debiania.in.ua "Minoru/blog.debiania.in.ua — GitHub"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [resume]: /misc/batischev_cv.pdf
 [newsboat]: https://newsboat.org "Newsboat, an RSS reader"
