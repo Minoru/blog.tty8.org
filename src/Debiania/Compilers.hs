@@ -46,13 +46,10 @@ debianiaCompiler =
 gzip :: Item String -> Compiler (Item LBS.ByteString)
 gzip = withItemBody
          (unixFilterLBS
-           "7z"
-           [ "a"      -- create archive
-           , "dummy"  -- archive's filename (won't be used)
-           , "-tgzip" -- archive format
-           , "-mx9"   -- m-m-maximum compression
-           , "-si"    -- read data from stdin
-           , "-so"    -- write archive to stdout
+           "pigz"
+           [ "--best"      -- m-m-maximum compression
+           , "-"           -- read data from stdin
+           , "--to-stdout" -- write archive to stdout
            ]
          . LBS.fromStrict
          . TE.encodeUtf8
