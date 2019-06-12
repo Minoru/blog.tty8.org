@@ -18,7 +18,10 @@ sitemapRules = do
        route   idRoute
        compile $ do
          posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
-         let sitemapCtx =    listField "posts" postCtx (return posts)
+         let sitemapCtx =    listField
+                               "posts"
+                               (postCtx <> defaultContext)
+                               (return posts)
                           <> rootUrlCtx
                           <> defaultContext
          makeItem ""

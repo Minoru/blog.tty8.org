@@ -61,7 +61,8 @@ archivesRules = do
                             "posts"
                             -- format date as "Jul 01", "Mar 21" etc.
                             (  dateField "date" "%b&nbsp;%d"
-                            <> postCtx)
+                            <> postCtx
+                            <> defaultContext)
                             (\item -> do let year = itemBody item
                                          return $ postsByYear M.! year)
 

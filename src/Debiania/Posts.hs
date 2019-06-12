@@ -28,6 +28,7 @@ postsRules = do
                   (mconcat [ urlEncodedTitleCtx
                            , postCtx
                            , tagsCtx tags
+                           , defaultContext
                            ])
             >>= loadAndApplyTemplate
                   "templates/default.html"
@@ -44,7 +45,6 @@ postCtx =
        dateField "date" "%e %B %Y"
     <> dateField "datetime" "%Y-%m-%d"
     <> rootUrlCtx
-    <> defaultContext
 
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =

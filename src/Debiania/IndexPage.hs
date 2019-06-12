@@ -20,7 +20,10 @@ indexPageRules = do
           posts <- fmap (take 8) . recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
           let ctx =    constField "title" "Home"
                     <> constField "navbar-home" "Yep"
-                    <> listField "posts" postCtx (return posts)
+                    <> listField
+                         "posts"
+                         (postCtx <> defaultContext)
+                         (return posts)
                     <> rootUrlCtx
                     <> defaultContext
 

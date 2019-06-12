@@ -123,6 +123,7 @@ feedCtx :: Context String
 feedCtx =
     bodyField "description"
     <> postCtx
+    <> defaultContext
 
 {---- FEED CONFIGURATIONS ----}
 
