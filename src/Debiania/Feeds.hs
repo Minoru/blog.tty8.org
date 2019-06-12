@@ -14,7 +14,7 @@ import qualified Data.Text as T
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Posts
+import Debiania.Context
 import Debiania.Settings
 
 feedsRules :: Rules ()

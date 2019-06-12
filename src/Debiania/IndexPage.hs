@@ -10,7 +10,6 @@ import Hakyll
 
 import Debiania.Compilers
 import Debiania.Context
-import Debiania.Posts
 
 indexPageRules :: Rules ()
 indexPageRules = do

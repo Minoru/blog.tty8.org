@@ -16,7 +16,6 @@ import Hakyll
 
 import Debiania.Compilers
 import Debiania.Context
-import Debiania.Posts
 
 archivesRules :: Rules ()
 archivesRules = do

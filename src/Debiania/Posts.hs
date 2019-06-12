@@ -1,8 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Debiania.Posts (
-    postCtx
-  , postsRules
+    postsRules
 ) where
 
 import Data.Monoid ((<>))
@@ -38,13 +37,6 @@ postsRules = do
     match "posts/*" $ version "gzipped" $ do
         route   $ setExtension "html.gz"
         compile gzipFileCompiler
-
-
-postCtx :: Context String
-postCtx =
-       dateField "date" "%e %B %Y"
-    <> dateField "datetime" "%Y-%m-%d"
-    <> rootUrlCtx
 
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =
