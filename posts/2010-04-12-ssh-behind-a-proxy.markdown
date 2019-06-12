@@ -2,7 +2,7 @@
 title: SSH за проксей
 published: 2010-04-12T10:21:00Z
 categories: 
-tags: mirror
+tags: translation, mirror, linux, howto
 description: Перевод статьи про обход проксей с помощью openssh и corkscrew.
 ---
 

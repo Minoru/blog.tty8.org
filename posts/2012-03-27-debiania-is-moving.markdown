@@ -2,7 +2,7 @@
 title: Дебиания переезжает
 published: 2012-03-27T00:30:00Z
 categories: 
-tags: 
+tags: blog
 description: Блог debiania.blogspot.com переехал на новое место — debiania.in.ua.
 ---
 

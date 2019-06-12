@@ -3,6 +3,7 @@ title: Pre-compressing files with Hakyll
 language: english
 description: How to make Hakyll gzip your posts and stuff so that your
     webserver doesn't have to.
+tags: howto, programming, hakyll
 ---
 
 Usually, HTTP responses are compressed in real time, on the web server. That

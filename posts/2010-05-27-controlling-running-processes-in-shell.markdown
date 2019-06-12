@@ -2,7 +2,7 @@
 title: Управление выполняющимися процессами в шелле
 published: 2010-05-27T06:45:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux, howto
 description: О фоновых задачах (fg/bg) и disown.
 ---
 

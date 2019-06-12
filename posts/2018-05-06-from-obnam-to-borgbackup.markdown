@@ -2,7 +2,7 @@
 title: From Obnam to Borgbackup
 language: english 
 description: # No double quotes; end with a period
-tags: tech
+tags: linux, thoughts
 ---
 
 It's hard to start making backups: you need external storage, some sort of

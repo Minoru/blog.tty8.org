@@ -2,7 +2,7 @@
 title: mcabber и отправка многострочных сообщений
 published: 2009-03-08T18:33:00Z
 categories: 
-tags: mcabber
+tags: linux, howto
 description: Добавляем в mcabber хоткей, чтобы проще было отправлять многострочники.
 ---
 

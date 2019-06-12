@@ -2,7 +2,7 @@
 title: Как использовать dpatch
 published: 2010-12-23T15:20:00Z
 categories: 
-tags: debian
+tags: debian, linux, howto, translation
 description: Перевод статьи о менеджменете патчей, накладываемых при сборке deb-пакетов.
 ---
 

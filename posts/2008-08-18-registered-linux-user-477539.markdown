@@ -2,7 +2,7 @@
 title: Registered Linux User #477539
 published: 2008-08-18T19:11:00Z
 categories: 
-tags: linux,holiday
+tags: stuff
 description: Теперь я официально зарегистрированный линуксоид.
 ---
 

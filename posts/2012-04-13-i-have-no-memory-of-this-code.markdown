@@ -2,6 +2,7 @@
 title: "[image/png] I have no memory of this code"
 language: english
 description: A quick repost of an image I liked.
+tags: mirror
 ---
 
 <div class="center">

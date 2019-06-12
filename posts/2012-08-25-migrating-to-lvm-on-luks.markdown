@@ -1,6 +1,6 @@
 ---
 title: Migrating to LVM on LUKS
-tags: debian, linux
+tags: debian, linux, howto
 language: english
 description: How to move your existing Linux installation onto LVM on LUKS.
 ---

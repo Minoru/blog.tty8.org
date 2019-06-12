@@ -3,7 +3,7 @@ title: Впечатления от multiplayer в Acehack
 language: russian
 description: Я немного поиграл Acehack — представителя жанра rogue-like
     — и хочу поделиться своими впечатлениями и мыслями по этому поводу.
-tags: roguelike
+tags: review
 ---
 
 **Внимание!** Разработка Acehack [прекращена][nethackwiki-acehack]:

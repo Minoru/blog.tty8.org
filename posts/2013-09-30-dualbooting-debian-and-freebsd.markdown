@@ -1,6 +1,6 @@
 ---
 title: Dualbooting Debian and FreeBSD
-tags: debian, linux
+tags: debian, linux, howto
 language: english
 description: You need GRUB2 version 1.99-27+deb7u2 or later to be able to boot
     FreeBSD 9.1.

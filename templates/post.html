@@ -1,7 +1,15 @@
 <article>
 <header id="post-header">
     <h1>$title$</h1>
-    <div id="post-date"><time datetime="$datetime$">$date$</time></div>
+    <div id="post-date">
+        <time datetime="$datetime$">$date$</time>
+        $if(tags)$
+        &nbsp;&nbsp;&nbsp;
+        •
+        &nbsp;&nbsp;&nbsp;
+        <span>$tags$</span>
+        $endif$
+    </div>
 </header>
 
 <div id="post">

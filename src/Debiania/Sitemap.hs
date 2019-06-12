@@ -9,8 +9,7 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Posts
-import Debiania.Settings
+import Debiania.Context
 
 sitemapRules :: Rules ()
 sitemapRules = do
@@ -18,8 +17,12 @@ sitemapRules = do
        route   idRoute
        compile $ do
          posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
-         let sitemapCtx =    listField "posts" postCtx (return posts)
-                          <> debianiaCtx
+         let sitemapCtx =    listField
+                               "posts"
+                               (postCtx <> defaultContext)
+                               (return posts)
+                          <> rootUrlCtx
+                          <> defaultContext
          makeItem ""
           >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 

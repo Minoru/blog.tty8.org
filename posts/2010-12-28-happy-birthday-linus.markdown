@@ -2,7 +2,7 @@
 title: День рождения Линуса Торвальдса
 published: 2010-12-28T06:25:00Z
 categories: 
-tags: linux,holiday
+tags: holiday
 description: Линусу сорок один!
 ---
 

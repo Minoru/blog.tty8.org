@@ -9,17 +9,19 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Settings
+import Debiania.Context
 
 subscribePageRules :: Rules ()
 subscribePageRules = do
+    let ctx = rootUrlCtx <> defaultContext
+
     create ["subscribe.markdown"] $ do
         route   $ setExtension "html"
         compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate
                 "templates/default.html"
-                (debianiaCtx <> constField "navbar-subscribe" "Yep")
+                (constField "navbar-subscribe" "Yep" <> ctx)
           >>= relativizeUrls
 
     create ["subscribe.markdown"] $ version "gzipped" $ do

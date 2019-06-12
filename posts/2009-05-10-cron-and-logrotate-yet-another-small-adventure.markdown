@@ -2,7 +2,7 @@
 title: "cron и logrotate: ещё одно маленькое приключение"
 published: 2009-05-10T06:57:00Z
 categories: 
-tags: linux
+tags: linux, debian
 description: Если вы не держите компьютер включенным круглые сутки, поставьте
     anacron, иначе часть cron-задач может не выполняться.
 ---

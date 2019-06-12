@@ -2,7 +2,7 @@
 title: Пишем man-страницы
 published: 2010-01-19T10:54:00Z
 categories: 
-tags: linux
+tags: linux, howto
 description: Краткое руководство по синтаксису манов. Оказывается, их можно
     писать руками!
 ---

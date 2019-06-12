@@ -2,7 +2,7 @@
 title: Добавление облака тегов
 published: 2009-02-24T20:45:00Z
 categories: 
-tags: blog
+tags: blog, howto
 description: Продолжаем облагораживать шаблон блога.
 ---
 

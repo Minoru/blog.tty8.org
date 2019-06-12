@@ -2,7 +2,7 @@
 title: Asus P52F-380M и Debian
 published: 2011-08-30T20:34:00Z
 categories: 
-tags: hardware,debian
+tags: hardware,debian, linux
 description: Отчёт о том, как ведёт себя Wheezy на ноутбуке Asus P52F-380M.
 ---
 

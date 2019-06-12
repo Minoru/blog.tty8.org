@@ -3,6 +3,7 @@ title: Favicon
 language: english
 description: "A history of how Debiania got its favicon. Spoiler: it has to do
     with Debian."
+tags: blog
 ---
 
 Have you ever noticed that (evil) face hidden right in the middle of the Debian

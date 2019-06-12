@@ -2,7 +2,7 @@
 title: XF86KScreenSaver
 published: 2012-02-15T22:30:00Z
 categories: 
-tags: linux
+tags: linux, howto, debian
 description: Учим Linux корректно обрабатывать одну спецкнопочку моего ноутбука.
 ---
 

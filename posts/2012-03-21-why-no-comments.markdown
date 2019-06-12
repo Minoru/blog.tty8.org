@@ -4,6 +4,7 @@ language: english
 description: My blog doesn’t have comments because they’re often negative,
     people use them to ask for help, and we have better places for discussions
     anyway.
+tags: blog, thoughts
 ---
 
 _**Summary**: discussions are often too negative, and when they're not, we

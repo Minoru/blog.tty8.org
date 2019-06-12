@@ -2,7 +2,7 @@
 title: "Hv3: первое впечатление"
 published: 2008-12-02T20:39:00Z
 categories: 
-tags: review,web
+tags: review, linux
 description: Пробуем новый браузер Hv3.
 ---
 

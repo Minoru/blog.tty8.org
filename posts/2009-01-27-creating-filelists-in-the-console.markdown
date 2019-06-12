@@ -2,7 +2,7 @@
 title: Создание списков файлов в консоли
 published: 2009-01-27T17:41:00Z
 categories: 
-tags: tips'n'tricks
+tags: howto, linux
 description: find и немного магии sed.
 ---
 

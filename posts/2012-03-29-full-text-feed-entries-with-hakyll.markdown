@@ -2,6 +2,7 @@
 title: Full-text feed entries with Hakyll
 language: english
 description: Teaching Hakyll to create full-content RSS/Atom feeds.
+tags: programming, hakyll, howto
 ---
 
 It's nice when RSS or Atom feed contain full-text posts because from there

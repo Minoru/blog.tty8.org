@@ -46,13 +46,25 @@ debianiaCompiler =
 gzip :: Item String -> Compiler (Item LBS.ByteString)
 gzip = withItemBody
          (unixFilterLBS
-           "7z"
-           [ "a"      -- create archive
-           , "dummy"  -- archive's filename (won't be used)
-           , "-tgzip" -- archive format
-           , "-mx9"   -- m-m-maximum compression
-           , "-si"    -- read data from stdin
-           , "-so"    -- write archive to stdout
+           "pigz"
+           [
+           -- Do not store the filename or modification time in the archive.
+           --
+           -- This works around a problem with site updates. If I re-create
+           -- some .html file, its companion .gz will be re-created as well.
+           -- However, my rsync invocation compares files by contents, not
+           -- modification time. This works great for .html: if the contents
+           -- didn't change, rsync won't copy the new file onto the server.
+           -- That doesn't work for .gz, though: if it contains .html's
+           -- modification time, then .gz has to be copied to the server.
+           --
+           -- WIth --no-name, .gz should only depend on the contents of .html,
+           -- and rsync should skip any .gz that are no different from the
+           -- server's.
+             "--no-name"
+           , "--best"      -- m-m-maximum compression
+           , "--to-stdout" -- write archive to stdout
+           , "-"           -- read data from stdin
            ]
          . LBS.fromStrict
          . TE.encodeUtf8

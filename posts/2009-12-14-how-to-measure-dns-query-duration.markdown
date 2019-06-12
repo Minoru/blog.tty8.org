@@ -2,7 +2,7 @@
 title: Как определить длительность DNS-запроса
 published: 2009-12-14T00:44:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux, howto
 description: Осваиваем dig из пакета dnsutils.
 ---
 

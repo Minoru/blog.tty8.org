@@ -2,7 +2,7 @@
 title: Линусу 42!
 published: 2011-12-27T22:00:00Z
 categories: 
-tags: 
+tags: holiday
 description: С днём рождения, Линус Торвальдс!
 ---
 

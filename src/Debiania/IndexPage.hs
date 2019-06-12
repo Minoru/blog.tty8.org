@@ -9,8 +9,7 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Posts
-import Debiania.Settings
+import Debiania.Context
 
 indexPageRules :: Rules ()
 indexPageRules = do
@@ -20,8 +19,12 @@ indexPageRules = do
           posts <- fmap (take 8) . recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
           let ctx =    constField "title" "Home"
                     <> constField "navbar-home" "Yep"
-                    <> listField "posts" postCtx (return posts)
-                    <> debianiaCtx
+                    <> listField
+                         "posts"
+                         (postCtx <> defaultContext)
+                         (return posts)
+                    <> rootUrlCtx
+                    <> defaultContext
 
           makeItem ""
             >>= loadAndApplyTemplate "templates/index.html" ctx

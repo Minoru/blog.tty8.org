@@ -2,7 +2,7 @@
 title: MPD и плавный переход между песнями
 published: 2009-05-18T06:48:00Z
 categories: 
-tags: linux
+tags: linux, howto
 description: Кроссфейдинг можно выключить, выставив buffer_before_play равным 100%.
 ---
 

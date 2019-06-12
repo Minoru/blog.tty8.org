@@ -5,6 +5,7 @@ description: 1. Enclose you switch case's body in curly brackets so you can
     define local variables there.  2. You can create your own vtable with an
     array of function pointers and an enum or something for mapping names into
     array indexes.
+tags: programming, tips'n'tricks
 ---
 
 Every one of us have a different path to expertise in programming, which

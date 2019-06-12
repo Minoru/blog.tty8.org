@@ -2,7 +2,7 @@
 title: "irssi: как отправить сообщение, не открывая нового окна"
 published: 2009-11-24T13:01:00Z
 categories: 
-tags: irssi
+tags: linux, howto
 description: /^msg получатель текст
 ---
 

@@ -2,7 +2,7 @@
 title: "Проприетарные драйвера от ATI: маленькое приключение"
 published: 2009-04-26T19:48:00Z
 categories: 
-tags: linux,debian
+tags: linux,debian, howto
 description: Удаляем графические драйвера ATI, поставленные из run-файла.
 ---
 

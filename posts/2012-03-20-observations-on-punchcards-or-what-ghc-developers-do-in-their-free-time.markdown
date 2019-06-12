@@ -2,7 +2,7 @@
 title: Наблюдения о punchcard'ах некоторых проектов, или Чем занимаются на досуге разработчики GHC?
 published: 2012-03-20T19:29:00Z
 categories: 
-tags: linux,debian
+tags: programming, stuff
 description: Рамматриваем графики с GitHub-а и пытаемся угадать, как менеджатся
     разные проекты с открытым кодом.
 ---

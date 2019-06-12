@@ -2,7 +2,7 @@
 title: Подстраиваем Midnight Commander под себя
 published: 2008-08-09T18:51:00Z
 categories: 
-tags: linux
+tags: linux, howto, debian
 description: Учимся править mc.ext.
 ---
 

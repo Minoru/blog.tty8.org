@@ -4,7 +4,7 @@ language: english
 description: "If you run into “rsync: connection unexpectedly closed” error and
     the official FAQ doesn't help, check if you have a command specified in
     ~/.ssh/authorized_keys on the remote end."
-tags: tips'n'tricks, linux
+tags: howto, linux
 ---
 
 I roll this blog out with `rsync`. Yesterday I realized that my server is
