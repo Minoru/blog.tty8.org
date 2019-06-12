@@ -21,7 +21,7 @@ subscribePageRules = do
           >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate
                 "templates/default.html"
-                (ctx <> constField "navbar-subscribe" "Yep")
+                (constField "navbar-subscribe" "Yep" <> ctx)
           >>= relativizeUrls
 
     create ["subscribe.markdown"] $ version "gzipped" $ do

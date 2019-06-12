@@ -21,7 +21,7 @@ aboutPageRules = do
           >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate
                 "templates/default.html"
-                (ctx <> constField "navbar-about" "Yep")
+                (constField "navbar-about" "Yep" <> ctx)
           >>= relativizeUrls
 
     create ["about.markdown"] $ version "gzipped" $ do
