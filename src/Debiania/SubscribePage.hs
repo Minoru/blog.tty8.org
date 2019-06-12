@@ -9,7 +9,7 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Settings
+import Debiania.Context
 
 subscribePageRules :: Rules ()
 subscribePageRules = do

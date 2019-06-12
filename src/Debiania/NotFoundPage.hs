@@ -7,7 +7,7 @@ module Debiania.NotFoundPage (
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Settings
+import Debiania.Context
 
 notFoundPageRules :: Rules ()
 notFoundPageRules = do

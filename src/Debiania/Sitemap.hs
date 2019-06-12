@@ -9,8 +9,8 @@ import Data.Monoid ((<>))
 import Hakyll
 
 import Debiania.Compilers
+import Debiania.Context
 import Debiania.Posts
-import Debiania.Settings
 
 sitemapRules :: Rules ()
 sitemapRules = do

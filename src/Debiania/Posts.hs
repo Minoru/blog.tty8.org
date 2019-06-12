@@ -11,7 +11,7 @@ import Network.HTTP.Base (urlEncode)
 import Hakyll
 
 import Debiania.Compilers
-import Debiania.Settings
+import Debiania.Context
 
 postsRules :: Rules ()
 postsRules = do

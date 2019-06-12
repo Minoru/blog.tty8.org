@@ -19,6 +19,7 @@ Executable debiania
                  , Debiania.Assets
                  , Debiania.CSS
                  , Debiania.Compilers
+                 , Debiania.Context
                  , Debiania.Feeds
                  , Debiania.IndexPage
                  , Debiania.NotFoundPage
