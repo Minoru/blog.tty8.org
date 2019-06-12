@@ -32,6 +32,7 @@ Executable debiania
                  , HTTP == 4000.*
                  , MissingH
                  , aeson
+                 , blaze-html
                  , bytestring
                  , filepath
                  , hakyll == 4.*

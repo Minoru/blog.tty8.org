@@ -4,8 +4,14 @@ module Debiania.Posts (
     postsRules
 ) where
 
+import Data.List (intersperse, sort)
 import Data.Monoid ((<>))
+import Control.Monad (liftM)
 import Network.HTTP.Base (urlEncode)
+import Text.Blaze.Html                 (toHtml, toValue, (!))
+
+import qualified Text.Blaze.Html5            as H
+import qualified Text.Blaze.Html5.Attributes as A
 
 import Hakyll
 
@@ -14,7 +20,6 @@ import Debiania.Context
 
 postsRules :: Rules ()
 postsRules = do
-    -- Build tags (will be used later on)
     tags <- buildTags ("posts/*" .&&. hasNoVersion) (fromCapture "tags/*.html")
 
     match "posts/*" $ do
@@ -25,8 +30,8 @@ postsRules = do
             >>= loadAndApplyTemplate
                   "templates/post.html"
                   (mconcat [ urlEncodedTitleCtx
+                           , sortedTagsCtx tags
                            , postCtx
-                           , tagsField "tags" tags
                            , defaultContext
                            ])
             >>= loadAndApplyTemplate
@@ -69,3 +74,21 @@ urlEncodedTitleCtx =
         Nothing -> return ""
         Just t  -> return $ urlEncode t
     )
+
+-- | "tags" field with item's tags, sorted alphabetically.
+sortedTagsCtx :: Tags -> Context String
+sortedTagsCtx tags =
+  tagsFieldWith
+   (liftM sort . getTags)
+   simpleRenderLink
+   (mconcat . intersperse ", ")
+   "tags"
+   tags
+
+-- | Render one tag link
+--
+-- Lifted straight from Hakyll.Web.Tags.
+simpleRenderLink :: String -> (Maybe FilePath) -> Maybe H.Html
+simpleRenderLink _   Nothing         = Nothing
+simpleRenderLink tag (Just filePath) =
+  Just $ H.a ! A.href (toValue $ toUrl filePath) $ toHtml tag
