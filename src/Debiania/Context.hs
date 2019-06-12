@@ -7,8 +7,7 @@ module Debiania.Context (
 ) where
 
 import Control.Monad (forM)
-import Data.Function (on)
-import Data.List (sort, groupBy, sortOn)
+import Data.List (sort)
 import Data.Monoid ((<>))
 import Data.Time.Format (defaultTimeLocale, formatTime)
 
@@ -45,11 +44,10 @@ makeYearsCtx posts = do
 
   -- Convert the list of pairs into a map, from year to a list of posts
   -- that were posted that year
-  let postsByYear = M.fromList
-                  $ toMapElem
-                  $ groupBy ((==) `on` fst)
-                  $ reverse
-                  $ sortOn fst years
+  let postsByYear =
+        M.fromListWith
+          (++)
+          [ (year, [post]) | (year, post) <- years]
 
   -- Here's how we're going to achieve our goal. First, we create
   -- a list of items, one item per year. The body of the item contains
@@ -78,17 +76,3 @@ makeYearsCtx posts = do
   let yearsCtx = listField "years" yearCtx (mapM makeItem yearsDescending)
 
   return yearsCtx
-
--- | Prepare a list to be used as a base to constuct a Map.
---
--- Example input:
---
---    [[(1, "hello"), (1, "hi"), (1, "hey")], [(2, "bye"), (2, "see ya")]]
---
--- ...will result in:
---
---    [(1, ["hello", "hi", "hey"]), (2, ["bye", "see ya"])]
-toMapElem :: [[(a, b)]] -> [(a, [b])]
-toMapElem [] = []
-toMapElem ([]:xs) = toMapElem xs
-toMapElem (((a, b):as):xs) = (a, b : map snd as) : toMapElem xs
