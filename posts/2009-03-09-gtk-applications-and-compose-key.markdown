@@ -2,7 +2,7 @@
 title: GTK приложения и Compose Key
 published: 2009-03-09T13:13:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux, howto
 description: Настраиваем input manager, чтобы GTK-приложения тоже воспринимали
     символы, вводимые с помощью Compose key.
 ---

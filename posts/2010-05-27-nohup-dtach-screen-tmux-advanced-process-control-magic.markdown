@@ -2,7 +2,7 @@
 title: nohup, dtach, screen, tmux — продвинутая магия управления процессами
 published: 2010-05-27T16:34:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux, howto
 description: Для тех, кому мало fg, bg и disown.
 ---
 

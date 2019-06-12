@@ -5,7 +5,7 @@ description: Exploring ways to pack submodule's history into the containing
     repo. Two approaches are proposed. The first one stores the submodule as
     a branch in the containing repo. The second rewrites history to make the
     submodule look like a funny feature branch that never inherited from master.
-tags: thoughts, git
+tags: howto
 ---
 
 If you ever decide to somehow fold a Git submodule into the main repository,

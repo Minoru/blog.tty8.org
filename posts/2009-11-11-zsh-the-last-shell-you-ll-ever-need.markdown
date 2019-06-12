@@ -2,7 +2,7 @@
 title: "ZSH: последний шелл, который Вам когда-либо понадобится!"
 published: 2009-11-11T12:24:00Z
 categories: 
-tags: zsh,mirror,linux
+tags: zsh,mirror,translation,linux
 description: Перевод сказа о невероятно мощном шелле ZSH.
 ---
 

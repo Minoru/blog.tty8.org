@@ -3,7 +3,7 @@ title: How I read TOSes, EULAs and stuff like that
 language: english
 description: Three pieces of advice for people who find Terms of Service too
     burdensome a read to even try.
-tags: tech
+tags: EULA, howto
 ---
 
 TL;DR:

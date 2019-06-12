@@ -2,7 +2,7 @@
 title: "Blogger: запрет индексирования главной"
 published: 2009-12-16T18:00:00Z
 categories: 
-tags: blog
+tags: blog, howto
 description: Добавляем на главную тег meta content='noindex,follow',
     запрещающий индексацию, но разрешающий следовать по ссылкам.
 ---

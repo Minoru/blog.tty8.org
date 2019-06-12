@@ -2,7 +2,7 @@
 title: "Упрощаем себе жизнь: интеграция bash-скриптов в систему"
 published: 2008-08-29T16:29:00Z
 categories: 
-tags: linux
+tags: linux, howto
 description: Добавляем каталог с собственными скриптами в PATH.
 ---
 

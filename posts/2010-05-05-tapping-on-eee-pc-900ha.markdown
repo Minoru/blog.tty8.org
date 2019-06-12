@@ -2,7 +2,7 @@
 title: Таппинг (tapping) на Eee PC 900HA
 published: 2010-05-05T12:57:00Z
 categories: 
-tags: Eee PC,linux,debian
+tags: hardware,linux,debian, howto
 description: Настраиваем тачпад Synaptics.
 ---
 

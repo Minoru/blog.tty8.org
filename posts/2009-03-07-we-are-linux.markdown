@@ -2,7 +2,7 @@
 title: Мы — Линукс!
 published: 2009-03-07T18:19:00Z
 categories: 
-tags: linux,web
+tags: linux, web
 description: О новом линукс-сообществе, образовавшемся на сайте welinux.ru.
 ---
 

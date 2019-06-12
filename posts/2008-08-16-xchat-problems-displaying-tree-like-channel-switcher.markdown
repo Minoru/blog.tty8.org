@@ -2,7 +2,7 @@
 title: "Xchat: проблемы при отображении channel switcher'а в виде дерева"
 published: 2008-08-16T17:29:00Z
 categories: 
-tags: linux
+tags: linux, debian
 description: gtk-qt-engine ломал подсветку каналов, но смена темы на Human всё
     починила.
 ---

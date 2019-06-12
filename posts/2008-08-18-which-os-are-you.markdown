@@ -2,7 +2,7 @@
 title: Which OS are you?
 published: 2008-08-18T18:28:00Z
 categories: 
-tags: web
+tags: stuff
 description: Прошёл забавный тест и узнал, что я, оказывается, Windows 95!
 ---
 

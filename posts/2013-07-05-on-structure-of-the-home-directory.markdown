@@ -1,6 +1,6 @@
 ---
 title: On structure of the home directory
-tags: linux
+tags: linux, thoughts
 language: english
 description: Comparing my homedir structure with that of Joey Hess.
 ---

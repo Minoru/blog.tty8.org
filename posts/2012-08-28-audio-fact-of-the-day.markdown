@@ -3,6 +3,7 @@ title: Audio Fact(s) of the Day
 language: english
 description: A mix of some sound-related curiosities I discovered while reading
     Wikipedia.
+tags: stuff
 ---
 
 Hi there!

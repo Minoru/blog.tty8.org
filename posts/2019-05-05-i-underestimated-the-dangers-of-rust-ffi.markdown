@@ -3,7 +3,7 @@ title: I underestimated the dangers of Rust FFI
 language: english
 description: How I ended up with a buffer overrun by (unwittingly) misusing
     std::ffi::CString.
-tags: programming
+tags: programming, newsboat-rust-rewrite
 ---
 
 As a continuation of [Newsboat rewrite series][rewrite-series], here's an

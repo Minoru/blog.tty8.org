@@ -2,7 +2,7 @@
 title: Установка и настройка sudo в Debian GNU/Linux и Ubuntu Linux
 published: 2009-03-25T17:28:00Z
 categories: 
-tags: mirror,linux,debian
+tags: mirror,linux,debian, howto
 description: Копия полезной статьи с канувшего в Лету сайта.
 ---
 

@@ -2,7 +2,7 @@
 title: Installing TWRP on Sony Xperia SP
 language: english
 description: TODO # No double quotes; end with a period
-tags: howto, tech, hardware
+tags: howto, hardware
 ---
 
 In order to install [LineageOS][lineageos-site] (ex-CyanogenMod) on a friend's

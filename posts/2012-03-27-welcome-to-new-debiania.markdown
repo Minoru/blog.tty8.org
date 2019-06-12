@@ -2,6 +2,7 @@
 title: Приветствую читателей Новой Дебиании!
 language: russian
 description: Блог debiania.blogspot.com переехал на новое место — debiania.in.ua.
+tags: blog
 ---
 
 Добро пожаловать!

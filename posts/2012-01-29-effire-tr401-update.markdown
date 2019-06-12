@@ -2,7 +2,7 @@
 title: Обновление Effire TR401
 published: 2012-01-29T11:02:00Z
 categories: 
-tags: hardware,windows
+tags: hardware,windows, howto
 description: Рецепт по обновлению прошивки на читалке Effire TR401.
 ---
 

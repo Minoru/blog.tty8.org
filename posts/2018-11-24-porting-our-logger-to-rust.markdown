@@ -2,7 +2,7 @@
 title: Porting our logger to Rust
 language: english
 description: # No double quotes; end with a period
-tags: programming, thoughts
+tags: programming, thoughts, newsboat-rust-rewrite
 ---
 
 As I mentioned in [an earlier post][prev], me and other contributors are porting

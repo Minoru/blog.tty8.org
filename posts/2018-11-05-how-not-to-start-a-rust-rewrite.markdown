@@ -2,7 +2,7 @@
 title: How not to start a Rust rewrite
 language: english
 description: # No double quotes; end with a period
-tags: programming, thoughts
+tags: programming, thoughts, newsboat-rust-rewrite
 ---
 
 I never bragged about it here, but for the last three years or so, I have been

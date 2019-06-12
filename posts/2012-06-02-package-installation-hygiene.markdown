@@ -3,6 +3,7 @@ title: Package Installation Hygiene (for Babies & Older Ones)
 language: english
 description: Using aptitude and deborphan to get rid of stale, old and unused
     packages.
+tags: debian, linux, howto
 ---
 
 Two times a year, when all exams are successfully passed, every student does

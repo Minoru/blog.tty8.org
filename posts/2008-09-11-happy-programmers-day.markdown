@@ -2,7 +2,7 @@
 title: С днём программиста!
 published: 2008-09-11T23:56:00Z
 categories: 
-tags: linux,holiday
+tags: programming,holiday
 description: Празднуем 256-й день 2008-го года.
 ---
 

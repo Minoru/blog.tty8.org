@@ -3,6 +3,7 @@ title: Purging Vim undodir
 language: english
 description: Leveraging cron to make sure your persistent undo files don’t get
     out hand.
+tags: vim, howto
 ---
 
 In two weeks, it would be the second anniversary of vim 7.3 release. Among other

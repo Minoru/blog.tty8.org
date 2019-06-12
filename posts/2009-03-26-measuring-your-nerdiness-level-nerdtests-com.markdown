@@ -2,7 +2,7 @@
 title: Замеряем уровень нердства — nerdtests.com
 published: 2009-03-26T21:30:00Z
 categories: 
-tags: web
+tags: stuff
 description: Опять результаты забавных Интернет-тестиков.
 ---
 

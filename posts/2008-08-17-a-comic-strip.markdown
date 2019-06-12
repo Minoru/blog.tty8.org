@@ -2,7 +2,7 @@
 title: Комикс
 published: 2008-08-17T08:18:00Z
 categories: 
-tags: web
+tags: translation
 description: Перевод XKCD 456.
 ---
 

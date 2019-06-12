@@ -1,6 +1,6 @@
 ---
 title: Automounting with udev and pmount
-tags: linux
+tags: linux, howto, debian
 language: english
 description: Writing a script that automatically mounts /dev/sd* as soon as
     they appear.

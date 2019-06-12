@@ -2,7 +2,7 @@
 title: Рамочка вокруг кода и команд
 published: 2009-02-05T17:35:00Z
 categories: 
-tags: tips'n'tricks,blog
+tags: howto, blog
 description: Облагораживаем шаблона блога.
 ---
 

@@ -2,7 +2,7 @@
 title: Маленькая заметка о /tmp
 published: 2009-01-01T21:53:00Z
 categories: 
-tags: linux
+tags: linux, tips'n'tricks
 description: Оказывается, /tmp очищается при загрузке, а не при выключении.
 ---
 

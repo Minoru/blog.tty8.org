@@ -2,7 +2,7 @@
 title: Fluxbox
 published: 2009-07-13T16:26:00Z
 categories: 
-tags: mirror,fluxbox,linux
+tags: mirror,fluxbox, linux
 description: Сказ о Fluxbox для тех, кто всё ещё не попробовал этот
     замечательный менеджер окон.
 ---

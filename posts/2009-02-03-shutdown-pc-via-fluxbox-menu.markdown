@@ -2,7 +2,7 @@
 title: Shutdown PC via Fluxbox menu
 published: 2009-02-03T16:09:00Z
 categories: 
-tags: fluxbox,tips'n'tricks
+tags: fluxbox, howto
 description: Правим /etc/sudoers, чтобы можно было выключать компьютер из меню
     Fluxbox без ввода пароля.
 ---

@@ -2,7 +2,7 @@
 title: TorrentsFolder.ru — убийца традиционных файлообменников
 published: 2010-04-08T05:04:00Z
 categories: 
-tags: review,tips'n'tricks,web
+tags: review
 description: Кратко о новом сервисе с большим, по моему мнению, будущим.
 ---
 

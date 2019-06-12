@@ -2,7 +2,7 @@
 title: "Сервисы: узелок на память"
 published: 2008-08-20T10:35:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux,tips'n'tricks, debian
 description: Скрипты из /etc/init.d/ может запускать не только initd!
 ---
 
