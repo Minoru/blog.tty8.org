@@ -27,7 +27,7 @@ postsRules = do
                   "templates/post.html"
                   (mconcat [ urlEncodedTitleCtx
                            , postCtx
-                           , tagsCtx tags
+                           , tagsField "tags" tags
                            , defaultContext
                            ])
             >>= loadAndApplyTemplate
@@ -57,9 +57,3 @@ urlEncodedTitleCtx =
         Nothing -> return ""
         Just t  -> return $ urlEncode t
     )
-
-tagsCtx :: Tags -> Context String
-tagsCtx tags =
-    tagsField "tags" tags
-    <> rootUrlCtx
-    <> defaultContext
