@@ -25,4 +25,4 @@ foreach my $line ( `git grep --no-line-number 'tags: ' -- '*.markdown'` ) {
   }
 }
 
-print join (', ', keys %tags), "\n";
+print join (', ', sort (keys %tags)), "\n";
