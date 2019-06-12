@@ -38,6 +38,26 @@ postsRules = do
         route   $ setExtension "html.gz"
         compile gzipFileCompiler
 
+    tagsRules tags $ \tag pattern -> do
+        route idRoute
+        compile $ do
+            posts <- recentFirst =<< loadAll pattern
+            yearsCtx <- makeYearsCtx posts
+
+            let ctx = constField "tag" tag
+                      <> yearsCtx
+                      <> rootUrlCtx
+                      <> defaultContext
+
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/archives.html" ctx
+                >>= loadAndApplyTemplate "templates/default.html" ctx
+                >>= relativizeUrls
+
+    tagsRules tags $ \_tag _pattern -> version "gzipped" $ do
+        route   $ setExtension "html.gz"
+        compile gzipFileCompiler
+
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =
   field

@@ -1,4 +1,9 @@
 <article class="service-page" id="archives">
+$if(tag)$
+<header id="post-header">
+    <h1>Posts tagged “$tag$”</h1>
+</header>
+$endif$
 $for(years)$
 <div class="archives-year-container">
     <span class="archives-year">$year$</span>
