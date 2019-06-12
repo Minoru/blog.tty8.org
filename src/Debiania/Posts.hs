@@ -6,9 +6,9 @@ module Debiania.Posts (
 
 import Data.List (intersperse, sort)
 import Data.Monoid ((<>))
-import Control.Monad (liftM)
+import Control.Monad (liftM, when)
 import Network.HTTP.Base (urlEncode)
-import Text.Blaze.Html                 (toHtml, toValue, (!))
+import Text.Blaze.Html (toHtml, toValue, (!))
 
 import qualified Text.Blaze.Html5            as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -25,6 +25,11 @@ postsRules = do
     match "posts/*" $ do
         route   $ setExtension "html"
         compile $ do
+          postId <- getUnderlying
+          postTags <- getTags postId
+          when (null postTags) $ do
+              error $ concat [toFilePath postId, " contains no tags, exiting"]
+
           debianiaCompiler
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate
