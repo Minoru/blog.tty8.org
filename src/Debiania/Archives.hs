@@ -74,7 +74,8 @@ archivesRules = do
                   "templates/default.html"
                   (  constField "title" "Archives"
                   <> constField "navbar-archives" "Yep"
-                  <> debianiaCtx)
+                  <> rootUrlCtx
+                  <> defaultContext)
             >>= relativizeUrls
 
     create ["posts.markdown"] $ version "gzipped" $ do

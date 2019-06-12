@@ -21,7 +21,8 @@ indexPageRules = do
           let ctx =    constField "title" "Home"
                     <> constField "navbar-home" "Yep"
                     <> listField "posts" postCtx (return posts)
-                    <> debianiaCtx
+                    <> rootUrlCtx
+                    <> defaultContext
 
           makeItem ""
             >>= loadAndApplyTemplate "templates/index.html" ctx

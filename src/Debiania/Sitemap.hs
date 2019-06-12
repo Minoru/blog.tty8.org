@@ -19,7 +19,8 @@ sitemapRules = do
        compile $ do
          posts <- recentFirst =<< loadAll ("posts/*" .&&. hasNoVersion)
          let sitemapCtx =    listField "posts" postCtx (return posts)
-                          <> debianiaCtx
+                          <> rootUrlCtx
+                          <> defaultContext
          makeItem ""
           >>= loadAndApplyTemplate "templates/sitemap.xml" sitemapCtx
 

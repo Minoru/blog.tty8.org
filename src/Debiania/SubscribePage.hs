@@ -13,13 +13,15 @@ import Debiania.Settings
 
 subscribePageRules :: Rules ()
 subscribePageRules = do
+    let ctx = rootUrlCtx <> defaultContext
+
     create ["subscribe.markdown"] $ do
         route   $ setExtension "html"
         compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate
                 "templates/default.html"
-                (debianiaCtx <> constField "navbar-subscribe" "Yep")
+                (ctx <> constField "navbar-subscribe" "Yep")
           >>= relativizeUrls
 
     create ["subscribe.markdown"] $ version "gzipped" $ do

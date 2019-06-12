@@ -13,13 +13,15 @@ import Debiania.Settings
 
 aboutPageRules :: Rules ()
 aboutPageRules = do
+    let ctx = rootUrlCtx <> defaultContext
+
     create ["about.markdown"] $ do
         route   $ setExtension "html"
         compile $ debianiaCompiler
-          >>= loadAndApplyTemplate "templates/about.html" debianiaCtx
+          >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate
                 "templates/default.html"
-                (debianiaCtx <> constField "navbar-about" "Yep")
+                (ctx <> constField "navbar-about" "Yep")
           >>= relativizeUrls
 
     create ["about.markdown"] $ version "gzipped" $ do

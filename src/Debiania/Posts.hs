@@ -29,7 +29,9 @@ postsRules = do
                            , postCtx
                            , tagsCtx tags
                            ])
-            >>= loadAndApplyTemplate "templates/default.html" debianiaCtx
+            >>= loadAndApplyTemplate
+                  "templates/default.html"
+                  (rootUrlCtx <> defaultContext)
             >>= relativizeUrls
 
     match "posts/*" $ version "gzipped" $ do
@@ -41,7 +43,8 @@ postCtx :: Context String
 postCtx =
        dateField "date" "%e %B %Y"
     <> dateField "datetime" "%Y-%m-%d"
-    <> debianiaCtx
+    <> rootUrlCtx
+    <> defaultContext
 
 urlEncodedTitleCtx :: Context String
 urlEncodedTitleCtx =
@@ -58,4 +61,5 @@ urlEncodedTitleCtx =
 tagsCtx :: Tags -> Context String
 tagsCtx tags =
     tagsField "tags" tags
-    <> debianiaCtx
+    <> rootUrlCtx
+    <> defaultContext
