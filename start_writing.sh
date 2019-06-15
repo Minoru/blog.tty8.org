@@ -25,6 +25,10 @@ tmux has-session -t debiania || (
         echo -n 'tags: ' && ./gather_tags
         echo    'enable-mathjax: true # delete if you do not need MathJax'
         echo    '---'
+        echo    ''
+        echo    '# What problem were I solving?'
+        echo    '# How did I arrive at this particular solution?'
+        echo    '# (Re-read http://frantic.im/blogpost-contexts if needed)'
     )`
     tmux new-session -d -s debiania "echo \"$text\" | $vim"
     tmux rename-window -t debiania:0 vim
