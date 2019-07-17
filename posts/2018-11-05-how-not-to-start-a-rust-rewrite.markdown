@@ -38,7 +38,7 @@ didn't really matter who calls whom. We could just as easily keep `main()` in
 C++, and have it immediately call into Rust to get all the same benefits. [A
 prod from \@upsuper][upsuper-prod] definitely helped here.
 
-I implemented that, and the only problem we've found since them is that we have
+I implemented that, and the only problem we've found since then is that we have
 to manually link dynamic libraries required by Rust. Since final linking is done
 by the C++ compiler, `rustc` simply doesn't get a chance to do the required
 linking itself. So now, we always link with `pthread` and `dl`. On OS X, we also
