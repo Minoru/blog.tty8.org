@@ -19,7 +19,7 @@ tags: icfpc, programming
 в детстве ждал зимних праздников.
 
 Поэтому буду очень краток; гораздо подробнее можете почитать в [отчёте
-ForNeVer][fvnever-report].
+ForNeVeR-а][fvnever-report].
 
 Codingteam представляли уже знакомые вам товарищи: Akon32, ForNeVeR, Hagane,
 portnov и я. Год нечётный, поэтому писали на Scala. Сперва испугались [условий
