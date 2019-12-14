@@ -26,7 +26,6 @@ tmux has-session -t debiania || (
         echo    'enable-mathjax: true # delete if you do not need MathJax'
         echo    '---'
         echo    ''
-        echo    '<!--'
         echo    '- What problem were I solving?'
         echo    '- How did I arrive at this particular solution?'
         echo    '(http://frantic.im/blogpost-contexts)'
@@ -47,7 +46,6 @@ tmux has-session -t debiania || (
         echo    '- uses lists and tables to simplify complex material'
         echo    '- uses no more than two or three subordinate levels'
         echo    '(https://www.plainlanguage.gov/resources/checklists/checklist/)'
-        echo    '-->'
     )`
     tmux new-session -d -s debiania "echo \"$text\" | $vim"
     tmux rename-window -t debiania:0 vim
