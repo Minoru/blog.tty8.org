@@ -3,7 +3,7 @@ title: New QObject::connect syntax isn’t as type-safe as I thought
 language: english
 description: All the type-checking is done by the C++ compiler, so implicit type
     conversion is still a thing with the new signal-slot syntax.
-tags: programming
+tags: programming, qt
 ---
 
 <!--
