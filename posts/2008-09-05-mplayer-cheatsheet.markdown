@@ -2,7 +2,7 @@
 title: Шпаргалка по Mplayer
 published: 2008-09-05T04:00:00Z
 categories: 
-tags: linux, tips'n'tricks
+tags: linux
 description: Перечень используемых мной команд GUI Mplayer-а.
 ---
 

@@ -2,7 +2,7 @@
 title: Lenny, Iceweasel и AdBlock+
 published: 2010-02-07T20:47:00Z
 categories: 
-tags: tips'n'tricks
+tags: debian
 description: Что-то сломалось, починил не разбираясь. Типичный студент.
 ---
 

@@ -6,7 +6,7 @@ description: I defined a struct within a class, and used it in one of its slots.
     the type—even though I already did. The problem turned out to be
     a (documented) limitation in Moc. The workaround is—spoiler alert!—to use
     fully-qualified type names in signals and slots.
-tags: programming, tips'n'tricks, qt
+tags: programming, qt
 ---
 
 [Worker objects][worker-objects] in Qt are used to offload lengthy operations

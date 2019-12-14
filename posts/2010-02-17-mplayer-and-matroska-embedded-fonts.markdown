@@ -2,7 +2,7 @@
 title: MPlayer и Matroska embedded fonts
 published: 2010-02-17T16:19:00Z
 categories: 
-tags: tips'n'tricks
+tags: linux
 description: Mplayer ожидает, что у шрифтов будет MIME-тип
     application/x-truetype-font или application/x-font, а mkvtoolnix использует
     application/x-ttf-font или application/octet-stream.

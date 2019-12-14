@@ -2,7 +2,7 @@
 title: Патч Advanced Copy для coreutils 8.5
 published: 2010-12-23T13:10:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux
 description: Добавляем прогресс-бар в cp.
 ---
 

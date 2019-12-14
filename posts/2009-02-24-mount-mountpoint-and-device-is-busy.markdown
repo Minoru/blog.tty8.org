@@ -2,7 +2,7 @@
 title: mount, точка монтирования и device is busy
 published: 2009-02-24T20:18:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux
 description: Если вы столкнулись с этой ошибкой, очень вероятно, что точка
     монтирования всё ещё открыта в каком-то из терминалов.
 ---

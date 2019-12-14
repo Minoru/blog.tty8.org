@@ -2,7 +2,7 @@
 title: «Мигающие» субтитры в MPlayer
 published: 2010-07-25T18:43:00Z
 categories: 
-tags: tips'n'tricks
+tags: linux
 description: Добавьте в опции -correct-pts.
 ---
 

@@ -2,7 +2,7 @@
 title: konqueror и страницы man/info
 published: 2008-12-02T10:56:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux
 description: Оказывается, в Konqueror можно читать маны и страницы info.
 ---
 

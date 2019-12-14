@@ -2,7 +2,7 @@
 title: BASH-скрипты и Ctrl+C
 published: 2010-01-19T11:20:00Z
 categories: 
-tags: linux,tips'n'tricks
+tags: linux
 description: Обрабатываем нажатие Ctrl+C.
 ---
 
