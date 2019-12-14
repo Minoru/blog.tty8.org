@@ -6,29 +6,6 @@ description: All the type-checking is done by the C++ compiler, so implicit type
 tags: programming, qt
 ---
 
-<!--
-- What problem were I solving?
-- How did I arrive at this particular solution?
-(http://frantic.im/blogpost-contexts)
-
-Plain Language checklist:
-- written for the average reader
-- has useful headings
-- uses “you” and other pronouns to speak to the reader
-- uses active voice
-- uses short sections and short sentences
-- uses the simplest tense possible—simple present is best
-- omits excess words
-- uses concrete, familiar words
-- places words carefully:
-   - avoids large gaps between the subject, the verb and the object
-   - puts exceptions last
-   - places modifiers correctly
-- uses lists and tables to simplify complex material
-- uses no more than two or three subordinate levels
-(https://www.plainlanguage.gov/resources/checklists/checklist/)
--->
-
 Qt 5 [introduced][new-syntax-wiki] a new syntax for `connect`; instead of this:
 
 ```c++
