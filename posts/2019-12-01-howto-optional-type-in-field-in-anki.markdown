@@ -8,7 +8,7 @@ tags: howto
 ---
 
 [Anki][anki] is a program that lets you quiz yourself periodically. It models
-the so-called [forgetting curve][forgetting-curve]: by remembering some fact,
+the so-called [forgetting curve][forgetting-curve]: by recalling some fact,
 you strengthen the memory of it. I use Anki to memorize English words and
 idioms, and I'm pretty sure I wouldn't have been able to express myself *this*
 freely if I didn't practice with the program.
@@ -19,11 +19,12 @@ side of the card and waits for you to recall the back. You then flip the card
 and check your answer. The appearance of each side can be controlled through
 *templates* and CSS styling.
 
-Most of the time, it's sufficient to have a single card with "question" field on
-the front and "answer" field on the back. But other times, it's not enough. For
-example, some of my cards require me to type-in the answer, manually, *e.g.* to
-ensure that I memorized the spelling. I also got a number of notes that turn
-into different sets of cards depending on what flags I specify in the note.
+Most of the time, it's sufficient to have a single card with a "question" field
+on the front and an "answer" field on the back. But other times, it's not
+enough. For example, some of my cards require me to type-in the answer,
+manually, *e.g.* to ensure that I memorized the spelling. I also got a number
+of notes that turn into different sets of cards depending on what flags
+I specify in the note.
 
 Now here's the problem: I have a deck (a collection of notes) with some random
 facts. For some of those, I'd like a simple question-answer card, but for
@@ -40,9 +41,9 @@ Anki doesn't generate cards with empty front side, so my first thought was:
 Steps two and three create mutually exclusive cards; Anki would generate one or
 the other, but not both. Unfortunately, the third step doesn't work: as of Anki
 2.1, [the docs say][cond-replacement-docs] that "negated expressions can not be
-used to control card generation". I can make Anki generate a card when the field
-is non-empty, but I can't prevent it from generating a card when the field is
-*empty*. Bummer.
+used to control card generation". I can make Anki generate a card when the
+field is non-empty, but I can't prevent it from generating a card when the
+field *is* empty. Bummer.
 
 After a bit more thinking, I realized that the same goal can be accomplished by
 changing the *back* side: it will show either the answer or an input field. The
