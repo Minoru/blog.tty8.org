@@ -37,9 +37,9 @@ lags on IRC, or the router will just clam up and require a hard reset. That only
 happened once in a while, so totally a first-world problem, but it was none the
 less frustrating.
 
-All of that made me purchase TP-LINK Archer C60, also known as AC1350. This
-device is a bit more expensive than the previous one, but it has a number of
-useful features to show for it:
+All of that made me purchase TP-LINK Archer C60, ~~also known as AC1350~~[^1].
+This device is a bit more expensive than the previous one, but it has a number
+of useful features to show for it:
 
 * more powerful transmitter, punching through the walls like it's nothing;
 * more antennas, letting it focus the transmission, and better "hear" the
@@ -73,6 +73,11 @@ sometimes get confused and require a reboot to come back to their senses.
 Use wired, folks, if at all possible. It's a bit more work than Wi-Fi, but if
 you aren't staying in that place for a single night, Ethernet is well worth the
 effort.
+
+[^1]: Update 11.02.2020: AC\<number> is not a model name, it's just [a
+  marketing
+  term](https://en.wikipedia.org/wiki/IEEE_802.11ac#Advertised_Speeds) for
+  throughput.
 
 [snoyberg-post]: https://www.snoyman.com/blog/2019/06/my-new-home-network-setup
     "My new home network setup — snoyman.com"
