@@ -31,6 +31,7 @@ tmux has-session -t debiania || (
         echo    '(http://frantic.im/blogpost-contexts)'
         echo    ''
         echo    'Plain Language checklist:'
+        echo    ''
         echo    '- written for the average reader'
         echo    '- has useful headings'
         echo    '- uses “you” and other pronouns to speak to the reader'
