@@ -109,6 +109,8 @@ starting a new one in Rust. I certainly am *not* stopping Newsboat rewrite
 because of this. The point of this tale is to better inform your decisions, so
 you're more prepared than I was.
 
+**Update 02.03.2020**: [Discussion on Mastodon][mastodon-discussion].
+
 [^1]: I do track security advisories, though.
     [cargo-audit](https://github.com/RustSec/cargo-audit) is a godsend.
 
@@ -137,3 +139,7 @@ you're more prepared than I was.
     https://github.com/newsboat/newsboat/issues/709#issuecomment-573411534
     "Comment in: Decide on schedule for bumping minimum supported Rust version ·
     Issue #709 · newsboat/newsboat — GitHub"
+
+[mastodon-discussion]:
+    https://functional.cafe/@minoru/103749814149049307
+    "@minoru on functional.cafe"
