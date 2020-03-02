@@ -33,9 +33,9 @@ Another consideration was point-release distros, like Debian stable. Once
 shipped, those will only receive security updates. It's inevitable that some
 Newsboat user will be running that, and will try to build the program with
 a two-year-old compiler. (I should know; we do receive questions on how to build
-Newsboat on some half-forgotten CentOS that's stuck with GCC 4.8).
+Newsboat on some half-forgotten CentOS that's stuck with GCC&nbsp;4.8).
 
-That's why I started out with the lowest version of Rust that worked (1.26.0),
+That's why I started with the lowest version of Rust that worked (1.26.0)
 and stuck with it for 1.5&nbsp;years. In my mind, the downsides of this decision
 were pretty clear and manageable:
 
@@ -46,7 +46,7 @@ were pretty clear and manageable:
     older crates e.g. due to soundness holes being patched. (If this statement
     doesn't make sense to you, read up on Cargo.lock. In a nutshell, every Rust
     application ships a list of known-good versions of its dependencies, and the
-    end users build with those.)
+    end-users build with those.)
 
 I think this worked out well for us. Apart from a few private discussions with
 people who didn't want Rust in the build chain *at all*, we haven't received any
@@ -59,10 +59,10 @@ feed-fetcher. We are still with Nom&nbsp;4, and probably lag on other updates as
 well (I don't even track them[^1] since we can't update). Fortunately, we haven't
 seen any breakage—yet.
 
-What we did see is warnings. Completely obvious in retrospect, but I somehow
+What we did see were warnings. Completely obvious in retrospect, but I somehow
 managed to miss that possibility. Rust&nbsp;1.33.0 deprecated a few functions on
 `str`, and ever since then, we've been looking at a screenful of warnings in all
-our builds. Recently, I got fed up with them, and decided to look at the
+our builds. Recently, I got fed up with them and decided to look at the
 compiler situation again.
 
 As it turns out, these days [most distros ship one of the three latest Rust
@@ -97,15 +97,15 @@ Rust was conceived as an industrial language, though, and industries generally
 want stability; thus I'm pretty sure the situation will improve over time. For
 now, I'm limiting Newsboat's exposure by going through with the "scheduled
 bumps" plan. It'll be properly announced at the end of March with
-2.19&nbsp;release. We're actually going to switch `master` branch to
+the 2.19&nbsp;release. We're actually going to switch `master` branch to
 Rust&nbsp;1.40 simultaneously with the release, so I really hope there won't be
-any negative feedback on this—otherwise we might have to undo some of the work
+any negative feedback on this—otherwise, we might have to undo some of the work
 done for&nbsp;2.20, as it'll depend on "new enough" compiler. (I'm saying that
 with such confidence because one of the outstanding PRs seem to require
 Nom&nbsp;5, which in turn requires Rust&nbsp;1.31+).
 
 I hope this won't dissuade anyone from porting their existing project to, or
-starting a new one in Rust. I certainly am *not* stopping Newsboat rewrite
+starting a new one in Rust. I certainly am *not* stopping the Newsboat rewrite
 because of this. The point of this tale is to better inform your decisions, so
 you're more prepared than I was.
 
