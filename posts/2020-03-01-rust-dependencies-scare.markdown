@@ -111,6 +111,8 @@ you're more prepared than I was.
 
 **Update 02.03.2020**: [Discussion on Mastodon][mastodon-discussion].
 
+**Update 03.03.2020**: [Discussion on Lobsters][lobsters-discussion].
+
 [^1]: I do track security advisories, though.
     [cargo-audit](https://github.com/RustSec/cargo-audit) is a godsend.
 
@@ -143,3 +145,7 @@ you're more prepared than I was.
 [mastodon-discussion]:
     https://functional.cafe/@minoru/103749814149049307
     "@minoru on functional.cafe"
+
+[lobsters-discussion]:
+    https://lobste.rs/s/zcsveo/rust_dependencies_scare
+    "Rust dependencies scare — Lobsters"
