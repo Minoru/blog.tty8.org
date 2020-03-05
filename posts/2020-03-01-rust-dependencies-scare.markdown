@@ -113,6 +113,31 @@ you're more prepared than I was.
 
 **Update 03.03.2020**: [Discussion on Lobsters][lobsters-discussion].
 
+**Update 05.03.2020**: I have to admit that the discussion on Lobsters sewn
+a seed of doubt in me, but I'm not ready to expand on that right now. Suffice
+it to say that the Rust project is aware of the issue, and have been pondering
+it for a long time (kudos to BurntSushi for all the links):
+
+1. Aaron Turon provides [an overview of this and related
+   problems][aturon-version-selection];
+
+2. here's [a Rust LTS proposal][rust-lts-rfc], which was ultimately postponed
+   (with [an extremely articulate summary][rust-lts-rfc-summary]);
+
+3. here's [a tracking issue for "minimum supported Rust version" (MSRV) field
+   to Cargo.toml][rust-msrv-rfc]. That field won't solve the problem
+   I describe, but it will alleviate some of the maintenance pain and will
+   provide a nice stepping stone to true LTS;
+
+4. finally, here's [a Red Hat announcement about Rust in RHEL][rust-rhel].
+   Instead of freezing some Rust version in time for ten years, Red Hat opted
+   to update it every three months.
+
+Also worth noting is a curious interaction between Rust updates and semantic
+versioning. If a new version of some software requires a newer compiler, should
+the said software bump its major version? [Opinions
+differ][bumping-major-on-msrv-change].
+
 [^1]: I do track security advisories, though.
     [cargo-audit](https://github.com/RustSec/cargo-audit) is a godsend.
 
@@ -149,3 +174,31 @@ you're more prepared than I was.
 [lobsters-discussion]:
     https://lobste.rs/s/zcsveo/rust_dependencies_scare
     "Rust dependencies scare — Lobsters"
+
+[aturon-version-selection]:
+    https://aturon.github.io/tech/2018/07/25/cargo-version-selection/
+    "Version selection in Cargo · Aaron Turon"
+
+[rust-lts-rfc]:
+    https://github.com/rust-lang/rfcs/pull/2483
+    "Add new channels for long term support (LTS) releases by withoutboats ·
+    Pull Request #2483 · rust-lang/rfcs — GitHub"
+
+[rust-lts-rfc-summary]:
+    https://github.com/rust-lang/rfcs/pull/2483#issuecomment-404630877
+    "Add new channels for long term support (LTS) releases by withoutboats ·
+    Pull Request #2483 · rust-lang/rfcs — GitHub"
+
+[rust-msrv-rfc]:
+    https://github.com/rust-lang/rust/issues/65262
+    "Tracking issue for RFC 2495, "Minimum Supported Rust Version" · Issue
+    #65262 · rust-lang/rust — GitHub"
+
+[rust-rhel]:
+    https://developers.redhat.com/blog/2018/11/20/support-lifecycle-for-clang-llvm-go-and-rust/
+    "Support Lifecycle for Clang/LLVM, Go, and Rust — Red Hat Developer"
+
+[bumping-major-on-msrv-change]:
+    https://github.com/rust-lang/api-guidelines/issues/123
+    "Add guidance about bumping the minimum required `rustc` version · Issue
+    #123 · rust-lang/api-guidelines — GitHub"
