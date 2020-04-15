@@ -84,7 +84,7 @@ QObject::connect: Cannot queue arguments of type 'Result'
 Uh-oh! What's going on? Clearly I *did* register my type, it's right there in
 `Worker`'s constructor…
 
-$break$
+<hr />
 
 As is usual with thorniest of Qt problems, this one is related to Moc—the
 program that implements signals and slots. It processes headers with `Q_OBJECT`

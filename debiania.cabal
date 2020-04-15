@@ -30,7 +30,6 @@ Executable debiania
     GHC-Options: -threaded -rtsopts -with-rtsopts=-N -Wall -Werror
     Build-Depends: base == 4.*
                  , HTTP == 4000.*
-                 , MissingH
                  , aeson
                  , blaze-html
                  , bytestring

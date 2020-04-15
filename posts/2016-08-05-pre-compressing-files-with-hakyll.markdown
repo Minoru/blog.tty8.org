@@ -33,7 +33,7 @@ too impressive. (But do run your own benchmarks.)
 Overall, this isn't the top optimization there is; yet, it's quite cheap and
 accessible, so why not implement it?
 
-$break$
+<hr />
 
 Let's get our hands dirty, then. How shall we go about coding this? Well, we
 might start with recognizing that we want each input file to produce two
@@ -114,7 +114,7 @@ match "images/*.svg" $ version "gzipped" $ do
 
 This code circumvents the problem by reading the file straight from the disk.
 
-$break$
+<hr />
 
 With versions sorted out, it's time to turn our attention to implementing
 `gzip`. Luckily, this part is much simpler: Hakyll already provides a means for
@@ -139,7 +139,7 @@ compiled into HTML and a bunch of SVG files that are just copied over, you'll
 have to write two rules. If you find a way to scrap that boilerplate, please let
 me know; my email is at the end of this post.
 
-$break$
+<hr />
 
 Whoa, you got through that meandering mess of an article! That makes two of us.
 As a reward, I'm going to tell you how to use [Zopfli][zopfli] to gzip your
