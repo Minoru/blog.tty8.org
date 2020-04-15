@@ -4,8 +4,6 @@ module Debiania.IndexPage (
     indexPageRules
 ) where
 
-import Data.Monoid ((<>))
-
 import Hakyll
 
 import Debiania.Compilers

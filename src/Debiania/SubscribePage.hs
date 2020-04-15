@@ -4,8 +4,6 @@ module Debiania.SubscribePage (
     subscribePageRules
 ) where
 
-import Data.Monoid ((<>))
-
 import Hakyll
 
 import Debiania.Compilers

@@ -6,7 +6,6 @@ module Debiania.Compilers (
   , debianiaCompiler
 ) where
 
-import Data.Monoid ((<>))
 import Data.String.Utils (split)
 import Text.Pandoc.Options (WriterOptions(writerHTMLMathMethod),
     HTMLMathMethod(MathJax))

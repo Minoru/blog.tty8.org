@@ -8,7 +8,6 @@ module Debiania.Context (
 
 import Control.Monad (forM)
 import Data.List (sort)
-import Data.Monoid ((<>))
 import Data.Time.Format (defaultTimeLocale, formatTime)
 
 import qualified Data.HashMap.Strict as M

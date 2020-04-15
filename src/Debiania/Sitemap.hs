@@ -4,8 +4,6 @@ module Debiania.Sitemap (
     sitemapRules
 ) where
 
-import Data.Monoid ((<>))
-
 import Hakyll
 
 import Debiania.Compilers

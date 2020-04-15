@@ -4,8 +4,6 @@ module Debiania.AboutPage (
     aboutPageRules
 ) where
 
-import Data.Monoid ((<>))
-
 import Hakyll
 
 import Debiania.Compilers

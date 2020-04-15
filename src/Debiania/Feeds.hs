@@ -6,7 +6,6 @@ module Debiania.Feeds (
 
 import Control.Monad (filterM)
 import Data.List (intersect)
-import Data.Monoid ((<>))
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
 
 import qualified Data.Text as T

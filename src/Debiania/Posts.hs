@@ -5,7 +5,6 @@ module Debiania.Posts (
 ) where
 
 import Data.List (intersperse, sort)
-import Data.Monoid ((<>))
 import Control.Monad (liftM, when)
 import Network.HTTP.Base (urlEncode)
 import Text.Blaze.Html (toHtml, toValue, (!))
