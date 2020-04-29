@@ -10,7 +10,7 @@ maintaining an RSS reader called [Newsboat][website]. It's written in C++, and
 as you might've already guessed, we're porting it to Rust now. [Kind folks on
 Reddit][reddit-comment] encouraged me to blog about it, so here goes.
 
-In this port, I'll be using "we" quite a bit, since a lion's share of the work
+In this post, I'll be using "we" quite a bit, since a lion's share of the work
 is done not by me, but by a number of [awesome contributors][contributors].
 Thank you for all the help, people!
 
