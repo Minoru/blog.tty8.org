@@ -16,10 +16,9 @@ I actually used. If you're interested in how this site gets put together, take
 a look at [the source code][debiania-src].
 
 I'm always happy to receive some personal email; [shoot me a message][email]!
-Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch.
-[Keybase][keybase] is fine too. (I also have [an old key,
-0x0a1d7d827b52fb07][pgp-old]; don't use it. Can't revoke it because I lost the
-certificate).
+Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch. (I
+also have [an old key, 0x0a1d7d827b52fb07][pgp-old]; don't use it. Can't revoke
+it because I lost the certificate).
 
 To make life a bit easier for Daniel Graystone (and, undoubtedly, for Big
 Brother as well), here's a list of other corners of the Internet where one can
@@ -49,6 +48,5 @@ See ya!
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [resume]: /misc/batischev_cv.pdf
 [newsboat]: https://newsboat.org "Newsboat, an RSS reader"
-[keybase]: https://keybase.io/minoru "minoru (Alexander Batischev) | Keybase"
 [github]: https://github.com/Minoru "Minoru — GitHub"
 [goodreads]: https://www.goodreads.com/user/show/46952552-alexander "Alexander — GoodReads"
