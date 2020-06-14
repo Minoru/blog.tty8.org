@@ -1,7 +1,15 @@
 ---
 title: Teach yourself commit hygiene with git-bisect
 language: english
-description: # No double quotes; end with a period
+description: "It seems to me that people who need to learn #Git commit hygiene
+    the most are the least likely to do that: they're Git novices and probably
+    produce more than they consume. That'll naturally change as they learn
+    about Git and start relying on it, but until then, they'll create sub-par
+    commits. To change that, I suggest showing them the other side right away.
+    Let people read Git history and see how different commit styles help or
+    break their ability to understand the changes. To make it slightly more
+    exciting, hide the exercise behind a veil of bug hunting (teaching
+    git-bisect in the process!)"
 tags: howto, git
 ---
 
