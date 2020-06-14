@@ -1,6 +1,6 @@
 ---
 title: Порекламирую-ка git-annex
-tags: linux
+tags: linux, git
 language: russian
 description: Краткое описание надройки над Git, позволяющей эффективно
     менеджить большие файлы (например, фотоколлекцию).
