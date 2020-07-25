@@ -15,7 +15,7 @@ tags: icfpc, programming
 2. [день первый][icfpc-2020-part-2];
 3. [день второй][icfpc-2020-part-3];
 4. [день третий][icfpc-2020-part-4];
-5. день четвёртый (будет опубликован позже);
+5. [день четвёртый][icfpc-2020-part-5];
 6. ретроспектива (будет опубликован позже).
 
 # Погодите, а что такое ICFPC?
@@ -134,3 +134,6 @@ Functional Programming, ICFP). Вопреки названию, программ
 
 [icfpc-2020-part-4]: /posts/2020-07-24-icfpc-2020-part-4.html
     "ICFPC 2020: день третий — Debiania"
+
+[icfpc-2020-part-5]: /posts/2020-07-25-icfpc-2020-part-5.html
+    "ICFPC 2020: день четвёртый — Debiania"
