@@ -12,7 +12,7 @@ tags: icfpc, programming
 3. [день второй][icfpc-2020-part-3];
 4. [день третий][icfpc-2020-part-4];
 5. [день четвёртый][icfpc-2020-part-5];
-6. ретроспектива (будет опубликован позже).
+6. [итоги и выводы][icfpc-2020-part-6].
 
 <hr />
 
@@ -194,6 +194,9 @@ pink-snow берётся думать, как поверх ещё не допи�
 
 [icfpc-2020-part-5]: /posts/2020-07-25-icfpc-2020-part-5.html
     "ICFPC 2020: день четвёртый — Debiania"
+
+[icfpc-2020-part-6]: /posts/2020-07-26-icfpc-2020-part-6.html
+    "ICFPC 2020: итоги и выводы — Debiania"
 
 [codingteam]: https://codingteam.org.ru
     "Codingteam is an open community of engineers and programmers"

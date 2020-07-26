@@ -13,7 +13,7 @@ enable-mathjax: true
 3. [день второй][icfpc-2020-part-3];
 4. [день третий][icfpc-2020-part-4];
 5. день четвёртый (это то, что вы сейчас читаете);
-6. ретроспектива (будет опубликован позже).
+6. [итоги и выводы][icfpc-2020-part-6].
 
 <hr/>
 
@@ -247,6 +247,9 @@ cherry-pick исправления от IngvarJackal и пушу. Секунду
 
 [icfpc-2020-part-4]: /posts/2020-07-24-icfpc-2020-part-4.html
     "ICFPC 2020: день третий — Debiania"
+
+[icfpc-2020-part-6]: /posts/2020-07-26-icfpc-2020-part-6.html
+    "ICFPC 2020: итоги и выводы — Debiania"
 
 [enemy-swarm]: https://icfpcontest2020.github.io/#/visualize?game=dd61d878-c3b5-4e74-8f88-38d8fda7813e
 
