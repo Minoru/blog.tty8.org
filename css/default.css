@@ -15,9 +15,14 @@ html {
 body, blockquote {
     margin: 0 auto;
     font-family: "DejaVu Serif", "Bitstream Vera Serif", Constantia, Georgia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, serif;
+    font-variant-numeric: lining-nums; /* #41 */
     /* Using unitless value so that line-height can be re-calculated when
      * font-size changes inside blockquotes and stuff. */
     line-height: 1.5;
+}
+
+::marker {
+    font-variant-numeric: lining-nums; /* #41 */
 }
 
 a {
