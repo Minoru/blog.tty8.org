@@ -39,8 +39,11 @@ table {
     margin-bottom: 1.2rem;
 }
 
-ol > li:last-child > *,
-ul > li:last-child > * {
+/* Remove bottom margin from the last element of the last <li> in the list.
+ * Lists already have appropriate margins set, so adding more just moves the
+ * next paragraph further down, which looks bad. */
+ol > li:last-child > :last-child,
+ul > li:last-child > :last-child {
     margin-bottom: 0;
 }
 
