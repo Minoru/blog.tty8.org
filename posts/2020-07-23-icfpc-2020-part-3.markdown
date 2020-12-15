@@ -119,8 +119,8 @@ ForNeVeR тем временем вёл неравный бой с «вычис�
 
 <div class="center">
 <img src="/images/icfpc-2020-game-galaxy.png"
-    width="2184px"
-    height="1841px"
+    width="2184px" height="1841px"
+    loading="lazy"
     class="bleed"
     alt="Изображение галактики с пометками различных рас" />
 </div>
@@ -185,8 +185,8 @@ Akon32 обращает наше внимание на лидерборд, и м
 
 <div class="center">
 <img src="/images/icfpc-2020-we-are-number-one.png"
-    width="1215px"
-    height="394px"
+    width="1215px" height="394px"
+    loading="lazy"
     class="bleed"
     alt="Codingteam на первом месте leaderboard-а" />
 </div>
@@ -198,8 +198,8 @@ Akon32 обращает наше внимание на лидерборд, и м
 
 <div class="center">
 <img src="/images/icfpc-2020-oh-irony.jpg"
-    width="1215px"
-    height="394px"
+    width="1215px" height="394px"
+    loading="lazy"
     class="bleed"
     alt="Гарольд, скрывающий боль, рад за нас" />
 </div>

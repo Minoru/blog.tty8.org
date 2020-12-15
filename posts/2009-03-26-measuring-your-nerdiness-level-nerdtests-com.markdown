@@ -16,6 +16,7 @@ description: Опять результаты забавных Интернет-�
 <a href="http://www.nerdtests.com/ft_nq.php">
 <img src="/images/nerdtests-result.gif"
     width="105px" height="105px"
+    loading="lazy"
     alt="I am nerdier than 88% of all people. Are you a nerd? Click here to take the Nerd Test, get nerdy images and jokes, and write on the nerd forum!"
     class="bleed" />
 </a>

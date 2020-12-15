@@ -141,6 +141,7 @@ Programming Contest. Не стал исключением и 2018-й.
 
 <div class="center">
 <img src="/images/icfpc-2018-fr104.jpg"
+    loading="lazy"
     alt="Преобразование корабля класса Constitution в Galaxy"
     class="bleed" />
 </div>
@@ -208,6 +209,7 @@ Akon32 и ForNeVeR трудились над своими продвинутым
 
 <div class="center">
 <img src="/images/icfpc-2018-is-it-a-tank.jpg"
+    loading="lazy"
     alt="Вроде, танк"
     class="bleed" />
 </div>
@@ -216,6 +218,7 @@ Akon32 и ForNeVeR трудились над своими продвинутым
 
 <div class="center">
 <img src="/images/icfpc-2018-crosstie-pile.jpg"
+    loading="lazy"
     alt="А, нет, это шпалы так лежат просто"
     class="bleed" />
 </div>
@@ -319,6 +322,7 @@ Akon32 и ForNeVeR трудились над своими продвинутым
 
 <div class="center">
 <img src="/images/icfpc-2018-codingteam-placing.svg"
+    loading="lazy"
     alt="Положение codingteam в рейтинговой таблице"
     class="bleed" />
 </div>

@@ -26,6 +26,7 @@ description: Краткое описание надройки над Git, поз
 <a href="/images/git-annex-assistant-joeyh-screenshot.png">
 <img src="/images/git-annex-assistant-joeyh-screenshot-thumbnail.jpg"
     width="400px" height="234px"
+    loading="lazy"
     alt="Git-annex web UI"
     class="bleed" />
 </a>

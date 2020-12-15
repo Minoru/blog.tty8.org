@@ -18,6 +18,7 @@ description: Пересказ для тех, кому лень читать сп
 <a href="/images/vim-windows-1.png">
 <img src="/images/vim-windows-1-thumbnail.png"
     width="320px" height="255px"
+    loading="lazy"
     alt="vim с несколькими окнами"
     class="bleed" />
 </a>
@@ -37,6 +38,7 @@ vim -O attr.c open.c sync.c
 <a href="/images/vim-windows-2.png">
 <img src="/images/vim-windows-2-thumbnail.png"
     width="320px" height="255px"
+    loading="lazy"
     alt="Результат выполнения vim -O attr.c open.c sync.c"
     class="bleed" />
 </a>
@@ -67,6 +69,7 @@ h j l
 <a href="/images/vim-windows-3.png">
 <img src="/images/vim-windows-3-thumbnail.png"
   width="320px" height="255px"
+    loading="lazy"
   alt="vim -d pk.new pk.old"
   class="bleed" />
 </a>

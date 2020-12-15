@@ -42,6 +42,7 @@ dtach -a $HOME/rtorrent
 <div class="center">
 <img src="/images/screen-mutt.png"
     width="724px" height="412px"
+    loading="lazy"
     alt="Mutt inside Screen"
     class="bleed" />
 </div>
@@ -85,6 +86,7 @@ screen -ls
 <div class="center">
 <img src="/images/screen-list-of-windows.png"
     width="724px" height="412px"
+    loading="lazy"
     alt="Screen: list of windows"
     class="bleed" />
 </div>
@@ -98,6 +100,7 @@ screen -ls
 <div class="center">
 <img src="/images/tmux-mutt.png"
     width="724px" height="412px"
+    loading="lazy"
     alt="Mutt inside Tmux"
     class="bleed" />
 </div>

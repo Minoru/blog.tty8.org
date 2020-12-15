@@ -59,6 +59,7 @@ get used to it in Chromium, and now it plagues my favourite browser as well:
     srcset="/images/vomnibar-600px.png 1x,
             /images/vomnibar-960px.png 1.5x,
             /images/vomnibar-1920px.png 2x"
+    loading="lazy"
     alt="Vimium's “vomnibar”"
     class="bleed" />
 </div>
@@ -82,6 +83,7 @@ What makes Saka Key stand out is its settings dialog:
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/saka-key-settings-600px.png 1x,
             /images/saka-key-settings-754px.png 1.5x"
+    loading="lazy"
     alt="Saka Key settings"
     class="bleed" />
 </div>
@@ -104,6 +106,7 @@ the user choose:
 
 <div class="center">
 <img src="/images/saka-key-input-fields-hints-460px.png"
+    loading="lazy"
     alt="Saka Key input field hints"
     class="bleed" />
 </div>

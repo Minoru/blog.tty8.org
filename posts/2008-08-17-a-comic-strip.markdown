@@ -19,6 +19,7 @@ description: Перевод XKCD 456.
 <div class="center">
 <img src="/images/cautionary-translated-ru.png"
     width="665px" height="277px"
+    loading="lazy"
     class="bleed" />
 </div>
 

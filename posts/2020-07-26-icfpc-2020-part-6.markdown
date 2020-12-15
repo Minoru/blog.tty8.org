@@ -128,8 +128,8 @@ tags: icfpc, programming
 
 <div class="center">
 <img src="/images/do-or-do-not.jpg"
-    width="980px"
-    height="490px"
+    width="980px" height="490px"
+    loading="lazy"
     class="bleed"
     alt="Do or do not. There is no try. — Yoda («Звёздные войны»)" />
 </div>

@@ -11,6 +11,7 @@ description: Отчёт о том, как ведёт себя Wheezy на ноу
 <div class="center">
 <img src="/images/stupid_arrow_keys_design_ASUS_P52F-380.jpg"
     width="588px" height="400px"
+    loading="lazy"
     alt="Глупое расположение стрелочек на Asus P52F-380"
     class="bleed" />
 </div>
@@ -20,6 +21,7 @@ description: Отчёт о том, как ведёт себя Wheezy на ноу
 <div class="center">
 <img src="/images/arrow_keys_design_ASUS_EeePC_900HA.jpg"
     width="481px" height="400px"
+    loading="lazy"
     alt="Расположение стрелочек на Asus EeePC-900HA"
     class="bleed" />
 </div>

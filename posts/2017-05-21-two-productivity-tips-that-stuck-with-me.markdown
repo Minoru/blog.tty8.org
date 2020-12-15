@@ -27,6 +27,7 @@ captured with a single image:
             /images/the_circle_system_redux-1538px.jpg 2x,
             /images/the_circle_system_redux-2307px.jpg 3x,
             /images/the_circle_system_redux-3395px.jpg 4x"
+    loading="lazy"
     alt="Summary of The Circle system"
     class="bleed" />
 </div>
@@ -49,6 +50,7 @@ doing the work. On days like that, I look at this graph:
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/don-t-break-the-chain-anki-769px.png 1x,
             /images/don-t-break-the-chain-anki-1216px.png 2x"
+    loading="lazy"
     alt="My Anki review graph for the last 30 days"
     class="bleed" />
 </div>
@@ -70,6 +72,7 @@ which adds an image like this:
 
 <div class="center">
 <img src="/images/anki-heatmap.png"
+    loading="lazy"
     alt="My Anki heatmap for 2017"
     class="bleed" />
 </div>

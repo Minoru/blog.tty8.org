@@ -22,6 +22,7 @@ description: Переход на механическую клавиатуру �
 <div class="center">
 <img src="/images/razer_blackwidow_tournament_edition_2013.png"
     width="450px" height="264px"
+    loading="lazy"
     alt="Razer BlackWidow Torunament Edition 2013"
     class="bleed" />
 </div>

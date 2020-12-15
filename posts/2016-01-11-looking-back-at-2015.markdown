@@ -14,7 +14,7 @@ I strongly encourage you to check it out. Мои русскоязычные чи
 Let's start with new software.
 
 <img src="/images/funtoo_logo.png" width="147px" height="95px"
-     style="float: right; padding: 1em 0 0 0;" />
+     loading="lazy" style="float: right; padding: 1em 0 0 0;" />
 The first thing I want to mention is [Funtoo][funtoo], a Linux distro based off
 Gentoo. That's right: I'm not a Debian user anymore. Well, at heart I am, but my
 laptops are running Funtoo now, and I keep FreeBSD installation on my VPS.
@@ -30,7 +30,7 @@ return for less administration stress—but, at least for now, that's the best
 option I have.
 
 <img src="/images/plantuml-logo.png" width="116px" height="112px"
-     style="float: left; padding: 0 1em 0 0;" />
+     loading="lazy" style="float: left; padding: 0 1em 0 0;" />
 I received my Master's degree in Computer Science this past year. While
 preparing my thesis, I had to create a dozen of UML diagrams. Luckily, we had no
 requirements regarding the software to use, so I employed a nice front-end to
@@ -42,7 +42,7 @@ A nice set of [syntax files for Vim][plantuml-vim] is just the icing on the
 cake. Enjoy!
 
 <img src="/images/vim-plug-logo.png" width="200px" height="50px"
-     style="float: right; padding: 1em 0 0 0;" />
+     loading="lazy" style="float: right; padding: 1em 0 0 0;" />
 I'm not a big fan of Vim plugins, but I do have a few. I've used to use
 Pathogen, but it's more like a *loop running `:source`*, not a real *manager*.
 [Vim-Plug][vim-plug], on the other hand, is able to pull from GitHub repos,

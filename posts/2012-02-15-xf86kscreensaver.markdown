@@ -11,6 +11,7 @@ description: Учим Linux корректно обрабатывать одну
 <div class="center">
 <img src="/images/asus-p52f-so003x.jpg"
     width="400px" height="94px"
+    loading="lazy"
     alt="Git-annex web UI"
     class="bleed" />
 </div>

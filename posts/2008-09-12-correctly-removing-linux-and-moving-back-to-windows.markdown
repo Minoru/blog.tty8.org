@@ -15,6 +15,7 @@ description: Удаляем разделы и избавляемся от GRUB.
 2. при появлении экрана установщика жмём <b>F10</b> или <b>R</b> — появится консоль восстановления; <div class="center">
 <img src="/images/windows-setup.png"
     width="724px" height="400px"
+    loading="lazy"
     alt="Установка Windows"
     class="bleed" />
 <p>Так выглядит экран установщика</p>

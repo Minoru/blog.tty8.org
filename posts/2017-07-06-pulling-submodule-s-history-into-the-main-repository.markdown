@@ -34,6 +34,7 @@ Let's visualize our repo and its submodule like this:
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/submerge-setup-629px.png 1x,
             /images/submerge-setup.png 1.5x"
+    loading="lazy"
     alt="A Git repository with its submodule"
     class="bleed" />
 </div>
@@ -51,6 +52,7 @@ like this:
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/submerge-traditional-629px.png 1x,
             /images/submerge-traditional.png 1.6x"
+    loading="lazy"
     alt="A Git repository with submodule's history merged into master branch"
     class="bleed" />
 </div>
@@ -103,6 +105,7 @@ Here's what we want to get:
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/submerge-unto-itself-629px.png 1x,
             /images/submerge-unto-itself.png 1.6x"
+    loading="lazy"
     alt="A repository that includes itself as a submodule"
     class="bleed" />
 </div>
@@ -180,6 +183,7 @@ history look to you?
     sizes="(min-width: 769px) 35rem, 100vw"
     srcset="/images/submerge-git-submerge-629px.png 1x,
             /images/submerge-git-submerge.png 1.6x"
+    loading="lazy"
     alt="git-submerge history example"
     class="bleed" />
 </div>

@@ -52,6 +52,7 @@ Ruby; опрос об эквивалентности двух функций; п
 <div class="center">
 <img src="/images/icfpc-2016-problem-illustration-1.svg"
     width="489px" height="562px"
+    loading="lazy"
     alt="Силуэт и скелет задания"
     class="bleed" />
 </div>
@@ -134,6 +135,7 @@ portnov][report-portnov]. Grouzen отчёта так и не написал :(
 <div class="center">
 <img src="/images/icfpc-2016-problem-illustration-2.svg"
     width="532px" height="346px"
+    loading="lazy"
     alt="Сворачивание по нескольким рёбрам одновременно"
     class="bleed" />
 </div>
@@ -203,6 +205,7 @@ clipper-а, я допёр только при написании отчёта =\
 <div class="center">
 <img src="/images/icfpc-2016-problem-illustration-3.svg"
     width="659px" height="325px"
+    loading="lazy"
     alt="«Висящие в воздухе» рёбра скелета"
     class="bleed" />
 </div>
@@ -241,6 +244,7 @@ clipper-а, я допёр только при написании отчёта =\
 <div class="center">
 <img src="/images/icfpc-2016-problem-illustration-4.svg"
     width="399px" height="309px"
+    loading="lazy"
     alt="Задача с журавликом"
     class="bleed" />
 </div>
@@ -278,6 +282,7 @@ clipper-а, я допёр только при написании отчёта =\
 <div class="center">
 <img src="/images/icfpc-2016-problem-illustration-6.svg"
     width="521px" height="211px"
+    loading="lazy"
     alt="Пытаемся отличить две очень похожих точки"
     class="bleed" />
 </div>
@@ -322,6 +327,7 @@ clipper-а, я допёр только при написании отчёта =\
 
 <div class="center">
 <img src="/images/origami-crane-the-choice-of-discriminating-hackers.jpg"
+    loading="lazy"
     alt="Origami crane: the choice of discriminating hackers"
     class="bleed" />
 </div>

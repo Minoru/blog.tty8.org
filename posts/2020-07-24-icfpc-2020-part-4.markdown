@@ -34,8 +34,8 @@ unclechu тем временем закончил работу над демод
 
 <div class="center">
 <img src="/images/icfpc-2020-first-image.png"
-    width="285px"
-    height="232px"
+    width="285px" height="232px"
+    loading="lazy"
     alt="Первый результат `galaxy`: красная иконка галактики в центре, число
     1 в левом верхнем углу" />
 </div>
@@ -48,8 +48,8 @@ unclechu тем временем закончил работу над демод
 
 <div class="center">
 <img src="/images/icfpc-2020-our-galaxy.png"
-    width="1048px"
-    height="883px"
+    width="1048px" height="883px"
+    loading="lazy"
     class="bleed"
     alt="Галактика с обозначениями рас" />
 </div>

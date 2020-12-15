@@ -58,8 +58,8 @@ Python-код вместо честного `cons` использовал вст
 
 <div class="center">
 <img src="/images/icfpc-2020-cannon.jpg"
-    width="640px"
-    height="480px"
+    width="640px" height="480px"
+    loading="lazy"
     alt="Герой мультфильма «Остров сокровищ», использующий пушку как пулемёт" />
 </div>
 
@@ -145,8 +145,8 @@ Python-код вместо честного `cons` использовал вст
 
 <div class="center">
 <img src="/images/icfpc-2020-oh-irony-2.jpg"
-    width="1215px"
-    height="394px"
+    width="1215px" height="394px"
+    loading="lazy"
     class="bleed"
     alt="Гарольд, скрывающий боль, опять за нас рад" />
 </div>

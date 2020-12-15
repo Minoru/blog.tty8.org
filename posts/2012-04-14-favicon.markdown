@@ -12,6 +12,7 @@ logo?
 <div class="center">
 <img src="/images/evil-face-within-debian-logo.png"
     width="450" height="559"
+    loading="lazy"
     alt="Evil face within Debian logo"
     class="bleed" />
 </div>

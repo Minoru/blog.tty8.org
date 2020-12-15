@@ -57,6 +57,7 @@ $\sum$, $\prod$, $\forall$ и $n!$ — можете смело записыва
 <div class="center">
 <img src="/images/introductory-game-theory-courses-stanford-vs-hse-schedules.svg"
     width="402px" height="329px"
+    loading="lazy"
     alt="Сравнение расписаний курсов Стэнфорда и ВШЭ"
     class="bleed" />
 </div>

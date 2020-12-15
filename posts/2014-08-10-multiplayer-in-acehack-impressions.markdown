@@ -52,6 +52,7 @@ title="Dungeon level, уровень подземелья">dlvl</span> 1 — и
 <div class="center">
 <img src="/images/acehack-multiplayer.png"
     width="640px" height="388px"
+    loading="lazy"
     alt="Acehack Multiplayer screenshot"
     class="bleed" />
 </div>

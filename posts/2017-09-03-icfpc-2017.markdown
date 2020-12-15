@@ -16,6 +16,7 @@ tags: programming, icfpc
 
 <div class="center">
 <img src="/images/icfpc-2017-map-oxford.png"
+    loading="lazy"
     alt="Карта «Oxford» с ICFPC-2017"
     class="bleed" />
 </div>

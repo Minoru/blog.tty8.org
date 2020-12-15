@@ -18,6 +18,7 @@ Punchcard — это декартова плоскость, где по одн�
 <div class="center">
 <img src="/images/punchcard-ghc.png"
     width="600px" height="225px"
+    loading="lazy"
     alt="GHC punchcard"
     class="bleed" />
 </div>
@@ -29,6 +30,7 @@ GHC является академическим проектом, и пилят 
 <div class="center">
 <img src="/images/punchcard-postgres.png"
     width="600px" height="225px"
+    loading="lazy"
     alt="GHC punchcard"
     class="bleed" />
 </div>
@@ -42,6 +44,7 @@ GHC является академическим проектом, и пилят 
 <div class="center">
 <img src="/images/punchcard-linux.png"
     width="600px" height="225px"
+    loading="lazy"
     alt="GHC punchcard"
     class="bleed" />
 </div>
@@ -53,6 +56,7 @@ GHC является академическим проектом, и пилят 
 <div class="center">
 <img src="/images/punchcard-gcc.png"
     width="600px" height="225px"
+    loading="lazy"
     alt="GHC punchcard"
     class="bleed" />
 </div>
@@ -64,6 +68,7 @@ GHC является академическим проектом, и пилят 
 <div class="center">
 <img src="/images/punchcard-clojure.png"
     width="600px" height="225px"
+    loading="lazy"
     alt="GHC punchcard"
     class="bleed" />
 </div>

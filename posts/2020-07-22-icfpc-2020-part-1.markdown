@@ -73,8 +73,8 @@ Functional Programming, ICFP). Вопреки названию, программ
 
 <div class="center">
 <img src="/images/icfpc-2020-msg01.png"
-    width="240px"
-    height="470px"
+    width="240px" height="470px"
+    loading="lazy"
     alt="По левому краю столбец с квадратиками, справа от каждого квадратика
     несколько вертикальных палочек" />
 </div>
@@ -98,8 +98,8 @@ Functional Programming, ICFP). Вопреки названию, программ
 
 <div class="center">
 <img src="/images/icfpc-2020-msg15.png"
-    width="512px"
-    height="704px"
+    width="512px" height="704px"
+    loading="lazy"
     alt="Похоже, нечто прилетает сюда из космоса, и между сторонами происходит
     какой-то обмен сообщениями" />
 </div>

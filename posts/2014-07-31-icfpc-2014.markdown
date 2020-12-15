@@ -110,6 +110,7 @@ tags: programming, icfpc
 <div class="center">
 <img src="/images/icfpc-2014-playground.png"
     width="460px" height="440px"
+    loading="lazy"
     alt="Дефолтная карта с контеста"
     class="bleed" />
 </div>

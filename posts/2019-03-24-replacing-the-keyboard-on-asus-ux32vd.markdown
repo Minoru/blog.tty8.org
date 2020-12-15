@@ -22,6 +22,7 @@ melted down:
 <img src="/images/asus_ux32vd_keyboard_fastening_2x.jpg"
 sizes="(min-width: 769px) 35rem, 100vw"
 srcset="/images/asus_ux32vd_keyboard_fastening_1x.jpg 756w, /images/asus_ux32vd_keyboard_fastening_2x.jpg 1512w"
+loading="lazy"
 alt="A view of the back of the keyboard, with an enlargement of the rods that hold it down"
 class="bleed" />
 </a>
@@ -45,6 +46,7 @@ Also note that a replacement keyboard might have these little things on the back
 <img src="/images/asus_ux32vd_replacement_keyboard_useless_details.jpg"
 alt="Little pads for screws to hold on, which should be removed if the
 keyboard is to be installed on an UX32VD"
+loading="lazy"
 class="bleed" />
 </div>
 

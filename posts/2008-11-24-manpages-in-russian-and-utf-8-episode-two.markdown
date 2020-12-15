@@ -25,6 +25,7 @@ sudo update-alternatives --config pager
 <a href="/images/man-chown-correct.png">
 <img src="/images/man-chown-correct-thumbnail.jpg"
     width="400px" height="282px"
+    loading="lazy"
     alt="man chown"
     class="bleed" />
 </a>
