@@ -33,7 +33,7 @@ find me self-expressing:
   a *really* private conversation, ask me to get back to you
 * and last but not least, StackExchange network:
     <br/>
-    <a href="https://stackexchange.com/users/157366/alexander-batischev"><img src="/images/stackexchange-flair.png" width="208" height="58" alt="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
+    <a href="https://stackexchange.com/users/157366/alexander-batischev"><img src="/images/stackexchange-flair.png" width="208" height="58" loading="lazy" alt="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
     <!-- That's right: the flair is mirrored to my site. There's no need for
     StackExchange to know that you're reading my blog.
 
