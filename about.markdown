@@ -3,10 +3,9 @@ title: About
 ---
 
 My name is Alexander Batischev. I got my Master's of CS in 2015, and now I'm
-working as a software developer ([here's my résumé][resume]). In my spare time,
-I maintain [Newsboat][newsboat], bang my head to some heavy metal
-riffs, read books, and <strike>cycle</strike> dream about getting back to
-cycling.
+working as a software developer. In my spare time, I maintain
+[Newsboat][newsboat], bang my head to some heavy metal riffs, read books, and
+<strike>cycle</strike> dream about getting back to cycling.
 
 This blog used to be a place to share my experiences with Linux, but over the
 years, it expanded to other topics, ranging from software licenses and ICFP
@@ -46,7 +45,6 @@ See ya!
 [pgp-old]: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x0A1D7D827B52FB07 "PGP key 0x0a1d7d827b52fb07 at pgp.mit.edu"
 [debiania-src]: https://github.com/Minoru/blog.debiania.in.ua "Minoru/blog.debiania.in.ua — GitHub"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
-[resume]: /misc/batischev_cv.pdf
 [newsboat]: https://newsboat.org "Newsboat, an RSS reader"
 [github]: https://github.com/Minoru "Minoru — GitHub"
 [goodreads]: https://www.goodreads.com/user/show/46952552-alexander "Alexander — GoodReads"
