@@ -25,8 +25,7 @@ find me self-expressing:
 
 * [GitHub][github]
 * [GoodReads][goodreads]
-* <a rel="me" href="https://functional.cafe/@minoru">Mastodon</a> (although
-  I don't know what to use it for)
+* <a rel="me" href="https://functional.cafe/@minoru">Fediverse</a>
 * Freenode, where I hang out as Minoru. I'm using a bouncer, so I appear online
   even if I'm not actually at the computer. I'm also using OTR, so if you want
   a *really* private conversation, ask me to get back to you
