@@ -26,10 +26,10 @@ find me self-expressing:
 * [GitHub][github]
 * [GoodReads][goodreads]
 * <a rel="me" href="https://functional.cafe/@minoru">Fediverse</a>
-* [irc.libera.chat][libera] and [OFTC][oftc], where I hang out as Minoru. I'm
-  using a bouncer, so I appear online even if I'm not actually at the computer.
-  I'm also using OTR, so if you want a *really* private conversation, ask me to
-  get back to you
+* [irc.libera.chat][libera] and [OFTC][oftc], where I hang out as Minoru; used
+  to visit Freenode too, but not anymore. I'm using a bouncer, so I appear
+  online even if I'm not actually at the computer. I'm also using OTR, so if
+  you want a *really* private conversation, ask me to get back to you
 * and last but not least, StackExchange network:
     <br/>
     <a href="https://stackexchange.com/users/157366/alexander-batischev"><img src="/images/stackexchange-flair.png" width="208" height="58" loading="lazy" alt="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for Alexander Batischev on Stack Exchange, a network of free, community-driven Q&amp;A sites" /></a>
