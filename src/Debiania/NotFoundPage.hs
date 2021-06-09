@@ -18,7 +18,8 @@ notFoundPageRules = do
         compile $ debianiaCompiler
           >>= loadAndApplyTemplate "templates/about.html" ctx
           >>= loadAndApplyTemplate "templates/default.html" ctx
-          >>= relativizeUrls
+          -- do not relativize URLs since this page can be shown anywhere, e.g.
+          -- from /images/ or /posts/
 
     create ["404.markdown"] $ version "gzipped" $ do
         route   $ setExtension "html.gz"
