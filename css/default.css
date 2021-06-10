@@ -319,6 +319,14 @@ code {
     margin: 0 0.2rem;
 }
 
+h1 > code {
+    font-size: calc(1.44 * 0.8rem);
+}
+
+h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
+    font-size: calc(1.2 * 0.8rem);
+}
+
 pre {
     border-top: 1px solid #9b9c9c;
     border-bottom: 1px solid #9b9c9c;
