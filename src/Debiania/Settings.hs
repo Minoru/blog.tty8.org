@@ -13,5 +13,5 @@ oldRootUrl = "http://blog.debiania.in.ua"
 debianiaConfig :: Configuration
 debianiaConfig = defaultConfiguration {
   deployCommand =
-    "rsync -rPvce ssh --chmod=ugo=rwX --no-times _site/ www-blog@theke.debiania.in.ua:"
+    "rsync -rPvce ssh --chmod=ugo=rwX --no-times _site/ www-blog@blog.debiania.in.ua:www/"
 }
