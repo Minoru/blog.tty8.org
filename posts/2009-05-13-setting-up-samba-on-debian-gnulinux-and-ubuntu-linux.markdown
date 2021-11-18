@@ -143,7 +143,7 @@ netstat -nlp и смотри что слушает smd
 <p class='hakyll-convert-comment-date'>On 2010-08-09T01:13:19.188+03:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
 <b>2 vovane2</b>:<br/>
-Я, честно говоря, в самбе разбираюсь на очень поверхностном уровне, а статью перепостил потому, что она хорошая. Ответа на твой вопрос, увы, не знаю, но советую спросить на <a href="unixforum.org" rel="nofollow">unixforum.org</a>
+Я, честно говоря, в самбе разбираюсь на очень поверхностном уровне, а статью перепостил потому, что она хорошая. Ответа на твой вопрос, увы, не знаю, но советую спросить на <a href="http://unixforum.org" rel="nofollow">unixforum.org</a>
 </p>
 </div>
 
@@ -310,7 +310,7 @@ netstat -nlp и смотри что слушает smd
 <div class='hakyll-convert-comment'>
 <p class='hakyll-convert-comment-date'>On 2012-10-17T14:19:30.663+03:00, Minoru wrote:</p>
 <p class='hakyll-convert-comment-body'>
-<b>Леонид</b>, с такими вопросами лучше всё-таки на форумы, например, <a href="unixforum.org" rel="nofollow">unixforum.org</a>. От себя могу посоветовать только nmap&#39;ом посмотреть на свой внешний интерфейс (nmap твой_IP_в_сети) — есть ли там порт Samba?
+<b>Леонид</b>, с такими вопросами лучше всё-таки на форумы, например, <a href="http://unixforum.org" rel="nofollow">unixforum.org</a>. От себя могу посоветовать только nmap&#39;ом посмотреть на свой внешний интерфейс (nmap твой_IP_в_сети) — есть ли там порт Samba?
 </p>
 </div>
 
