@@ -40,7 +40,7 @@ tmux has-session -t debiania || (
     tmux new-window -d -n git -t debiania
 
     # third window runs "debiania preview"
-    tmux new-window -d -n preview -t debiania 'cabal run preview'
+    tmux new-window -d -n preview -t debiania 'stack run -- watch'
 )
 
 tmux attach -t debiania
