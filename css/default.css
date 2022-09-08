@@ -68,6 +68,10 @@ ol > li {
     padding-left: 0.233rem;
 }
 
+li > ol, li > ul {
+    margin-top: 1rem;
+}
+
 a:link {
     color: #0008a0;
 }
