@@ -9,7 +9,7 @@ Maintainer:  eual.jp@gmail.com
 License: BSD3
 
 Build-type: Simple
-Cabal-version: >= 1.2
+Cabal-version: >= 1.6
 
 Executable debiania
     Hs-Source-Dirs: src
