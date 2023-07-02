@@ -7,10 +7,6 @@ module Debiania.Posts (
 import Data.List (intersperse, sort)
 import Control.Monad (liftM, when)
 import Network.HTTP.Base (urlEncode)
-import Text.Blaze.Html (toHtml, toValue, (!))
-
-import qualified Text.Blaze.Html5            as H
-import qualified Text.Blaze.Html5.Attributes as A
 
 import Hakyll
 
@@ -88,11 +84,3 @@ sortedTagsCtx tags =
    (mconcat . intersperse ", ")
    "tags"
    tags
-
--- | Render one tag link
---
--- Lifted straight from Hakyll.Web.Tags.
-simpleRenderLink :: String -> (Maybe FilePath) -> Maybe H.Html
-simpleRenderLink _   Nothing         = Nothing
-simpleRenderLink tag (Just filePath) =
-  Just $ H.a ! A.href (toValue $ toUrl filePath) $ toHtml tag
