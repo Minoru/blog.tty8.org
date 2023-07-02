@@ -11,8 +11,10 @@ This blog used to be a place to share my experiences with Linux, but over the
 years, it expanded to other topics, ranging from software licenses and ICFP
 programming contest to nice hardware and life lessons. It still retains its
 original name, Debiania, unimaginatively derived from the first distro
-I actually used. If you're interested in how this site gets put together, take
-a look at [the source code][debiania-src].
+I actually used.
+
+If you're interested in how this site gets put together, take a look at [the
+source code][debiania-src].
 
 I'm always happy to receive some personal email; [shoot me a message][email]!
 Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch. (I
