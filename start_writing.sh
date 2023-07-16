@@ -34,13 +34,13 @@ tmux has-session -t debiania || (
     tmux rename-window -t debiania:0 vim
 
     # none of the windows need activity monitoring, so I disable it
-    tmux set-option -t debiania:preview -g monitor-activity off
+    tmux set-option -t debiania:watch -g monitor-activity off
 
     # second window is for version control
     tmux new-window -d -n git -t debiania
 
-    # third window runs "debiania preview"
-    tmux new-window -d -n preview -t debiania 'stack run -- watch'
+    # third window runs "debiania watch"
+    tmux new-window -d -n watch -t debiania 'stack run -- watch'
 )
 
 tmux attach -t debiania
