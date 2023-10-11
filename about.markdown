@@ -2,6 +2,13 @@
 title: About
 ---
 
+<div class="center">
+<img src="/images/avatar.jpg"
+    width="240px" height="240px"
+    alt="An anime-style portrait of a slightly frowning young man with dark hair and dark-brown eyes. His head is slanting to his right, resting on his fist. He’s wearing a brown shirt and what appears to be a jacket."
+    />
+</div>
+
 My name is Alexander Batischev. I got my Master's of CS in 2015, and now I'm
 working as a software developer. In my spare time, I maintain
 [Newsboat][newsboat], bang my head to some heavy metal riffs, read books, and
