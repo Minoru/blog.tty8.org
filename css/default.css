@@ -237,6 +237,13 @@ nav#navigation a#navbar-selected-link {
     border: none;
 }
 
+p#comments-invitation {
+    /* Extra margin on the top to visually separate it from the main body. */
+    margin-top: calc(1.618 * 1.2rem);
+    text-align: center;
+    font-style: italic;
+}
+
 /**********************************
  * Footer
  */
