@@ -28,7 +28,7 @@ Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch. (I
 also have [an old key, 0x0a1d7d827b52fb07][pgp-old]; don't use it. Can't revoke
 it because I lost the certificate).
 
-To make life a bit easier for Daniel Graystone (and, undoubtedly, for Big
+To make life a bit easier for Daniel Graystone (and, undoubtedly, for the Big
 Brother as well), here's a list of other corners of the Internet where one can
 find me self-expressing:
 
