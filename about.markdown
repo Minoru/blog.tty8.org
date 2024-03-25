@@ -18,7 +18,8 @@ This blog used to be a place to share my experiences with Linux, but over the
 years, it expanded to other topics, ranging from software licenses and ICFP
 programming contest to nice hardware and life lessons. It still retains its
 original name, Debiania, unimaginatively derived from the first distro
-I actually used.
+I actually used. It moved a couple times: from debiania.blogspot.com to
+blog.debiania.in.ua and then to blog.tty8.org.
 
 If you're interested in how this site gets put together, take a look at [the
 source code][debiania-src].
