@@ -1,4 +1,4 @@
-Sitemap: https://blog.debiania.in.ua/sitemap.xml
+Sitemap: https://blog.tty8.org/sitemap.xml
 
 # For Yandex and Mail.ru bots
-Host: https://blog.debiania.in.ua/
+Host: https://blog.tty8.org/

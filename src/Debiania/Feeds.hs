@@ -72,9 +72,19 @@ createFeed name content conf extension compiler = do
                                   "%FT%TZ"
                                   "2016-06-26T00:00:00Z"
 
-                              if published > httpsSwitchDate
+                              tty8orgSwitchDate <-
+                                parseTimeM
+                                  False
+                                  defaultTimeLocale
+                                  "%FT%TZ"
+                                  "2024-03-25T00:00:00Z"
+
+
+                              if published >= tty8orgSwitchDate
                                 then return rootUrl
-                                else return oldRootUrl)
+                                else if published > httpsSwitchDate
+                                  then return oldRootUrl
+                                  else return oldOldRootUrl)
               `mappend`
               feedCtx)
 
