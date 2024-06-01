@@ -1,4 +1,5 @@
-This is the source code for [the blog of mine](https://blog.debiania.in.ua/).
+This is the source code for [the blog of mine](https://blog.tty8.org/)
+(previously at blog.debiania.in.ua).
 
 Unless otherwise noted, the contents of the blog (text, pictures, template that
 I made, i.e. everything under `posts` and `template`, and some of the files
