@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"
+      />
+    <link rel="stylesheet" href="icfpc-2024-icfpc2024.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="icfpc2024.904e2e6c971972d9b93c.js"></script>
+    <title>ICFP contest 2024 - task</title>
+  </head>
+  <body>
+    <nav class="border fixed split-nav">
+      <div class="nav-brand">
+	<h3><a href="https://icfpcontest2024.github.io/"><img src="icfpc-2024-icfpc2024.png" class="logo no-border" />&nbsp;ICFPC 2024</a></h3>
+      </div>
+      <div class="collapsible">
+	<input id="collapsible1" type="checkbox" name="collapsible1">
+	<label for="collapsible1">
+	  <div class="bar1"></div>
+	  <div class="bar2"></div>
+	  <div class="bar3"></div>
+	</label>
+	<div class="collapsible-body">
+	  <ul class="inline">
+            <li><a href="https://icfpcontest2024.github.io/">Home</a></li>
+            <li><a href="icfpc-2024-task.html">Task</a></li>
+            <li><a href="icfpc-2024-scoreboard.html">Scoreboard</a></li>
+            <li><a href="https://icfpcontest2024.github.io/journey.html">Score journey</a></li>
+            <li><a href="https://icfpcontest2024.github.io/rules.html">Rules</a></li>
+            <li><a href="https://icfpcontest2024.github.io/prizes.html">Prizes</a></li>
+            <li><a href="https://icfpcontest2024.github.io/contact.html">Contact</a></li>
+            <li><a href="https://icfpcontest2024.github.io/writeups.html">Write-ups</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+    <div class="paper container margin-top">
+      <div class="row">
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-endo.png" /></div>
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-galaxy.png" /></div>
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-universalmachine.png" /></div>
+      </div>
+      <div id="taskpage">
+      <div class="alert alert-secondary">The contest is over, if you want to continue trying, <a href="https://github.com/icfpcontest2024/icfpc2024">here</a> are the instructions to run the server locally.</div>
+<h1 id="task">Task</h1>
+<p>As many will remember, in 2006 we <a href="http://www.boundvariable.org/task.shtml">discovered</a> documents of an old society, called the Cult of the Bound Variable. With the valuable help from the ICFP community, the Cult&#39;s computing device (Universal Machine) was brought back to life, and much interesting information could be recovered. In recent observations from the <a href="https://icfpcontest2020.github.io">Pegovka observatory</a>, we discovered something stunning: the Cult of the Bound Variable still exists, and has migrated their civilization to space! It is suspected that <a href="https://save-endo.cs.uu.nl">Endo</a> helped them move, after he escaped from earth again.</p>
+<p>After a couple of months of research, we have been able to decipher most of the received messages, and set up a communication channel. People of the Cult of the Bound variable now use <em>Interstellar Communication Functional Programs</em> (ICFP) to communicate. Our findings about ICFP expressions can be found <a href="icfpc-2024-icfp.html">on this page</a>.</p>
+<h2 id="challenges">Challenges</h2>
+<p>While we were successful in deciphering the communication language, we unfortunately faced challenges that we cannot solve ourselves, and we once again ask for your help! The communication channel communicates with the School of the Bound Variable, <a href="https://en.wikipedia.org/wiki/Massive_open_online_course">a MOOC</a> where students can follow several courses to learn about various skills necessary for life in space. Each of the courses poses a set of tests, which are scored according to some metric.</p>
+<p><em>An important note</em>: it seems that basic communication utilizes strings only. Therefore, we advice you to implement more advanced <a href="icfpc-2024-icfp.html">ICFP expressions</a> only once you need them, and start with strings.</p>
+<h2 id="communication-channel">Communication channel</h2>
+<p>For you to try out the communication, we have opened up the communication channel with the Cult for you. By sending a HTTP <code>POST</code> request to <code>https://boundvariable.space/communicate</code>, with the ICFP in the body, your request is sent into the galaxy and the response is returned to you. For identification purposes, you must send the <code>Authorization</code> header that you can find on <a href="https://icfpcontest2024.github.io/team.html">your team page</a>.</p>
+<p>We strongly advise that you make the <code>POST</code> request directly from your favorite programming language, but we also provide <a href="https://icfpcontest2024.github.io/communicate.html">web based communication</a>. That page also shows your communication history.</p>
+<p>Furthermore, we found out that sending <code>S&#39;%4}).$%8</code> is a great entrypoint for communicating with the school of the Cult of the Bound Variable.</p>
+<h2 id="limits">Limits</h2>
+<p>Communicating with space is an energy consuming process, so for environmental and monetary reasons, we have put limits on the messages. The <code>POST</code> body of your request must not exceed 1 MB (<code>1048576</code> bytes), and you may send at most <code>20</code> messages per minute.</p>
+<h2 id="scoring">Scoring</h2>
+<p>The tests for each course are scored according to some criterion explained to you when you enter the course. Your best score for each test is stored. On the <a href="icfpc-2024-scoreboard.html">scoreboard page</a> we&#39;ve rendered an overview of the ranks of all teams on each course as well as a global rank. To find the ranks for a course given all the scores of the individual tests of that course, and to find the global rank based on the ranks for the courses, we use the so called <a href="https://en.wikipedia.org/wiki/Borda_count">Borda count</a>.</p>
+<p>In technical terms, the ranklist is an election, where teams are the candidates and the tests are the voters. The better you do for an individual tests, the higher this test will rank you. A more intuitive explanation is that the amount of points you score for each test, is the amount of teams scoring strictly worse than you on that test, and then the ranklist for that course is based on the sum of those points. This method is first used to compute a ranklist per course, and then again using the ranks for the individual courses to find the global rank.</p>
+<p>While this may sound abstract, we believe this is all you need to know. And important property of this rating system is that absolute scores don&#39;t matter, only the order. It also deals naturally with ties (some tests are just correct/incorrect, there everyone solving it is tied at 1st place), and automatically balances tests with different absolute score ranges. And of course you should just try get the best scores on all tests!</p>
+<h2 id="final-code-submit">Final code submit</h2>
+<p>To be considered for prizes, please submit your code near the end of the contest via your <a href="https://icfpcontest2024.github.io/team.html">team page</a>. The code submission closes 3 hours after the end of the contest. It is not necessary to make a separate submission for the lightning round, but please include a README file indicating which parts are from the first 24 hours.</p>
+<h2 id="meta-note">Meta note</h2>
+<p>While the introduction refers to various editions of the ICFP programming contest, we want to make explicit that the tasks set for this year are completely new, and knowledge of the earlier challenges is not necessary. However, we referred to them because we enjoyed those contests, so once this year&#39;s contest is over we advice everyone to give them a go in case you haven&#39;t yet!</p>
+<p>To make the contest fair for all timezones, we do not intend to make any changes to the task during the contest. However, we might publish some extra information at the end of the lightning round.</p>
+<p>And as last request to contestants: enjoy the contest, but also make sure others can enjoy it! Please do not make attempts to break our server, it should be quite robust, but remember that the <a href="https://icfpcontest2024.github.io/contact.html">ICFPC organizers</a> are volunteers that organize this contest in their free time. And so far we tremendously enjoyed ourselves in the preparations, so we hope to share as much as possible of that with you!</p>
+      </div>
+    </div>
+  </body>
+</html>

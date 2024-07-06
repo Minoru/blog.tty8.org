@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"
+      />
+    <link rel="stylesheet" href="icfpc-2024-icfpc2024.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="icfpc2024.904e2e6c971972d9b93c.js"></script>
+    <title>ICFP contest 2024 - icfp</title>
+  </head>
+  <body>
+    <nav class="border fixed split-nav">
+      <div class="nav-brand">
+	<h3><a href="https://icfpcontest2024.github.io/"><img src="icfpc-2024-icfpc2024.png" class="logo no-border" />&nbsp;ICFPC 2024</a></h3>
+      </div>
+      <div class="collapsible">
+	<input id="collapsible1" type="checkbox" name="collapsible1">
+	<label for="collapsible1">
+	  <div class="bar1"></div>
+	  <div class="bar2"></div>
+	  <div class="bar3"></div>
+	</label>
+	<div class="collapsible-body">
+	  <ul class="inline">
+            <li><a href="https://icfpcontest2024.github.io/">Home</a></li>
+            <li><a href="icfpc-2024-task.html">Task</a></li>
+            <li><a href="icfpc-2024-scoreboard.html">Scoreboard</a></li>
+            <li><a href="https://icfpcontest2024.github.io/journey.html">Score journey</a></li>
+            <li><a href="https://icfpcontest2024.github.io/rules.html">Rules</a></li>
+            <li><a href="https://icfpcontest2024.github.io/prizes.html">Prizes</a></li>
+            <li><a href="https://icfpcontest2024.github.io/contact.html">Contact</a></li>
+            <li><a href="https://icfpcontest2024.github.io/writeups.html">Write-ups</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+    <div class="paper container margin-top">
+      <div class="row">
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-endo.png" /></div>
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-galaxy.png" /></div>
+	<div class="col-4 col"><img class="top-img" src="icfpc-2024-universalmachine.png" /></div>
+      </div>
+      <div id="languagepage">
+
+<h1 id="icfp-language">ICFP language</h1>
+<p>An <em>Interstellar Communication Functional Program</em> (ICFP) consists of a list of space-separated <em>tokens</em>. A <em>token</em> consists of one or more printable ASCII characters, from ASCII code 33 (&#39;<code>!</code>&#39;) up to and including code 126 (&#39;<code>~</code>&#39;). In other words, there are 94 possible characters, and a <em>token</em> is a nonempty sequence of such characters.</p>
+<p>The first character of a <em>token</em> is called the <em>indicator</em>, and determines the type of the <em>token</em>. The (possibly empty) remainder of the <em>token</em> is called <em>body</em>. The different <em>token</em> types are explained in the next subsections.</p>
+<h2 id="booleans">Booleans</h2>
+<p><code>indicator = T</code> and an empty <em>body</em> represents the constant <code>true</code>, and <code>indicator = F</code> and an empty <em>body</em> represents the constant <code>false</code>.</p>
+<h2 id="integers">Integers</h2>
+<p><code>indicator = I</code>, requires a non-empty <em>body</em>.</p>
+<p>The <em>body</em> is interpreted as a base-94 number, e.g. the digits are the 94 printable ASCII characters with the exclamation mark representing <code>0</code>, double quotes <code>1</code>, etc. For example, <code>I/6</code> represent the number <code>1337</code>.</p>
+<h2 id="strings">Strings</h2>
+<p><code>indicator = S</code></p>
+<p>The Cult of the Bound variable seems to use a system similar to ASCII to encode characters, but ordered slightly differently. Specifically, ASCII codes 33 to 126 from the <em>body</em> can be translated to human readable text by converting them according to the following order:</p>
+<pre><code>abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`|~&lt;space&gt;&lt;newline&gt;
+</code></pre>
+<p>Here <code>&lt;space&gt;</code> denotes a single space character, and <code>&lt;newline&gt;</code> a single newline character. For example, <code>SB%,,/}Q/2,$_</code> represents the string &quot;Hello World!&quot;.</p>
+<h2 id="unary-operators">Unary operators</h2>
+<p><code>indicator = U</code>, requires a <em>body</em> of exactly 1 character long, and should be followed by an ICFP which can be parsed from the tokens following it.</p>
+<table>
+<thead>
+<tr><th>Character</th><th>Meaning</th><th>Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>-</code></td><td>Integer negation</td><td><code>U- I$</code> -&gt; <code>-3</code></td></tr>
+<tr><td><code>!</code></td><td>Boolean not</td><td><code>U! T</code> -&gt; <code>false</code></td></tr>
+<tr><td><code>#</code></td><td>string-to-int: interpret a string as a base-94 number</td><td><code>U# S4%34</code> -&gt; <code>15818151</code></td></tr>
+<tr><td><code>$</code></td><td>int-to-string: inverse of the above</td><td><code>U$ I4%34</code> -&gt; <code>test</code></td></tr>
+</tbody>
+</table>
+<p>The <code>-&gt;</code> symbol in this table should be read as &quot;will evaluate to&quot;, see <a href="icfpc-2024-icfp.html#evaluation">Evaluation</a>.</p>
+<h2 id="binary-operators">Binary operators</h2>
+<p><code>indicator = B</code>, requires a <em>body</em> of exactly 1 character long, and should be followed by two ICFPs (let&#39;s call them <code>x</code> and <code>y</code>).</p>
+<table>
+<thead>
+<tr><th>Character</th><th>Meaning</th><th>Example</th></tr>
+</thead>
+<tbody>
+<tr><td><code>+</code></td><td>Integer addition</td><td><code>B+ I# I$</code> -&gt; <code>5</code></td></tr>
+<tr><td><code>-</code></td><td>Integer subtraction</td><td><code>B- I$ I#</code> -&gt; <code>1</code></td></tr>
+<tr><td><code>*</code></td><td>Integer multiplication</td><td><code>B* I$ I#</code> -&gt; <code>6</code></td></tr>
+<tr><td><code>/</code></td><td>Integer division (truncated towards zero)</td><td><code>B/ U- I( I#</code> -&gt; <code>-3</code></td></tr>
+<tr><td><code>%</code></td><td>Integer modulo</td><td><code>B% U- I( I#</code> -&gt; <code>-1</code></td></tr>
+<tr><td><code>&lt;</code></td><td>Integer comparison</td><td><code>B&lt; I$ I#</code> -&gt; <code>false</code></td></tr>
+<tr><td><code>&gt;</code></td><td>Integer comparison</td><td><code>B&gt; I$ I#</code> -&gt; <code>true</code></td></tr>
+<tr><td><code>=</code></td><td>Equality comparison, works for int, bool and string</td><td><code>B= I$ I#</code> -&gt; <code>false</code></td></tr>
+<tr><td><code>|</code></td><td>Boolean or</td><td><code>B| T F</code> -&gt; <code>true</code></td></tr>
+<tr><td><code>&amp;</code></td><td>Boolean and</td><td><code>B&amp; T F</code> -&gt; <code>false</code></td></tr>
+<tr><td><code>.</code></td><td>String concatenation</td><td><code>B. S4% S34</code> -&gt; <code>&quot;test&quot;</code></td></tr>
+<tr><td><code>T</code></td><td>Take first <code>x</code> chars of string <code>y</code></td><td><code>BT I$ S4%34</code> -&gt; <code>&quot;tes&quot;</code></td></tr>
+<tr><td><code>D</code></td><td>Drop first <code>x</code> chars of string <code>y</code></td><td><code>BD I$ S4%34</code> -&gt; <code>&quot;t&quot;</code></td></tr>
+<tr><td><code>$</code></td><td>Apply term <code>x</code> to <code>y</code> (see <a href="icfpc-2024-icfp.html#lambda-abstractions">Lambda abstractions</a>)</td><td></td></tr>
+</tbody>
+</table>
+<h2 id="if">If</h2>
+<p><code>indicator = ?</code> with an empty <em>body</em>, followed by three ICFPs: the first should evaluate to a boolean, if it&#39;s true then the second is evaluated for the result, else the third. For example:</p>
+<pre><code>? B&gt; I# I$ S9%3 S./
+</code></pre>
+<p>evaluates to <code>no</code>.</p>
+<h2 id="lambda-abstractions">Lambda abstractions</h2>
+<p><code>indicator = L</code> is a lambda abstraction, where the <em>body</em> should be interpreted as a base-94 number in the same way as <a href="icfpc-2024-icfp.html#integers">integers</a>, which is the variable number, and it takes one ICFP as argument. <code>indicator = v</code> is a variable, with again a <em>body</em> being the base-94 variable number.</p>
+<p>When the first argument of the binary application operator <code>$</code> evaluates to a lambda abstraction, the second argument of the application is assigned to that variable. For example, the ICFP</p>
+<pre><code>B$ B$ L# L$ v# B. SB%,,/ S}Q/2,$_ IK
+</code></pre>
+<p>represents the program (e.g. in Haskell-style)</p>
+<pre><code>((\v2 -&gt; \v3 -&gt; v2) (&quot;Hello&quot; . &quot; World!&quot;)) 42
+</code></pre>
+<p>which would evaluate to the string <code>&quot;Hello World!&quot;</code>.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>The most prevalent ICFP messaging software, Macroware Insight, evaluates ICFP messages using a call-by-name strategy. This means that the binary application operator is non-strict; the second argument is substituted in the place of the binding variable (using capture-avoiding substitution). If an argument is not used in the body of the lambda abstraction, such as <code>v3</code> in the above example, it is never evaluated. When a variable is used several times, the expression is evaluated multiple times.</p>
+<p>For example, evaluation would take the following steps:</p>
+<pre><code>B$ L# B$ L&quot; B+ v&quot; v&quot; B* I$ I# v8
+B$ L&quot; B+ v&quot; v&quot; B* I$ I#
+B+ B* I$ I# B* I$ I#
+B+ I&#39; B* I$ I#
+B+ I&#39; I&#39;
+I-
+</code></pre>
+<h2 id="limits">Limits</h2>
+<p>As communication with Earth is complicated, the Cult seems to have put some restrictions on their Macroware Insight software. Specifically, message processing is aborted when exceeding <code>10_000_000</code> beta reductions. Built-in operators are strict (except for <code>B$</code>, of course) and do not count towards the limit of beta reductions. Contestants&#39; messages therefore must stay within these limits.</p>
+<p>For example, the following term, which evaluates to <code>16</code>, uses <code>109</code> beta reductions during evaluation:</p>
+<pre><code>B$ B$ L&quot; B$ L# B$ v&quot; B$ v# v# L# B$ v&quot; B$ v# v# L&quot; L# ? B= v# I! I&quot; B$ L$ B+ B$ v&quot; v$ B$ v&quot; v$ B- v# I&quot; I%
+</code></pre>
+<p>Researchers expect that the limit on the amount beta reductions is the only limit that contestants may run into, but there seem to also be some (unknown) limits on memory usage and total runtime.</p>
+<h2 id="unknown-operators">Unknown operators</h2>
+<p>The above set of language constructs are all that researchers have discovered, and it is conjectured that the Cult will never use anything else in their communication towards Earth. However, it is unknown whether more language constructs exist.</p>
+      </div>
+    </div>
+  </body>
+</html>
