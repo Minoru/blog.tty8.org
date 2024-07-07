@@ -6,8 +6,10 @@ module Debiania.Compilers (
   , debianiaCompiler
 ) where
 
+import Text.Pandoc (Pandoc, Block(Header), Inline(Link))
 import Text.Pandoc.Options (WriterOptions(writerHTMLMathMethod),
     HTMLMathMethod(MathJax))
+import Text.Pandoc.Walk (walk)
 
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.Text as T
@@ -19,11 +21,30 @@ import Hakyll
 debianiaCompiler :: Compiler (Item String)
 debianiaCompiler =
       getResourceBody
-  >>= renderPandocWith
+  >>= renderPandocWithTransform
         defaultHakyllReaderOptions
         -- The empty string is path to mathjax.js. We don't want Pandoc to
         -- embed it in output for us as we already do that in Hakyll templates.
         (defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "" })
+        addHeaderLinks
+
+-- | Turns headings into links to themselves, so readers can copy-paste a link
+-- to the particular section.
+--
+-- This code is adapted from https://stackoverflow.com/a/77944577/2350060
+addHeaderLinks :: Pandoc -> Pandoc
+addHeaderLinks = walk transformHeader
+  where
+  transformHeader :: Block -> Block
+  transformHeader (Header level attrs@(identifier, _, _) contents) =
+    let
+      linkClass = "headerLink"
+      linkAttrs = ("", [linkClass], [])
+      linkDestination = "#" <> identifier
+    in Header level attrs
+        [ Link linkAttrs contents (linkDestination, "")
+        ]
+  transformHeader block = block
 
 -- | Compresses given item with pigz (parallel gzip compiler)
 gzip :: Item String -> Compiler (Item LBS.ByteString)

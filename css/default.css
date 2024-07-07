@@ -108,14 +108,12 @@ h5 + h6 {
  * larger (golden ratio). 1.2rem that we're subtracting is the bottom margin of
  * <p> and other elements. */
 h1 {
-    color: #083f24;
     font-size: 1.44rem;
     margin-top: calc(1.618 * 1rem - 1.2rem);
     margin-bottom: 1rem;
 }
 
 h2, h3, h4, h5, h6 {
-    color: #646260;
     font-size: 1.2rem;
 }
 
@@ -142,6 +140,36 @@ h5 {
 h6 {
     margin-top: calc(1.618 * 0.402rem - 1.2rem);
     margin-bottom: 0.402rem;
+}
+
+h1 > a.headerLink:link,
+h1 > a.headerLink:hover,
+h1 > a.headerLink:active,
+h1 > a.headerLink:visited {
+    color: #083f24;
+}
+
+h2 > a.headerLink:link,
+h2 > a.headerLink:hover,
+h2 > a.headerLink:active,
+h2 > a.headerLink:visited,
+h3 > a.headerLink:link,
+h3 > a.headerLink:hover,
+h3 > a.headerLink:active,
+h3 > a.headerLink:visited,
+h4 > a.headerLink:link,
+h4 > a.headerLink:hover,
+h4 > a.headerLink:active,
+h4 > a.headerLink:visited,
+h5 > a.headerLink:link,
+h5 > a.headerLink:hover,
+h5 > a.headerLink:active,
+h5 > a.headerLink:visited,
+h6 > a.headerLink:link,
+h6 > a.headerLink:hover,
+h6 > a.headerLink:active,
+h6 > a.headerLink:visited {
+    color: #646260;
 }
 
 /**********************************
