@@ -34,7 +34,6 @@ Brother as well), here's a list of other corners of the Internet where one can
 find me self-expressing:
 
 * [GitHub][github], [GitLab][gitlab], [Codeberg][codeberg]
-* [GoodReads][goodreads]
 * <a rel="me" href="https://functional.cafe/@minoru">Fediverse</a>
 * [irc.libera.chat][libera] and [OFTC][oftc], where I hang out as Minoru; used
   to visit Freenode too, but not anymore. I'm using a bouncer, so I appear
@@ -54,6 +53,5 @@ See ya!
 [github]: https://github.com/Minoru "Minoru — GitHub"
 [gitlab]: https://gitlab.com/Minoru-kun "Minoru-kun — GitLab"
 [codeberg]: https://codeberg.org/minoru "Minoru — Codeberg"
-[goodreads]: https://www.goodreads.com/user/show/46952552-alexander "Alexander — GoodReads"
 [libera]: https://libera.chat
 [oftc]: https://oftc.net/
