@@ -41,8 +41,12 @@ addHeaderLinks = walk transformHeader
       linkClass = "headerLink"
       linkAttrs = ("", [linkClass], [])
       linkDestination = "#" <> identifier
+
+      anchorClass = "anchor"
+      anchorAttrs = ("", [anchorClass], [])
     in Header level attrs
-        [ Link linkAttrs contents (linkDestination, "")
+        [ Link anchorAttrs [] (linkDestination, "")
+        , Link linkAttrs contents (linkDestination, "")
         ]
   transformHeader block = block
 
