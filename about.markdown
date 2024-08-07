@@ -25,9 +25,9 @@ If you're interested in how this site gets put together, take a look at [the
 source code][debiania-src].
 
 I'm always happy to receive some personal email; [shoot me a message][email]!
-Encrypting it to [PGP key 0x356961a20c8bfd03][pgp] would be a nice touch. (I
-also have [an old key, 0x0a1d7d827b52fb07][pgp-old]; don't use it. Can't revoke
-it because I lost the certificate).
+Encrypting it to [OpenPGP key 0x356961a20c8bfd03][openpgp] would be a nice
+touch. (I also have [an old key, 0x0a1d7d827b52fb07][openpgp-old]; don't use
+it. Can't revoke it because I lost the certificate).
 
 To make life a bit easier for Daniel Graystone (and, undoubtedly, for the Big
 Brother as well), here's a list of other corners of the Internet where one can
@@ -45,8 +45,8 @@ find me self-expressing:
 
 See ya!
 
-[pgp]: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x356961A20C8BFD03 "PGP key 0x356961a20c8bfd03 at pgp.mit.edu"
-[pgp-old]: https://pgp.mit.edu/pks/lookup?op=vindex&search=0x0A1D7D827B52FB07 "PGP key 0x0a1d7d827b52fb07 at pgp.mit.edu"
+[openpgp]: https://keys.openpgp.org/vks/v1/by-fingerprint/CE6C4307934858E3FD94A00F356961A20C8BFD03 "OpenPGP key 0x356961a20c8bfd03 at keys.openpgp.org"
+[openpgp-old]: https://keys.openpgp.org/vks/v1/by-fingerprint/80D78627A112D3D3912511CC0A1D7D827B52FB07 "OpenPGP key 0x0a1d7d827b52fb07 at keys.openpgp.org"
 [debiania-src]: https://github.com/Minoru/blog.debiania.in.ua "Minoru/blog.debiania.in.ua — GitHub"
 [email]: <mailto:eual.jp@gmail.com> "eual dot jp at google mail"
 [newsboat]: https://newsboat.org "Newsboat, an RSS reader"
