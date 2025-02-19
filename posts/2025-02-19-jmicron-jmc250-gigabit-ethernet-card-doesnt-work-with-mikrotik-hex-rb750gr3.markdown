@@ -8,6 +8,10 @@ tags: hardware
 I would've bet it's impossible, but: two otherwise healthy Ethernet devices can
 refuse to talk to each other!
 
+**TL;DR:** if one device supports Green Ethernet and the other one doesn't (e.g.
+because it was made in 2008 when Green Ethernet didn't exist), they may fail to
+establish a link.
+
 Recently I was looking for some light distraction from grown-up
 responsibilities, and so decided to start a homelab: a little environment where
 I could play with networking, virtualisation, and maybe even home automation.
