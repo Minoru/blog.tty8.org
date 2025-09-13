@@ -1,0 +1,27 @@
+---
+title: ICFPC 2025
+language: russian
+description: "Link dump по ICFPC 2025, который я пропустил"
+tags: icfpc
+---
+
+Постоянные читатели моего блога знают, что каждый год я вместе с ребятами из
+[codingteam][codingteam] участвую в программистском соревновании ICFPC, а затем
+пишу об этом пост. Нынешний год стал исключением: недавно у меня родился сын,
+и я решил посвятить выходные ему, а не контесту. Тем не менее, сокомандники
+пободались с задачей без меня и написали собственные отчёты: [Форневер — хронику
+и обзор решений][fornever-report], а [Foxtran — о своём «управляемом
+рандоме»][foxtran-report]. Похоже, задача была не самой интересной, но ребята
+все равно умудрились извлечь из неё некоторое количество фана.
+
+Надеюсь в будущем году вернуться к славной традиции участия в ICFPC. Тем более
+там опять Haskell, как такое пропустить? Заглядывайте сюда через годик ;)
+
+[codingteam]: https://codingteam.org.ru
+    "Codingteam — an open community of engineers and programmers"
+
+[fornever-report]: https://fornever.me/en/posts/2025-09-08.icfpc-2025.html
+    "F. von Never — ICFP Contest 2025"
+
+[foxtran-report]: https://www.linkedin.com/posts/foxtran_icfp-contest-2025-activity-7370933528848556032-HlYX
+    "ICFP Contest 2025 | Igor Gerasimov | LinkedIn"
