@@ -84,6 +84,10 @@ forges other than GitHub. When I migrate to a different one, it'd be sad to
 leave all this wealth of features behind. But until then, I think Cirrus is
 going to serve well.
 
+**Update 24.04.2026:** [Cirrus CI will shut down on June 1st, 2026][shutdown]
+because its team joins OpenAI. [We'll see][migration] how easy it'll be to
+migrate to another CI provider.
+
 [my-first-cirrus-commit]: https://github.com/newsboat/newsboat/commit/f1e3d184401015846a572e775ae7dfca7c79e2d4#diff-62587956f943bb2503db7bc6dd27d0d888074a1c0ecaab3f570ad611aff0f7bb
     "Build Newsboat on FreeBSD with Cirrus CI — newsboat/newsboat@f1e3d18"
 
@@ -104,3 +108,9 @@ going to serve well.
 
 [cirrus-twitter]: https://twitter.com/cirrus_labs
     "Cirrus Labs (@cirrus_labs) / Twitter"
+
+[shutdown]: https://web.archive.org/web/20260412063228/https://cirruslabs.org/
+    "Cirrus Labs to join OpenAI"
+
+[migration]: https://github.com/newsboat/newsboat/issues/3326
+    "Migrate away from Cirrus CI · Issue #3326 · newsboat/newsboat — GitHub"
