@@ -17,8 +17,13 @@ with STM32F411E, because its ST-LINK debug probe is only V2[^1], which does
 *not* support a virtual COM port[^2]. This is a hardware limitation; you can't
 fix it by upgrading ST-LINK firmware or re-installing the drivers.
 
-The solution is to get an external USB-to-UART dongle and connect it to the
-board's pins. That's when you run into the second problem…
+**Update 2026.05.30**: Muhammad Ahmad writes in to note that [virtual COM can
+be implemented in firmware][vcom-in-firmware] with just a few clicks using
+STM32CubeMX. That's the easiest solution if you are already using STM32CubeMX
+and don't need the USB port for something else.
+
+A more general solution is to get an external USB-to-UART dongle and connect it
+to the board's pins. That's when you run into the second problem…
 
 # `PA9` and `PA10` don't work
 
@@ -37,3 +42,6 @@ peripherals (`USART2` or `USART6`).
 
 [docs]: https://www.st.com/en/evaluation-tools/32f411ediscovery.html#documentation
     "32F411EDISCOVERY — Discovery kit with STM32F411VE MCU — STMicroelectronics"
+
+[vcom-in-firmware]: https://microtechnics.ru/en/stm32cube-and-usb-virtual-com-port-2/
+    "STM32CubeMx and USB. Virtual COM Port with STM32 MCU."
