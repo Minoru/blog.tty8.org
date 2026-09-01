@@ -303,6 +303,8 @@ ForNeVeR, foxtran, gsomix, portnov и я. Из-за проблем с досту
 там более подробно рассказано про команду в целом. И раз вы сюда дочитали,
 надеюсь увидеть вас в leaderboard следующего ICFPC ☺
 
+**Update 2026.09.01**: [заняли 49-е место из 267-и][standings].
+
 [codingteam]: https://codingteam.org.ru/
     "Codingteam — an open community of engineers and programmers"
 
@@ -326,3 +328,6 @@ ForNeVeR, foxtran, gsomix, portnov и я. Из-за проблем с досту
 
 [repo]: https://github.com/codingteam/icfpc-2026/
     "codingteam/icfpc-2026 — GitHub"
+
+[standings]: https://icfpcontest2026.com/standings
+    "Overall standings — ICFPC 2026"
