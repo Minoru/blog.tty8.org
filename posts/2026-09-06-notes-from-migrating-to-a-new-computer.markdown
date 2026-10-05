@@ -119,6 +119,10 @@ because the GPU was in an eGPU box which I only connected when I needed it.
 [nv-power-limit]: /posts/2026-09-03-how-to-power-limit-nvidia-cards-on-boot-in-debian.html
     "How to power-limit NVIDIA cards on boot in Debian — Debiania"
 
+**Update 2026.10.05**: I had to do it again after upgrading the BIOS on my
+Gigabyte B840M DS3H motherboard from F11c to F11d. The key didn't change, so
+I guess the motherboard reset the key storage or something.
+
 <hr/>
 
 Well, this wasn't hard at all, even if Wireguard had me puzzled for a bit. I'm
